@@ -153,14 +153,6 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusP
   const handleObjectClick = useCallback((obj: object) => {
     const pyramid = obj as Pyramid;
     onSelect(pyramid);
-    if (globeRef.current) {
-      globeRef.current.pointOfView(
-        { lat: pyramid.coordinate.lat, lng: pyramid.coordinate.lon, altitude: 1.5 },
-        800
-      );
-      const controls = globeRef.current.controls();
-      if (controls) controls.autoRotate = false;
-    }
   }, [onSelect]);
 
   const handleResize = useCallback(() => {
