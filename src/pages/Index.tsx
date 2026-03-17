@@ -35,6 +35,7 @@ const Index = () => {
 
   const handleSelect = useCallback((pyramid: Pyramid) => {
     setSelectedPyramid(pyramid);
+    setFlyToKey(k => k + 1);
   }, []);
 
   const handleReset = useCallback(() => {
