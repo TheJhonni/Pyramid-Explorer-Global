@@ -16,6 +16,7 @@ interface Globe3DProps {
 const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusPoint }: Globe3DProps) => {
   const globeRef = useRef<any>(undefined);
   const containerRef = useRef<HTMLDivElement>(null);
+  const flyTimeoutRef = useRef<number | null>(null);
 
   // Set up lighting based on sun position
   useEffect(() => {
