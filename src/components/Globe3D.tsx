@@ -13,7 +13,7 @@ interface Globe3DProps {
   focusPoint?: { lat: number; lng: number; altitude: number } | null;
 }
 
-const Globe3D = ({ pyramids, filteredIds, selectedId, onSelect, focusPoint }: Globe3DProps) => {
+const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusPoint }: Globe3DProps) => {
   const globeRef = useRef<any>(undefined);
   const containerRef = useRef<HTMLDivElement>(null);
 
