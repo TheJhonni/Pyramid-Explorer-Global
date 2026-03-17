@@ -8,6 +8,7 @@ interface Globe3DProps {
   pyramids: Pyramid[];
   filteredIds: string[];
   selectedId: string | null;
+  flyToKey: number;
   onSelect: (pyramid: Pyramid) => void;
   focusPoint?: { lat: number; lng: number; altitude: number } | null;
 }
