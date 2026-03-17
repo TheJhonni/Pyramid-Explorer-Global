@@ -83,6 +83,7 @@ const Index = () => {
           pyramids={allPyramids}
           filteredIds={filteredIds}
           selectedId={selectedPyramid?.id ?? null}
+          flyToKey={flyToKey}
           onSelect={handleSelect}
           focusPoint={focusPoint}
         />
