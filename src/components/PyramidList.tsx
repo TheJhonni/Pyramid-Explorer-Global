@@ -1,5 +1,6 @@
 import { Pyramid } from '@/types/pyramid';
 import { MapPin, Star } from 'lucide-react';
+import { useI18n } from '@/i18n/I18nContext';
 
 interface PyramidListProps {
   pyramids: Pyramid[];
@@ -8,10 +9,12 @@ interface PyramidListProps {
 }
 
 const PyramidList = ({ pyramids, selectedId, onSelect }: PyramidListProps) => {
+  const { t, tc } = useI18n();
+
   if (pyramids.length === 0) {
     return (
       <div className="p-4 text-center text-muted-foreground text-xs font-mono">
-        Nessun risultato trovato
+        {t.noResults}
       </div>
     );
   }
@@ -34,7 +37,7 @@ const PyramidList = ({ pyramids, selectedId, onSelect }: PyramidListProps) => {
               </div>
               <div className="text-[10px] text-muted-foreground font-mono mt-0.5 flex items-center gap-1">
                 <MapPin size={8} />
-                {p.paese} · {p.continente}
+                {p.paese} · {tc(p.continente)}
               </div>
             </div>
             {p.altezza_struttura_m > 0 && (
