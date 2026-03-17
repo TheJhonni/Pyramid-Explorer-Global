@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Pyramid } from '@/types/pyramid';
 import { X, MapPin, Mountain, Ruler, Star, ExternalLink, BookOpen, Lightbulb } from 'lucide-react';
 import { useI18n } from '@/i18n/I18nContext';
+import PyramidPhotoCarousel from './PyramidPhotoCarousel';
 
 interface PyramidDetailsProps {
   pyramid: Pyramid | null;
@@ -94,6 +95,24 @@ const PyramidDetails = ({ pyramid, onClose }: PyramidDetailsProps) => {
                 </div>
               </div>
             </section>
+
+            {/* Photo carousel */}
+            {(pyramid.immagini?.length || pyramid.google_images_url) && (
+              <PyramidPhotoCarousel
+                images={pyramid.immagini || []}
+                googleUrl={pyramid.google_images_url}
+                name={pyramid.nome}
+              />
+            )}
+
+            {/* Always show search link even without images */}
+            {!pyramid.immagini?.length && !pyramid.google_images_url && (
+              <PyramidPhotoCarousel
+                images={[]}
+                googleUrl={`https://www.google.com/search?tbm=isch&q=${encodeURIComponent(pyramid.nome + ' pyramid')}`}
+                name={pyramid.nome}
+              />
+            )}
 
             {pyramid.leggende_locali.length > 0 && (
               <section>

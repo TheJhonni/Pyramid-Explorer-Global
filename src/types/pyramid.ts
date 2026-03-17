@@ -28,6 +28,8 @@ export interface Pyramid {
   note: string;
   osmanagich_focus: boolean;
   controversa: boolean;
+  immagini?: string[];
+  google_images_url?: string;
 }
 
 export interface Filters {

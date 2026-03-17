@@ -52,6 +52,8 @@ type TranslationKeys = {
   base: string;
   altitude: string;
   noResults: string;
+  photos: string;
+  searchMorePhotos: string;
   // Pyramid data fields
   country: string;
 };
@@ -94,6 +96,8 @@ const translations: Record<Lang, TranslationKeys> = {
     base: 'Base',
     altitude: 'Altitude a.s.l.',
     noResults: 'No results found',
+    photos: 'Photos',
+    searchMorePhotos: 'Search more photos on Google',
     country: 'Country',
   },
   it: {
@@ -133,6 +137,8 @@ const translations: Record<Lang, TranslationKeys> = {
     base: 'Base',
     altitude: 'Altitudine s.l.m.',
     noResults: 'Nessun risultato trovato',
+    photos: 'Foto',
+    searchMorePhotos: 'Cerca altre foto su Google',
     country: 'Paese',
   },
   es: {
@@ -172,6 +178,8 @@ const translations: Record<Lang, TranslationKeys> = {
     base: 'Base',
     altitude: 'Altitud s.n.m.',
     noResults: 'Sin resultados',
+    photos: 'Fotos',
+    searchMorePhotos: 'Buscar más fotos en Google',
     country: 'País',
   },
   fr: {
@@ -211,6 +219,8 @@ const translations: Record<Lang, TranslationKeys> = {
     base: 'Base',
     altitude: 'Altitude',
     noResults: 'Aucun résultat',
+    photos: 'Photos',
+    searchMorePhotos: 'Chercher plus de photos sur Google',
     country: 'Pays',
   },
   de: {
@@ -250,6 +260,8 @@ const translations: Record<Lang, TranslationKeys> = {
     base: 'Basis',
     altitude: 'Höhe ü.d.M.',
     noResults: 'Keine Ergebnisse',
+    photos: 'Fotos',
+    searchMorePhotos: 'Mehr Fotos auf Google suchen',
     country: 'Land',
   },
   pt: {
@@ -289,6 +301,8 @@ const translations: Record<Lang, TranslationKeys> = {
     base: 'Base',
     altitude: 'Altitude',
     noResults: 'Sem resultados',
+    photos: 'Fotos',
+    searchMorePhotos: 'Pesquisar mais fotos no Google',
     country: 'País',
   },
 };

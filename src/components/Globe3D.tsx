@@ -84,6 +84,21 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, onSelect, focusPoint }: Gl
     }
   }, [focusPoint]);
 
+  // Fly to selected pyramid (from list or globe click)
+  useEffect(() => {
+    if (selectedId && globeRef.current) {
+      const pyramid = pyramids.find(p => p.id === selectedId);
+      if (pyramid) {
+        globeRef.current.pointOfView(
+          { lat: pyramid.coordinate.lat, lng: pyramid.coordinate.lon, altitude: 1.5 },
+          800
+        );
+        const controls = globeRef.current.controls();
+        if (controls) controls.autoRotate = false;
+      }
+    }
+  }, [selectedId, pyramids]);
+
   // Custom pyramid geometry
   const pyramidGeom = useMemo(() => new THREE.ConeGeometry(0.8, 2, 4), []);
   

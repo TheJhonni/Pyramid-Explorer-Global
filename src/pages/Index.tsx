@@ -5,12 +5,16 @@ import PyramidList from '@/components/PyramidList';
 import PyramidDetails from '@/components/PyramidDetails';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import pyramidsData from '@/data/pyramids.json';
+import { pyramidImages } from '@/data/pyramidImages';
 import { Pyramid, Filters, defaultFilters, continentCenters } from '@/types/pyramid';
 import { filterPyramids } from '@/utils/filters';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useI18n } from '@/i18n/I18nContext';
 
-const allPyramids = pyramidsData as Pyramid[];
+const allPyramids = (pyramidsData as Pyramid[]).map(p => ({
+  ...p,
+  ...(pyramidImages[p.id] || {}),
+}));
 
 const Index = () => {
   const { t } = useI18n();
