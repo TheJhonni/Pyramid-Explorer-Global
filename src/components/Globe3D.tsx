@@ -13,7 +13,7 @@ interface Globe3DProps {
 }
 
 const Globe3D = ({ pyramids, filteredIds, selectedId, onSelect, focusPoint }: Globe3DProps) => {
-  const globeRef = useRef<GlobeInstance | undefined>(undefined);
+  const globeRef = useRef<any>(undefined);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Set up lighting based on sun position
