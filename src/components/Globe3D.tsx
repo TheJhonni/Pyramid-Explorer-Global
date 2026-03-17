@@ -98,7 +98,7 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusP
         if (controls) controls.autoRotate = false;
       }
     }
-  }, [selectedId, pyramids]);
+  }, [selectedId, flyToKey, pyramids]);
 
   // Custom pyramid geometry
   const pyramidGeom = useMemo(() => new THREE.ConeGeometry(0.8, 2, 4), []);
