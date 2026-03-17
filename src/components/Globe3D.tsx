@@ -1,6 +1,5 @@
 import { useRef, useEffect, useMemo, useCallback } from 'react';
 import Globe from 'react-globe.gl';
-type GlobeInstance = ReturnType<typeof Globe> extends React.ForwardRefExoticComponent<infer P & React.RefAttributes<infer T>> ? T : any;
 import * as THREE from 'three';
 import { Pyramid } from '@/types/pyramid';
 import { getSunPosition } from '@/utils/sunPosition';
