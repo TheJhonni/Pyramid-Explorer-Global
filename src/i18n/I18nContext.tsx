@@ -219,6 +219,8 @@ const translations: Record<Lang, TranslationKeys> = {
     base: 'Base',
     altitude: 'Altitude',
     noResults: 'Aucun résultat',
+    photos: 'Photos',
+    searchMorePhotos: 'Chercher plus de photos sur Google',
     country: 'Pays',
   },
   de: {
