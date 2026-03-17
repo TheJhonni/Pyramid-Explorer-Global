@@ -20,6 +20,7 @@ const Index = () => {
   const { t } = useI18n();
   const [filters, setFilters] = useState<Filters>(defaultFilters);
   const [selectedPyramid, setSelectedPyramid] = useState<Pyramid | null>(null);
+  const [flyToKey, setFlyToKey] = useState(0);
   const [showList, setShowList] = useState(true);
 
   const filtered = useMemo(() => filterPyramids(allPyramids, filters), [filters]);
@@ -34,6 +35,7 @@ const Index = () => {
 
   const handleSelect = useCallback((pyramid: Pyramid) => {
     setSelectedPyramid(pyramid);
+    setFlyToKey(k => k + 1);
   }, []);
 
   const handleReset = useCallback(() => {
@@ -81,6 +83,7 @@ const Index = () => {
           pyramids={allPyramids}
           filteredIds={filteredIds}
           selectedId={selectedPyramid?.id ?? null}
+          flyToKey={flyToKey}
           onSelect={handleSelect}
           focusPoint={focusPoint}
         />

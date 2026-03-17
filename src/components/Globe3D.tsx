@@ -8,11 +8,12 @@ interface Globe3DProps {
   pyramids: Pyramid[];
   filteredIds: string[];
   selectedId: string | null;
+  flyToKey: number;
   onSelect: (pyramid: Pyramid) => void;
   focusPoint?: { lat: number; lng: number; altitude: number } | null;
 }
 
-const Globe3D = ({ pyramids, filteredIds, selectedId, onSelect, focusPoint }: Globe3DProps) => {
+const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusPoint }: Globe3DProps) => {
   const globeRef = useRef<any>(undefined);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -97,7 +98,7 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, onSelect, focusPoint }: Gl
         if (controls) controls.autoRotate = false;
       }
     }
-  }, [selectedId, pyramids]);
+  }, [selectedId, flyToKey, pyramids]);
 
   // Custom pyramid geometry
   const pyramidGeom = useMemo(() => new THREE.ConeGeometry(0.8, 2, 4), []);
@@ -152,14 +153,6 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, onSelect, focusPoint }: Gl
   const handleObjectClick = useCallback((obj: object) => {
     const pyramid = obj as Pyramid;
     onSelect(pyramid);
-    if (globeRef.current) {
-      globeRef.current.pointOfView(
-        { lat: pyramid.coordinate.lat, lng: pyramid.coordinate.lon, altitude: 1.5 },
-        800
-      );
-      const controls = globeRef.current.controls();
-      if (controls) controls.autoRotate = false;
-    }
   }, [onSelect]);
 
   const handleResize = useCallback(() => {
