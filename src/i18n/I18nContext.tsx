@@ -52,6 +52,8 @@ type TranslationKeys = {
   base: string;
   altitude: string;
   noResults: string;
+  photos: string;
+  searchMorePhotos: string;
   // Pyramid data fields
   country: string;
 };
