@@ -260,6 +260,8 @@ const translations: Record<Lang, TranslationKeys> = {
     base: 'Basis',
     altitude: 'Höhe ü.d.M.',
     noResults: 'Keine Ergebnisse',
+    photos: 'Fotos',
+    searchMorePhotos: 'Mehr Fotos auf Google suchen',
     country: 'Land',
   },
   pt: {
