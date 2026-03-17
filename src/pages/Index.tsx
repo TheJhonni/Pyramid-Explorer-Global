@@ -20,6 +20,7 @@ const Index = () => {
   const { t } = useI18n();
   const [filters, setFilters] = useState<Filters>(defaultFilters);
   const [selectedPyramid, setSelectedPyramid] = useState<Pyramid | null>(null);
+  const [flyToKey, setFlyToKey] = useState(0);
   const [showList, setShowList] = useState(true);
 
   const filtered = useMemo(() => filterPyramids(allPyramids, filters), [filters]);
