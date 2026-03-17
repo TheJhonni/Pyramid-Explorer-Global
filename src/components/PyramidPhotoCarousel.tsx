@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { ChevronLeft, ChevronRight, ExternalLink, ImageOff } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight, ExternalLink, ImageOff, Search } from 'lucide-react';
 import { useI18n } from '@/i18n/I18nContext';
 
 interface PyramidPhotoCarouselProps {
@@ -13,9 +13,11 @@ const PyramidPhotoCarousel = ({ images, googleUrl, name }: PyramidPhotoCarouselP
   const [currentIndex, setCurrentIndex] = useState(0);
   const [failedImages, setFailedImages] = useState<Set<number>>(new Set());
 
-  const validImages = images.filter((_, i) => !failedImages.has(i));
-
-  if (validImages.length === 0 && !googleUrl) return null;
+  // Reset state when pyramid changes
+  useEffect(() => {
+    setCurrentIndex(0);
+    setFailedImages(new Set());
+  }, [name]);
 
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
@@ -26,52 +28,60 @@ const PyramidPhotoCarousel = ({ images, googleUrl, name }: PyramidPhotoCarouselP
   };
 
   const handleImageError = (index: number) => {
-    setFailedImages((prev) => new Set(prev).add(index));
+    setFailedImages((prev) => {
+      const next = new Set(prev);
+      next.add(index);
+      return next;
+    });
   };
 
   const searchUrl = googleUrl || `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(name + ' pyramid archaeological site')}`;
+  
+  const workingImages = images.filter((_, i) => !failedImages.has(i));
 
   return (
-    <section>
-      <h3 className="text-[10px] uppercase text-muted-foreground font-mono tracking-wider flex items-center gap-1.5 mb-3">
-        📷 {t.photos || 'Photos'}
+    <section className="space-y-2">
+      <h3 className="text-[10px] uppercase text-muted-foreground font-mono tracking-wider flex items-center gap-1.5">
+        📷 {t.photos}
       </h3>
 
-      {images.length > 0 && (
+      {workingImages.length > 0 && (
         <div className="relative rounded-lg overflow-hidden bg-secondary/30 border border-border">
-          <div className="aspect-video relative">
+          <div className="aspect-video relative bg-muted/50">
             {!failedImages.has(currentIndex) ? (
               <img
                 src={images[currentIndex]}
                 alt={`${name} - ${currentIndex + 1}`}
                 className="w-full h-full object-cover"
                 onError={() => handleImageError(currentIndex)}
-                loading="lazy"
+                referrerPolicy="no-referrer"
+                crossOrigin="anonymous"
               />
             ) : (
-              <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                <ImageOff size={32} />
+              <div className="w-full h-full flex flex-col items-center justify-center text-muted-foreground gap-2">
+                <ImageOff size={24} />
+                <span className="text-[10px] font-mono">Image unavailable</span>
               </div>
             )}
 
-            {images.length > 1 && (
+            {workingImages.length > 1 && (
               <>
                 <button
                   onClick={handlePrev}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-background/70 backdrop-blur-sm border border-border hover:bg-background/90 transition-colors"
+                  className="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-colors"
                 >
                   <ChevronLeft size={14} />
                 </button>
                 <button
                   onClick={handleNext}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-background/70 backdrop-blur-sm border border-border hover:bg-background/90 transition-colors"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-colors"
                 >
                   <ChevronRight size={14} />
                 </button>
               </>
             )}
 
-            <div className="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-background/70 backdrop-blur-sm text-[10px] font-mono text-muted-foreground">
+            <div className="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-background/80 backdrop-blur-sm text-[10px] font-mono text-muted-foreground">
               {currentIndex + 1} / {images.length}
             </div>
           </div>
@@ -93,7 +103,8 @@ const PyramidPhotoCarousel = ({ images, googleUrl, name }: PyramidPhotoCarouselP
                       alt=""
                       className="w-full h-full object-cover"
                       onError={() => handleImageError(i)}
-                      loading="lazy"
+                      referrerPolicy="no-referrer"
+                      crossOrigin="anonymous"
                     />
                   ) : (
                     <div className="w-full h-full bg-muted flex items-center justify-center">
@@ -107,13 +118,14 @@ const PyramidPhotoCarousel = ({ images, googleUrl, name }: PyramidPhotoCarouselP
         </div>
       )}
 
+      {/* Google Images search link - always visible */}
       <a
         href={searchUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-2 flex items-center gap-1.5 text-[11px] text-primary/70 hover:text-primary transition-colors font-mono"
+        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-secondary/40 border border-border text-[11px] text-foreground/70 hover:text-primary hover:border-primary/30 transition-all font-mono"
       >
-        <ExternalLink size={10} /> {t.searchMorePhotos || 'Search more photos on Google'}
+        <Search size={11} /> {t.searchMorePhotos}
       </a>
     </section>
   );
