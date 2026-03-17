@@ -88,17 +88,40 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusP
 
   // Fly to selected pyramid (from list or globe click)
   useEffect(() => {
-    if (selectedId && globeRef.current) {
-      const pyramid = pyramids.find(p => p.id === selectedId);
-      if (pyramid) {
-        globeRef.current.pointOfView(
-          { lat: pyramid.coordinate.lat, lng: pyramid.coordinate.lon, altitude: 1.5 },
-          800
-        );
-        const controls = globeRef.current.controls();
-        if (controls) controls.autoRotate = false;
-      }
+    if (flyTimeoutRef.current) {
+      window.clearTimeout(flyTimeoutRef.current);
+      flyTimeoutRef.current = null;
     }
+
+    if (!selectedId || !globeRef.current) return;
+
+    const pyramid = pyramids.find((p) => p.id === selectedId);
+    if (!pyramid) return;
+
+    const globe = globeRef.current;
+    const controls = globe.controls();
+    if (controls) controls.autoRotate = false;
+
+    const currentPov = globe.pointOfView();
+    globe.pointOfView(currentPov, 0);
+
+    flyTimeoutRef.current = window.setTimeout(() => {
+      globe.pointOfView(
+        {
+          lat: Number(pyramid.coordinate.lat),
+          lng: Number(pyramid.coordinate.lon),
+          altitude: 1.5,
+        },
+        900
+      );
+    }, 40);
+
+    return () => {
+      if (flyTimeoutRef.current) {
+        window.clearTimeout(flyTimeoutRef.current);
+        flyTimeoutRef.current = null;
+      }
+    };
   }, [selectedId, flyToKey, pyramids]);
 
   // Custom pyramid geometry

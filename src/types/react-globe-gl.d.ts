@@ -25,6 +25,7 @@ declare module 'react-globe.gl' {
     scene(): any;
     camera(): any;
     controls(): any;
+    pointOfView(): { lat?: number; lng?: number; altitude?: number };
     pointOfView(pov: { lat?: number; lng?: number; altitude?: number }, transitionMs?: number): void;
   }
 
