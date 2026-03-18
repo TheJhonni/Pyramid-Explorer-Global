@@ -111,40 +111,31 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusP
     const controls = globe.controls();
     if (controls) {
       controls.autoRotate = false;
-      controls.update?.();
     }
 
     const targetPov = {
       lat: Number(pyramid.coordinate.lat),
       lng: Number(pyramid.coordinate.lon),
-      altitude: 1.35,
+      altitude: 1.5,
     };
 
+    // Stop any ongoing animation by snapping to current position
     const currentPov = globe.pointOfView();
-    const currentLat = Number(currentPov.lat ?? targetPov.lat);
-    const currentLng = Number(currentPov.lng ?? targetPov.lng);
-    const currentAltitude = Number(currentPov.altitude ?? 1.8);
-    const latDelta = targetPov.lat - currentLat;
-    const lngDelta = ((((targetPov.lng - currentLng) % 360) + 540) % 360) - 180;
-    const isNearTarget = Math.abs(latDelta) < 12 && Math.abs(lngDelta) < 12;
+    globe.pointOfView(
+      {
+        lat: Number(currentPov.lat ?? 0),
+        lng: Number(currentPov.lng ?? 0),
+        altitude: Number(currentPov.altitude ?? 2),
+      },
+      0
+    );
 
-    globe.pointOfView({ lat: currentLat, lng: currentLng, altitude: currentAltitude }, 0);
+    // Fly to target after a brief frame to let the snap settle
+    const timeout = window.setTimeout(() => {
+      globe.pointOfView(targetPov, 1200);
+    }, 50);
 
-    const scenicPov = {
-      lat: currentLat + (isNearTarget ? (latDelta >= 0 ? -6 : 6) : 0),
-      lng: currentLng + (isNearTarget ? (lngDelta >= 0 ? -10 : 10) : 0),
-      altitude: Math.max(currentAltitude, 2.2),
-    };
-
-    const scenicTimeout = window.setTimeout(() => {
-      globe.pointOfView(scenicPov, 240);
-    }, 0);
-
-    const finalTimeout = window.setTimeout(() => {
-      globe.pointOfView(targetPov, 1000);
-    }, 260);
-
-    flyTimeoutsRef.current = [scenicTimeout, finalTimeout];
+    flyTimeoutsRef.current = [timeout];
 
     return clearFlyTimeouts;
   }, [selectedId, flyToKey, pyramids, clearFlyTimeouts]);
