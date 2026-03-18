@@ -16,7 +16,12 @@ interface Globe3DProps {
 const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusPoint }: Globe3DProps) => {
   const globeRef = useRef<any>(undefined);
   const containerRef = useRef<HTMLDivElement>(null);
-  const flyTimeoutRef = useRef<number | null>(null);
+  const flyTimeoutsRef = useRef<number[]>([]);
+
+  const clearFlyTimeouts = useCallback(() => {
+    flyTimeoutsRef.current.forEach((timeoutId) => window.clearTimeout(timeoutId));
+    flyTimeoutsRef.current = [];
+  }, []);
 
   // Set up lighting based on sun position
   useEffect(() => {
@@ -25,7 +30,7 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusP
 
     const scene = globe.scene();
     const camera = globe.camera();
-    
+
     // Remove default lights
     scene.children
       .filter((c: THREE.Object3D) => c instanceof THREE.Light)
@@ -53,11 +58,11 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusP
     };
 
     updateSun();
-    const interval = setInterval(updateSun, 60000); // every minute
+    const interval = setInterval(updateSun, 60000);
 
     // Camera initial position
     camera.position.set(0, 0, 300);
-    
+
     // Controls
     const controls = globe.controls();
     if (controls) {
@@ -67,31 +72,35 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusP
       controls.dampingFactor = 0.1;
       controls.minDistance = 120;
       controls.maxDistance = 500;
+      controls.addEventListener?.('start', () => {
+        controls.autoRotate = false;
+      });
     }
 
     // Background
     scene.background = new THREE.Color(0x0a0a14);
 
-    return () => clearInterval(interval);
-  }, []);
+    return () => {
+      clearInterval(interval);
+      clearFlyTimeouts();
+    };
+  }, [clearFlyTimeouts]);
 
   // Focus on continent
   useEffect(() => {
     if (focusPoint && globeRef.current) {
+      clearFlyTimeouts();
       globeRef.current.pointOfView(focusPoint, 1000);
       const controls = globeRef.current.controls();
       if (controls) {
         controls.autoRotate = false;
       }
     }
-  }, [focusPoint]);
+  }, [focusPoint, clearFlyTimeouts]);
 
   // Fly to selected pyramid (from list or globe click)
   useEffect(() => {
-    if (flyTimeoutRef.current) {
-      window.clearTimeout(flyTimeoutRef.current);
-      flyTimeoutRef.current = null;
-    }
+    clearFlyTimeouts();
 
     if (!selectedId || !globeRef.current) return;
 
@@ -100,29 +109,45 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusP
 
     const globe = globeRef.current;
     const controls = globe.controls();
-    if (controls) controls.autoRotate = false;
+    if (controls) {
+      controls.autoRotate = false;
+      controls.update?.();
+    }
+
+    const targetPov = {
+      lat: Number(pyramid.coordinate.lat),
+      lng: Number(pyramid.coordinate.lon),
+      altitude: 1.35,
+    };
 
     const currentPov = globe.pointOfView();
-    globe.pointOfView(currentPov, 0);
+    const currentLat = Number(currentPov.lat ?? targetPov.lat);
+    const currentLng = Number(currentPov.lng ?? targetPov.lng);
+    const currentAltitude = Number(currentPov.altitude ?? 1.8);
+    const latDelta = targetPov.lat - currentLat;
+    const lngDelta = ((((targetPov.lng - currentLng) % 360) + 540) % 360) - 180;
+    const isNearTarget = Math.abs(latDelta) < 12 && Math.abs(lngDelta) < 12;
 
-    flyTimeoutRef.current = window.setTimeout(() => {
-      globe.pointOfView(
-        {
-          lat: Number(pyramid.coordinate.lat),
-          lng: Number(pyramid.coordinate.lon),
-          altitude: 1.5,
-        },
-        900
-      );
-    }, 40);
+    globe.pointOfView({ lat: currentLat, lng: currentLng, altitude: currentAltitude }, 0);
 
-    return () => {
-      if (flyTimeoutRef.current) {
-        window.clearTimeout(flyTimeoutRef.current);
-        flyTimeoutRef.current = null;
-      }
+    const scenicPov = {
+      lat: currentLat + (isNearTarget ? (latDelta >= 0 ? -6 : 6) : 0),
+      lng: currentLng + (isNearTarget ? (lngDelta >= 0 ? -10 : 10) : 0),
+      altitude: Math.max(currentAltitude, 2.2),
     };
-  }, [selectedId, flyToKey, pyramids]);
+
+    const scenicTimeout = window.setTimeout(() => {
+      globe.pointOfView(scenicPov, 240);
+    }, 0);
+
+    const finalTimeout = window.setTimeout(() => {
+      globe.pointOfView(targetPov, 1000);
+    }, 260);
+
+    flyTimeoutsRef.current = [scenicTimeout, finalTimeout];
+
+    return clearFlyTimeouts;
+  }, [selectedId, flyToKey, pyramids, clearFlyTimeouts]);
 
   // Custom pyramid geometry
   const pyramidGeom = useMemo(() => new THREE.ConeGeometry(0.8, 2, 4), []);
