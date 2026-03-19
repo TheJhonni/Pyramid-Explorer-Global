@@ -183,8 +183,8 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusP
       controls.autoRotate = false;
     }
 
-    animatePointOfView(focusPoint, 1000);
-  }, [focusPoint, animatePointOfView]);
+    flyToPoint(focusPoint, 1000, false);
+  }, [focusPoint, flyToPoint]);
 
   // Fly to selected pyramid (from list or globe click)
   useEffect(() => {
@@ -198,15 +198,16 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusP
       controls.autoRotate = false;
     }
 
-    animatePointOfView(
+    flyToPoint(
       {
         lat: Number(pyramid.coordinate.lat),
         lng: Number(pyramid.coordinate.lon),
         altitude: 1.5,
       },
-      1200
+      1200,
+      true
     );
-  }, [selectedId, flyToKey, pyramids, animatePointOfView]);
+  }, [selectedId, flyToKey, pyramids, flyToPoint]);
 
   // Custom pyramid geometry
   const pyramidGeom = useMemo(() => new THREE.ConeGeometry(0.8, 2, 4), []);
