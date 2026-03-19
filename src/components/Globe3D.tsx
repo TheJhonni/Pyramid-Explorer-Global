@@ -17,11 +17,67 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusP
   const globeRef = useRef<any>(undefined);
   const containerRef = useRef<HTMLDivElement>(null);
   const flyTimeoutsRef = useRef<number[]>([]);
+  const animationFrameRef = useRef<number | null>(null);
 
   const clearFlyTimeouts = useCallback(() => {
     flyTimeoutsRef.current.forEach((timeoutId) => window.clearTimeout(timeoutId));
     flyTimeoutsRef.current = [];
   }, []);
+
+  const stopCameraAnimation = useCallback(() => {
+    clearFlyTimeouts();
+    if (animationFrameRef.current !== null) {
+      window.cancelAnimationFrame(animationFrameRef.current);
+      animationFrameRef.current = null;
+    }
+  }, [clearFlyTimeouts]);
+
+  const animatePointOfView = useCallback((target: { lat: number; lng: number; altitude: number }, duration = 1200) => {
+    const globe = globeRef.current;
+    if (!globe) return;
+
+    stopCameraAnimation();
+
+    const start = globe.pointOfView();
+    const startPov = {
+      lat: Number(start.lat ?? 0),
+      lng: Number(start.lng ?? 0),
+      altitude: Number(start.altitude ?? 2),
+    };
+
+    const normalizeLngDelta = (from: number, to: number) => {
+      let delta = to - from;
+      while (delta > 180) delta -= 360;
+      while (delta < -180) delta += 360;
+      return delta;
+    };
+
+    const lngDelta = normalizeLngDelta(startPov.lng, target.lng);
+    const startTime = performance.now();
+
+    const step = (now: number) => {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+
+      globe.pointOfView(
+        {
+          lat: startPov.lat + (target.lat - startPov.lat) * eased,
+          lng: startPov.lng + lngDelta * eased,
+          altitude: startPov.altitude + (target.altitude - startPov.altitude) * eased,
+        },
+        0
+      );
+
+      if (progress < 1) {
+        animationFrameRef.current = window.requestAnimationFrame(step);
+      } else {
+        globe.pointOfView(target, 0);
+        animationFrameRef.current = null;
+      }
+    };
+
+    animationFrameRef.current = window.requestAnimationFrame(step);
+  }, [stopCameraAnimation]);
 
   // Set up lighting based on sun position
   useEffect(() => {
@@ -31,20 +87,16 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusP
     const scene = globe.scene();
     const camera = globe.camera();
 
-    // Remove default lights
     scene.children
       .filter((c: THREE.Object3D) => c instanceof THREE.Light)
       .forEach((l: THREE.Object3D) => scene.remove(l));
 
-    // Ambient light (dim)
     const ambient = new THREE.AmbientLight(0x334455, 0.6);
     scene.add(ambient);
 
-    // Directional light (sun)
     const sunLight = new THREE.DirectionalLight(0xffffff, 1.8);
     scene.add(sunLight);
 
-    // Update sun position
     const updateSun = () => {
       const sun = getSunPosition();
       const phi = (90 - sun.lat) * (Math.PI / 180);
@@ -60,10 +112,8 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusP
     updateSun();
     const interval = setInterval(updateSun, 60000);
 
-    // Camera initial position
     camera.position.set(0, 0, 300);
 
-    // Controls
     const controls = globe.controls();
     if (controls) {
       controls.autoRotate = true;
@@ -74,71 +124,51 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusP
       controls.maxDistance = 500;
       controls.addEventListener?.('start', () => {
         controls.autoRotate = false;
+        stopCameraAnimation();
       });
     }
 
-    // Background
     scene.background = new THREE.Color(0x0a0a14);
 
     return () => {
       clearInterval(interval);
-      clearFlyTimeouts();
+      stopCameraAnimation();
     };
-  }, [clearFlyTimeouts]);
+  }, [stopCameraAnimation]);
 
   // Focus on continent
   useEffect(() => {
-    if (focusPoint && globeRef.current) {
-      clearFlyTimeouts();
-      globeRef.current.pointOfView(focusPoint, 1000);
-      const controls = globeRef.current.controls();
-      if (controls) {
-        controls.autoRotate = false;
-      }
+    if (!focusPoint || !globeRef.current) return;
+
+    const controls = globeRef.current.controls();
+    if (controls) {
+      controls.autoRotate = false;
     }
-  }, [focusPoint, clearFlyTimeouts]);
+
+    animatePointOfView(focusPoint, 1000);
+  }, [focusPoint, animatePointOfView]);
 
   // Fly to selected pyramid (from list or globe click)
   useEffect(() => {
-    clearFlyTimeouts();
-
     if (!selectedId || !globeRef.current) return;
 
     const pyramid = pyramids.find((p) => p.id === selectedId);
     if (!pyramid) return;
 
-    const globe = globeRef.current;
-    const controls = globe.controls();
+    const controls = globeRef.current.controls();
     if (controls) {
       controls.autoRotate = false;
     }
 
-    const targetPov = {
-      lat: Number(pyramid.coordinate.lat),
-      lng: Number(pyramid.coordinate.lon),
-      altitude: 1.5,
-    };
-
-    // Stop any ongoing animation by snapping to current position
-    const currentPov = globe.pointOfView();
-    globe.pointOfView(
+    animatePointOfView(
       {
-        lat: Number(currentPov.lat ?? 0),
-        lng: Number(currentPov.lng ?? 0),
-        altitude: Number(currentPov.altitude ?? 2),
+        lat: Number(pyramid.coordinate.lat),
+        lng: Number(pyramid.coordinate.lon),
+        altitude: 1.5,
       },
-      0
+      1200
     );
-
-    // Fly to target after a brief frame to let the snap settle
-    const timeout = window.setTimeout(() => {
-      globe.pointOfView(targetPov, 1200);
-    }, 50);
-
-    flyTimeoutsRef.current = [timeout];
-
-    return clearFlyTimeouts;
-  }, [selectedId, flyToKey, pyramids, clearFlyTimeouts]);
+  }, [selectedId, flyToKey, pyramids, animatePointOfView]);
 
   // Custom pyramid geometry
   const pyramidGeom = useMemo(() => new THREE.ConeGeometry(0.8, 2, 4), []);
