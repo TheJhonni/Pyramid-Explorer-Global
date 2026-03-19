@@ -32,26 +32,31 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusP
     }
   }, [clearFlyTimeouts]);
 
+  const normalizeLngDelta = useCallback((from: number, to: number) => {
+    let delta = to - from;
+    while (delta > 180) delta -= 360;
+    while (delta < -180) delta += 360;
+    return delta;
+  }, []);
+
+  const getCurrentPointOfView = useCallback(() => {
+    const globe = globeRef.current;
+    const pov = globe?.pointOfView?.() ?? {};
+
+    return {
+      lat: Number(pov.lat ?? 0),
+      lng: Number(pov.lng ?? 0),
+      altitude: Number(pov.altitude ?? 2),
+    };
+  }, []);
+
   const animatePointOfView = useCallback((target: { lat: number; lng: number; altitude: number }, duration = 1200) => {
     const globe = globeRef.current;
     if (!globe) return;
 
     stopCameraAnimation();
 
-    const start = globe.pointOfView();
-    const startPov = {
-      lat: Number(start.lat ?? 0),
-      lng: Number(start.lng ?? 0),
-      altitude: Number(start.altitude ?? 2),
-    };
-
-    const normalizeLngDelta = (from: number, to: number) => {
-      let delta = to - from;
-      while (delta > 180) delta -= 360;
-      while (delta < -180) delta += 360;
-      return delta;
-    };
-
+    const startPov = getCurrentPointOfView();
     const lngDelta = normalizeLngDelta(startPov.lng, target.lng);
     const startTime = performance.now();
 
@@ -77,7 +82,40 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusP
     };
 
     animationFrameRef.current = window.requestAnimationFrame(step);
-  }, [stopCameraAnimation]);
+  }, [getCurrentPointOfView, normalizeLngDelta, stopCameraAnimation]);
+
+  const flyToPoint = useCallback((target: { lat: number; lng: number; altitude: number }, duration = 1200, closeUp = false) => {
+    const currentPov = getCurrentPointOfView();
+    const angularDistance = Math.hypot(
+      target.lat - currentPov.lat,
+      normalizeLngDelta(currentPov.lng, target.lng)
+    );
+
+    const finalTarget = closeUp && angularDistance < 12
+      ? { ...target, altitude: Math.min(target.altitude, 0.55) }
+      : target;
+
+    const shouldStageFlight = closeUp && angularDistance < 12;
+    if (!shouldStageFlight) {
+      animatePointOfView(finalTarget, duration);
+      return;
+    }
+
+    animatePointOfView(
+      {
+        lat: currentPov.lat,
+        lng: currentPov.lng,
+        altitude: Math.max(currentPov.altitude, finalTarget.altitude, 1.9),
+      },
+      260
+    );
+
+    const timeoutId = window.setTimeout(() => {
+      animatePointOfView(finalTarget, duration);
+    }, 280);
+
+    flyTimeoutsRef.current.push(timeoutId);
+  }, [animatePointOfView, getCurrentPointOfView, normalizeLngDelta]);
 
   // Set up lighting based on sun position
   useEffect(() => {
