@@ -1,5 +1,5 @@
-import { useRef, useEffect, useMemo, useCallback } from 'react';
-import Globe from 'react-globe.gl';
+import { useRef, useEffect, useMemo, useCallback, useState } from 'react';
+import Globe, { type GlobeMethods } from 'react-globe.gl';
 import * as THREE from 'three';
 import { Pyramid } from '@/types/pyramid';
 import { getSunPosition } from '@/utils/sunPosition';
@@ -13,8 +13,17 @@ interface Globe3DProps {
   focusPoint?: { lat: number; lng: number; altitude: number } | null;
 }
 
+const escapeHtml = (value: string) =>
+  value.replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch]!);
+
+// Phones and touch tablets get a lighter texture, no bump map and a capped pixel ratio.
+const isLowPower = () =>
+  typeof window !== 'undefined' && window.matchMedia('(max-width: 767px), (pointer: coarse)').matches;
+
 const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusPoint }: Globe3DProps) => {
-  const globeRef = useRef<any>(undefined);
+  const globeRef = useRef<GlobeMethods | undefined>(undefined);
+  const [lowPower] = useState(isLowPower);
+  const [size, setSize] = useState({ width: 0, height: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
   const flyTimeoutsRef = useRef<number[]>([]);
   const animationFrameRef = useRef<number | null>(null);
@@ -41,7 +50,7 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusP
 
   const getCurrentPointOfView = useCallback(() => {
     const globe = globeRef.current;
-    const pov = globe?.pointOfView?.() ?? {};
+    const pov: { lat?: number; lng?: number; altitude?: number } = globe?.pointOfView?.() ?? {};
 
     return {
       lat: Number(pov.lat ?? 0),
@@ -151,10 +160,13 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusP
     const interval = setInterval(updateSun, 60000);
 
     camera.position.set(0, 0, 300);
+    // Narrow screens need the camera further away to fit the whole globe.
+    const narrow = (containerRef.current?.clientWidth ?? window.innerWidth) < 640;
+    globe.pointOfView({ lat: 20, lng: 10, altitude: narrow ? 3.6 : 2.2 }, 0);
 
     const controls = globe.controls();
     if (controls) {
-      controls.autoRotate = true;
+      controls.autoRotate = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       controls.autoRotateSpeed = 0.3;
       controls.enableDamping = true;
       controls.dampingFactor = 0.1;
@@ -167,12 +179,18 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusP
     }
 
     scene.background = new THREE.Color(0x0a0a14);
+    globe.renderer().setPixelRatio(Math.min(window.devicePixelRatio || 1, lowPower ? 1.5 : 2));
+
+    // Stop rendering while the tab is hidden (battery on mobile).
+    const onVisibility = () => (document.hidden ? globe.pauseAnimation() : globe.resumeAnimation());
+    document.addEventListener('visibilitychange', onVisibility);
 
     return () => {
       clearInterval(interval);
       stopCameraAnimation();
+      document.removeEventListener('visibilitychange', onVisibility);
     };
-  }, [stopCameraAnimation]);
+  }, [stopCameraAnimation, lowPower]);
 
   // Focus on continent
   useEffect(() => {
@@ -264,27 +282,24 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusP
     onSelect(pyramid);
   }, [onSelect]);
 
-  const handleResize = useCallback(() => {
-    if (containerRef.current && globeRef.current) {
-      // Globe handles its own resize
-    }
-  }, []);
-
+  // Track the container size so the canvas follows layout changes (rotation, panel toggles).
   useEffect(() => {
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [handleResize]);
-
-  const width = containerRef.current?.clientWidth || window.innerWidth - 320;
-  const height = containerRef.current?.clientHeight || window.innerHeight;
+    const el = containerRef.current;
+    if (!el) return;
+    const update = () => setSize({ width: el.clientWidth, height: el.clientHeight });
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div ref={containerRef} className="globe-container absolute inset-0">
       <Globe
         ref={globeRef}
-        globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
-        bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
-        backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
+        globeImageUrl={lowPower ? '/textures/earth-2k.webp' : '/textures/earth-4k.webp'}
+        bumpImageUrl={lowPower ? undefined : '/textures/earth-topology.webp'}
+        rendererConfig={{ antialias: !lowPower, powerPreference: 'high-performance' }}
         showAtmosphere={true}
         atmosphereColor="#2a5a4a"
         atmosphereAltitude={0.2}
@@ -297,13 +312,13 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusP
         objectLabel={(d: object) => {
           const p = d as Pyramid;
           return `<div style="background:rgba(0,0,0,0.85);border:1px solid rgba(34,197,94,0.4);padding:8px 12px;border-radius:6px;font-family:Inter,sans-serif;font-size:13px;color:#e0e0e0;max-width:200px;">
-            <div style="color:#d4af37;font-weight:600;margin-bottom:2px;">${p.nome}</div>
-            <div style="font-size:11px;color:#888;font-family:'IBM Plex Mono',monospace;">${p.paese} · ${p.coordinate.lat.toFixed(2)}°, ${p.coordinate.lon.toFixed(2)}°</div>
+            <div style="color:#d4af37;font-weight:600;margin-bottom:2px;">${escapeHtml(p.nome)}</div>
+            <div style="font-size:11px;color:#888;font-family:'IBM Plex Mono',monospace;">${escapeHtml(p.paese)} · ${p.coordinate.lat.toFixed(2)}°, ${p.coordinate.lon.toFixed(2)}°</div>
             ${p.osmanagich_focus ? '<div style="margin-top:4px;font-size:10px;color:#22c55e;">★ Focus Osmanagich</div>' : ''}
           </div>`;
         }}
-        width={width}
-        height={height}
+        width={size.width || undefined}
+        height={size.height || undefined}
       />
     </div>
   );
