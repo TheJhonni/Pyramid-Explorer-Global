@@ -28,6 +28,9 @@ type TranslationKeys = {
   resetFilters: string;
   resultsList: string;
   resetView: string;
+  intro: string;
+  filtersButton: string;
+  noWebgl: string;
   // Continents
   africa: string;
   asia: string;
@@ -74,6 +77,9 @@ const translations: Record<Lang, TranslationKeys> = {
     resetFilters: 'Reset filters',
     resultsList: 'Results list',
     resetView: 'Reset view',
+    intro: 'An interactive 3D globe of {n} pyramids and pyramid-like structures. Drag to rotate, pinch or scroll to zoom, tap a marker for details.',
+    filtersButton: 'Filters & list',
+    noWebgl: '3D globe unavailable on this device (WebGL off): showing a flat map.',
     africa: 'Africa',
     asia: 'Asia',
     europe: 'Europe',
@@ -115,6 +121,9 @@ const translations: Record<Lang, TranslationKeys> = {
     resetFilters: 'Reset filtri',
     resultsList: 'Lista risultati',
     resetView: 'Reset vista',
+    intro: 'Un globo 3D interattivo con {n} piramidi e strutture piramidali. Trascina per ruotare, pizzica o scorri per lo zoom, tocca un segnaposto per i dettagli.',
+    filtersButton: 'Filtri e lista',
+    noWebgl: 'Globo 3D non disponibile su questo dispositivo (WebGL disattivato): mappa piana.',
     africa: 'Africa',
     asia: 'Asia',
     europe: 'Europa',
@@ -156,6 +165,9 @@ const translations: Record<Lang, TranslationKeys> = {
     resetFilters: 'Restablecer filtros',
     resultsList: 'Lista de resultados',
     resetView: 'Restablecer vista',
+    intro: 'Un globo 3D interactivo con {n} pirámides y estructuras piramidales. Arrastra para girar, pellizca o desplaza para hacer zoom, toca un marcador para ver detalles.',
+    filtersButton: 'Filtros y lista',
+    noWebgl: 'Globo 3D no disponible en este dispositivo (WebGL desactivado): mapa plano.',
     africa: 'África',
     asia: 'Asia',
     europe: 'Europa',
@@ -197,6 +209,9 @@ const translations: Record<Lang, TranslationKeys> = {
     resetFilters: 'Réinitialiser les filtres',
     resultsList: 'Liste des résultats',
     resetView: 'Réinitialiser la vue',
+    intro: 'Un globe 3D interactif de {n} pyramides et structures pyramidales. Faites glisser pour pivoter, pincez ou faites défiler pour zoomer, touchez un repère pour les détails.',
+    filtersButton: 'Filtres et liste',
+    noWebgl: 'Globe 3D indisponible sur cet appareil (WebGL désactivé) : carte plane.',
     africa: 'Afrique',
     asia: 'Asie',
     europe: 'Europe',
@@ -238,6 +253,9 @@ const translations: Record<Lang, TranslationKeys> = {
     resetFilters: 'Filter zurücksetzen',
     resultsList: 'Ergebnisliste',
     resetView: 'Ansicht zurücksetzen',
+    intro: 'Ein interaktiver 3D-Globus mit {n} Pyramiden und pyramidenartigen Bauten. Ziehen zum Drehen, Pinch oder Scroll zum Zoomen, Markierung antippen für Details.',
+    filtersButton: 'Filter & Liste',
+    noWebgl: '3D-Globus auf diesem Gerät nicht verfügbar (WebGL aus): flache Karte.',
     africa: 'Afrika',
     asia: 'Asien',
     europe: 'Europa',
@@ -279,6 +297,9 @@ const translations: Record<Lang, TranslationKeys> = {
     resetFilters: 'Redefinir filtros',
     resultsList: 'Lista de resultados',
     resetView: 'Redefinir vista',
+    intro: 'Um globo 3D interativo com {n} pirâmides e estruturas piramidais. Arraste para girar, belisque ou role para ampliar, toque num marcador para ver detalhes.',
+    filtersButton: 'Filtros e lista',
+    noWebgl: 'Globo 3D indisponível neste dispositivo (WebGL desativado): mapa plano.',
     africa: 'África',
     asia: 'Ásia',
     europe: 'Europa',

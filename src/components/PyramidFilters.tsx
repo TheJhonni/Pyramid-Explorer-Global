@@ -15,7 +15,7 @@ const PyramidFilters = ({ filters, onChange, onReset, resultCount, totalCount }:
   const update = (partial: Partial<Filters>) => onChange({ ...filters, ...partial });
 
   return (
-    <aside className="w-80 min-w-[320px] border-r border-border bg-card/60 backdrop-blur-md flex flex-col z-20 overflow-hidden">
+    <aside className="w-full md:w-80 md:min-w-[320px] border-r border-border bg-card/95 md:bg-card/60 backdrop-blur-md flex flex-col z-20 overflow-hidden">
       <header className="p-6 border-b border-border">
         <h1 className="text-[10px] uppercase tracking-[0.2em] text-primary font-mono font-semibold">
           {t.projectTitle}
