@@ -1,4 +1,3 @@
-import { motion, AnimatePresence } from 'framer-motion';
 import { Pyramid } from '@/types/pyramid';
 import { X, MapPin, Mountain, Ruler, Star, ExternalLink, BookOpen, Lightbulb, BadgeCheck, CircleAlert, CircleHelp, Share2, Scale, Check, ChevronDown, ChevronUp } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
@@ -7,7 +6,7 @@ import { useI18n } from '@/i18n/I18nContext';
 import SitePhotos from './SitePhotos';
 
 interface PyramidDetailsProps {
-  pyramid: Pyramid | null;
+  pyramid: Pyramid;
   onClose: () => void;
   inCompare: boolean;
   onToggleCompare: (id: string) => void;
@@ -28,7 +27,7 @@ const PyramidDetails = ({ pyramid, onClose, inCompare, onToggleCompare }: Pyrami
   const { t, lang } = useI18n();
   const num = (n: number) => n.toLocaleString(lang);
   const shown = (field: string, value: string) =>
-    pyramid?.campi_senza_fonte?.includes(field) ? `${value} · ${t.notVerified}` : value;
+    pyramid.campi_senza_fonte?.includes(field) ? `${value} · ${t.notVerified}` : value;
   const [copied, setCopied] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [isMobile, setIsMobile] = useState(() => window.matchMedia('(max-width: 767px)').matches);
@@ -36,7 +35,7 @@ const PyramidDetails = ({ pyramid, onClose, inCompare, onToggleCompare }: Pyrami
   const bodyRef = useRef<HTMLDivElement>(null);
   const expandedRef = useRef(expanded);
   expandedRef.current = expanded;
-  const siteId = pyramid?.id;
+  const siteId = pyramid.id;
 
   useEffect(() => {
     const query = window.matchMedia('(max-width: 767px)');
@@ -83,8 +82,7 @@ const PyramidDetails = ({ pyramid, onClose, inCompare, onToggleCompare }: Pyrami
   useEffect(() => setExpanded(false), [siteId]);
 
   useEffect(() => {
-    if (!pyramid) return;
-    setCopied(false);
+        setCopied(false);
     const onKey = (e: KeyboardEvent) => {
       // A dialog on top (gallery, comparison) handles Escape first.
       if (e.key === 'Escape' && !document.querySelector('[role="dialog"]')) onClose();
@@ -96,37 +94,31 @@ const PyramidDetails = ({ pyramid, onClose, inCompare, onToggleCompare }: Pyrami
   const share = async () => {
     const url = window.location.href;
     if (navigator.share && window.matchMedia('(pointer: coarse)').matches) {
-      await navigator.share({ title: pyramid?.nome, url }).catch(() => undefined);
+      await navigator.share({ title: pyramid.nome, url }).catch(() => undefined);
       return;
     }
     await navigator.clipboard?.writeText(url).catch(() => undefined);
     setCopied(true);
   };
 
-  const sources = pyramid?.fonti?.length
+  const sources = pyramid.fonti?.length
     ? pyramid.fonti
-    : (pyramid?.link_approfondimento_ufficiale ?? []).map((url) => ({ url, title: url.replace(/^https?:\/\/(www\.)?/, '') }));
-  const status = pyramid?.stato_verifica ?? 'unverified';
+    : (pyramid.link_approfondimento_ufficiale ?? []).map((url) => ({ url, title: url.replace(/^https?:\/\/(www\.)?/, '') }));
+  const status = pyramid.stato_verifica ?? 'unverified';
   const StatusIcon = status === 'verified' ? BadgeCheck : status === 'partial' ? CircleAlert : CircleHelp;
   const statusLabel = status === 'verified' ? t.statusVerified : status === 'partial' ? t.statusPartial : t.statusUnverified;
   const statusHelp = status === 'verified' ? t.statusVerifiedHelp : status === 'partial' ? t.statusPartialHelp : t.statusUnverifiedHelp;
   const statusColor = status === 'verified' ? 'text-primary' : status === 'partial' ? 'text-pyramid-gold' : 'text-destructive';
-  const missing = (pyramid?.campi_senza_fonte ?? []).map((f) => FIELD_LABELS[f]).filter(Boolean).map((k) => t[k]);
-  const hasAlternative = !!pyramid && !!(pyramid.datazione_non_ufficiale || pyramid.funzione_non_ufficiale || pyramid.popolazione_non_ufficiale_associata);
+  const missing = (pyramid.campi_senza_fonte ?? []).map((f) => FIELD_LABELS[f]).filter(Boolean).map((k) => t[k]);
+  const hasAlternative = !!(pyramid.datazione_non_ufficiale || pyramid.funzione_non_ufficiale || pyramid.popolazione_non_ufficiale_associata);
 
   return (
-    <AnimatePresence>
-      {pyramid && (
-        <motion.div
+        <div
           ref={sheetRef}
-          initial={isMobile ? { y: '100%' } : { x: '100%' }}
-          animate={{ x: 0, y: 0 }}
-          exit={isMobile ? { y: '100%' } : { x: '100%' }}
-          transition={{ type: 'spring', damping: 30, stiffness: 300 }}
           role="complementary"
           aria-label={pyramid.nome}
           style={isMobile ? { height: expanded ? '92svh' : `${MOBILE_SHEET_SHARE * 100}svh` } : undefined}
-          className="fixed inset-x-0 bottom-0 z-30 flex flex-col rounded-t-2xl border-t border-border bg-card/95 shadow-2xl backdrop-blur-xl transition-[height] duration-200 md:inset-x-auto md:bottom-auto md:right-0 md:top-0 md:h-full md:w-[480px] md:max-w-[92vw] md:rounded-none md:border-l md:border-t-0"
+          className="animate-in slide-in-from-bottom md:slide-in-from-right duration-300 fixed inset-x-0 bottom-0 z-30 flex flex-col rounded-t-2xl border-t border-border bg-card/95 shadow-2xl backdrop-blur-xl transition-[height] duration-200 md:inset-x-auto md:bottom-auto md:right-0 md:top-0 md:h-full md:w-[480px] md:max-w-[92vw] md:rounded-none md:border-l md:border-t-0"
         >
           {/* Sheet control on phones: an obvious button, and swiping the sheet also works */}
           <div className="flex shrink-0 justify-center px-4 py-2 md:hidden">
@@ -287,9 +279,7 @@ const PyramidDetails = ({ pyramid, onClose, inCompare, onToggleCompare }: Pyrami
               )}
             </section>
           </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+        </div>
   );
 };
 
