@@ -2,7 +2,7 @@
 
 Fact check run on 4 November 2026 against sources opened during the check, mostly Wikipedia read through an extraction tool, with UNESCO, museum, university and paper pages where they opened. A human has not reviewed each entry. Treat "verified" as: location, height and date each have a source, not as a guarantee.
 
-Result: 75 verified, 22 partly sourced, 7 with no reliable source, out of 104 sites.
+Result: 74 verified, 23 partly sourced, 7 with no reliable source, out of 104 sites.
 
 Conventions: `base_m` is the longest side or the diameter. `anno_inizio` and `anno_fine` use century or dynasty limits when a source gives only those. `area_mq` was often just the base squared in the original data: when unsourced it is flagged and hidden in the interface. Some sources were read through Wikipedia mirrors and are linked to the matching Wikipedia page.
 
@@ -98,7 +98,7 @@ Conventions: `base_m` is the longest side or the diameter. `anno_inizio` and `an
 - Claim without source: Civiltà precedente
 - Note: Base 147 × 130 m, non quadrata: l'area 22.500 è sbagliata. Nessuna fonte aperta dà le coordinate.
 
-### `cholula`: verified (2 corrections)
+### `cholula`: partial (sources conflict: 25 m and 300 × 315 m against 66 m and 450 m; needs an archaeological source) (2 corrections)
 - No source for: altitudine_sul_livello_del_mare_m, area_mq, riferimenti_ufficiali
 - Claim without source: Fondamenta possibilmente più antiche
 - Claim without source: La piramide più grande del mondo per volume, parte della rete globale
