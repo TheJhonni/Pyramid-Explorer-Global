@@ -86,6 +86,8 @@ Every site was compared with the coordinates of the Wikipedia pages it already c
 | `xunantunich_el_castillo` | altitude | 152 m | Portuguese Wikipedia infobox for the site |
 | `pachacamac_templo_pintado` | altitude | 80 m | Italian Wikipedia infobox for the site |
 
+A separate agent reopened every source in this table, the coordinates above and the five model measurements, and confirmed them. `akapana` and `pachacamac_templo_pintado` carry the altitude of the whole site (Tiwanaku, Pachacamac). The infobox bases of Userkaf, Pepi II and the Black Pyramid have no inline citation.
+
 Left unsourced on purpose:
 - Wikidata elevations without a reference were not used. For the Giza pyramids they disagree with other sources: Wikidata gives 95 m for Khufu, the Italian Wikipedia 60 m.
 - Areas of whole sites (Copán, El Tajín, Poverty Point, Calakmul, Brihadisvara temple complex) were not used for a single structure.
