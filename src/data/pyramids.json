@@ -5853,8 +5853,8 @@
   "nome": "Marae Mahaiatea",
   "nome_locale": "Marae Mahaiatea",
   "coordinate": {
-   "lat": -17.7505,
-   "lon": -149.4505
+   "lat": -17.7769,
+   "lon": -149.4774
   },
   "paese": "French Polynesia",
   "regione": "Tahiti",
@@ -5897,6 +5897,10 @@
    {
     "title": "Coral dating and Polynesian temples, Phys.org",
     "url": "https://phys.org/news/2010-07-coral-fast-pace-polynesian-temples.pdf"
+   },
+   {
+    "title": "Marae Māha'iātea (OpenStreetMap)",
+    "url": "https://www.openstreetmap.org/node/471026449"
    }
   ],
   "campi_senza_fonte": [

@@ -30,4 +30,6 @@ Install with `bun install --frozen-lockfile`: `npm install` currently crashes on
 `/site/:id` opens a site. Query params hold filters and `compare=a,b`. Keep these stable: they are shareable.
 
 ## Status
+- Node: Vite 7 needs Node 20.19+; if `bun` is missing, `npx -y bun@1.2.23 install --frozen-lockfile` works.
+- Coordinates were checked against Wikipedia, Wikidata and OpenStreetMap in November 2026: see "Coordinate check" in `docs/DATA_AUDIT.md`.
 See `docs/ROADMAP.md`. The 360° trial and its coverage are in `docs/PHOTO_EXPERIENCE.md`.

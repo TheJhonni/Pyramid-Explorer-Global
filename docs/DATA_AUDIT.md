@@ -18,6 +18,23 @@ A separate pass compared the original 57 entries with the Wikipedia and Wikidata
 
 Areas and altitudes with no source were reset to 0, which means unknown and hides them in the interface. Sources disagree on several more values, and the notes for each site below say which one was used.
 
+## Coordinate check (November 2026)
+
+Every site was compared with the coordinates of the Wikipedia pages it already cites, through the Wikipedia API. Sites more than 500 m away, or with no coordinates on their page, were checked again on Wikidata, OpenStreetMap and the other cited sources.
+
+- Within 100 m of a cited source: 71 sites on the first pass, 11 more on the second.
+- Corrected, two sites:
+  - `teotihuacan_moon`: 19.6953, −98.8447 was about 480 m south of the pyramid. Now 19.6996, −98.8440 (Wikipedia, Wikidata Q29240, OpenStreetMap way 148480246).
+  - `mahaiatea_marae`: −17.7505, −149.4505 fell about 4 km inland, in the Vairutu valley at Mataiea. Now −17.7769, −149.4774, from the Tahiti Tourisme page already cited (−17.776918, −149.47743) and the OpenStreetMap archaeological site (node 471026449, −17.77732, −149.47721).
+- Left as they are, with the reason:
+  - `la_danta`: 1.9 km from the centre of El Mirador, but it matches Wikidata Q6076801 for the pyramid itself.
+  - `cochasqui`: 0.6 km from Wikipedia and OpenStreetMap, 0.8 km from Wikidata. The site is a complex of several pyramids; the point stays inside it.
+  - `sharjah_mleiha`: 1.0 km from Wikipedia, 2.4 km from Wikidata. Mleiha is a wide area with several tomb groups and no single point.
+  - `tonga_langi`: about 0.4 km from the Lapaha node in OpenStreetMap and 0.6 km from Muʻa on Wikipedia. The langi are spread across Lapaha.
+  - `crimea_underwater`: matches the claim's own location (44°36′14″ N, 33°33′ E, Atlantipedia). It is the location of a claim, not of a confirmed structure.
+  - `azores_underwater`, `mauritius_plaine_magnien`: match Wikidata Q3320767 and the cited Atlas Obscura page.
+- Still flagged as unsourced: the four Visoko hills `bosnia_moon`, `bosnia_love`, `bosnia_dragon` and `bosnia_earth`, `canary_tenerife_step` and `russia_kola`. No open source gives a point for them.
+
 ## Removed
 
 - `mauritius_underwater` (Struttura sottomarina di Mauritius): Nessuna fonte aperta documenta una struttura sottomarina a Mauritius: la voce appare inventata. In alternativa, una voce nuova sulle piramidi di Plaine Magnien, sulla terraferma.
