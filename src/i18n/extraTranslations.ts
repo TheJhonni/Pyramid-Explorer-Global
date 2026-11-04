@@ -49,12 +49,26 @@ export type ExtraKeys = {
   closePanel: string;
   dismiss: string;
   notVerified: string;
+  viewFullPhoto: string;
+  closeFullPhoto: string;
+  openGallery: string;
+  previousPhoto: string;
+  nextPhoto: string;
+  galleryHint: string;
+  searchCommons: string;
   expandDetails: string;
   collapseDetails: string;
 };
 
 export const extraTranslations: Record<'en' | 'it' | 'es' | 'fr' | 'de' | 'pt', ExtraKeys> = {
   en: {
+    viewFullPhoto: 'View full photo',
+    closeFullPhoto: 'Back to the gallery',
+    openGallery: 'Open gallery',
+    previousPhoto: 'Previous photo',
+    nextPhoto: 'Next photo',
+    galleryHint: 'Drag, swipe or use the arrow keys. Use the magnifier to see a photo whole.',
+    searchCommons: 'Search Wikimedia Commons',
     expandDetails: 'Expand details',
     collapseDetails: 'Collapse details',
     notVerified: 'Not verified',
@@ -108,6 +122,13 @@ export const extraTranslations: Record<'en' | 'it' | 'es' | 'fr' | 'de' | 'pt', 
     dismiss: 'Dismiss',
   },
   it: {
+    viewFullPhoto: 'Vedi la foto intera',
+    closeFullPhoto: 'Torna alla galleria',
+    openGallery: 'Apri la galleria',
+    previousPhoto: 'Foto precedente',
+    nextPhoto: 'Foto successiva',
+    galleryHint: 'Trascina, scorri o usa le frecce. Usa la lente per vedere una foto intera.',
+    searchCommons: 'Cerca su Wikimedia Commons',
     expandDetails: 'Espandi la scheda',
     collapseDetails: 'Riduci la scheda',
     notVerified: 'Non verificato',
@@ -161,6 +182,13 @@ export const extraTranslations: Record<'en' | 'it' | 'es' | 'fr' | 'de' | 'pt', 
     dismiss: 'Chiudi',
   },
   es: {
+    viewFullPhoto: 'Ver la foto entera',
+    closeFullPhoto: 'Volver a la galería',
+    openGallery: 'Abrir la galería',
+    previousPhoto: 'Foto anterior',
+    nextPhoto: 'Foto siguiente',
+    galleryHint: 'Arrastra, desliza o usa las flechas. Usa la lupa para ver una foto entera.',
+    searchCommons: 'Buscar en Wikimedia Commons',
     expandDetails: 'Ampliar la ficha',
     collapseDetails: 'Reducir la ficha',
     notVerified: 'Sin verificar',
@@ -214,6 +242,13 @@ export const extraTranslations: Record<'en' | 'it' | 'es' | 'fr' | 'de' | 'pt', 
     dismiss: 'Descartar',
   },
   fr: {
+    viewFullPhoto: 'Voir la photo entière',
+    closeFullPhoto: 'Retour à la galerie',
+    openGallery: 'Ouvrir la galerie',
+    previousPhoto: 'Photo précédente',
+    nextPhoto: 'Photo suivante',
+    galleryHint: 'Faites glisser ou utilisez les flèches. La loupe affiche la photo entière.',
+    searchCommons: 'Rechercher sur Wikimedia Commons',
     expandDetails: 'Agrandir la fiche',
     collapseDetails: 'Réduire la fiche',
     notVerified: 'Non vérifié',
@@ -267,6 +302,13 @@ export const extraTranslations: Record<'en' | 'it' | 'es' | 'fr' | 'de' | 'pt', 
     dismiss: 'Masquer',
   },
   de: {
+    viewFullPhoto: 'Ganzes Foto ansehen',
+    closeFullPhoto: 'Zurück zur Galerie',
+    openGallery: 'Galerie öffnen',
+    previousPhoto: 'Vorheriges Foto',
+    nextPhoto: 'Nächstes Foto',
+    galleryHint: 'Ziehen, wischen oder Pfeiltasten nutzen. Mit der Lupe das ganze Foto ansehen.',
+    searchCommons: 'Auf Wikimedia Commons suchen',
     expandDetails: 'Details vergrößern',
     collapseDetails: 'Details verkleinern',
     notVerified: 'Nicht geprüft',
@@ -320,6 +362,13 @@ export const extraTranslations: Record<'en' | 'it' | 'es' | 'fr' | 'de' | 'pt', 
     dismiss: 'Ausblenden',
   },
   pt: {
+    viewFullPhoto: 'Ver a foto inteira',
+    closeFullPhoto: 'Voltar à galeria',
+    openGallery: 'Abrir a galeria',
+    previousPhoto: 'Foto anterior',
+    nextPhoto: 'Foto seguinte',
+    galleryHint: 'Arrasta, desliza ou usa as setas. Usa a lupa para ver uma foto inteira.',
+    searchCommons: 'Pesquisar na Wikimedia Commons',
     expandDetails: 'Expandir a ficha',
     collapseDetails: 'Reduzir a ficha',
     notVerified: 'Não verificado',
