@@ -3,7 +3,10 @@
     "id": "bosnia_sun",
     "nome": "Piramide del Sole",
     "nome_locale": "Bosanska Piramida Sunca",
-    "coordinate": { "lat": 43.9883, "lon": 18.1760 },
+    "coordinate": {
+      "lat": 43.9883,
+      "lon": 18.176
+    },
     "paese": "Bosnia ed Erzegovina",
     "regione": "Visoko",
     "continente": "Europa",
@@ -18,11 +21,23 @@
     "funzione_non_ufficiale": "Antico complesso piramidale energetico",
     "popolazione_ufficiale_associata": "Medievali bosniaci",
     "popolazione_non_ufficiale_associata": "Civiltà avanzata preistorica non identificata",
-    "leggende_locali": ["Storie orali sulle colline sacre di Visoko", "Racconti moderni sulle piramidi bosniache e la loro energia"],
-    "riferimenti_ufficiali": ["Commissione per la Preservazione dei Monumenti Nazionali della Bosnia ed Erzegovina"],
-    "riferimenti_non_ufficiali": ["Libri e articoli di Sam Osmanagich", "Archaeological Park: Bosnian Pyramid of the Sun Foundation"],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Bosnian_pyramid_claims"],
-    "link_approfondimento_non_ufficiale": ["https://www.piramidasunca.ba/"],
+    "leggende_locali": [
+      "Storie orali sulle colline sacre di Visoko",
+      "Racconti moderni sulle piramidi bosniache e la loro energia"
+    ],
+    "riferimenti_ufficiali": [
+      "Commissione per la Preservazione dei Monumenti Nazionali della Bosnia ed Erzegovina"
+    ],
+    "riferimenti_non_ufficiali": [
+      "Libri e articoli di Sam Osmanagich",
+      "Archaeological Park: Bosnian Pyramid of the Sun Foundation"
+    ],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Bosnian_pyramid_claims"
+    ],
+    "link_approfondimento_non_ufficiale": [
+      "https://www.piramidasunca.ba/"
+    ],
     "note": "Il sito più controverso di Osmanagich. La comunità scientifica mainstream nega la natura artificiale; Osmanagich sostiene si tratti della piramide più grande e antica del mondo.",
     "osmanagich_focus": true,
     "controversa": true
@@ -31,7 +46,10 @@
     "id": "bosnia_moon",
     "nome": "Piramide della Luna",
     "nome_locale": "Bosanska Piramida Mjeseca",
-    "coordinate": { "lat": 43.9847, "lon": 18.1658 },
+    "coordinate": {
+      "lat": 43.9847,
+      "lon": 18.1658
+    },
     "paese": "Bosnia ed Erzegovina",
     "regione": "Visoko",
     "continente": "Europa",
@@ -46,11 +64,21 @@
     "funzione_non_ufficiale": "Piramide cerimoniale/energetica",
     "popolazione_ufficiale_associata": "Nessuna civiltà costruttrice riconosciuta",
     "popolazione_non_ufficiale_associata": "Civiltà preistorica avanzata",
-    "leggende_locali": ["Tradizioni orali della zona di Visoko"],
-    "riferimenti_ufficiali": ["Studi geologici sulla formazione della collina"],
-    "riferimenti_non_ufficiali": ["Fondazione Piramidi Bosniache"],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Bosnian_pyramid_claims"],
-    "link_approfondimento_non_ufficiale": ["https://www.piramidasunca.ba/"],
+    "leggende_locali": [
+      "Tradizioni orali della zona di Visoko"
+    ],
+    "riferimenti_ufficiali": [
+      "Studi geologici sulla formazione della collina"
+    ],
+    "riferimenti_non_ufficiali": [
+      "Fondazione Piramidi Bosniache"
+    ],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Bosnian_pyramid_claims"
+    ],
+    "link_approfondimento_non_ufficiale": [
+      "https://www.piramidasunca.ba/"
+    ],
     "note": "Seconda piramide del complesso bosniaco secondo Osmanagich.",
     "osmanagich_focus": true,
     "controversa": true
@@ -59,7 +87,10 @@
     "id": "bosnia_love",
     "nome": "Piramide dell'Amore",
     "nome_locale": "Bosanska Piramida Ljubavi",
-    "coordinate": { "lat": 43.9810, "lon": 18.1800 },
+    "coordinate": {
+      "lat": 43.981,
+      "lon": 18.18
+    },
     "paese": "Bosnia ed Erzegovina",
     "regione": "Visoko",
     "continente": "Europa",
@@ -76,9 +107,13 @@
     "popolazione_non_ufficiale_associata": "Civiltà preistorica",
     "leggende_locali": [],
     "riferimenti_ufficiali": [],
-    "riferimenti_non_ufficiali": ["Fondazione Piramidi Bosniache"],
+    "riferimenti_non_ufficiali": [
+      "Fondazione Piramidi Bosniache"
+    ],
     "link_approfondimento_ufficiale": [],
-    "link_approfondimento_non_ufficiale": ["https://www.piramidasunca.ba/"],
+    "link_approfondimento_non_ufficiale": [
+      "https://www.piramidasunca.ba/"
+    ],
     "note": "Parte del complesso di Visoko.",
     "osmanagich_focus": true,
     "controversa": true
@@ -87,7 +122,10 @@
     "id": "bosnia_dragon",
     "nome": "Piramide del Drago",
     "nome_locale": "Bosanska Piramida Zmaja",
-    "coordinate": { "lat": 43.9920, "lon": 18.1700 },
+    "coordinate": {
+      "lat": 43.992,
+      "lon": 18.17
+    },
     "paese": "Bosnia ed Erzegovina",
     "regione": "Visoko",
     "continente": "Europa",
@@ -104,9 +142,13 @@
     "popolazione_non_ufficiale_associata": "Civiltà preistorica",
     "leggende_locali": [],
     "riferimenti_ufficiali": [],
-    "riferimenti_non_ufficiali": ["Fondazione Piramidi Bosniache"],
+    "riferimenti_non_ufficiali": [
+      "Fondazione Piramidi Bosniache"
+    ],
     "link_approfondimento_ufficiale": [],
-    "link_approfondimento_non_ufficiale": ["https://www.piramidasunca.ba/"],
+    "link_approfondimento_non_ufficiale": [
+      "https://www.piramidasunca.ba/"
+    ],
     "note": "Parte del complesso bosniaco.",
     "osmanagich_focus": true,
     "controversa": true
@@ -115,7 +157,10 @@
     "id": "bosnia_earth",
     "nome": "Piramide della Terra",
     "nome_locale": "Bosanska Piramida Zemlje",
-    "coordinate": { "lat": 43.9860, "lon": 18.1850 },
+    "coordinate": {
+      "lat": 43.986,
+      "lon": 18.185
+    },
     "paese": "Bosnia ed Erzegovina",
     "regione": "Visoko",
     "continente": "Europa",
@@ -132,9 +177,13 @@
     "popolazione_non_ufficiale_associata": "Civiltà preistorica",
     "leggende_locali": [],
     "riferimenti_ufficiali": [],
-    "riferimenti_non_ufficiali": ["Fondazione Piramidi Bosniache"],
+    "riferimenti_non_ufficiali": [
+      "Fondazione Piramidi Bosniache"
+    ],
     "link_approfondimento_ufficiale": [],
-    "link_approfondimento_non_ufficiale": ["https://www.piramidasunca.ba/"],
+    "link_approfondimento_non_ufficiale": [
+      "https://www.piramidasunca.ba/"
+    ],
     "note": "Quinta piramide del complesso bosniaco.",
     "osmanagich_focus": true,
     "controversa": true
@@ -143,7 +192,10 @@
     "id": "bosnia_ravne_tunnels",
     "nome": "Tunnel di Ravne",
     "nome_locale": "Ravne Tunel",
-    "coordinate": { "lat": 43.9870, "lon": 18.1730 },
+    "coordinate": {
+      "lat": 43.987,
+      "lon": 18.173
+    },
     "paese": "Bosnia ed Erzegovina",
     "regione": "Visoko",
     "continente": "Europa",
@@ -158,11 +210,20 @@
     "funzione_non_ufficiale": "Rete sotterranea che connette le piramidi, con proprietà ionizzanti e curative",
     "popolazione_ufficiale_associata": "Minatori medievali",
     "popolazione_non_ufficiale_associata": "Costruttori delle piramidi bosniache",
-    "leggende_locali": ["Racconti di tunnel misteriosi sotto Visoko"],
-    "riferimenti_ufficiali": ["Studi geologici sui tunnel"],
-    "riferimenti_non_ufficiali": ["Fondazione Piramidi Bosniache", "Misurazioni di ionizzazione dell'aria nei tunnel"],
+    "leggende_locali": [
+      "Racconti di tunnel misteriosi sotto Visoko"
+    ],
+    "riferimenti_ufficiali": [
+      "Studi geologici sui tunnel"
+    ],
+    "riferimenti_non_ufficiali": [
+      "Fondazione Piramidi Bosniache",
+      "Misurazioni di ionizzazione dell'aria nei tunnel"
+    ],
     "link_approfondimento_ufficiale": [],
-    "link_approfondimento_non_ufficiale": ["https://www.piramidasunca.ba/"],
+    "link_approfondimento_non_ufficiale": [
+      "https://www.piramidasunca.ba/"
+    ],
     "note": "Osmanagich sostiene che i tunnel Ravne 1-5 formino una rete sotterranea con proprietà ionizzanti e curative.",
     "osmanagich_focus": true,
     "controversa": true
@@ -171,7 +232,10 @@
     "id": "giza_great",
     "nome": "Grande Piramide di Giza (Cheope)",
     "nome_locale": "الهرم الأكبر",
-    "coordinate": { "lat": 29.9792, "lon": 31.1342 },
+    "coordinate": {
+      "lat": 29.9792,
+      "lon": 31.1342
+    },
     "paese": "Egitto",
     "regione": "Giza",
     "continente": "Africa",
@@ -186,11 +250,24 @@
     "funzione_non_ufficiale": "Generatore di energia, osservatorio astronomico, monumento di civiltà perduta",
     "popolazione_ufficiale_associata": "Antico Egitto - IV Dinastia",
     "popolazione_non_ufficiale_associata": "Civiltà pre-diluviana avanzata",
-    "leggende_locali": ["Costruita dagli dei secondo alcune tradizioni", "Granai di Giuseppe (tradizione medievale)"],
-    "riferimenti_ufficiali": ["Museo Egizio del Cairo", "Ministry of Tourism and Antiquities"],
-    "riferimenti_non_ufficiali": ["Ricerche di Graham Hancock", "Teorie di Robert Bauval (correlazione con Orione)"],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Great_Pyramid_of_Giza"],
-    "link_approfondimento_non_ufficiale": ["https://grahamhancock.com/"],
+    "leggende_locali": [
+      "Costruita dagli dei secondo alcune tradizioni",
+      "Granai di Giuseppe (tradizione medievale)"
+    ],
+    "riferimenti_ufficiali": [
+      "Museo Egizio del Cairo",
+      "Ministry of Tourism and Antiquities"
+    ],
+    "riferimenti_non_ufficiali": [
+      "Ricerche di Graham Hancock",
+      "Teorie di Robert Bauval (correlazione con Orione)"
+    ],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Great_Pyramid_of_Giza"
+    ],
+    "link_approfondimento_non_ufficiale": [
+      "https://grahamhancock.com/"
+    ],
     "note": "La più grande e antica delle Sette Meraviglie del mondo antico. Osmanagich la cita come riferimento per il suo lavoro sulle piramidi bosniache.",
     "osmanagich_focus": false,
     "controversa": true
@@ -199,7 +276,10 @@
     "id": "giza_khafre",
     "nome": "Piramide di Chefren",
     "nome_locale": "هرم خفرع",
-    "coordinate": { "lat": 29.9761, "lon": 31.1308 },
+    "coordinate": {
+      "lat": 29.9761,
+      "lon": 31.1308
+    },
     "paese": "Egitto",
     "regione": "Giza",
     "continente": "Africa",
@@ -215,9 +295,13 @@
     "popolazione_ufficiale_associata": "Antico Egitto - IV Dinastia",
     "popolazione_non_ufficiale_associata": "Civiltà pre-diluviana",
     "leggende_locali": [],
-    "riferimenti_ufficiali": ["Museo Egizio del Cairo"],
+    "riferimenti_ufficiali": [
+      "Museo Egizio del Cairo"
+    ],
     "riferimenti_non_ufficiali": [],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Pyramid_of_Khafre"],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Pyramid_of_Khafre"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Seconda piramide di Giza, ancora con parte del rivestimento in calcare.",
     "osmanagich_focus": false,
@@ -227,7 +311,10 @@
     "id": "giza_menkaure",
     "nome": "Piramide di Micerino",
     "nome_locale": "هرم منقرع",
-    "coordinate": { "lat": 29.9725, "lon": 31.1283 },
+    "coordinate": {
+      "lat": 29.9725,
+      "lon": 31.1283
+    },
     "paese": "Egitto",
     "regione": "Giza",
     "continente": "Africa",
@@ -243,9 +330,13 @@
     "popolazione_ufficiale_associata": "Antico Egitto - IV Dinastia",
     "popolazione_non_ufficiale_associata": "Civiltà pre-diluviana",
     "leggende_locali": [],
-    "riferimenti_ufficiali": ["Museo Egizio del Cairo"],
+    "riferimenti_ufficiali": [
+      "Museo Egizio del Cairo"
+    ],
     "riferimenti_non_ufficiali": [],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Pyramid_of_Menkaure"],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Pyramid_of_Menkaure"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "La più piccola delle tre piramidi principali di Giza.",
     "osmanagich_focus": false,
@@ -255,7 +346,10 @@
     "id": "saqqara_djoser",
     "nome": "Piramide a gradoni di Djoser",
     "nome_locale": "هرم زوسر المدرج",
-    "coordinate": { "lat": 29.8713, "lon": 31.2165 },
+    "coordinate": {
+      "lat": 29.8713,
+      "lon": 31.2165
+    },
     "paese": "Egitto",
     "regione": "Saqqara",
     "continente": "Africa",
@@ -270,10 +364,16 @@
     "funzione_non_ufficiale": "Prima piramide conosciuta, possibile prototipo",
     "popolazione_ufficiale_associata": "Antico Egitto - III Dinastia, architetto Imhotep",
     "popolazione_non_ufficiale_associata": "Come sopra",
-    "leggende_locali": ["Imhotep divinizzato come dio della medicina"],
-    "riferimenti_ufficiali": ["UNESCO World Heritage"],
+    "leggende_locali": [
+      "Imhotep divinizzato come dio della medicina"
+    ],
+    "riferimenti_ufficiali": [
+      "UNESCO World Heritage"
+    ],
     "riferimenti_non_ufficiali": [],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Pyramid_of_Djoser"],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Pyramid_of_Djoser"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Considerata la prima costruzione monumentale in pietra della storia.",
     "osmanagich_focus": false,
@@ -283,7 +383,10 @@
     "id": "dahshur_red",
     "nome": "Piramide Rossa",
     "nome_locale": "الهرم الأحمر",
-    "coordinate": { "lat": 29.8090, "lon": 31.2060 },
+    "coordinate": {
+      "lat": 29.809,
+      "lon": 31.206
+    },
     "paese": "Egitto",
     "regione": "Dahshur",
     "continente": "Africa",
@@ -301,7 +404,9 @@
     "leggende_locali": [],
     "riferimenti_ufficiali": [],
     "riferimenti_non_ufficiali": [],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Red_Pyramid"],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Red_Pyramid"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Prima vera piramide a facce lisce completata con successo.",
     "osmanagich_focus": false,
@@ -311,7 +416,10 @@
     "id": "dahshur_bent",
     "nome": "Piramide Romboidale",
     "nome_locale": "الهرم المنحني",
-    "coordinate": { "lat": 29.7903, "lon": 31.2094 },
+    "coordinate": {
+      "lat": 29.7903,
+      "lon": 31.2094
+    },
     "paese": "Egitto",
     "regione": "Dahshur",
     "continente": "Africa",
@@ -329,7 +437,9 @@
     "leggende_locali": [],
     "riferimenti_ufficiali": [],
     "riferimenti_non_ufficiali": [],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Bent_Pyramid"],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Bent_Pyramid"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Unica piramide con doppia inclinazione, testimonia l'evoluzione architettonica egizia.",
     "osmanagich_focus": false,
@@ -339,7 +449,10 @@
     "id": "teotihuacan_sun",
     "nome": "Piramide del Sole (Teotihuacan)",
     "nome_locale": "Pirámide del Sol",
-    "coordinate": { "lat": 19.6925, "lon": -98.8438 },
+    "coordinate": {
+      "lat": 19.6925,
+      "lon": -98.8438
+    },
     "paese": "Messico",
     "regione": "Teotihuacan, Stato del Messico",
     "continente": "Nord America",
@@ -354,10 +467,19 @@
     "funzione_non_ufficiale": "Centro energetico, allineamento astronomico, nodo della rete piramidale globale",
     "popolazione_ufficiale_associata": "Civiltà teotihuacana",
     "popolazione_non_ufficiale_associata": "Civiltà precedente sconosciuta",
-    "leggende_locali": ["Costruita dagli dei nel 'Quinto Sole'", "Luogo dove gli dei si sacrificarono per creare il mondo"],
-    "riferimenti_ufficiali": ["INAH - Instituto Nacional de Antropología e Historia"],
-    "riferimenti_non_ufficiali": ["Osmanagich cita Teotihuacan come parte della rete globale"],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Pyramid_of_the_Sun"],
+    "leggende_locali": [
+      "Costruita dagli dei nel 'Quinto Sole'",
+      "Luogo dove gli dei si sacrificarono per creare il mondo"
+    ],
+    "riferimenti_ufficiali": [
+      "INAH - Instituto Nacional de Antropología e Historia"
+    ],
+    "riferimenti_non_ufficiali": [
+      "Osmanagich cita Teotihuacan come parte della rete globale"
+    ],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Pyramid_of_the_Sun"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Osmanagich considera Teotihuacan parte della rete piramidale globale.",
     "osmanagich_focus": true,
@@ -367,7 +489,10 @@
     "id": "teotihuacan_moon",
     "nome": "Piramide della Luna (Teotihuacan)",
     "nome_locale": "Pirámide de la Luna",
-    "coordinate": { "lat": 19.6953, "lon": -98.8447 },
+    "coordinate": {
+      "lat": 19.6953,
+      "lon": -98.8447
+    },
     "paese": "Messico",
     "regione": "Teotihuacan, Stato del Messico",
     "continente": "Nord America",
@@ -383,9 +508,13 @@
     "popolazione_ufficiale_associata": "Civiltà teotihuacana",
     "popolazione_non_ufficiale_associata": "Civiltà precedente",
     "leggende_locali": [],
-    "riferimenti_ufficiali": ["INAH"],
+    "riferimenti_ufficiali": [
+      "INAH"
+    ],
     "riferimenti_non_ufficiali": [],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Pyramid_of_the_Moon"],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Pyramid_of_the_Moon"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Seconda struttura più grande di Teotihuacan.",
     "osmanagich_focus": false,
@@ -395,7 +524,10 @@
     "id": "cholula",
     "nome": "Grande Piramide di Cholula",
     "nome_locale": "Tlachihualtepetl",
-    "coordinate": { "lat": 19.0575, "lon": -98.3019 },
+    "coordinate": {
+      "lat": 19.0575,
+      "lon": -98.3019
+    },
     "paese": "Messico",
     "regione": "Puebla",
     "continente": "Nord America",
@@ -410,10 +542,18 @@
     "funzione_non_ufficiale": "La piramide più grande del mondo per volume, parte della rete globale",
     "popolazione_ufficiale_associata": "Diverse civiltà mesoamericane",
     "popolazione_non_ufficiale_associata": "Civiltà precedente con conoscenze avanzate",
-    "leggende_locali": ["Costruita dal gigante Xelhua dopo il diluvio universale"],
-    "riferimenti_ufficiali": ["INAH"],
-    "riferimenti_non_ufficiali": ["Osmanagich la menziona come piramide più grande per volume"],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Great_Pyramid_of_Cholula"],
+    "leggende_locali": [
+      "Costruita dal gigante Xelhua dopo il diluvio universale"
+    ],
+    "riferimenti_ufficiali": [
+      "INAH"
+    ],
+    "riferimenti_non_ufficiali": [
+      "Osmanagich la menziona come piramide più grande per volume"
+    ],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Great_Pyramid_of_Cholula"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Con un volume di circa 4.45 milioni di m³, è la piramide più grande mai costruita per volume.",
     "osmanagich_focus": true,
@@ -423,7 +563,10 @@
     "id": "la_danta",
     "nome": "La Danta",
     "nome_locale": "La Danta",
-    "coordinate": { "lat": 17.7556, "lon": -89.8167 },
+    "coordinate": {
+      "lat": 17.7556,
+      "lon": -89.8167
+    },
     "paese": "Guatemala",
     "regione": "El Mirador, Petén",
     "continente": "Nord America",
@@ -438,10 +581,18 @@
     "funzione_non_ufficiale": "Una delle strutture più massicce mai costruite, parte della rete globale",
     "popolazione_ufficiale_associata": "Civiltà Maya preclassica",
     "popolazione_non_ufficiale_associata": "Civiltà con conoscenze superiori",
-    "leggende_locali": ["Sacra montagna artificiale dei Maya"],
-    "riferimenti_ufficiali": ["Progetto archeologico Cuenca Mirador"],
-    "riferimenti_non_ufficiali": ["Osmanagich cita La Danta come esempio di megastruttura"],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/La_Danta"],
+    "leggende_locali": [
+      "Sacra montagna artificiale dei Maya"
+    ],
+    "riferimenti_ufficiali": [
+      "Progetto archeologico Cuenca Mirador"
+    ],
+    "riferimenti_non_ufficiali": [
+      "Osmanagich cita La Danta come esempio di megastruttura"
+    ],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/La_Danta"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Volume stimato di 2.8 milioni di m³, una delle strutture più grandi del mondo antico.",
     "osmanagich_focus": true,
@@ -451,7 +602,10 @@
     "id": "gunung_padang",
     "nome": "Gunung Padang",
     "nome_locale": "Gunung Padang",
-    "coordinate": { "lat": -6.9942, "lon": 107.0564 },
+    "coordinate": {
+      "lat": -6.9942,
+      "lon": 107.0564
+    },
     "paese": "Indonesia",
     "regione": "Cianjur, Giava Occidentale",
     "continente": "Asia",
@@ -466,10 +620,20 @@
     "funzione_non_ufficiale": "La piramide più antica del mondo, costruita da una civiltà dell'era glaciale",
     "popolazione_ufficiale_associata": "Popolazioni preistoriche dell'arcipelago indonesiano",
     "popolazione_non_ufficiale_associata": "Civiltà avanzata dell'era glaciale",
-    "leggende_locali": ["Sacra montagna della luce", "Luogo di potere spirituale"],
-    "riferimenti_ufficiali": ["Studi geologici pubblicati su riviste peer-reviewed (con controversie)"],
-    "riferimenti_non_ufficiali": ["Danny Hilman Natawidjaja", "Sam Osmanagich"],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Gunung_Padang"],
+    "leggende_locali": [
+      "Sacra montagna della luce",
+      "Luogo di potere spirituale"
+    ],
+    "riferimenti_ufficiali": [
+      "Studi geologici pubblicati su riviste peer-reviewed (con controversie)"
+    ],
+    "riferimenti_non_ufficiali": [
+      "Danny Hilman Natawidjaja",
+      "Sam Osmanagich"
+    ],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Gunung_Padang"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Osmanagich ha visitato il sito e lo considera prova di una rete piramidale globale preistorica. Studio 2023 su Archaeological Prospection ha generato grande dibattito.",
     "osmanagich_focus": true,
@@ -479,7 +643,10 @@
     "id": "xian_mausoleum",
     "nome": "Mausoleo dell'Imperatore Qin Shi Huang",
     "nome_locale": "秦始皇陵",
-    "coordinate": { "lat": 34.3815, "lon": 109.2543 },
+    "coordinate": {
+      "lat": 34.3815,
+      "lon": 109.2543
+    },
     "paese": "Cina",
     "regione": "Xi'an, Shaanxi",
     "continente": "Asia",
@@ -494,10 +661,19 @@
     "funzione_non_ufficiale": "Parte della rete di piramidi cinesi, possibile funzione energetica",
     "popolazione_ufficiale_associata": "Dinastia Qin",
     "popolazione_non_ufficiale_associata": "Come sopra",
-    "leggende_locali": ["Fiumi di mercurio all'interno", "Esercito di terracotta come guardiani"],
-    "riferimenti_ufficiali": ["UNESCO World Heritage"],
-    "riferimenti_non_ufficiali": ["Hartwig Hausdorf - Le piramidi cinesi"],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Mausoleum_of_the_First_Qin_Emperor"],
+    "leggende_locali": [
+      "Fiumi di mercurio all'interno",
+      "Esercito di terracotta come guardiani"
+    ],
+    "riferimenti_ufficiali": [
+      "UNESCO World Heritage"
+    ],
+    "riferimenti_non_ufficiali": [
+      "Hartwig Hausdorf - Le piramidi cinesi"
+    ],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Mausoleum_of_the_First_Qin_Emperor"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Osmanagich cita le piramidi cinesi come parte della rete globale. Molte piramidi nella zona di Xi'an sono tumuli imperiali.",
     "osmanagich_focus": true,
@@ -507,7 +683,10 @@
     "id": "xian_white_pyramid",
     "nome": "Piramide Bianca di Xi'an",
     "nome_locale": "白色金字塔",
-    "coordinate": { "lat": 34.3380, "lon": 108.9340 },
+    "coordinate": {
+      "lat": 34.338,
+      "lon": 108.934
+    },
     "paese": "Cina",
     "regione": "Xi'an, Shaanxi",
     "continente": "Asia",
@@ -522,10 +701,17 @@
     "funzione_non_ufficiale": "Rete di piramidi con possibili funzioni energetiche",
     "popolazione_ufficiale_associata": "Diverse dinastie cinesi",
     "popolazione_non_ufficiale_associata": "Civiltà precedente con conoscenze avanzate",
-    "leggende_locali": ["Piramide avvistata da un pilota USAF nel 1945"],
+    "leggende_locali": [
+      "Piramide avvistata da un pilota USAF nel 1945"
+    ],
     "riferimenti_ufficiali": [],
-    "riferimenti_non_ufficiali": ["Hartwig Hausdorf", "Sam Osmanagich"],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Chinese_pyramids"],
+    "riferimenti_non_ufficiali": [
+      "Hartwig Hausdorf",
+      "Sam Osmanagich"
+    ],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Chinese_pyramids"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Zona con oltre 100 tumuli piramidali. Il governo cinese ha storicamente limitato l'accesso.",
     "osmanagich_focus": true,
@@ -535,7 +721,10 @@
     "id": "yangling",
     "nome": "Mausoleo di Yangling",
     "nome_locale": "汉阳陵",
-    "coordinate": { "lat": 34.4417, "lon": 108.9681 },
+    "coordinate": {
+      "lat": 34.4417,
+      "lon": 108.9681
+    },
     "paese": "Cina",
     "regione": "Xianyang, Shaanxi",
     "continente": "Asia",
@@ -551,9 +740,15 @@
     "popolazione_ufficiale_associata": "Dinastia Han",
     "popolazione_non_ufficiale_associata": "Come sopra",
     "leggende_locali": [],
-    "riferimenti_ufficiali": ["Museo Hanyangling"],
-    "riferimenti_non_ufficiali": ["Osmanagich lo menziona nelle sue conferenze"],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Yangling_Mausoleum"],
+    "riferimenti_ufficiali": [
+      "Museo Hanyangling"
+    ],
+    "riferimenti_non_ufficiali": [
+      "Osmanagich lo menziona nelle sue conferenze"
+    ],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Yangling_Mausoleum"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Uno dei tumuli piramidali cinesi meglio preservati e musealizzati.",
     "osmanagich_focus": true,
@@ -563,7 +758,10 @@
     "id": "monks_mound",
     "nome": "Monks Mound",
     "nome_locale": "Monks Mound",
-    "coordinate": { "lat": 38.6606, "lon": -90.0625 },
+    "coordinate": {
+      "lat": 38.6606,
+      "lon": -90.0625
+    },
     "paese": "Stati Uniti",
     "regione": "Collinsville, Illinois",
     "continente": "Nord America",
@@ -578,10 +776,18 @@
     "funzione_non_ufficiale": "Piramide nordamericana, parte della rete globale",
     "popolazione_ufficiale_associata": "Civiltà Mississippiana",
     "popolazione_non_ufficiale_associata": "Come sopra, ma con possibili influenze esterne",
-    "leggende_locali": ["Centro del mondo per i nativi americani della zona"],
-    "riferimenti_ufficiali": ["UNESCO World Heritage - Cahokia Mounds"],
-    "riferimenti_non_ufficiali": ["Osmanagich cita Cahokia come piramide nordamericana"],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Monks_Mound"],
+    "leggende_locali": [
+      "Centro del mondo per i nativi americani della zona"
+    ],
+    "riferimenti_ufficiali": [
+      "UNESCO World Heritage - Cahokia Mounds"
+    ],
+    "riferimenti_non_ufficiali": [
+      "Osmanagich cita Cahokia come piramide nordamericana"
+    ],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Monks_Mound"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Il più grande mound precolombiano del Nord America. Osmanagich lo include nella sua mappa della rete piramidale globale.",
     "osmanagich_focus": true,
@@ -591,7 +797,10 @@
     "id": "akapana",
     "nome": "Piramide di Akapana",
     "nome_locale": "Akapana",
-    "coordinate": { "lat": -16.5550, "lon": -68.6725 },
+    "coordinate": {
+      "lat": -16.555,
+      "lon": -68.6725
+    },
     "paese": "Bolivia",
     "regione": "Tiwanaku, La Paz",
     "continente": "Sud America",
@@ -606,10 +815,19 @@
     "funzione_non_ufficiale": "Centro energetico andino, connesso alla rete globale",
     "popolazione_ufficiale_associata": "Civiltà Tiwanaku",
     "popolazione_non_ufficiale_associata": "Civiltà pre-diluviana avanzata",
-    "leggende_locali": ["Costruita dagli dei prima del diluvio", "Centro del mondo andino"],
-    "riferimenti_ufficiali": ["UNESCO World Heritage - Tiwanaku"],
-    "riferimenti_non_ufficiali": ["Osmanagich menziona Akapana nelle sue ricerche"],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Akapana"],
+    "leggende_locali": [
+      "Costruita dagli dei prima del diluvio",
+      "Centro del mondo andino"
+    ],
+    "riferimenti_ufficiali": [
+      "UNESCO World Heritage - Tiwanaku"
+    ],
+    "riferimenti_non_ufficiali": [
+      "Osmanagich menziona Akapana nelle sue ricerche"
+    ],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Akapana"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Piramide a sette gradoni a Tiwanaku. Osmanagich la collega alla rete piramidale sudamericana.",
     "osmanagich_focus": true,
@@ -619,7 +837,10 @@
     "id": "huaca_del_sol",
     "nome": "Huaca del Sol",
     "nome_locale": "Huaca del Sol",
-    "coordinate": { "lat": -8.1333, "lon": -78.9833 },
+    "coordinate": {
+      "lat": -8.1333,
+      "lon": -78.9833
+    },
     "paese": "Perù",
     "regione": "Trujillo, La Libertad",
     "continente": "Sud America",
@@ -634,10 +855,18 @@
     "funzione_non_ufficiale": "Piramide sudamericana della rete globale",
     "popolazione_ufficiale_associata": "Civiltà Moche",
     "popolazione_non_ufficiale_associata": "Moche con possibili conoscenze ereditate",
-    "leggende_locali": ["Costruita in tre giorni da 250.000 uomini (leggenda)"],
-    "riferimenti_ufficiali": ["Progetto Archeologico Huacas del Sol y de la Luna"],
-    "riferimenti_non_ufficiali": ["Osmanagich la menziona come piramide peruviana"],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Huaca_del_Sol"],
+    "leggende_locali": [
+      "Costruita in tre giorni da 250.000 uomini (leggenda)"
+    ],
+    "riferimenti_ufficiali": [
+      "Progetto Archeologico Huacas del Sol y de la Luna"
+    ],
+    "riferimenti_non_ufficiali": [
+      "Osmanagich la menziona come piramide peruviana"
+    ],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Huaca_del_Sol"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Una delle più grandi strutture in adobe delle Americhe. Costruita con circa 130 milioni di mattoni.",
     "osmanagich_focus": true,
@@ -647,7 +876,10 @@
     "id": "nubian_meroe",
     "nome": "Piramidi di Meroe",
     "nome_locale": "أهرامات مروي",
-    "coordinate": { "lat": 16.9381, "lon": 33.7489 },
+    "coordinate": {
+      "lat": 16.9381,
+      "lon": 33.7489
+    },
     "paese": "Sudan",
     "regione": "Meroe, Stato del Nilo",
     "continente": "Africa",
@@ -662,10 +894,16 @@
     "funzione_non_ufficiale": "Parte della tradizione piramidale africana",
     "popolazione_ufficiale_associata": "Regno di Kush / Meroiti",
     "popolazione_non_ufficiale_associata": "Come sopra",
-    "leggende_locali": ["Eredità dei faraoni neri"],
-    "riferimenti_ufficiali": ["UNESCO World Heritage"],
+    "leggende_locali": [
+      "Eredità dei faraoni neri"
+    ],
+    "riferimenti_ufficiali": [
+      "UNESCO World Heritage"
+    ],
     "riferimenti_non_ufficiali": [],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Nubian_pyramids"],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Nubian_pyramids"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Oltre 200 piramidi, il più grande numero di piramidi in un unico luogo al mondo.",
     "osmanagich_focus": false,
@@ -675,7 +913,10 @@
     "id": "chichen_itza",
     "nome": "El Castillo (Kukulkán)",
     "nome_locale": "El Castillo",
-    "coordinate": { "lat": 20.6843, "lon": -88.5678 },
+    "coordinate": {
+      "lat": 20.6843,
+      "lon": -88.5678
+    },
     "paese": "Messico",
     "regione": "Yucatán",
     "continente": "Nord America",
@@ -690,10 +931,16 @@
     "funzione_non_ufficiale": "Calendario astronomico tridimensionale, nodo energetico",
     "popolazione_ufficiale_associata": "Civiltà Maya",
     "popolazione_non_ufficiale_associata": "Maya con conoscenze ereditate da civiltà precedente",
-    "leggende_locali": ["L'ombra del serpente piumato discende i gradini agli equinozi"],
-    "riferimenti_ufficiali": ["UNESCO World Heritage - Chichén Itzá"],
+    "leggende_locali": [
+      "L'ombra del serpente piumato discende i gradini agli equinozi"
+    ],
+    "riferimenti_ufficiali": [
+      "UNESCO World Heritage - Chichén Itzá"
+    ],
     "riferimenti_non_ufficiali": [],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/El_Castillo,_Chichen_Itza"],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/El_Castillo,_Chichen_Itza"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Famosa per il fenomeno dell'equinozio con l'ombra del serpente.",
     "osmanagich_focus": false,
@@ -703,7 +950,10 @@
     "id": "tikal_temple1",
     "nome": "Tempio I (Tikal)",
     "nome_locale": "Templo del Gran Jaguar",
-    "coordinate": { "lat": 17.2220, "lon": -89.6237 },
+    "coordinate": {
+      "lat": 17.222,
+      "lon": -89.6237
+    },
     "paese": "Guatemala",
     "regione": "Petén",
     "continente": "Nord America",
@@ -718,10 +968,16 @@
     "funzione_non_ufficiale": "Tempio astronomico/energetico",
     "popolazione_ufficiale_associata": "Civiltà Maya classica",
     "popolazione_non_ufficiale_associata": "Come sopra",
-    "leggende_locali": ["Tempio del Grande Giaguaro"],
-    "riferimenti_ufficiali": ["UNESCO World Heritage - Tikal"],
+    "leggende_locali": [
+      "Tempio del Grande Giaguaro"
+    ],
+    "riferimenti_ufficiali": [
+      "UNESCO World Heritage - Tikal"
+    ],
     "riferimenti_non_ufficiali": [],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Tikal_Temple_I"],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Tikal_Temple_I"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Una delle piramidi Maya più iconiche.",
     "osmanagich_focus": false,
@@ -731,7 +987,10 @@
     "id": "candi_sukuh",
     "nome": "Candi Sukuh",
     "nome_locale": "Candi Sukuh",
-    "coordinate": { "lat": -7.6281, "lon": 111.1306 },
+    "coordinate": {
+      "lat": -7.6281,
+      "lon": 111.1306
+    },
     "paese": "Indonesia",
     "regione": "Giava Centrale",
     "continente": "Asia",
@@ -746,10 +1005,16 @@
     "funzione_non_ufficiale": "Piramide mesoamericana fuori contesto in Asia",
     "popolazione_ufficiale_associata": "Regno Majapahit",
     "popolazione_non_ufficiale_associata": "Connessione trans-oceanica precolombiana",
-    "leggende_locali": ["Tempio della fertilità e della purificazione"],
+    "leggende_locali": [
+      "Tempio della fertilità e della purificazione"
+    ],
     "riferimenti_ufficiali": [],
-    "riferimenti_non_ufficiali": ["Somiglianza con piramidi mesoamericane notata da vari ricercatori"],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Candi_Sukuh"],
+    "riferimenti_non_ufficiali": [
+      "Somiglianza con piramidi mesoamericane notata da vari ricercatori"
+    ],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Candi_Sukuh"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "La sua forma ricorda sorprendentemente le piramidi mesoamericane, generando teorie su contatti antichi.",
     "osmanagich_focus": false,
@@ -759,7 +1024,10 @@
     "id": "caral",
     "nome": "Piramide Maggiore di Caral",
     "nome_locale": "Pirámide Mayor de Caral",
-    "coordinate": { "lat": -10.8933, "lon": -77.5203 },
+    "coordinate": {
+      "lat": -10.8933,
+      "lon": -77.5203
+    },
     "paese": "Perù",
     "regione": "Supe, Lima",
     "continente": "Sud America",
@@ -774,10 +1042,18 @@
     "funzione_non_ufficiale": "La civiltà più antica delle Americhe, con conoscenze avanzate",
     "popolazione_ufficiale_associata": "Civiltà Caral-Supe",
     "popolazione_non_ufficiale_associata": "Civiltà molto avanzata per l'epoca",
-    "leggende_locali": ["Città sacra del fuoco"],
-    "riferimenti_ufficiali": ["UNESCO World Heritage"],
-    "riferimenti_non_ufficiali": ["Osmanagich la cita come prova di costruzioni piramidali antichissime nelle Americhe"],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Caral"],
+    "leggende_locali": [
+      "Città sacra del fuoco"
+    ],
+    "riferimenti_ufficiali": [
+      "UNESCO World Heritage"
+    ],
+    "riferimenti_non_ufficiali": [
+      "Osmanagich la cita come prova di costruzioni piramidali antichissime nelle Americhe"
+    ],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Caral"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Contemporanea alle piramidi egizie, è una delle più antiche città delle Americhe.",
     "osmanagich_focus": true,
@@ -787,7 +1063,10 @@
     "id": "tenerife_guimar",
     "nome": "Piramidi di Güímar",
     "nome_locale": "Pirámides de Güímar",
-    "coordinate": { "lat": 28.3145, "lon": -16.3828 },
+    "coordinate": {
+      "lat": 28.3145,
+      "lon": -16.3828
+    },
     "paese": "Spagna",
     "regione": "Tenerife, Isole Canarie",
     "continente": "Europa",
@@ -802,10 +1081,19 @@
     "funzione_non_ufficiale": "Strutture cerimoniali astronomicamente allineate",
     "popolazione_ufficiale_associata": "Agricoltori del XIX secolo",
     "popolazione_non_ufficiale_associata": "Guanci o civiltà più antica",
-    "leggende_locali": ["Costruzioni misteriose dei Guanci"],
-    "riferimenti_ufficiali": ["Parco Etnografico Pirámides de Güímar (Thor Heyerdahl)"],
-    "riferimenti_non_ufficiali": ["Thor Heyerdahl studiò le piramidi", "Osmanagich le ha visitate"],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Pyramids_of_G%C3%BC%C3%ADmar"],
+    "leggende_locali": [
+      "Costruzioni misteriose dei Guanci"
+    ],
+    "riferimenti_ufficiali": [
+      "Parco Etnografico Pirámides de Güímar (Thor Heyerdahl)"
+    ],
+    "riferimenti_non_ufficiali": [
+      "Thor Heyerdahl studiò le piramidi",
+      "Osmanagich le ha visitate"
+    ],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Pyramids_of_G%C3%BC%C3%ADmar"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Thor Heyerdahl notò l'allineamento astronomico e la somiglianza con strutture simili in Messico e Perù.",
     "osmanagich_focus": true,
@@ -815,7 +1103,10 @@
     "id": "yonaguni",
     "nome": "Monumento di Yonaguni",
     "nome_locale": "与那国島海底遺跡",
-    "coordinate": { "lat": 24.4350, "lon": 123.0100 },
+    "coordinate": {
+      "lat": 24.435,
+      "lon": 123.01
+    },
     "paese": "Giappone",
     "regione": "Yonaguni, Okinawa",
     "continente": "Asia",
@@ -830,10 +1121,19 @@
     "funzione_non_ufficiale": "Piramide o tempio di una civiltà dell'era glaciale, sommerso dall'innalzamento dei mari",
     "popolazione_ufficiale_associata": "Nessuna (formazione naturale)",
     "popolazione_non_ufficiale_associata": "Civiltà preistorica giapponese o proto-Jomon",
-    "leggende_locali": ["Mu, il continente perduto del Pacifico"],
-    "riferimenti_ufficiali": ["Studi geologici giapponesi"],
-    "riferimenti_non_ufficiali": ["Prof. Masaaki Kimura dell'Università di Ryukyu", "Osmanagich lo cita come struttura sommersa"],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Yonaguni_Monument"],
+    "leggende_locali": [
+      "Mu, il continente perduto del Pacifico"
+    ],
+    "riferimenti_ufficiali": [
+      "Studi geologici giapponesi"
+    ],
+    "riferimenti_non_ufficiali": [
+      "Prof. Masaaki Kimura dell'Università di Ryukyu",
+      "Osmanagich lo cita come struttura sommersa"
+    ],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Yonaguni_Monument"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Scoperta nel 1987. Il dibattito tra formazione naturale e struttura artificiale è ancora aperto.",
     "osmanagich_focus": true,
@@ -843,7 +1143,10 @@
     "id": "silbury_hill",
     "nome": "Silbury Hill",
     "nome_locale": "Silbury Hill",
-    "coordinate": { "lat": 51.4156, "lon": -1.8572 },
+    "coordinate": {
+      "lat": 51.4156,
+      "lon": -1.8572
+    },
     "paese": "Regno Unito",
     "regione": "Wiltshire, Inghilterra",
     "continente": "Europa",
@@ -858,10 +1161,19 @@
     "funzione_non_ufficiale": "Piramide europea, possibile nodo energetico",
     "popolazione_ufficiale_associata": "Popoli neolitici britannici",
     "popolazione_non_ufficiale_associata": "Civiltà megalitica avanzata",
-    "leggende_locali": ["Re Sil sepolto con il suo cavallo d'oro", "Il diavolo fece cadere una montagna di terra"],
-    "riferimenti_ufficiali": ["English Heritage"],
-    "riferimenti_non_ufficiali": ["Citato come piramide europea da vari ricercatori alternativi"],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Silbury_Hill"],
+    "leggende_locali": [
+      "Re Sil sepolto con il suo cavallo d'oro",
+      "Il diavolo fece cadere una montagna di terra"
+    ],
+    "riferimenti_ufficiali": [
+      "English Heritage"
+    ],
+    "riferimenti_non_ufficiali": [
+      "Citato come piramide europea da vari ricercatori alternativi"
+    ],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Silbury_Hill"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Il più grande tumulo artificiale preistorico d'Europa. Nessuna sepoltura trovata al suo interno.",
     "osmanagich_focus": false,
@@ -871,7 +1183,10 @@
     "id": "borobudur",
     "nome": "Borobudur",
     "nome_locale": "Borobudur",
-    "coordinate": { "lat": -7.6079, "lon": 110.2038 },
+    "coordinate": {
+      "lat": -7.6079,
+      "lon": 110.2038
+    },
     "paese": "Indonesia",
     "regione": "Giava Centrale",
     "continente": "Asia",
@@ -886,10 +1201,16 @@
     "funzione_non_ufficiale": "Mandala cosmico tridimensionale",
     "popolazione_ufficiale_associata": "Dinastia Sailendra",
     "popolazione_non_ufficiale_associata": "Come sopra",
-    "leggende_locali": ["Montagna cosmica del buddhismo"],
-    "riferimenti_ufficiali": ["UNESCO World Heritage"],
+    "leggende_locali": [
+      "Montagna cosmica del buddhismo"
+    ],
+    "riferimenti_ufficiali": [
+      "UNESCO World Heritage"
+    ],
     "riferimenti_non_ufficiali": [],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Borobudur"],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Borobudur"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Il più grande tempio buddhista del mondo, con struttura piramidale a 9 livelli.",
     "osmanagich_focus": false,
@@ -899,7 +1220,10 @@
     "id": "ziggurat_ur",
     "nome": "Ziggurat di Ur",
     "nome_locale": "زقورة أور",
-    "coordinate": { "lat": 30.9628, "lon": 46.1031 },
+    "coordinate": {
+      "lat": 30.9628,
+      "lon": 46.1031
+    },
     "paese": "Iraq",
     "regione": "Dhi Qar",
     "continente": "Asia",
@@ -914,10 +1238,16 @@
     "funzione_non_ufficiale": "Connessione cielo-terra della tradizione sumera",
     "popolazione_ufficiale_associata": "Civiltà sumera - III Dinastia di Ur",
     "popolazione_non_ufficiale_associata": "Come sopra",
-    "leggende_locali": ["Torre di Babele nella tradizione biblica"],
-    "riferimenti_ufficiali": ["British Museum"],
+    "leggende_locali": [
+      "Torre di Babele nella tradizione biblica"
+    ],
+    "riferimenti_ufficiali": [
+      "British Museum"
+    ],
     "riferimenti_non_ufficiali": [],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Ziggurat_of_Ur"],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Ziggurat_of_Ur"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Una delle ziggurat meglio conservate della Mesopotamia.",
     "osmanagich_focus": false,
@@ -927,7 +1257,10 @@
     "id": "cochasqui",
     "nome": "Piramidi di Cochasquí",
     "nome_locale": "Pirámides de Cochasquí",
-    "coordinate": { "lat": 0.0614, "lon": -78.3078 },
+    "coordinate": {
+      "lat": 0.0614,
+      "lon": -78.3078
+    },
     "paese": "Ecuador",
     "regione": "Pichincha",
     "continente": "Sud America",
@@ -942,10 +1275,16 @@
     "funzione_non_ufficiale": "Centro energetico sulla linea dell'equatore",
     "popolazione_ufficiale_associata": "Cultura Quitu-Cara",
     "popolazione_non_ufficiale_associata": "Civiltà con conoscenze astronomiche avanzate",
-    "leggende_locali": ["Luogo sacro degli antichi popoli dell'equatore"],
-    "riferimenti_ufficiali": ["Parco Archeologico Cochasquí"],
+    "leggende_locali": [
+      "Luogo sacro degli antichi popoli dell'equatore"
+    ],
+    "riferimenti_ufficiali": [
+      "Parco Archeologico Cochasquí"
+    ],
     "riferimenti_non_ufficiali": [],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Cochasqu%C3%AD"],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Cochasqu%C3%AD"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Complesso di 15 piramidi e 21 tumuli funerari vicino all'equatore.",
     "osmanagich_focus": false,
@@ -955,7 +1294,10 @@
     "id": "tucume",
     "nome": "Túcume (Valle delle Piramidi)",
     "nome_locale": "Túcume",
-    "coordinate": { "lat": -6.5089, "lon": -79.8539 },
+    "coordinate": {
+      "lat": -6.5089,
+      "lon": -79.8539
+    },
     "paese": "Perù",
     "regione": "Lambayeque",
     "continente": "Sud America",
@@ -970,10 +1312,16 @@
     "funzione_non_ufficiale": "Complesso piramidale con possibile funzione astronomica",
     "popolazione_ufficiale_associata": "Cultura Lambayeque e Chimú",
     "popolazione_non_ufficiale_associata": "Come sopra, con influenze precedenti",
-    "leggende_locali": ["Valle sacra del purgatorio"],
-    "riferimenti_ufficiali": ["Museo de Sitio Túcume (Thor Heyerdahl contribuì)"],
+    "leggende_locali": [
+      "Valle sacra del purgatorio"
+    ],
+    "riferimenti_ufficiali": [
+      "Museo de Sitio Túcume (Thor Heyerdahl contribuì)"
+    ],
     "riferimenti_non_ufficiali": [],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/T%C3%BAcume"],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/T%C3%BAcume"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "26 piramidi in adobe. Thor Heyerdahl condusse scavi qui negli anni '90.",
     "osmanagich_focus": false,
@@ -983,7 +1331,10 @@
     "id": "etemenanki",
     "nome": "Etemenanki (Torre di Babele)",
     "nome_locale": "إتيمينانكي",
-    "coordinate": { "lat": 32.5364, "lon": 44.4208 },
+    "coordinate": {
+      "lat": 32.5364,
+      "lon": 44.4208
+    },
     "paese": "Iraq",
     "regione": "Babilonia, Hillah",
     "continente": "Asia",
@@ -998,10 +1349,14 @@
     "funzione_non_ufficiale": "La biblica Torre di Babele, connessione cielo-terra",
     "popolazione_ufficiale_associata": "Impero Neo-Babilonese (Nabucodonosor II)",
     "popolazione_non_ufficiale_associata": "Come sopra",
-    "leggende_locali": ["Torre di Babele della Bibbia"],
+    "leggende_locali": [
+      "Torre di Babele della Bibbia"
+    ],
     "riferimenti_ufficiali": [],
     "riferimenti_non_ufficiali": [],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Etemenanki"],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Etemenanki"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Generalmente identificata con la Torre di Babele della tradizione biblica.",
     "osmanagich_focus": false,
@@ -1011,7 +1366,10 @@
     "id": "palenque",
     "nome": "Tempio delle Iscrizioni (Palenque)",
     "nome_locale": "Templo de las Inscripciones",
-    "coordinate": { "lat": 17.4844, "lon": -92.0461 },
+    "coordinate": {
+      "lat": 17.4844,
+      "lon": -92.0461
+    },
     "paese": "Messico",
     "regione": "Chiapas",
     "continente": "Nord America",
@@ -1026,10 +1384,19 @@
     "funzione_non_ufficiale": "Tomba con la controversa 'lastra dell'astronauta'",
     "popolazione_ufficiale_associata": "Civiltà Maya classica",
     "popolazione_non_ufficiale_associata": "Maya con possibili contatti extraterrestri (Erich von Däniken)",
-    "leggende_locali": ["La lastra tombale raffigurerebbe un astronauta"],
-    "riferimenti_ufficiali": ["INAH", "UNESCO"],
-    "riferimenti_non_ufficiali": ["Erich von Däniken - Chariots of the Gods"],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Temple_of_the_Inscriptions"],
+    "leggende_locali": [
+      "La lastra tombale raffigurerebbe un astronauta"
+    ],
+    "riferimenti_ufficiali": [
+      "INAH",
+      "UNESCO"
+    ],
+    "riferimenti_non_ufficiali": [
+      "Erich von Däniken - Chariots of the Gods"
+    ],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Temple_of_the_Inscriptions"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Famosa per la lastra tombale di Pakal, interpretata da von Däniken come un astronauta.",
     "osmanagich_focus": false,
@@ -1039,7 +1406,10 @@
     "id": "mauritius_underwater",
     "nome": "Struttura sottomarina di Mauritius",
     "nome_locale": "Mauritius Underwater Structure",
-    "coordinate": { "lat": -20.3484, "lon": 57.5522 },
+    "coordinate": {
+      "lat": -20.3484,
+      "lon": 57.5522
+    },
     "paese": "Mauritius",
     "regione": "Oceano Indiano",
     "continente": "Africa",
@@ -1054,7 +1424,9 @@
     "funzione_non_ufficiale": "Resti di civiltà sommersa",
     "popolazione_ufficiale_associata": "Nessuna",
     "popolazione_non_ufficiale_associata": "Civiltà di Lemuria/Mu",
-    "leggende_locali": ["Il continente perduto di Lemuria"],
+    "leggende_locali": [
+      "Il continente perduto di Lemuria"
+    ],
     "riferimenti_ufficiali": [],
     "riferimenti_non_ufficiali": [],
     "link_approfondimento_ufficiale": [],
@@ -1067,7 +1439,10 @@
     "id": "hellinikon",
     "nome": "Piramide di Hellinikon",
     "nome_locale": "Πυραμίδα του Ελληνικού",
-    "coordinate": { "lat": 37.5483, "lon": 22.6789 },
+    "coordinate": {
+      "lat": 37.5483,
+      "lon": 22.6789
+    },
     "paese": "Grecia",
     "regione": "Argolide, Peloponneso",
     "continente": "Europa",
@@ -1082,10 +1457,16 @@
     "funzione_non_ufficiale": "Una delle piramidi più antiche d'Europa",
     "popolazione_ufficiale_associata": "Greci antichi",
     "popolazione_non_ufficiale_associata": "Civiltà pre-greca",
-    "leggende_locali": ["Piramide costruita prima delle piramidi egizie"],
-    "riferimenti_ufficiali": ["Studi dell'Accademia di Atene"],
+    "leggende_locali": [
+      "Piramide costruita prima delle piramidi egizie"
+    ],
+    "riferimenti_ufficiali": [
+      "Studi dell'Accademia di Atene"
+    ],
     "riferimenti_non_ufficiali": [],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Pyramid_of_Hellinikon"],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Pyramid_of_Hellinikon"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Una datazione controversa la collocherebbe come più antica delle piramidi egizie.",
     "osmanagich_focus": false,
@@ -1095,7 +1476,10 @@
     "id": "monte_daccodi",
     "nome": "Monte d'Accoddi",
     "nome_locale": "Monte d'Accoddi",
-    "coordinate": { "lat": 40.7903, "lon": 8.4481 },
+    "coordinate": {
+      "lat": 40.7903,
+      "lon": 8.4481
+    },
     "paese": "Italia",
     "regione": "Sardegna",
     "continente": "Europa",
@@ -1110,10 +1494,18 @@
     "funzione_non_ufficiale": "Piramide/ziggurat europea, connessione con Mesopotamia",
     "popolazione_ufficiale_associata": "Civiltà prenuragica sarda",
     "popolazione_non_ufficiale_associata": "Civiltà mediterranea avanzata con legami orientali",
-    "leggende_locali": ["Altare sacro degli antichi sardi"],
-    "riferimenti_ufficiali": ["Soprintendenza Archeologia Sardegna"],
-    "riferimenti_non_ufficiali": ["Citata da Osmanagich come piramide europea"],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Monte_d%27Accoddi"],
+    "leggende_locali": [
+      "Altare sacro degli antichi sardi"
+    ],
+    "riferimenti_ufficiali": [
+      "Soprintendenza Archeologia Sardegna"
+    ],
+    "riferimenti_non_ufficiali": [
+      "Citata da Osmanagich come piramide europea"
+    ],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Monte_d%27Accoddi"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Unica struttura di tipo ziggurat in Europa occidentale. Osmanagich la include nella rete piramidale globale.",
     "osmanagich_focus": true,
@@ -1123,7 +1515,10 @@
     "id": "tenerife_guanche",
     "nome": "Piramidi di Güímar (Complesso)",
     "nome_locale": "Pirámides de Güímar",
-    "coordinate": { "lat": 28.3128, "lon": -16.3814 },
+    "coordinate": {
+      "lat": 28.3128,
+      "lon": -16.3814
+    },
     "paese": "Spagna",
     "regione": "Tenerife, Isole Canarie",
     "continente": "Europa",
@@ -1138,10 +1533,19 @@
     "funzione_non_ufficiale": "Osservatorio astronomico e centro cerimoniale Guanche",
     "popolazione_ufficiale_associata": "Agricoltori del XIX secolo",
     "popolazione_non_ufficiale_associata": "Guanci o navigatori preistorici",
-    "leggende_locali": ["Costruzioni sacre degli antichi Guanci"],
-    "riferimenti_ufficiali": ["Parco Etnografico Pirámides de Güímar"],
-    "riferimenti_non_ufficiali": ["Thor Heyerdahl", "Osmanagich ha visitato il sito"],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Pyramids_of_G%C3%BC%C3%ADmar"],
+    "leggende_locali": [
+      "Costruzioni sacre degli antichi Guanci"
+    ],
+    "riferimenti_ufficiali": [
+      "Parco Etnografico Pirámides de Güímar"
+    ],
+    "riferimenti_non_ufficiali": [
+      "Thor Heyerdahl",
+      "Osmanagich ha visitato il sito"
+    ],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Pyramids_of_G%C3%BC%C3%ADmar"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Sei piramidi con allineamento al solstizio. Heyerdahl e Osmanagich le considerano strutture astronomiche antiche.",
     "osmanagich_focus": true,
@@ -1151,7 +1555,10 @@
     "id": "sharjah_mleiha",
     "nome": "Siti di Mleiha (Sharjah)",
     "nome_locale": "مليحة",
-    "coordinate": { "lat": 25.1350, "lon": 55.8830 },
+    "coordinate": {
+      "lat": 25.135,
+      "lon": 55.883
+    },
     "paese": "Emirati Arabi Uniti",
     "regione": "Sharjah",
     "continente": "Asia",
@@ -1167,10 +1574,18 @@
     "popolazione_ufficiale_associata": "Civiltà pre-islamica della penisola arabica",
     "popolazione_non_ufficiale_associata": "Civiltà sconosciuta con conoscenze avanzate",
     "leggende_locali": [],
-    "riferimenti_ufficiali": ["Sharjah Museums Authority"],
-    "riferimenti_non_ufficiali": ["Osmanagich ha esaminato i siti nel 2022"],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Mleiha"],
-    "link_approfondimento_non_ufficiale": ["https://drsamosmanagich.com/"],
+    "riferimenti_ufficiali": [
+      "Sharjah Museums Authority"
+    ],
+    "riferimenti_non_ufficiali": [
+      "Osmanagich ha esaminato i siti nel 2022"
+    ],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Mleiha"
+    ],
+    "link_approfondimento_non_ufficiale": [
+      "https://drsamosmanagich.com/"
+    ],
     "note": "Osmanagich ha visitato e studiato i siti archeologici di Sharjah nel 2022.",
     "osmanagich_focus": true,
     "controversa": true
@@ -1179,7 +1594,10 @@
     "id": "indonesia_lalakon",
     "nome": "Sito di Lalakon",
     "nome_locale": "Situs Lalakon",
-    "coordinate": { "lat": -6.8100, "lon": 107.5800 },
+    "coordinate": {
+      "lat": -6.81,
+      "lon": 107.58
+    },
     "paese": "Indonesia",
     "regione": "Bandung, Giava Occidentale",
     "continente": "Asia",
@@ -1194,9 +1612,14 @@
     "funzione_non_ufficiale": "Piramide sepolta dall'era glaciale",
     "popolazione_ufficiale_associata": "Nessuna",
     "popolazione_non_ufficiale_associata": "Civiltà preistorica indonesiana",
-    "leggende_locali": ["Montagna sacra locale"],
+    "leggende_locali": [
+      "Montagna sacra locale"
+    ],
     "riferimenti_ufficiali": [],
-    "riferimenti_non_ufficiali": ["Ricercatori indonesiani alternativi", "Collegato alle ricerche di Osmanagich in Indonesia"],
+    "riferimenti_non_ufficiali": [
+      "Ricercatori indonesiani alternativi",
+      "Collegato alle ricerche di Osmanagich in Indonesia"
+    ],
     "link_approfondimento_ufficiale": [],
     "link_approfondimento_non_ufficiale": [],
     "note": "Sito indonesiano studiato in connessione con Gunung Padang e la rete piramidale del Sud-Est asiatico.",
@@ -1207,7 +1630,10 @@
     "id": "china_zangkunchong",
     "nome": "Piramide di Zangkunchong",
     "nome_locale": "藏军冢",
-    "coordinate": { "lat": 34.3600, "lon": 108.9500 },
+    "coordinate": {
+      "lat": 34.36,
+      "lon": 108.95
+    },
     "paese": "Cina",
     "regione": "Xi'an, Shaanxi",
     "continente": "Asia",
@@ -1222,10 +1648,17 @@
     "funzione_non_ufficiale": "Parte della rete di piramidi cinesi con funzione energetica",
     "popolazione_ufficiale_associata": "Dinastia Han",
     "popolazione_non_ufficiale_associata": "Civiltà precedente con conoscenze avanzate",
-    "leggende_locali": ["Piramidi proibite della Cina"],
+    "leggende_locali": [
+      "Piramidi proibite della Cina"
+    ],
     "riferimenti_ufficiali": [],
-    "riferimenti_non_ufficiali": ["Hartwig Hausdorf", "Osmanagich"],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Chinese_pyramids"],
+    "riferimenti_non_ufficiali": [
+      "Hartwig Hausdorf",
+      "Osmanagich"
+    ],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Chinese_pyramids"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Una delle oltre 100 piramidi nella provincia di Shaanxi. Osmanagich le cita nel suo libro 'Pyramids Around the World'.",
     "osmanagich_focus": true,
@@ -1235,7 +1668,10 @@
     "id": "peru_cahuachi",
     "nome": "Cahuachi",
     "nome_locale": "Cahuachi",
-    "coordinate": { "lat": -14.8167, "lon": -75.1167 },
+    "coordinate": {
+      "lat": -14.8167,
+      "lon": -75.1167
+    },
     "paese": "Perù",
     "regione": "Nazca, Ica",
     "continente": "Sud America",
@@ -1250,10 +1686,16 @@
     "funzione_non_ufficiale": "Centro rituale connesso alle linee di Nazca",
     "popolazione_ufficiale_associata": "Civiltà Nazca",
     "popolazione_non_ufficiale_associata": "Nazca con conoscenze ereditate",
-    "leggende_locali": ["Centro sacro delle linee di Nazca"],
-    "riferimenti_ufficiali": ["Proyecto Nasca - Italian Centre"],
+    "leggende_locali": [
+      "Centro sacro delle linee di Nazca"
+    ],
+    "riferimenti_ufficiali": [
+      "Proyecto Nasca - Italian Centre"
+    ],
     "riferimenti_non_ufficiali": [],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Cahuachi"],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Cahuachi"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "40 tumuli piramidali vicino alle famose linee di Nazca. Osmanagich lo include nella rete sudamericana.",
     "osmanagich_focus": true,
@@ -1263,7 +1705,10 @@
     "id": "india_brihadisvara",
     "nome": "Tempio di Brihadisvara",
     "nome_locale": "பிரகதீஸ்வரர் கோயில்",
-    "coordinate": { "lat": 10.7828, "lon": 79.1317 },
+    "coordinate": {
+      "lat": 10.7828,
+      "lon": 79.1317
+    },
     "paese": "India",
     "regione": "Thanjavur, Tamil Nadu",
     "continente": "Asia",
@@ -1278,10 +1723,18 @@
     "funzione_non_ufficiale": "Struttura piramidale con proprietà acustiche e energetiche",
     "popolazione_ufficiale_associata": "Dinastia Chola (Raja Raja Chola I)",
     "popolazione_non_ufficiale_associata": "Come sopra",
-    "leggende_locali": ["La pietra sommitale (80 tonnellate) fu sollevata con metodi sconosciuti"],
-    "riferimenti_ufficiali": ["UNESCO World Heritage"],
-    "riferimenti_non_ufficiali": ["Osmanagich cita i templi piramidali indiani"],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Brihadisvara_Temple"],
+    "leggende_locali": [
+      "La pietra sommitale (80 tonnellate) fu sollevata con metodi sconosciuti"
+    ],
+    "riferimenti_ufficiali": [
+      "UNESCO World Heritage"
+    ],
+    "riferimenti_non_ufficiali": [
+      "Osmanagich cita i templi piramidali indiani"
+    ],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Brihadisvara_Temple"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Piramide templare con una pietra sommitale di 80 tonnellate. Osmanagich lo menziona nel contesto delle piramidi asiatiche.",
     "osmanagich_focus": true,
@@ -1291,7 +1744,10 @@
     "id": "cambodia_koh_ker",
     "nome": "Prasat Thom (Koh Ker)",
     "nome_locale": "ប្រាសាទធំ",
-    "coordinate": { "lat": 13.7833, "lon": 104.5333 },
+    "coordinate": {
+      "lat": 13.7833,
+      "lon": 104.5333
+    },
     "paese": "Cambogia",
     "regione": "Preah Vihear",
     "continente": "Asia",
@@ -1306,10 +1762,16 @@
     "funzione_non_ufficiale": "Piramide del Sud-Est asiatico con somiglianze mesoamericane",
     "popolazione_ufficiale_associata": "Impero Khmer (Jayavarman IV)",
     "popolazione_non_ufficiale_associata": "Come sopra",
-    "leggende_locali": ["Tempio del potere divino del re"],
-    "riferimenti_ufficiali": ["UNESCO World Heritage"],
+    "leggende_locali": [
+      "Tempio del potere divino del re"
+    ],
+    "riferimenti_ufficiali": [
+      "UNESCO World Heritage"
+    ],
     "riferimenti_non_ufficiali": [],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Koh_Ker"],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Koh_Ker"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Unica piramide a gradoni a 7 livelli dell'architettura Khmer.",
     "osmanagich_focus": false,
@@ -1319,7 +1781,10 @@
     "id": "tonga_langi",
     "nome": "Langi di Tonga",
     "nome_locale": "Langi",
-    "coordinate": { "lat": -21.1467, "lon": -175.1553 },
+    "coordinate": {
+      "lat": -21.1467,
+      "lon": -175.1553
+    },
     "paese": "Tonga",
     "regione": "Mu'a, Tongatapu",
     "continente": "Oceania",
@@ -1334,10 +1799,16 @@
     "funzione_non_ufficiale": "Strutture piramidali oceaniche, connessione con rete globale",
     "popolazione_ufficiale_associata": "Impero Tu'i Tonga",
     "popolazione_non_ufficiale_associata": "Come sopra, con possibili influenze esterne",
-    "leggende_locali": ["Tombe sacre dei re divini di Tonga"],
+    "leggende_locali": [
+      "Tombe sacre dei re divini di Tonga"
+    ],
     "riferimenti_ufficiali": [],
-    "riferimenti_non_ufficiali": ["Citati nel contesto delle piramidi oceaniche"],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Langi"],
+    "riferimenti_non_ufficiali": [
+      "Citati nel contesto delle piramidi oceaniche"
+    ],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Langi"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Piramidi del Pacifico costruite con blocchi di corallo e pietra calcarea fino a 40 tonnellate.",
     "osmanagich_focus": false,
@@ -1347,7 +1818,10 @@
     "id": "australia_gympie",
     "nome": "Piramide di Gympie",
     "nome_locale": "Gympie Pyramid",
-    "coordinate": { "lat": -26.1900, "lon": 152.6650 },
+    "coordinate": {
+      "lat": -26.19,
+      "lon": 152.665
+    },
     "paese": "Australia",
     "regione": "Queensland",
     "continente": "Oceania",
@@ -1362,10 +1836,18 @@
     "funzione_non_ufficiale": "Piramide costruita da navigatori antichi (egizi, fenici o polinesiani)",
     "popolazione_ufficiale_associata": "Coloni europei del XIX secolo",
     "popolazione_non_ufficiale_associata": "Navigatori precoloniali",
-    "leggende_locali": ["Statua 'Ape di Gympie' trovata nelle vicinanze", "Connessione con navigatori egizi"],
+    "leggende_locali": [
+      "Statua 'Ape di Gympie' trovata nelle vicinanze",
+      "Connessione con navigatori egizi"
+    ],
     "riferimenti_ufficiali": [],
-    "riferimenti_non_ufficiali": ["Rex Gilroy", "Menzionata nel contesto delle piramidi oceaniche"],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Gympie_Pyramid"],
+    "riferimenti_non_ufficiali": [
+      "Rex Gilroy",
+      "Menzionata nel contesto delle piramidi oceaniche"
+    ],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Gympie_Pyramid"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Struttura controversa in Queensland. Osmanagich la include tra le evidenze di una rete piramidale globale.",
     "osmanagich_focus": true,
@@ -1375,7 +1857,10 @@
     "id": "canary_tenerife_step",
     "nome": "Piramide a gradoni di Icod de los Vinos",
     "nome_locale": "Pirámide de Icod",
-    "coordinate": { "lat": 28.3690, "lon": -16.7190 },
+    "coordinate": {
+      "lat": 28.369,
+      "lon": -16.719
+    },
     "paese": "Spagna",
     "regione": "Tenerife, Isole Canarie",
     "continente": "Europa",
@@ -1392,7 +1877,9 @@
     "popolazione_non_ufficiale_associata": "Guanci",
     "leggende_locali": [],
     "riferimenti_ufficiali": [],
-    "riferimenti_non_ufficiali": ["Collegata alle piramidi di Güímar"],
+    "riferimenti_non_ufficiali": [
+      "Collegata alle piramidi di Güímar"
+    ],
     "link_approfondimento_ufficiale": [],
     "link_approfondimento_non_ufficiale": [],
     "note": "Ulteriore struttura piramidale nelle Canarie, zona ricca di costruzioni simili.",
@@ -1403,7 +1890,10 @@
     "id": "mexico_uxmal",
     "nome": "Piramide dell'Indovino (Uxmal)",
     "nome_locale": "Pirámide del Adivino",
-    "coordinate": { "lat": 20.3597, "lon": -89.7714 },
+    "coordinate": {
+      "lat": 20.3597,
+      "lon": -89.7714
+    },
     "paese": "Messico",
     "regione": "Yucatán",
     "continente": "Nord America",
@@ -1418,10 +1908,17 @@
     "funzione_non_ufficiale": "Piramide con geometria unica nel mondo Maya",
     "popolazione_ufficiale_associata": "Civiltà Maya Puuc",
     "popolazione_non_ufficiale_associata": "Come sopra",
-    "leggende_locali": ["Costruita in una notte da un nano magico"],
-    "riferimenti_ufficiali": ["INAH", "UNESCO"],
+    "leggende_locali": [
+      "Costruita in una notte da un nano magico"
+    ],
+    "riferimenti_ufficiali": [
+      "INAH",
+      "UNESCO"
+    ],
     "riferimenti_non_ufficiali": [],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Pyramid_of_the_Magician"],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Pyramid_of_the_Magician"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Unica piramide Maya a base ellittica anziché rettangolare.",
     "osmanagich_focus": false,
@@ -1431,7 +1928,10 @@
     "id": "sudan_jebel_barkal",
     "nome": "Piramidi di Jebel Barkal",
     "nome_locale": "جبل البركل",
-    "coordinate": { "lat": 18.5350, "lon": 31.8272 },
+    "coordinate": {
+      "lat": 18.535,
+      "lon": 31.8272
+    },
     "paese": "Sudan",
     "regione": "Stato del Nord",
     "continente": "Africa",
@@ -1446,10 +1946,16 @@
     "funzione_non_ufficiale": "Continuazione della tradizione piramidale africana",
     "popolazione_ufficiale_associata": "Regno di Napata/Kush",
     "popolazione_non_ufficiale_associata": "Come sopra",
-    "leggende_locali": ["Montagna sacra di Amon"],
-    "riferimenti_ufficiali": ["UNESCO World Heritage"],
+    "leggende_locali": [
+      "Montagna sacra di Amon"
+    ],
+    "riferimenti_ufficiali": [
+      "UNESCO World Heritage"
+    ],
     "riferimenti_non_ufficiali": [],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Jebel_Barkal"],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Jebel_Barkal"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Complesso templare e piramidale alla base della montagna sacra di Jebel Barkal.",
     "osmanagich_focus": false,
@@ -1459,7 +1965,10 @@
     "id": "russia_kola",
     "nome": "Piramidi della Penisola di Kola",
     "nome_locale": "Пирамиды Кольского полуострова",
-    "coordinate": { "lat": 68.0500, "lon": 33.0800 },
+    "coordinate": {
+      "lat": 68.05,
+      "lon": 33.08
+    },
     "paese": "Russia",
     "regione": "Penisola di Kola, Murmansk",
     "continente": "Europa",
@@ -1474,9 +1983,14 @@
     "funzione_non_ufficiale": "Piramidi artiche della civiltà iperborea",
     "popolazione_ufficiale_associata": "Nessuna",
     "popolazione_non_ufficiale_associata": "Civiltà iperborea preistorica",
-    "leggende_locali": ["Resti dell'antica Iperborea"],
+    "leggende_locali": [
+      "Resti dell'antica Iperborea"
+    ],
     "riferimenti_ufficiali": [],
-    "riferimenti_non_ufficiali": ["Spedizioni russe dal 2007", "Menzionate da Osmanagich come piramidi artiche"],
+    "riferimenti_non_ufficiali": [
+      "Spedizioni russe dal 2007",
+      "Menzionate da Osmanagich come piramidi artiche"
+    ],
     "link_approfondimento_ufficiale": [],
     "link_approfondimento_non_ufficiale": [],
     "note": "Strutture scoperte nella penisola di Kola, Circolo Polare Artico. Osmanagich le cita come evidenza della diffusione globale delle piramidi.",
@@ -1487,7 +2001,10 @@
     "id": "crimea_underwater",
     "nome": "Piramide sommersa di Crimea",
     "nome_locale": "Крымская подводная пирамида",
-    "coordinate": { "lat": 44.4200, "lon": 33.5300 },
+    "coordinate": {
+      "lat": 44.42,
+      "lon": 33.53
+    },
     "paese": "Ucraina",
     "regione": "Sebastopoli, Crimea",
     "continente": "Europa",
@@ -1502,9 +2019,14 @@
     "funzione_non_ufficiale": "Piramide sommersa di una civiltà pre-diluviana",
     "popolazione_ufficiale_associata": "Nessuna",
     "popolazione_non_ufficiale_associata": "Civiltà preistorica del Mar Nero",
-    "leggende_locali": ["Strutture sommerse nel Mar Nero"],
+    "leggende_locali": [
+      "Strutture sommerse nel Mar Nero"
+    ],
     "riferimenti_ufficiali": [],
-    "riferimenti_non_ufficiali": ["Vitaly Gokh (ricercatore ucraino)", "Osmanagich la menziona"],
+    "riferimenti_non_ufficiali": [
+      "Vitaly Gokh (ricercatore ucraino)",
+      "Osmanagich la menziona"
+    ],
     "link_approfondimento_ufficiale": [],
     "link_approfondimento_non_ufficiale": [],
     "note": "Scoperta tramite sonar nel 1999. Osmanagich la cita come parte della rete di piramidi sommerse.",
@@ -1515,7 +2037,10 @@
     "id": "azores_underwater",
     "nome": "Piramide sottomarina delle Azzorre",
     "nome_locale": "Pirâmide Submarina dos Açores",
-    "coordinate": { "lat": 38.4500, "lon": -28.6000 },
+    "coordinate": {
+      "lat": 38.45,
+      "lon": -28.6
+    },
     "paese": "Portogallo",
     "regione": "Isola di Terceira, Azzorre",
     "continente": "Europa",
@@ -1530,9 +2055,14 @@
     "funzione_non_ufficiale": "Resti della civiltà atlantidea",
     "popolazione_ufficiale_associata": "Nessuna",
     "popolazione_non_ufficiale_associata": "Atlantidei",
-    "leggende_locali": ["Le Azzorre come resti di Atlantide"],
+    "leggende_locali": [
+      "Le Azzorre come resti di Atlantide"
+    ],
     "riferimenti_ufficiali": [],
-    "riferimenti_non_ufficiali": ["Diocleciano Silva (marinaio portoghese)", "Citata nel contesto delle piramidi sommerse"],
+    "riferimenti_non_ufficiali": [
+      "Diocleciano Silva (marinaio portoghese)",
+      "Citata nel contesto delle piramidi sommerse"
+    ],
     "link_approfondimento_ufficiale": [],
     "link_approfondimento_non_ufficiale": [],
     "note": "Scoperta nel 2013 tramite sonar. La marina portoghese non ha confermato ufficialmente.",
@@ -1543,7 +2073,10 @@
     "id": "egypt_abu_rawash",
     "nome": "Piramide di Abu Rawash",
     "nome_locale": "هرم أبو رواش",
-    "coordinate": { "lat": 30.0322, "lon": 31.0756 },
+    "coordinate": {
+      "lat": 30.0322,
+      "lon": 31.0756
+    },
     "paese": "Egitto",
     "regione": "Abu Rawash, Giza",
     "continente": "Africa",
@@ -1561,7 +2094,9 @@
     "leggende_locali": [],
     "riferimenti_ufficiali": [],
     "riferimenti_non_ufficiali": [],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Pyramid_of_Djedefre"],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Pyramid_of_Djedefre"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Costruita dal figlio di Cheope. Situata nel punto più alto dell'area di Giza.",
     "osmanagich_focus": false,
@@ -1571,7 +2106,10 @@
     "id": "egypt_meidum",
     "nome": "Piramide di Meidum",
     "nome_locale": "هرم ميدوم",
-    "coordinate": { "lat": 29.3883, "lon": 31.1567 },
+    "coordinate": {
+      "lat": 29.3883,
+      "lon": 31.1567
+    },
     "paese": "Egitto",
     "regione": "Meidum, Beni Suef",
     "continente": "Africa",
@@ -1586,10 +2124,14 @@
     "funzione_non_ufficiale": "Esperimento architettonico fallito",
     "popolazione_ufficiale_associata": "Antico Egitto - III/IV Dinastia",
     "popolazione_non_ufficiale_associata": "Come sopra",
-    "leggende_locali": ["La 'falsa piramide' del deserto"],
+    "leggende_locali": [
+      "La 'falsa piramide' del deserto"
+    ],
     "riferimenti_ufficiali": [],
     "riferimenti_non_ufficiali": [],
-    "link_approfondimento_ufficiale": ["https://en.wikipedia.org/wiki/Meidum"],
+    "link_approfondimento_ufficiale": [
+      "https://en.wikipedia.org/wiki/Meidum"
+    ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Piramide che documenta la transizione da gradoni a facce lisce.",
     "osmanagich_focus": false,
