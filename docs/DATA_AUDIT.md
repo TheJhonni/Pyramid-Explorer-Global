@@ -62,7 +62,7 @@ Every site was compared with the coordinates of the Wikipedia pages it already c
 
 ## Altitude and area (November 2026)
 
-`area_mq` is the footprint of the structure, not the area of the archaeological site. It was filled only where a source gives the area or both sides of the base, as for Menkaure, or a single base length for an Egyptian pyramid built on a square plan; the area is then the product of the sides. `altitudine_sul_livello_del_mare_m` was filled only from a value a source states for that site.
+`area_mq` is the footprint of the structure, not the area of the archaeological site. It was filled only where a source gives the area or both sides of the base, as for Menkaure, or a single base length for an Egyptian pyramid built on a square plan; the area is then the product of the sides. `altitudine_sul_livello_del_mare_m` was filled only from a value a source states for that site. Unless a row names a source for the area itself, the value is calculated from the sourced base, so it is a derived figure, not one quoted by the source.
 
 | Site | Field | Value | Source |
 |---|---|---|---|
