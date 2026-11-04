@@ -43,8 +43,6 @@ export interface Pyramid {
   fonti?: SourceRef[];
   /** Field names that have no source. */
   campi_senza_fonte?: string[];
-  immagini?: string[];
-  google_images_url?: string;
 }
 
 export type Period = '' | 'ancient' | 'bce' | 'first' | 'late';

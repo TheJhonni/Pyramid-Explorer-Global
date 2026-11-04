@@ -4,7 +4,7 @@ import { X, MapPin, Mountain, Ruler, Star, ExternalLink, BookOpen, Lightbulb, Ba
 import { useEffect, useRef, useState } from 'react';
 import { MOBILE_SHEET_SHARE } from '@/utils/layout';
 import { useI18n } from '@/i18n/I18nContext';
-import PyramidPhotoCarousel from './PyramidPhotoCarousel';
+import SitePhotos from './SitePhotos';
 
 interface PyramidDetailsProps {
   pyramid: Pyramid | null;
@@ -86,7 +86,8 @@ const PyramidDetails = ({ pyramid, onClose, inCompare, onToggleCompare }: Pyrami
     if (!pyramid) return;
     setCopied(false);
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      // A dialog on top (gallery, comparison) handles Escape first.
+      if (e.key === 'Escape' && !document.querySelector('[role="dialog"]')) onClose();
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
@@ -239,23 +240,7 @@ const PyramidDetails = ({ pyramid, onClose, inCompare, onToggleCompare }: Pyrami
               )}
             </section>
 
-            {/* Photo carousel */}
-            {(pyramid.immagini?.length || pyramid.google_images_url) && (
-              <PyramidPhotoCarousel
-                images={pyramid.immagini || []}
-                googleUrl={pyramid.google_images_url}
-                name={pyramid.nome}
-              />
-            )}
-
-            {/* Always show search link even without images */}
-            {!pyramid.immagini?.length && !pyramid.google_images_url && (
-              <PyramidPhotoCarousel
-                images={[]}
-                googleUrl={`https://www.google.com/search?tbm=isch&q=${encodeURIComponent(pyramid.nome + ' pyramid')}`}
-                name={pyramid.nome}
-              />
-            )}
+            <SitePhotos pyramid={pyramid} />
 
             {pyramid.leggende_locali.length > 0 && (
               <section>

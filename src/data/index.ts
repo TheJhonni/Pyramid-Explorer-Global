@@ -1,12 +1,8 @@
 import pyramidsData from './pyramids.json';
-import { pyramidImages } from './pyramidImages';
 import { Pyramid } from '@/types/pyramid';
 
 /** English is the base language. Other languages are overlays in ./locales, loaded on demand. */
-export const allPyramids: Pyramid[] = (pyramidsData as Pyramid[]).map((p) => ({
-  ...p,
-  ...(pyramidImages[p.id] || {}),
-}));
+export const allPyramids = pyramidsData as Pyramid[];
 
 export const TOUR_IDS = [
   'saqqara_djoser',

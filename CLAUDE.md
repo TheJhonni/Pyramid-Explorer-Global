@@ -1,6 +1,6 @@
 # Pyramid Explorer
 
-Interactive 3D globe of pyramids. Repo `TheJhonni/Pyramid-Explorer-Global`, the only work branch is `improve/portfolio-ready`, draft PR #1. Only one session at a time works on this repo.
+Interactive 3D globe of pyramids. Repo `TheJhonni/Pyramid-Explorer-Global`, `main` is live at https://pyramid-explorer-global.vercel.app. Work on a short-lived branch with a preview. Only one session at a time works on this repo.
 
 ## Rules
 - No production deploy, merge, force push or repo visibility change without Davide's explicit OK for that action. Branch, draft PR and preview only.
@@ -18,7 +18,7 @@ Install with `bun install --frozen-lockfile`: `npm install` currently crashes on
 ## Data
 - `src/data/pyramids.json`: base dataset, text in English. Field names are in Italian for historical reasons.
 - `src/data/locales/{it,es,fr,de,pt}.json`: text overlays keyed by site id, loaded on demand.
-- `src/data/pyramidImages.ts`: hotlinked Wikimedia images.
+- `src/data/sitePhotos.json`: Commons file names per site, checked by eye. Author and licence are fetched live from the Commons API and must stay visible next to each photo.
 - `docs/DATA_AUDIT.md`: result of the fact check, with sites flagged or removed.
 - Continent values stay as Italian keys (`Europa`, `Nord America`); `tc()` translates them.
 
