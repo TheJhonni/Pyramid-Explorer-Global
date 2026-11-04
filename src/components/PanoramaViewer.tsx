@@ -1,6 +1,20 @@
 import { useEffect, useState } from 'react';
 import { ExternalLink, Move, X } from 'lucide-react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
+import {
+  Color,
+  CylinderGeometry,
+  Mesh,
+  MeshBasicMaterial,
+  PerspectiveCamera,
+  RepeatWrapping,
+  Scene,
+  SphereGeometry,
+  SRGBColorSpace,
+  TextureLoader,
+  Vector3,
+  WebGLRenderer,
+} from 'three';
 import { useI18n } from '@/i18n/I18nContext';
 import { CommonsPhoto, fetchCommonsPhotos } from '@/utils/commonsPhotos';
 import { clampFov, directionOf, maxPitch, SitePanorama, startFov, stripHalfHeight, wrapU } from '@/utils/panorama';
@@ -37,20 +51,19 @@ const PanoramaViewer = ({ open, onOpenChange, title, subtitle, panorama }: Props
       if (disposed) return;
       setCredit(photo);
 
-      const THREE = await import('three');
-      const loader = new THREE.TextureLoader();
+      const loader = new TextureLoader();
       loader.setCrossOrigin('anonymous');
       const texture = await loader.loadAsync(photo.url);
       if (disposed) {
         texture.dispose();
         return;
       }
-      texture.colorSpace = THREE.SRGBColorSpace;
-      texture.wrapS = THREE.RepeatWrapping;
+      texture.colorSpace = SRGBColorSpace;
+      texture.wrapS = RepeatWrapping;
 
       const { kind } = panorama;
       const halfHeight = stripHalfHeight(texture.image.width, texture.image.height);
-      const renderer = new THREE.WebGLRenderer({ antialias: true });
+      const renderer = new WebGLRenderer({ antialias: true });
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       texture.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
       host.appendChild(renderer.domElement);
@@ -61,19 +74,19 @@ const PanoramaViewer = ({ open, onOpenChange, title, subtitle, panorama }: Props
 
       const geometry =
         kind === 'sphere'
-          ? new THREE.SphereGeometry(10, 64, 40)
-          : new THREE.CylinderGeometry(1, 1, halfHeight * 2, 96, 1, true);
+          ? new SphereGeometry(10, 64, 40)
+          : new CylinderGeometry(1, 1, halfHeight * 2, 96, 1, true);
       geometry.scale(-1, 1, 1);
-      const material = new THREE.MeshBasicMaterial({ map: texture });
-      const scene = new THREE.Scene();
-      scene.background = new THREE.Color(0x05070d);
-      scene.add(new THREE.Mesh(geometry, material));
-      const camera = new THREE.PerspectiveCamera(startFov(kind, halfHeight), 1, 0.01, 40);
+      const material = new MeshBasicMaterial({ map: texture });
+      const scene = new Scene();
+      scene.background = new Color(0x05070d);
+      scene.add(new Mesh(geometry, material));
+      const camera = new PerspectiveCamera(startFov(kind, halfHeight), 1, 0.01, 40);
 
       let u = panorama.start;
       let pitch = 0;
       let frame = 0;
-      const target = new THREE.Vector3();
+      const target = new Vector3();
       const render = () => {
         frame = 0;
         const [x, z] = directionOf(kind, u);
