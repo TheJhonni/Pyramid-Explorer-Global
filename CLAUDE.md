@@ -11,7 +11,7 @@ Interactive 3D globe of pyramids. Repo `TheJhonni/Pyramid-Explorer-Global`, the 
 - Confidentiality: see the project instructions. Do not name private funding sources or unrelated personal activities here.
 
 ## Stack and commands
-React 18, TypeScript, Vite, Tailwind, Radix dialog and slider, three.js via react-globe.gl, Vitest. Static site with no backend, on Vercel.
+React 18, TypeScript, Vite, Tailwind, Radix dialog and slider, three.js, Vitest. Static site with no backend, on Vercel.
 Install with `bun install --frozen-lockfile`: `npm install` currently crashes on this tree.
 `bun run dev` · `bun run test` · `npx tsc -p tsconfig.app.json --noEmit` · `bun run lint` · `bun run build` (also prerenders `/site/<id>` pages and the sitemap).
 
@@ -21,6 +21,9 @@ Install with `bun install --frozen-lockfile`: `npm install` currently crashes on
 - `src/data/pyramidImages.ts`: hotlinked Wikimedia images.
 - `docs/DATA_AUDIT.md`: result of the fact check, with sites flagged or removed.
 - Continent values stay as Italian keys (`Europa`, `Nord America`); `tc()` translates them.
+
+## Planet globe
+`src/components/Globe3D.tsx` is adapted from the GetLayers Planet scene. Its assets are on Vercel Blob (store `pyramid-explorer-assets`), not in Git. For local work, copy them to `public/planet` and set `VITE_PLANET_ASSETS=/planet` in `.env.local`. Pins come from `latLonToUnit` in `src/utils/geo.ts`.
 
 ## URLs
 `/site/:id` opens a site. Query params hold filters and `compare=a,b`. Keep these stable: they are shareable.

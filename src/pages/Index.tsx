@@ -47,7 +47,8 @@ const Index = () => {
   const [flyToKey, setFlyToKey] = useState(0);
   const [showList, setShowList] = useState(true);
   const [panelOpen, setPanelOpen] = useState(false);
-  const [webgl] = useState(hasWebGL);
+  const [webgl, setWebgl] = useState(hasWebGL);
+  const showFlatMap = useCallback(() => setWebgl(false), []);
   const [showIntro, setShowIntro] = useState(!siteId);
   const [compareOpen, setCompareOpen] = useState(() => params.has('compare') && !siteId);
   const [timelineOpen, setTimelineOpen] = useState(false);
@@ -252,6 +253,9 @@ const Index = () => {
               flyToKey={flyToKey}
               onSelect={handleSelect}
               focusPoint={focusPoint}
+              detailsOpen={!!selectedPyramid}
+              loadingLabel={t.loading}
+              onUnavailable={showFlatMap}
             />
           </Suspense>
         ) : (
