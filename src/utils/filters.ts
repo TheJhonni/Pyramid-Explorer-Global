@@ -17,6 +17,7 @@ export function filterPyramids(pyramids: Pyramid[], filters: Filters): Pyramid[]
     if (p.altezza_struttura_m < filters.heightMin || !withinMax(p.altezza_struttura_m, filters.heightMax, HEIGHT_LIMIT)) return false;
     if (p.area_mq < filters.areaMin || !withinMax(p.area_mq, filters.areaMax, AREA_LIMIT)) return false;
     if (filters.continente && p.continente !== filters.continente) return false;
+    if (filters.civilization && p.civilta !== filters.civilization) return false;
     if (filters.soloControverse && !p.controversa) return false;
     if (filters.soloOsmanagich && !p.osmanagich_focus) return false;
     if (filters.soloVerificate && p.stato_verifica !== 'verified') return false;

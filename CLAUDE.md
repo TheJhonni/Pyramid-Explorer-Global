@@ -22,6 +22,7 @@ Install with `bun install --frozen-lockfile`: `npm install` currently crashes on
 - `src/data/sitePanoramas.json`: 360° panoramas per site, from Commons, checked by eye. `sphere` is a full equirectangular image, `strip` a 360° band with limited tilt. Credits come live from Commons, as for photos.
 - `docs/DATA_AUDIT.md`: result of the fact check, with sites flagged or removed. After changing `campi_senza_fonte`, run `bun run audit` to refresh its coverage report; a test fails if it is stale.
 - `area_mq` is the footprint of the structure, never the area of the whole site.
+- `civilta`: a key from `src/i18n/civilizations.ts`, taken from `popolazione_ufficiale_associata`; `null` when builders are mixed, modern, natural or unknown. URL param `civ`.
 - Continent values stay as Italian keys (`Europa`, `Nord America`); `tc()` translates them.
 
 ## Planet globe

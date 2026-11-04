@@ -92,6 +92,10 @@ Left unsourced on purpose:
 - `teotihuacan_sun`: the base is 220 × 230 m in the infobox and 225 m in the text. `teotihuacan_moon`: "147 m by about 130 m". `mexico_uxmal`: "approximately 69 by 49 m" on an oval plan; Wikidata cites Britannica for 3,416 m², but Britannica did not open. `egypt_sahure`, `egypt_senusret_ii`, `egypt_neferirkare`: the sources give two different bases.
 - `silbury_hill`: 187.6 m is the summit, not the ground. `tula_piramide_b`, `huaca_rajada_sipan`: only a range (2,000–2,200 m, 83–102 m). `egypt_hawara`: the only value is a GeoNames elevation for the place.
 
+## Civilization field (November 2026)
+
+`civilta` groups sites by the builders already named in `popolazione_ufficiale_associata`, with no new research: for example "Ancient Egypt, 4th Dynasty" and "Ancient Egyptians, 12th Dynasty" both become `egyptian`, "Classic Maya" and "Puuc Maya" become `maya`. It is `null` for 21 sites: the Visoko hills, natural formations, modern builders (Güímar, Gympie, Plaine Magnien), unknown builders, and mixed ones (Cholula, Túcume, Tenayuca, Gunung Padang, Couhard).
+
 ## Removed
 
 - `mauritius_underwater` (Struttura sottomarina di Mauritius): Nessuna fonte aperta documenta una struttura sottomarina a Mauritius: la voce appare inventata. In alternativa, una voce nuova sulle piramidi di Plaine Magnien, sulla terraferma.

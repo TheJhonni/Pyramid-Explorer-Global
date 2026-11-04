@@ -20,6 +20,7 @@
   "funzione_ufficiale": "Natural site with medieval archaeological remains",
   "funzione_non_ufficiale": "Ancient energy pyramid complex",
   "popolazione_ufficiale_associata": "No builders of the hill; the Visoki fortress dates to medieval Bosnia",
+  "civilta": null,
   "popolazione_non_ufficiale_associata": "Unidentified advanced prehistoric civilization",
   "leggende_locali": [
    "Oral stories about the sacred hills of Visoko",
@@ -106,6 +107,7 @@
   "funzione_ufficiale": "Natural hill",
   "funzione_non_ufficiale": "Ceremonial/energy pyramid",
   "popolazione_ufficiale_associata": "No recognized builder civilization",
+  "civilta": null,
   "popolazione_non_ufficiale_associata": "Advanced prehistoric civilization",
   "leggende_locali": [
    "Oral traditions from the Visoko area"
@@ -176,6 +178,7 @@
   "funzione_ufficiale": "Natural hill",
   "funzione_non_ufficiale": "Energy pyramid",
   "popolazione_ufficiale_associata": "None",
+  "civilta": null,
   "popolazione_non_ufficiale_associata": "Prehistoric civilization",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -244,6 +247,7 @@
   "funzione_ufficiale": "Natural hill",
   "funzione_non_ufficiale": "Pyramid of the global network",
   "popolazione_ufficiale_associata": "None",
+  "civilta": null,
   "popolazione_non_ufficiale_associata": "Prehistoric civilization",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -312,6 +316,7 @@
   "funzione_ufficiale": "Natural hill",
   "funzione_non_ufficiale": "Pyramid of the global network",
   "popolazione_ufficiale_associata": "None",
+  "civilta": null,
   "popolazione_non_ufficiale_associata": "Prehistoric civilization",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -380,6 +385,7 @@
   "funzione_ufficiale": "Hypothesis: ancient mining galleries (unconfirmed)",
   "funzione_non_ufficiale": "Underground network connecting the pyramids, with ionizing and healing properties",
   "popolazione_ufficiale_associata": "Not determined",
+  "civilta": null,
   "popolazione_non_ufficiale_associata": "Builders of the Bosnian pyramids",
   "leggende_locali": [
    "Tales of mysterious tunnels beneath Visoko"
@@ -462,6 +468,7 @@
   "funzione_ufficiale": "Tomb of the pharaoh Khufu (Cheops)",
   "funzione_non_ufficiale": "Energy generator, astronomical observatory, monument of a lost civilization",
   "popolazione_ufficiale_associata": "Ancient Egypt, 4th Dynasty",
+  "civilta": "egyptian",
   "popolazione_non_ufficiale_associata": "Advanced antediluvian civilization",
   "leggende_locali": [
    "Built by the gods, according to some traditions",
@@ -539,6 +546,7 @@
   "funzione_ufficiale": "Tomb of the pharaoh Khafre (Chephren)",
   "funzione_non_ufficiale": "Part of an energy/astronomical complex",
   "popolazione_ufficiale_associata": "Ancient Egypt, 4th Dynasty",
+  "civilta": "egyptian",
   "popolazione_non_ufficiale_associata": "Antediluvian civilization",
   "leggende_locali": [],
   "riferimenti_ufficiali": [
@@ -587,6 +595,7 @@
   "funzione_ufficiale": "Tomb of the pharaoh Menkaure (Mycerinus)",
   "funzione_non_ufficiale": "Part of the Giza complex",
   "popolazione_ufficiale_associata": "Ancient Egypt, 4th Dynasty",
+  "civilta": "egyptian",
   "popolazione_non_ufficiale_associata": "Antediluvian civilization",
   "leggende_locali": [],
   "riferimenti_ufficiali": [
@@ -635,6 +644,7 @@
   "funzione_ufficiale": "Tomb of the pharaoh Djoser",
   "funzione_non_ufficiale": "The first known pyramid, a possible prototype",
   "popolazione_ufficiale_associata": "Ancient Egypt, 3rd Dynasty, architect Imhotep",
+  "civilta": "egyptian",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [
    "Imhotep, deified as the god of medicine"
@@ -685,6 +695,7 @@
   "funzione_ufficiale": "Tomb of the pharaoh Sneferu",
   "funzione_non_ufficiale": "Advanced architectural experimentation",
   "popolazione_ufficiale_associata": "Ancient Egypt, 4th Dynasty",
+  "civilta": "egyptian",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -730,6 +741,7 @@
   "funzione_ufficiale": "Tomb of the pharaoh Sneferu",
   "funzione_non_ufficiale": "Attempt at a perfect pyramid",
   "popolazione_ufficiale_associata": "Ancient Egypt, 4th Dynasty",
+  "civilta": "egyptian",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -775,6 +787,7 @@
   "funzione_ufficiale": "Probably a cult center for an unidentified deity; evidence is limited",
   "funzione_non_ufficiale": "Energy center, astronomical alignment, node of the global pyramid network",
   "popolazione_ufficiale_associata": "Teotihuacan civilization",
+  "civilta": "teotihuacan",
   "popolazione_non_ufficiale_associata": "Unknown earlier civilization",
   "leggende_locali": [
    "Built by the gods in the 'Fifth Sun'",
@@ -849,6 +862,7 @@
   "funzione_ufficiale": "Ceremonial temple",
   "funzione_non_ufficiale": "Energy counterpart to the Pyramid of the Sun",
   "popolazione_ufficiale_associata": "Teotihuacan civilization",
+  "civilta": "teotihuacan",
   "popolazione_non_ufficiale_associata": "Earlier civilization",
   "leggende_locali": [],
   "riferimenti_ufficiali": [
@@ -910,6 +924,7 @@
   "funzione_ufficiale": "Temple dedicated to Quetzalcoatl",
   "funzione_non_ufficiale": "The largest pyramid in the world by volume, part of the global network",
   "popolazione_ufficiale_associata": "Various Mesoamerican civilizations",
+  "civilta": null,
   "popolazione_non_ufficiale_associata": "Earlier civilization with advanced knowledge",
   "leggende_locali": [
    "Built by the giant Xelhua after the great flood"
@@ -974,6 +989,7 @@
   "funzione_ufficiale": "Civic and ceremonial complex and residence of a ruling lineage",
   "funzione_non_ufficiale": "One of the most massive structures ever built, part of the global network",
   "popolazione_ufficiale_associata": "Preclassic Maya civilization",
+  "civilta": "maya",
   "popolazione_non_ufficiale_associata": "Civilization with superior knowledge",
   "leggende_locali": [
    "The Maya's sacred artificial mountain"
@@ -1045,6 +1061,7 @@
   "funzione_ufficiale": "Terraced temple (punden berundak) for ancestor worship",
   "funzione_non_ufficiale": "The oldest pyramid in the world, built by an Ice Age civilization",
   "popolazione_ufficiale_associata": "Prehistoric peoples of the Indonesian archipelago",
+  "civilta": null,
   "popolazione_non_ufficiale_associata": "Advanced Ice Age civilization",
   "leggende_locali": [
    "Built in a single night by King Siliwangi"
@@ -1115,6 +1132,7 @@
   "funzione_ufficiale": "Tomb of the first emperor of China",
   "funzione_non_ufficiale": "Part of the network of Chinese pyramids, possible energy function",
   "popolazione_ufficiale_associata": "Qin dynasty",
+  "civilta": "qin",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [
    "Rivers of mercury inside",
@@ -1188,6 +1206,7 @@
   "funzione_ufficiale": "Tomb of Emperor Wu of the Han dynasty",
   "funzione_non_ufficiale": "Pyramid network with possible energy functions",
   "popolazione_ufficiale_associata": "Han dynasty",
+  "civilta": "han",
   "popolazione_non_ufficiale_associata": "Earlier civilization with advanced knowledge",
   "leggende_locali": [
    "The account of pilot James Gaussman (U.S. Army Air Corps), who during World War II described a white pyramid topped by a gem"
@@ -1261,6 +1280,7 @@
   "funzione_ufficiale": "Joint mausoleum of Emperor Jing and Empress Wang Zhi (Western Han dynasty)",
   "funzione_non_ufficiale": "Part of the network of Chinese pyramids",
   "popolazione_ufficiale_associata": "Western Han dynasty",
+  "civilta": "han",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [
@@ -1326,6 +1346,7 @@
   "funzione_ufficiale": "Platform mound that supported a wooden building on its summit, at the heart of Cahokia",
   "funzione_non_ufficiale": "North American pyramid, part of the global network",
   "popolazione_ufficiale_associata": "Mississippian culture",
+  "civilta": "mississippian",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [
    "Center of the world for the Native Americans of the area"
@@ -1395,6 +1416,7 @@
   "funzione_ufficiale": "Ceremonial temple of the Tiwanaku civilization",
   "funzione_non_ufficiale": "Andean energy center, connected to the global network",
   "popolazione_ufficiale_associata": "Tiwanaku civilization",
+  "civilta": "tiwanaku",
   "popolazione_non_ufficiale_associata": "Advanced antediluvian civilization",
   "leggende_locali": [
    "Built by the gods before the flood",
@@ -1467,6 +1489,7 @@
   "funzione_ufficiale": "Ritual and ceremonial activity, royal residence and burial chambers (Moche)",
   "funzione_non_ufficiale": "South American pyramid of the global network",
   "popolazione_ufficiale_associata": "Moche civilization",
+  "civilta": "moche",
   "popolazione_non_ufficiale_associata": "Moche with possible inherited knowledge",
   "leggende_locali": [
    "Built in three days by 250,000 men (legend)"
@@ -1520,6 +1543,7 @@
   "funzione_ufficiale": "Royal tombs of the Kingdom of Kush",
   "funzione_non_ufficiale": "Part of the African pyramid tradition",
   "popolazione_ufficiale_associata": "Kingdom of Kush / Meroites",
+  "civilta": "kush",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [
    "Legacy of the Black Pharaohs"
@@ -1583,6 +1607,7 @@
   "funzione_ufficiale": "Temple dedicated to Kukulcán (the Feathered Serpent)",
   "funzione_non_ufficiale": "Three-dimensional astronomical calendar, energy node",
   "popolazione_ufficiale_associata": "Maya civilization",
+  "civilta": "maya",
   "popolazione_non_ufficiale_associata": "Maya with knowledge inherited from an earlier civilization",
   "leggende_locali": [],
   "riferimenti_ufficiali": [
@@ -1630,6 +1655,7 @@
   "funzione_ufficiale": "Funerary temple of Jasaw Chan K'awiil I",
   "funzione_non_ufficiale": "Astronomical/energy temple",
   "popolazione_ufficiale_associata": "Classic Maya civilization",
+  "civilta": "maya",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [
@@ -1686,6 +1712,7 @@
   "funzione_ufficiale": "Temple linked to the worship of ancestors, nature spirits and fertility",
   "funzione_non_ufficiale": "Mesoamerican pyramid out of place in Asia",
   "popolazione_ufficiale_associata": "Majapahit Kingdom",
+  "civilta": "majapahit",
   "popolazione_non_ufficiale_associata": "Pre-Columbian trans-oceanic connection",
   "leggende_locali": [
    "Temple of fertility and purification"
@@ -1740,6 +1767,7 @@
   "funzione_ufficiale": "Ceremonial center of the Caral civilization",
   "funzione_non_ufficiale": "The oldest civilization in the Americas, with advanced knowledge",
   "popolazione_ufficiale_associata": "Caral-Supe civilization",
+  "civilta": "caral_supe",
   "popolazione_non_ufficiale_associata": "Civilization very advanced for its time",
   "leggende_locali": [
    "Sacred city of fire"
@@ -1793,6 +1821,7 @@
   "funzione_ufficiale": "Piles of stones cleared from farmland",
   "funzione_non_ufficiale": "Astronomically aligned ceremonial structures",
   "popolazione_ufficiale_associata": "19th-century farmers",
+  "civilta": null,
   "popolazione_non_ufficiale_associata": "Guanches or an older civilization",
   "leggende_locali": [
    "Mysterious constructions of the Guanches"
@@ -1867,6 +1896,7 @@
   "funzione_ufficiale": "Natural rock formation",
   "funzione_non_ufficiale": "Pyramid or temple of an Ice Age civilization, submerged by rising seas",
   "popolazione_ufficiale_associata": "None (natural formation)",
+  "civilta": null,
   "popolazione_non_ufficiale_associata": "Prehistoric Japanese or proto-Jomon civilization",
   "leggende_locali": [
    "Mu, the lost continent of the Pacific"
@@ -1925,6 +1955,7 @@
   "funzione_ufficiale": "Purpose unknown",
   "funzione_non_ufficiale": "European pyramid, possible energy node",
   "popolazione_ufficiale_associata": "Neolithic peoples of Britain",
+  "civilta": "neolithic_britain",
   "popolazione_non_ufficiale_associata": "Advanced megalithic civilization",
   "leggende_locali": [
    "King Sil buried on a golden horse, along with a life-size golden statue of himself",
@@ -1981,6 +2012,7 @@
   "funzione_ufficiale": "Shrine to the Buddha and Buddhist pilgrimage site",
   "funzione_non_ufficiale": "Three-dimensional cosmic mandala",
   "popolazione_ufficiale_associata": "Sailendra dynasty",
+  "civilta": "sailendra",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [
    "The cosmic mountain of Buddhism"
@@ -2036,6 +2068,7 @@
   "funzione_ufficiale": "Temple dedicated to the moon god Nanna",
   "funzione_non_ufficiale": "Link between heaven and earth in the Sumerian tradition",
   "popolazione_ufficiale_associata": "Sumerian civilization, Third Dynasty of Ur",
+  "civilta": "sumerian",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [
@@ -2089,6 +2122,7 @@
   "funzione_ufficiale": "Ceremonial center with temples and elite residences; an astronomical function is a hypothesis",
   "funzione_non_ufficiale": "Energy center on the equator line",
   "popolazione_ufficiale_associata": "Caranqui culture (also called Quitu-Cara)",
+  "civilta": "caranqui",
   "popolazione_non_ufficiale_associata": "Civilization with advanced astronomical knowledge",
   "leggende_locali": [
    "Sacred place of the ancient peoples of the equator"
@@ -2152,6 +2186,7 @@
   "funzione_ufficiale": "Lambayeque ceremonial and administrative center, later Chimú and Inca",
   "funzione_non_ufficiale": "Pyramid complex with a possible astronomical function",
   "popolazione_ufficiale_associata": "Lambayeque (Sicán) culture, Chimú and Inca",
+  "civilta": null,
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [
    "Sacred valley of purgatory"
@@ -2219,6 +2254,7 @@
   "funzione_ufficiale": "Temple dedicated to Marduk",
   "funzione_non_ufficiale": "The biblical Tower of Babel, link between heaven and earth",
   "popolazione_ufficiale_associata": "Neo-Babylonian Empire (Nebuchadnezzar II)",
+  "civilta": "babylonian",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [
    "The Tower of Babel of the Bible"
@@ -2270,6 +2306,7 @@
   "funzione_ufficiale": "Tomb of K'inich Janaab Pakal (Pakal the Great)",
   "funzione_non_ufficiale": "Tomb with the controversial 'astronaut slab'",
   "popolazione_ufficiale_associata": "Classic Maya civilization",
+  "civilta": "maya",
   "popolazione_non_ufficiale_associata": "Maya with possible extraterrestrial contact (Erich von Däniken)",
   "leggende_locali": [],
   "riferimenti_ufficiali": [
@@ -2334,6 +2371,7 @@
   "funzione_ufficiale": "Watchtower or funerary monument",
   "funzione_non_ufficiale": "One of the oldest pyramids in Europe",
   "popolazione_ufficiale_associata": "Ancient Greeks",
+  "civilta": "greek",
   "popolazione_non_ufficiale_associata": "Pre-Greek civilization",
   "leggende_locali": [
    "A pyramid built before the Egyptian pyramids"
@@ -2397,6 +2435,7 @@
   "funzione_ufficiale": "Pre-Nuragic ceremonial altar",
   "funzione_non_ufficiale": "European pyramid/ziggurat, link to Mesopotamia",
   "popolazione_ufficiale_associata": "Pre-Nuragic Sardinian cultures (Ozieri, Abealzu-Filigosa)",
+  "civilta": "pre_nuragic",
   "popolazione_non_ufficiale_associata": "Advanced Mediterranean civilization with ties to the East",
   "leggende_locali": [
    "Sacred altar of the ancient Sardinians"
@@ -2468,6 +2507,7 @@
   "funzione_ufficiale": "Archaeological site with tombs and settlements",
   "funzione_non_ufficiale": "Site with anomalous megalithic structures",
   "popolazione_ufficiale_associata": "Kingdom of Oman (pre-Islamic southeastern Arabia)",
+  "civilta": "pre_islamic_arabia",
   "popolazione_non_ufficiale_associata": "Unknown civilization with advanced knowledge",
   "leggende_locali": [],
   "riferimenti_ufficiali": [
@@ -2535,6 +2575,7 @@
   "funzione_ufficiale": "None: no structure has been identified and university archaeology has not carried out any research",
   "funzione_non_ufficiale": "Ice Age buried pyramid",
   "popolazione_ufficiale_associata": "None",
+  "civilta": null,
   "popolazione_non_ufficiale_associata": "Prehistoric Indonesian civilization",
   "leggende_locali": [
    "Local sacred mountain"
@@ -2605,6 +2646,7 @@
   "funzione_ufficiale": "Ceremonial center of the Nazca civilization",
   "funzione_non_ufficiale": "Ritual center connected to the Nazca lines",
   "popolazione_ufficiale_associata": "Nazca civilization",
+  "civilta": "nazca",
   "popolazione_non_ufficiale_associata": "Nazca with inherited knowledge",
   "leggende_locali": [
    "Sacred center of the Nazca lines"
@@ -2663,6 +2705,7 @@
   "funzione_ufficiale": "Hindu temple dedicated to Shiva",
   "funzione_non_ufficiale": "Pyramidal structure with acoustic and energy properties",
   "popolazione_ufficiale_associata": "Chola dynasty (Raja Raja Chola I)",
+  "civilta": "chola",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [
    "The granite block of about 80 tons beneath the dome is said to have been hauled to the top along a long earthen ramp"
@@ -2723,6 +2766,7 @@
   "funzione_ufficiale": "State temple of the Khmer Empire",
   "funzione_non_ufficiale": "Southeast Asian pyramid with Mesoamerican similarities",
   "popolazione_ufficiale_associata": "Khmer Empire (Jayavarman IV)",
+  "civilta": "khmer",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [
    "Temple of the king's divine power"
@@ -2781,6 +2825,7 @@
   "funzione_ufficiale": "Royal tombs of the Tu'i Tonga Empire",
   "funzione_non_ufficiale": "Oceanic pyramidal structures, link to the global network",
   "popolazione_ufficiale_associata": "Tu'i Tonga Empire",
+  "civilta": "tui_tonga",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [
    "Sacred tombs of the divine kings of Tonga"
@@ -2844,6 +2889,7 @@
   "funzione_ufficiale": "Terraces for viticulture",
   "funzione_non_ufficiale": "Pyramid built by ancient seafarers (Egyptians, Phoenicians or Polynesians)",
   "popolazione_ufficiale_associata": "19th-century European settlers",
+  "civilta": null,
   "popolazione_non_ufficiale_associata": "Pre-colonial seafarers",
   "leggende_locali": [
    "The 'Gympie Ape' statue found nearby",
@@ -2898,6 +2944,7 @@
   "funzione_ufficiale": "Not established: agricultural structures or Guanche ceremonial ones",
   "funzione_non_ufficiale": "Astronomically aligned Guanche ceremonial structure",
   "popolazione_ufficiale_associata": "Unknown",
+  "civilta": null,
   "popolazione_non_ufficiale_associata": "Guanches",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -2960,6 +3007,7 @@
   "funzione_ufficiale": "Puuc Maya ceremonial temple",
   "funzione_non_ufficiale": "Pyramid with a geometry unique in the Maya world",
   "popolazione_ufficiale_associata": "Puuc Maya civilization",
+  "civilta": "maya",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [
    "Built in a single night by a magical dwarf"
@@ -3011,6 +3059,7 @@
   "funzione_ufficiale": "Royal tombs of the Kingdom of Kush",
   "funzione_non_ufficiale": "Continuation of the African pyramid tradition",
   "popolazione_ufficiale_associata": "Kingdom of Kush (Meroitic period)",
+  "civilta": "kush",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [
    "The sacred mountain of Amun"
@@ -3079,6 +3128,7 @@
   "funzione_ufficiale": "No recognized function; archaeological significance not established",
   "funzione_non_ufficiale": "Arctic pyramids of the Hyperborean civilization",
   "popolazione_ufficiale_associata": "None",
+  "civilta": null,
   "popolazione_non_ufficiale_associata": "Prehistoric Hyperborean civilization",
   "leggende_locali": [
    "Remains of ancient Hyperborea"
@@ -3140,6 +3190,7 @@
   "funzione_ufficiale": "Not officially recognized",
   "funzione_non_ufficiale": "Submerged pyramid of an antediluvian civilization",
   "popolazione_ufficiale_associata": "None",
+  "civilta": null,
   "popolazione_non_ufficiale_associata": "Prehistoric Black Sea civilization",
   "leggende_locali": [
    "Submerged structures in the Black Sea"
@@ -3194,6 +3245,7 @@
   "funzione_ufficiale": "None; the Portuguese Navy considers it most likely not artificial",
   "funzione_non_ufficiale": "Remains of the Atlantean civilization",
   "popolazione_ufficiale_associata": "None",
+  "civilta": null,
   "popolazione_non_ufficiale_associata": "Atlanteans",
   "leggende_locali": [
    "The Azores as remnants of Atlantis"
@@ -3263,6 +3315,7 @@
   "funzione_ufficiale": "Tomb of the pharaoh Djedefre",
   "funzione_non_ufficiale": "The highest pyramid in Egypt by site elevation",
   "popolazione_ufficiale_associata": "Ancient Egypt, 4th Dynasty",
+  "civilta": "egyptian",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -3316,6 +3369,7 @@
   "funzione_ufficiale": "Royal tomb of Sneferu (formerly attributed to Huni)",
   "funzione_non_ufficiale": "Failed architectural experiment",
   "popolazione_ufficiale_associata": "Ancient Egypt, 3rd/4th Dynasty",
+  "civilta": "egyptian",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [
    "Known locally as el-heram el-kaddaab, the \"false pyramid\""
@@ -3367,6 +3421,7 @@
   "funzione_ufficiale": "Royal tomb",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Ancient Egyptians, 5th Dynasty",
+  "civilta": "egyptian",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -3412,6 +3467,7 @@
   "funzione_ufficiale": "Royal tomb",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Ancient Egyptians, 5th Dynasty",
+  "civilta": "egyptian",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -3458,6 +3514,7 @@
   "funzione_ufficiale": "Royal tomb",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Ancient Egyptians, 5th Dynasty",
+  "civilta": "egyptian",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -3509,6 +3566,7 @@
   "funzione_ufficiale": "Royal tomb",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Ancient Egyptians, 5th Dynasty",
+  "civilta": "egyptian",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -3555,6 +3613,7 @@
   "funzione_ufficiale": "Royal tomb",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Ancient Egyptians, 5th Dynasty",
+  "civilta": "egyptian",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -3600,6 +3659,7 @@
   "funzione_ufficiale": "Royal tomb",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Ancient Egyptians, 6th Dynasty",
+  "civilta": "egyptian",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -3645,6 +3705,7 @@
   "funzione_ufficiale": "Royal tomb",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Ancient Egyptians, 6th Dynasty",
+  "civilta": "egyptian",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -3695,6 +3756,7 @@
   "funzione_ufficiale": "Royal tomb",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Ancient Egyptians, 12th Dynasty",
+  "civilta": "egyptian",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -3756,6 +3818,7 @@
   "funzione_ufficiale": "Royal tomb",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Ancient Egyptians, 12th Dynasty",
+  "civilta": "egyptian",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -3806,6 +3869,7 @@
   "funzione_ufficiale": "Royal tomb",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Ancient Egyptians, 12th Dynasty",
+  "civilta": "egyptian",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -3857,6 +3921,7 @@
   "funzione_ufficiale": "Royal necropolis of Napatan kings and queens",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Kingdom of Kush, Napatan period",
+  "civilta": "kush",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -3909,6 +3974,7 @@
   "funzione_ufficiale": "Kushite royal necropolis",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Kingdom of Kush, 25th Dynasty",
+  "civilta": "kush",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -3962,6 +4028,7 @@
   "funzione_ufficiale": "Tomb of Gaius Cestius",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Romans",
+  "civilta": "roman",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -4014,6 +4081,7 @@
   "funzione_ufficiale": "Religious center of Elam, dedicated to Inshushinak and Napirisha",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Elamites",
+  "civilta": "elamite",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -4066,6 +4134,7 @@
   "funzione_ufficiale": "Ziggurat dedicated to Enlil",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Kassites",
+  "civilta": "kassite",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -4112,6 +4181,7 @@
   "funzione_ufficiale": "Ziggurat dedicated to Nabu",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Babylonians",
+  "civilta": "babylonian",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -4158,6 +4228,7 @@
   "funzione_ufficiale": "Royal tomb",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Goguryeo",
+  "civilta": "goguryeo",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -4216,6 +4287,7 @@
   "funzione_ufficiale": "Temple dedicated to Shiva",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Khmer",
+  "civilta": "khmer",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -4271,6 +4343,7 @@
   "funzione_ufficiale": "Temple dedicated to Shiva",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Khmer",
+  "civilta": "khmer",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -4327,6 +4400,7 @@
   "funzione_ufficiale": "State temple dedicated to Shiva",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Khmer",
+  "civilta": "khmer",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -4383,6 +4457,7 @@
   "funzione_ufficiale": "Temple dedicated to Shiva",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Khmer",
+  "civilta": "khmer",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -4439,6 +4514,7 @@
   "funzione_ufficiale": "Pile of stones removed from sugar cane fields",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Plantation workers",
+  "civilta": null,
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -4494,6 +4570,7 @@
   "funzione_ufficiale": "Unknown",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Unknown",
+  "civilta": null,
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -4556,6 +4633,7 @@
   "funzione_ufficiale": "Probable funerary monument, tomb or cenotaph",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Inhabitants of ancient Autun",
+  "civilta": null,
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -4618,6 +4696,7 @@
   "funzione_ufficiale": "Ritual building: the deep niches evoke caves, regarded as passages to the underworld",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Classic Veracruz culture",
+  "civilta": "classic_veracruz",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [
    "For the Totonacs, twelve ancient storm gods called Tajín still inhabit the ruins."
@@ -4671,6 +4750,7 @@
   "funzione_ufficiale": "Main temple, dedicated to Huitzilopochtli and Tlaloc",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Mexica (Aztecs)",
+  "civilta": "mexica",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -4722,6 +4802,7 @@
   "funzione_ufficiale": "Pyramid temple with a palace on top in the Late Classic and Tomb 4 in Structure 2B",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Maya",
+  "civilta": "maya",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -4769,6 +4850,7 @@
   "funzione_ufficiale": "Main structure of Cobá, with a temple on top reached by a staircase of 120 steps",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Maya",
+  "civilta": "maya",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -4821,6 +4903,7 @@
   "funzione_ufficiale": "Closes off the Great Plaza; two small ceremonial mounds on top",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Zapotecs",
+  "civilta": "zapotec",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -4873,6 +4956,7 @@
   "funzione_ufficiale": "Temple dedicated to Quetzalcoatl as Lord of the Dawn (Tlahuizcalpantecuhtli)",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Toltecs",
+  "civilta": "toltec",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -4935,6 +5019,7 @@
   "funzione_ufficiale": "Platform temple with reliefs of the feathered serpent and of tributary cities",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Xochicalco, with influences from Teotihuacan and the Maya",
+  "civilta": "xochicalco",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -4987,6 +5072,7 @@
   "funzione_ufficiale": "Religious and political center",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Teotihuacan",
+  "civilta": "teotihuacan",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -5034,6 +5120,7 @@
   "funzione_ufficiale": "Double temple dedicated to Tlaloc and Huitzilopochtli",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Chichimecs, later Aztecs",
+  "civilta": null,
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -5089,6 +5176,7 @@
   "funzione_ufficiale": "Marks the reign of Yik'in Chan K'awiil and may be his funerary temple",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Maya",
+  "civilta": "maya",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -5141,6 +5229,7 @@
   "funzione_ufficiale": "Royal residence and complex with four palaces and three temples",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Maya",
+  "civilta": "maya",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -5198,6 +5287,7 @@
   "funzione_ufficiale": "Focal point of the site's first major plaza group",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Maya",
+  "civilta": "maya",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -5255,6 +5345,7 @@
   "funzione_ufficiale": "Shrine, administrative center and elite residence",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Maya",
+  "civilta": "maya",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -5311,6 +5402,7 @@
   "funzione_ufficiale": "Funerary and cult monument dedicated to the founder Yax K'uk' Mo'",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Maya",
+  "civilta": "maya",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -5372,6 +5464,7 @@
   "funzione_ufficiale": "Ceremonial and administrative center",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Lima culture, later reused for Wari burials",
+  "civilta": "lima",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -5429,6 +5522,7 @@
   "funzione_ufficiale": "Ceremonial and religious temple",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Moche",
+  "civilta": "moche",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -5485,6 +5579,7 @@
   "funzione_ufficiale": "Sacred and political center, with royal tombs",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Moche",
+  "civilta": "moche",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -5541,6 +5636,7 @@
   "funzione_ufficiale": "Building that housed the deity and idol of Pachacamac",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Ychma",
+  "civilta": "ychma",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [
    "According to a coastal myth, Pachacamac defeated the rival creator god Con, who had stopped the rains to punish humanity."
@@ -5607,6 +5703,7 @@
   "funzione_ufficiale": "Ceremonial, ritual and funerary temple",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Moche",
+  "civilta": "moche",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -5667,6 +5764,7 @@
   "funzione_ufficiale": "Burials, temples and ceremonies",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Mississippians (Plaquemine culture), later the Natchez",
+  "civilta": "mississippian",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -5717,6 +5815,7 @@
   "funzione_ufficiale": "Interpreted as a bird effigy or as the cosmological center of the site",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Poverty Point culture",
+  "civilta": "poverty_point",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -5763,6 +5862,7 @@
   "funzione_ufficiale": "Seat of the village chief",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Mississippians (Macon Plateau)",
+  "civilta": "mississippian",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -5815,6 +5915,7 @@
   "funzione_ufficiale": "Residence of the rulers and shrine",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Maya",
+  "civilta": "maya",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -5869,6 +5970,7 @@
   "funzione_ufficiale": "Polynesian temple, topped with a stone fish and a wooden bird",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Tahitians, commissioned by Purea and Amo",
+  "civilta": "tahitian",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [],
   "riferimenti_ufficiali": [],
@@ -5929,6 +6031,7 @@
   "funzione_ufficiale": "Central ceremonial site; exact function uncertain",
   "funzione_non_ufficiale": "",
   "popolazione_ufficiale_associata": "Samoans",
+  "civilta": "samoan",
   "popolazione_non_ufficiale_associata": "",
   "leggende_locali": [
    "Palauli's oral traditions link the mound to Lilomaiava, one of the supreme titles of Savai'i, as the foundation of his residence, a gathering place for chiefs, or an ancient burial site."

@@ -27,6 +27,8 @@ export interface Pyramid {
   funzione_non_ufficiale: string;
   popolazione_ufficiale_associata: string;
   popolazione_non_ufficiale_associata: string;
+  /** Key from src/i18n/civilizations.ts, taken from popolazione_ufficiale_associata. Null when unclear. */
+  civilta?: string | null;
   leggende_locali: string[];
   riferimenti_ufficiali: string[];
   riferimenti_non_ufficiali: string[];
@@ -54,6 +56,7 @@ export interface Filters {
   areaMin: number;
   areaMax: number;
   continente: string;
+  civilization: string;
   searchText: string;
   soloControverse: boolean;
   soloOsmanagich: boolean;
@@ -71,6 +74,7 @@ export const defaultFilters: Filters = {
   areaMin: 0,
   areaMax: AREA_LIMIT,
   continente: '',
+  civilization: '',
   searchText: '',
   soloControverse: false,
   soloOsmanagich: false,
