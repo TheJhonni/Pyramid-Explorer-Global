@@ -105,12 +105,13 @@ Areas and altitudes with no source were reset to 0, which means unknown and hide
 - Claim without source: Osmanagich cita Teotihuacan come parte della rete globale
 - Note: Altezza incoerente su Wikipedia: 65,5, 71,17 e 75 m; 65 m è confermato da TravelDojo, fonte debole anche per le coordinate. Base: 220 × 230 m nell'infobox, 225 m nel testo. Il sacrificio degli dei a Teotihuacan è documentato nel mito azteco; non risulta che gli dei abbiano costruito la piramide.
 
-### `teotihuacan_moon`: partial (2 corrections)
-- No source for: coordinate, altitudine_sul_livello_del_mare_m, area_mq, riferimenti_ufficiali
+### `teotihuacan_moon`: partial (3 corrections)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq, riferimenti_ufficiali
 - Claim without source: Possibilmente più antica
 - Claim without source: Complemento energetico alla Piramide del Sole
 - Claim without source: Civiltà precedente
-- Note: Base 147 × 130 m, non quadrata: l'area 22.500 è sbagliata. Nessuna fonte aperta dà le coordinate.
+- Note: Base 147 × 130 m, non quadrata: l'area 22.500 è sbagliata.
+- Coordinates (November 2026 check): 19.6953, −98.8447 was about 480 m south of the pyramid, towards the Pyramid of the Sun. Now 19.6996, −98.8440, the value given by Wikipedia and Wikidata (Q29240) and matching the OpenStreetMap outline (way 148480246, centre 19.69965, −98.84398).
 
 ### `cholula`: partial (sources conflict: 25 m and 300 × 315 m against 66 m and 450 m; needs an archaeological source) (2 corrections)
 - No source for: altitudine_sul_livello_del_mare_m, area_mq, riferimenti_ufficiali

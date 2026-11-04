@@ -838,8 +838,8 @@
   "nome": "Pyramid of the Moon (Teotihuacan)",
   "nome_locale": "Pirámide de la Luna",
   "coordinate": {
-   "lat": 19.6953,
-   "lon": -98.8447
+   "lat": 19.6996,
+   "lon": -98.844
   },
   "paese": "Mexico",
   "regione": "Teotihuacan, State of Mexico",
@@ -878,10 +878,17 @@
    {
     "title": "Pyramid of the Moon (Ancient History Sites)",
     "url": "https://www.ancient-history-sites.com/?p=132882"
+   },
+   {
+    "title": "Pirámide de la Luna (OpenStreetMap)",
+    "url": "https://www.openstreetmap.org/way/148480246"
+   },
+   {
+    "title": "Pyramid of the Moon (Wikidata)",
+    "url": "https://www.wikidata.org/wiki/Q29240"
    }
   ],
   "campi_senza_fonte": [
-   "coordinate",
    "altitudine_sul_livello_del_mare_m",
    "area_mq",
    "riferimenti_ufficiali"

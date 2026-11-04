@@ -42,6 +42,8 @@ Visore: sfera o cilindro in three.js, caricato solo all'apertura, invece di Pann
 | Giza pyramid complex - 360.jpg | Fascia a 360° | CC BY-SA 3.0 | Khufu, Khafre |
 | 360° Panorama Tula seen from Pyramid B.jpg | Fascia a 360° | CC BY-SA 3.0 | Pyramid B |
 
+Identificazione a Giza: sulla pagina del file l'autore (Kallerna, 28/11/2010) ha annotato «Pyramid of Khufu» tra x 12108 e 14446 e «Pyramid of Khafre» tra x 5003 e 8972, su 14500 px. Le partenze 0.928 e 0.474 cadono dentro queste due note.
+
 Copertura misurata su Commons: ricerca per template Pano360, per testo e per coordinate entro 1,5 km su circa 40 siti principali. Per Chichén Itzá, Borobudur e Meroe non ho trovato panorami. Scartati: Teotihuacan-360degree-Panorama.jpg (solo 1920×249) e le immagini Mapillary caricate su Commons, non controllate. La ricerca non è esaustiva: un file senza template, parole chiave o coordinate può sfuggire.
 
 ## Decisioni da prendere
