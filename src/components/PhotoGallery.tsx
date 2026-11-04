@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ChevronLeft, ChevronRight, ExternalLink, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ExternalLink, X, ZoomIn, ZoomOut } from 'lucide-react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { useI18n } from '@/i18n/I18nContext';
 import { CommonsPhoto } from '@/utils/commonsPhotos';
@@ -53,17 +53,17 @@ const PhotoGallery = ({ open, onOpenChange, title, subtitle, photos }: PhotoGall
       m.vel *= DAMP;
       if (Math.abs(m.vel) < 0.05) {
         if (!m.settled) {
-          m.target = clampIndex(Math.round(-m.rot / STEP));
+          m.target = clampIndex(Math.round(m.rot / STEP));
           m.settled = true;
         }
-        const diff = -m.target * STEP - m.rot;
-        m.rot = Math.abs(diff) < 0.01 ? -m.target * STEP : m.rot + diff * (reduce ? 1 : 0.14);
+        const diff = m.target * STEP - m.rot;
+        m.rot = Math.abs(diff) < 0.01 ? m.target * STEP : m.rot + diff * (reduce ? 1 : 0.14);
       } else {
         m.settled = false;
       }
     }
     ringRef.current?.style.setProperty('--rot', `${m.rot}deg`);
-    setFront(clampIndex(Math.round(-m.rot / STEP)));
+    setFront(clampIndex(Math.round(m.rot / STEP)));
     frame.current = requestAnimationFrame(tick);
   }, [clampIndex]);
 
@@ -117,7 +117,7 @@ const PhotoGallery = ({ open, onOpenChange, title, subtitle, photos }: PhotoGall
         >
           <div
             ref={stageRef}
-            className="gallery-stage absolute inset-0 grid cursor-grab touch-none select-none place-items-center"
+            className="gallery-stage absolute inset-0 grid cursor-grab touch-none select-none place-items-center active:cursor-grabbing"
             onPointerDown={(e) => {
               const m = motion.current;
               m.dragging = true;
@@ -133,10 +133,10 @@ const PhotoGallery = ({ open, onOpenChange, title, subtitle, photos }: PhotoGall
               const dx = e.clientX - m.lastX;
               m.lastX = e.clientX;
               if (Math.abs(e.clientX - m.downX) > 6) m.moved = true;
-              const d = dx * DRAG;
+              // The photos follow the hand: dragging left brings in the next one, on the right.
+              const d = -dx * DRAG;
               // Resist at both ends instead of spinning past the photos.
-              const min = -(count - 1) * STEP - 8;
-              m.rot = Math.max(min, Math.min(8, m.rot + d));
+              m.rot = Math.max(-8, Math.min((count - 1) * STEP + 8, m.rot + d));
               m.vel = d;
             }}
             onPointerUp={(e) => {
@@ -144,11 +144,15 @@ const PhotoGallery = ({ open, onOpenChange, title, subtitle, photos }: PhotoGall
               m.dragging = false;
               m.settled = false;
               if (m.moved) return;
-              const card = document.elementFromPoint(e.clientX, e.clientY)?.closest<HTMLElement>('[data-slot]');
-              if (!card) return;
-              const slot = Number(card.dataset.slot);
-              if (slot === clampIndex(Math.round(-m.rot / STEP))) setFull(photos[slot]);
-              else go(slot);
+              const target = document.elementFromPoint(e.clientX, e.clientY);
+              const zoom = target?.closest<HTMLElement>('[data-zoom]');
+              if (zoom) {
+                const photo = photos[Number(zoom.dataset.zoom)];
+                if (photo) setFull(photo);
+                return;
+              }
+              const card = target?.closest<HTMLElement>('[data-slot]');
+              if (card) go(Number(card.dataset.slot));
             }}
             onPointerCancel={() => {
               motion.current.dragging = false;
@@ -157,10 +161,13 @@ const PhotoGallery = ({ open, onOpenChange, title, subtitle, photos }: PhotoGall
             <div className="gallery-ghost" aria-hidden>{pad2(front + 1)}</div>
             <div ref={ringRef} className="gallery-ring">
               {photos.map((photo, i) => (
-                <article key={photo.title} data-slot={i} className={`gallery-card ${i === front ? 'is-front' : ''}`} style={{ '--a': `${i * STEP}deg` } as React.CSSProperties}>
+                <article key={photo.title} data-slot={i} className={`gallery-card ${i === front ? 'is-front' : ''}`} style={{ '--a': `${-i * STEP}deg` } as React.CSSProperties}>
                   <div className="gallery-card-inner">
                     <img src={photo.url} alt={`${title}, ${i + 1}`} draggable={false} loading={Math.abs(i - front) < 3 ? 'eager' : 'lazy'} referrerPolicy="no-referrer" />
                     <span className="gallery-card-no">{pad2(i + 1)}</span>
+                    <button type="button" data-zoom={i} aria-label={t.viewFullPhoto} onClick={() => setFull(photo)} className="gallery-zoom">
+                      <ZoomIn size={20} aria-hidden />
+                    </button>
                   </div>
                 </article>
               ))}
@@ -199,10 +206,15 @@ const PhotoGallery = ({ open, onOpenChange, title, subtitle, photos }: PhotoGall
           </footer>
 
           {full && (
-            <button type="button" onClick={() => setFull(null)} aria-label={t.close} className="absolute inset-0 z-30 flex cursor-zoom-out flex-col items-center justify-center gap-2 bg-black/95 p-3">
-              <img src={full.url} alt={title} referrerPolicy="no-referrer" className="max-h-[88svh] max-w-full object-contain" />
+            <div className="absolute inset-0 z-30 flex flex-col items-center justify-center gap-2 bg-black/95 p-3">
+              <div className="relative max-h-[88svh] max-w-full">
+                <img src={full.url} alt={title} referrerPolicy="no-referrer" className="max-h-[88svh] max-w-full object-contain" />
+                <button type="button" autoFocus aria-label={t.closeFullPhoto} onClick={() => setFull(null)} className="gallery-zoom">
+                  <ZoomOut size={20} aria-hidden />
+                </button>
+              </div>
               <span className="max-w-full truncate text-xs text-foreground/80">{full.author} · {full.license}</span>
-            </button>
+            </div>
           )}
         </DialogPrimitive.Content>
       </DialogPrimitive.Portal>
