@@ -4140,52 +4140,6 @@
   ]
  },
  {
-  "id": "china_maoling",
-  "nome": "Maoling Mausoleum",
-  "nome_locale": "茂陵",
-  "coordinate": {
-   "lat": 34.33585,
-   "lon": 108.57033
-  },
-  "paese": "China",
-  "regione": "Xingping, Shaanxi",
-  "continente": "Asia",
-  "altitudine_sul_livello_del_mare_m": 0,
-  "altezza_struttura_m": 47,
-  "base_m": 222,
-  "area_mq": 0,
-  "tipo": "Truncated pyramidal mound of rammed earth",
-  "datazione_ufficiale": "139–86 BCE",
-  "datazione_non_ufficiale": "",
-  "funzione_ufficiale": "Tomb of Emperor Wu",
-  "funzione_non_ufficiale": "",
-  "popolazione_ufficiale_associata": "Han dynasty",
-  "popolazione_non_ufficiale_associata": "",
-  "leggende_locali": [],
-  "riferimenti_ufficiali": [],
-  "riferimenti_non_ufficiali": [],
-  "link_approfondimento_ufficiale": [
-   "https://en.wikipedia.org/wiki/Maoling"
-  ],
-  "link_approfondimento_non_ufficiale": [],
-  "note": "The trapezoidal rammed-earth mound is 47 m tall, has a base of 222 x 217 m and took 53 years to build.",
-  "osmanagich_focus": false,
-  "controversa": false,
-  "stato_verifica": "verified",
-  "anno_inizio": -139,
-  "anno_fine": -86,
-  "fonti": [
-   {
-    "title": "Maoling (Wikipedia)",
-    "url": "https://en.wikipedia.org/wiki/Maoling"
-   }
-  ],
-  "campi_senza_fonte": [
-   "altitudine_sul_livello_del_mare_m",
-   "area_mq"
-  ]
- },
- {
   "id": "china_general_tomb",
   "nome": "Tomb of the General (Ji'an)",
   "nome_locale": "將軍冢 / 장군총",

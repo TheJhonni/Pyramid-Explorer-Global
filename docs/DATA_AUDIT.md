@@ -2,7 +2,7 @@
 
 Fact check run on 4 November 2026 against sources opened during the check, mostly Wikipedia read through an extraction tool, with UNESCO, museum, university and paper pages where they opened. A human has not reviewed each entry. Treat "verified" as: location, height and date each have a source, not as a guarantee.
 
-Result: 74 verified, 23 partly sourced, 7 with no reliable source, out of 104 sites.
+Result: 73 verified, 23 partly sourced, 7 with no reliable source, out of 103 sites.
 
 Conventions: `base_m` is the longest side or the diameter. `anno_inizio` and `anno_fine` use century or dynasty limits when a source gives only those. `area_mq` was often just the base squared in the original data: when unsourced it is flagged and hidden in the interface. Some sources were read through Wikipedia mirrors and are linked to the matching Wikipedia page.
 
@@ -11,6 +11,8 @@ Conventions: `base_m` is the longest side or the diameter. `anno_inizio` and `an
 - `mauritius_underwater` (Struttura sottomarina di Mauritius): Nessuna fonte aperta documenta una struttura sottomarina a Mauritius: la voce appare inventata. In alternativa, una voce nuova sulle piramidi di Plaine Magnien, sulla terraferma.
 - `tenerife_guanche` (Piramidi di Güímar (Complesso)): Duplicato di tenerife_guimar, in un altro batch: stesso complesso di Güímar.
 - `china_zangkunchong` (Piramide di Zangkunchong): Nessuna fonte per Zangkunchong o 藏军冢 a Xi'an: il nome sembra una storpiatura di Janggun-chong (將軍冢), la Tomba del Generale a Ji'an, nel Jilin, sito reale ma diverso per luogo, epoca e cultura.
+
+- `china_maoling`: duplicate of `xian_white_pyramid`, which is identified as Maoling.
 
 ## Changed attribution
 
@@ -420,9 +422,6 @@ Conventions: `base_m` is the longest side or the diameter. `anno_inizio` and `an
 - No source for: altitudine_sul_livello_del_mare_m, area_mq
 
 ### `iraq_borsippa`: verified (new)
-- No source for: altitudine_sul_livello_del_mare_m, area_mq
-
-### `china_maoling`: verified (new)
 - No source for: altitudine_sul_livello_del_mare_m, area_mq
 
 ### `china_general_tomb`: partial (new)

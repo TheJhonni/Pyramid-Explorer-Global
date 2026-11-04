@@ -1,6 +1,6 @@
 # Pyramid Explorer
 
-An interactive 3D globe of 104 pyramids and pyramid-like structures around the world: Egypt, Mesoamerica, Sudan, China, Europe and more. Pick a marker to see dimensions, dating, function, local legends and sources. Every site shows how well its data is sourced, and alternative claims are kept apart from mainstream archaeology.
+An interactive 3D globe of 103 pyramids and pyramid-like structures around the world: Egypt, Mesoamerica, Sudan, China, Europe and more. Pick a marker to see dimensions, dating, function, local legends and sources. Every site shows how well its data is sourced, and alternative claims are kept apart from mainstream archaeology.
 
 | Desktop | Mobile |
 | --- | --- |
