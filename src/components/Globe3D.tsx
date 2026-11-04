@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { Pyramid } from '@/types/pyramid';
 import { latLonToUnit } from '@/utils/geo';
+import { MOBILE_SHEET_SHARE } from '@/utils/layout';
 import {
   BACKGROUND_FRAGMENT, BACKGROUND_VERTEX, CLOUD_FRAGMENT, HALO_FRAGMENT, HALO_VERTEX, PIN_FRAGMENT, PIN_VERTEX,
   PLANET_FRAGMENT, PLANET_UNIFORMS_GLSL, SNOISE, STAR_FRAGMENT, STAR_VERTEX,
@@ -84,7 +85,7 @@ interface Engine {
   pins: { attr: THREE.BufferAttribute; positions: THREE.Vector3[] } | null;
   flyTo: (lat: number, lon: number, distance: number) => void;
   setPins: (sites: Pyramid[]) => void;
-  setPanelOffset: (px: number) => void;
+  setPanelOffset: (x: number, y: number) => void;
   pick: (clientX: number, clientY: number, radius: number) => number[];
 }
 
@@ -244,16 +245,16 @@ const Globe3D = ({
     const clouds: { mesh: THREE.Mesh; spin: number }[] = [];
     const disposables: { dispose: () => void }[] = [];
 
-    let panelOffset = 0;
+    let panelOffset = { x: 0, y: 0 };
     const projected = new THREE.Vector3();
     const toCamera = new THREE.Vector3();
     const engine: Engine = {
       pins: null,
       flyTo: () => undefined,
-      setPanelOffset: (offset) => {
-        panelOffset = offset;
+      setPanelOffset: (x, y) => {
+        panelOffset = { x, y };
         const { clientWidth: w, clientHeight: h } = container;
-        if (offset) camera.setViewOffset(w, h, offset, 0, w, h);
+        if (x || y) camera.setViewOffset(w, h, x, y, w, h);
         else camera.clearViewOffset();
       },
       setPins: (sites) => {
@@ -315,7 +316,7 @@ const Globe3D = ({
       renderer.domElement.style.width = '100%';
       renderer.domElement.style.height = '100%';
       camera.aspect = w / h;
-      engine.setPanelOffset(panelOffset);
+      engine.setPanelOffset(panelOffset.x, panelOffset.y);
       camera.updateProjectionMatrix();
       px.value = (h * dpr) / 900;
     };
@@ -514,10 +515,17 @@ const Globe3D = ({
     flyKeyRef.current = flyToKey;
   }, [selectedId, flyToKey]);
 
-  // Keep the site visible beside the details panel on wide screens.
+  // Keep the site visible beside the panel on wide screens, and above the sheet on phones.
   useEffect(() => {
-    const wide = window.matchMedia('(min-width: 768px)').matches;
-    engineRef.current?.setPanelOffset(detailsOpen && wide ? 240 : 0);
+    const engine = engineRef.current;
+    if (!engine) return;
+    if (!detailsOpen) {
+      engine.setPanelOffset(0, 0);
+    } else if (window.matchMedia('(min-width: 768px)').matches) {
+      engine.setPanelOffset(240, 0);
+    } else {
+      engine.setPanelOffset(0, (window.innerHeight * MOBILE_SHEET_SHARE) / 2);
+    }
   }, [detailsOpen]);
 
   const down = useRef<{ x: number; y: number; touch: boolean } | null>(null);

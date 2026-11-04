@@ -1,7 +1,8 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Pyramid } from '@/types/pyramid';
 import { X, MapPin, Mountain, Ruler, Star, ExternalLink, BookOpen, Lightbulb, BadgeCheck, CircleAlert, CircleHelp, Share2, Scale, Check, ChevronDown } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { MOBILE_SHEET_SHARE } from '@/utils/layout';
 import { useI18n } from '@/i18n/I18nContext';
 import PyramidPhotoCarousel from './PyramidPhotoCarousel';
 
@@ -29,6 +30,20 @@ const PyramidDetails = ({ pyramid, onClose, inCompare, onToggleCompare }: Pyrami
   const shown = (field: string, value: string) =>
     pyramid?.campi_senza_fonte?.includes(field) ? `${value} · ${t.notVerified}` : value;
   const [copied, setCopied] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => window.matchMedia('(max-width: 767px)').matches);
+  const handleStart = useRef<number | null>(null);
+  const siteId = pyramid?.id;
+
+  useEffect(() => {
+    const query = window.matchMedia('(max-width: 767px)');
+    const onChange = () => setIsMobile(query.matches);
+    query.addEventListener('change', onChange);
+    return () => query.removeEventListener('change', onChange);
+  }, []);
+
+  // Each new site opens at half height, so it stays visible on the globe.
+  useEffect(() => setExpanded(false), [siteId]);
 
   useEffect(() => {
     if (!pyramid) return;
@@ -65,16 +80,44 @@ const PyramidDetails = ({ pyramid, onClose, inCompare, onToggleCompare }: Pyrami
     <AnimatePresence>
       {pyramid && (
         <motion.div
-          initial={{ x: '100%' }}
-          animate={{ x: 0 }}
-          exit={{ x: '100%' }}
+          initial={isMobile ? { y: '100%' } : { x: '100%' }}
+          animate={{ x: 0, y: 0 }}
+          exit={isMobile ? { y: '100%' } : { x: '100%' }}
           transition={{ type: 'spring', damping: 30, stiffness: 300 }}
           role="complementary"
           aria-label={pyramid.nome}
-          className="fixed right-0 top-0 h-full w-[480px] max-w-[92vw] bg-card/95 backdrop-blur-xl border-l border-border shadow-2xl z-30 flex flex-col"
+          style={isMobile ? { height: expanded ? '92svh' : `${MOBILE_SHEET_SHARE * 100}svh` } : undefined}
+          className="fixed inset-x-0 bottom-0 z-30 flex flex-col rounded-t-2xl border-t border-border bg-card/95 shadow-2xl backdrop-blur-xl transition-[height] duration-200 md:inset-x-auto md:bottom-auto md:right-0 md:top-0 md:h-full md:w-[480px] md:max-w-[92vw] md:rounded-none md:border-l md:border-t-0"
         >
+          {/* Sheet handle on phones: tap or swipe to resize */}
+          <button
+            type="button"
+            aria-expanded={expanded}
+            aria-label={expanded ? t.collapseDetails : t.expandDetails}
+            onPointerDown={(e) => {
+              handleStart.current = e.clientY;
+            }}
+            onPointerUp={(e) => {
+              const start = handleStart.current;
+              handleStart.current = null;
+              if (start === null) return;
+              const moved = e.clientY - start;
+              if (moved < -24) setExpanded(true);
+              else if (moved > 24) setExpanded(false);
+              else setExpanded((v) => !v);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                setExpanded((v) => !v);
+              }
+            }}
+            className="flex w-full shrink-0 touch-none justify-center py-2.5 md:hidden"
+          >
+            <span className="h-1 w-10 rounded-full bg-muted-foreground/50" aria-hidden />
+          </button>
           {/* Header - no badges */}
-          <header className="p-6 border-b border-border">
+          <header className="px-4 pb-3 md:p-6 border-b border-border">
             <div className="flex items-start justify-between">
               <div>
                 <h2 className="text-lg font-semibold text-foreground">{pyramid.nome}</h2>
@@ -106,7 +149,7 @@ const PyramidDetails = ({ pyramid, onClose, inCompare, onToggleCompare }: Pyrami
             </div>
           </header>
 
-          <div className="flex-1 overflow-y-auto p-6 space-y-6">
+          <div className="min-h-0 flex-1 overflow-y-auto p-4 md:p-6 space-y-6">
             <section className="rounded-lg border border-border bg-secondary/20 p-3">
               <p className={`flex items-center gap-1.5 text-xs font-medium ${statusColor}`}>
                 <StatusIcon size={13} /> {statusLabel}

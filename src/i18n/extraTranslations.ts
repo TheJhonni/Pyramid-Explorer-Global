@@ -49,10 +49,14 @@ export type ExtraKeys = {
   closePanel: string;
   dismiss: string;
   notVerified: string;
+  expandDetails: string;
+  collapseDetails: string;
 };
 
 export const extraTranslations: Record<'en' | 'it' | 'es' | 'fr' | 'de' | 'pt', ExtraKeys> = {
   en: {
+    expandDetails: 'Expand details',
+    collapseDetails: 'Collapse details',
     notVerified: 'Not verified',
     share: 'Share',
     linkCopied: 'Link copied',
@@ -104,6 +108,8 @@ export const extraTranslations: Record<'en' | 'it' | 'es' | 'fr' | 'de' | 'pt', 
     dismiss: 'Dismiss',
   },
   it: {
+    expandDetails: 'Espandi la scheda',
+    collapseDetails: 'Riduci la scheda',
     notVerified: 'Non verificato',
     share: 'Condividi',
     linkCopied: 'Link copiato',
@@ -155,6 +161,8 @@ export const extraTranslations: Record<'en' | 'it' | 'es' | 'fr' | 'de' | 'pt', 
     dismiss: 'Chiudi',
   },
   es: {
+    expandDetails: 'Ampliar la ficha',
+    collapseDetails: 'Reducir la ficha',
     notVerified: 'Sin verificar',
     share: 'Compartir',
     linkCopied: 'Enlace copiado',
@@ -206,6 +214,8 @@ export const extraTranslations: Record<'en' | 'it' | 'es' | 'fr' | 'de' | 'pt', 
     dismiss: 'Descartar',
   },
   fr: {
+    expandDetails: 'Agrandir la fiche',
+    collapseDetails: 'Réduire la fiche',
     notVerified: 'Non vérifié',
     share: 'Partager',
     linkCopied: 'Lien copié',
@@ -257,6 +267,8 @@ export const extraTranslations: Record<'en' | 'it' | 'es' | 'fr' | 'de' | 'pt', 
     dismiss: 'Masquer',
   },
   de: {
+    expandDetails: 'Details vergrößern',
+    collapseDetails: 'Details verkleinern',
     notVerified: 'Nicht geprüft',
     share: 'Teilen',
     linkCopied: 'Link kopiert',
@@ -308,6 +320,8 @@ export const extraTranslations: Record<'en' | 'it' | 'es' | 'fr' | 'de' | 'pt', 
     dismiss: 'Ausblenden',
   },
   pt: {
+    expandDetails: 'Expandir a ficha',
+    collapseDetails: 'Reduzir a ficha',
     notVerified: 'Não verificado',
     share: 'Partilhar',
     linkCopied: 'Ligação copiada',
