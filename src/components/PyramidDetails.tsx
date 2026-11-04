@@ -33,6 +33,10 @@ const PyramidDetails = ({ pyramid, onClose, inCompare, onToggleCompare }: Pyrami
   const [expanded, setExpanded] = useState(false);
   const [isMobile, setIsMobile] = useState(() => window.matchMedia('(max-width: 767px)').matches);
   const handleStart = useRef<number | null>(null);
+  const sheetRef = useRef<HTMLDivElement>(null);
+  const bodyRef = useRef<HTMLDivElement>(null);
+  const expandedRef = useRef(expanded);
+  expandedRef.current = expanded;
   const siteId = pyramid?.id;
 
   useEffect(() => {
@@ -41,6 +45,38 @@ const PyramidDetails = ({ pyramid, onClose, inCompare, onToggleCompare }: Pyrami
     query.addEventListener('change', onChange);
     return () => query.removeEventListener('change', onChange);
   }, []);
+
+  // On phones the whole sheet answers to vertical swipes. Taking over the gesture here also stops
+  // the browser's pull-to-refresh, which would otherwise reload the page on a swipe down.
+  useEffect(() => {
+    const sheet = sheetRef.current;
+    if (!sheet || !isMobile) return;
+    let startY = 0;
+    let startedOnBody = false;
+    let done = false;
+    const onStart = (e: TouchEvent) => {
+      startY = e.touches[0].clientY;
+      startedOnBody = !!bodyRef.current?.contains(e.target as Node);
+      done = false;
+    };
+    const onMove = (e: TouchEvent) => {
+      const moved = e.touches[0].clientY - startY;
+      const atTop = (bodyRef.current?.scrollTop ?? 0) <= 0;
+      const down = moved > 0;
+      // Inside the text, only act at the top of the text; otherwise it scrolls normally.
+      if (startedOnBody && (!atTop || (expandedRef.current && !down))) return;
+      if (e.cancelable) e.preventDefault();
+      if (done || Math.abs(moved) < 24) return;
+      done = true;
+      setExpanded(!down);
+    };
+    sheet.addEventListener('touchstart', onStart, { passive: true });
+    sheet.addEventListener('touchmove', onMove, { passive: false });
+    return () => {
+      sheet.removeEventListener('touchstart', onStart);
+      sheet.removeEventListener('touchmove', onMove);
+    };
+  }, [isMobile, siteId]);
 
   // Each new site opens at half height, so it stays visible on the globe.
   useEffect(() => setExpanded(false), [siteId]);
@@ -80,6 +116,7 @@ const PyramidDetails = ({ pyramid, onClose, inCompare, onToggleCompare }: Pyrami
     <AnimatePresence>
       {pyramid && (
         <motion.div
+          ref={sheetRef}
           initial={isMobile ? { y: '100%' } : { x: '100%' }}
           animate={{ x: 0, y: 0 }}
           exit={isMobile ? { y: '100%' } : { x: '100%' }}
@@ -149,7 +186,7 @@ const PyramidDetails = ({ pyramid, onClose, inCompare, onToggleCompare }: Pyrami
             </div>
           </header>
 
-          <div className="min-h-0 flex-1 overflow-y-auto p-4 md:p-6 space-y-6">
+          <div ref={bodyRef} className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-4 md:p-6 space-y-6">
             <section className="rounded-lg border border-border bg-secondary/20 p-3">
               <p className={`flex items-center gap-1.5 text-xs font-medium ${statusColor}`}>
                 <StatusIcon size={13} /> {statusLabel}

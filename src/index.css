@@ -4,6 +4,14 @@
 @tailwind utilities;
 
 @layer base {
+  /* The app fills the screen and never scrolls as a page: no pull-to-refresh or rubber band. */
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+
   :root {
     --background: 240 20% 6%;
     --foreground: 240 10% 90%;
