@@ -46,6 +46,13 @@ Identificazione a Giza: sulla pagina del file l'autore (Kallerna, 28/11/2010) ha
 
 Copertura misurata su Commons: ricerca per template Pano360, per testo e per coordinate entro 1,5 km su circa 40 siti principali. Per Chichén Itzá, Borobudur e Meroe non ho trovato panorami. Scartati: Teotihuacan-360degree-Panorama.jpg (solo 1920×249) e le immagini Mapillary caricate su Commons, non controllate. La ricerca non è esaustiva: un file senza template, parole chiave o coordinate può sfuggire.
 
+## Foto aggiunte (novembre 2026)
+Galleria da 83 a 93 siti. File guardati uno per uno su miniature, con descrizione e categoria Commons: Maoling, Abu Rawash, Pepi II, Tomba del Generale, Piattaforma Sud di Monte Albán, Tempio Dipinto di Pachacamac, Mahaiatea, Plješevica, Plaine Magnien, Tempio 16 di Copán.
+- Mahaiatea: incisione del 1799 (Missionary Voyage), non una foto; il marae oggi è in rovina.
+- Pepi II: solo una foto; gli altri file sono ricostruzioni 3D.
+- Pachacamac: scartati «Muro Pintado (Templo Inca)», che indicano il Tempio del Sole.
+- Restano senza foto (10): le tre colline di Visoko senza fonte (Love, Dragon, Earth), Kola, Crimea, Azzorre (nessuna immagine della struttura dichiarata), Gunung Lalakon e Icod de los Vinos (nessun file trovato), Gympie (solo una roccia con scanalature), Pulemelei (solo giungla e una pietra sulla cima, il tumulo non si vede).
+
 ## Decisioni da prendere
 - Se usare Google Street View: migliora la copertura, ma aggiunge una chiave e una dipendenza. Prima misurerei le fonti aperte.
 
