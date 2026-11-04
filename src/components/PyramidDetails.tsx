@@ -24,7 +24,10 @@ const FIELD_LABELS: Record<string, 'height' | 'base' | 'area' | 'altitude' | 'da
 };
 
 const PyramidDetails = ({ pyramid, onClose, inCompare, onToggleCompare }: PyramidDetailsProps) => {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
+  const num = (n: number) => n.toLocaleString(lang);
+  const shown = (field: string, value: string) =>
+    pyramid?.campi_senza_fonte?.includes(field) ? `${value} · ${t.notVerified}` : value;
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -95,7 +98,7 @@ const PyramidDetails = ({ pyramid, onClose, inCompare, onToggleCompare }: Pyrami
               <button type="button" onClick={share} className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-border bg-secondary/40 hover:bg-secondary text-[11px]">
                 {copied ? <Check size={11} /> : <Share2 size={11} />} {copied ? t.linkCopied : t.share}
               </button>
-              {pyramid.altezza_struttura_m > 0 && (
+              {pyramid.altezza_struttura_m > 0 && !pyramid.campi_senza_fonte?.includes('altezza_struttura_m') && (
                 <button type="button" aria-pressed={inCompare} onClick={() => onToggleCompare(pyramid.id)} className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border text-[11px] ${inCompare ? 'border-primary/40 bg-primary/15 text-primary' : 'border-border bg-secondary/40 hover:bg-secondary'}`}>
                   <Scale size={11} /> {inCompare ? t.inCompare : t.addToCompare}
                 </button>
@@ -124,16 +127,16 @@ const PyramidDetails = ({ pyramid, onClose, inCompare, onToggleCompare }: Pyrami
                   <tbody>
                     <Row label={t.type} value={pyramid.tipo} />
                     {pyramid.altezza_struttura_m > 0 && (
-                      <Row label={t.height} value={`${pyramid.altezza_struttura_m} m`} />
+                      <Row label={t.height} value={shown('altezza_struttura_m', `${num(pyramid.altezza_struttura_m)} m`)} />
                     )}
                     {pyramid.base_m > 0 && (
-                      <Row label={t.base} value={`${pyramid.base_m} m`} />
+                      <Row label={t.base} value={shown('base_m', `${num(pyramid.base_m)} m`)} />
                     )}
                     {pyramid.area_mq > 0 && !pyramid.campi_senza_fonte?.includes('area_mq') && (
-                      <Row label={t.area} value={`${pyramid.area_mq.toLocaleString()} m²`} />
+                      <Row label={t.area} value={`${num(pyramid.area_mq)} m²`} />
                     )}
                     {!pyramid.campi_senza_fonte?.includes('altitudine_sul_livello_del_mare_m') && pyramid.altitudine_sul_livello_del_mare_m !== 0 && (
-                      <Row label={t.altitude} value={`${pyramid.altitudine_sul_livello_del_mare_m} m`} />
+                      <Row label={t.altitude} value={`${num(pyramid.altitudine_sul_livello_del_mare_m)} m`} />
                     )}
                   </tbody>
                 </table>

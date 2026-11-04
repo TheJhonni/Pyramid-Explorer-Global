@@ -58,7 +58,7 @@ const CompareDialog = ({ open, onOpenChange, pyramids, selectedIds, onChange }: 
   const [query, setQuery] = useState('');
 
   const candidates = useMemo(
-    () => pyramids.filter((p) => p.altezza_struttura_m > 0).sort((a, b) => a.nome.localeCompare(b.nome)),
+    () => pyramids.filter((p) => p.altezza_struttura_m > 0 && !p.campi_senza_fonte?.includes('altezza_struttura_m')).sort((a, b) => a.nome.localeCompare(b.nome)),
     [pyramids],
   );
   const sites = selectedIds

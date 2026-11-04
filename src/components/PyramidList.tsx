@@ -9,7 +9,7 @@ interface PyramidListProps {
 }
 
 const PyramidList = ({ pyramids, selectedId, onSelect }: PyramidListProps) => {
-  const { t, tc } = useI18n();
+  const { t, tc, lang } = useI18n();
 
   if (pyramids.length === 0) {
     return (
@@ -42,7 +42,7 @@ const PyramidList = ({ pyramids, selectedId, onSelect }: PyramidListProps) => {
             </div>
             {p.altezza_struttura_m > 0 && (
               <span className="text-[10px] font-mono text-muted-foreground shrink-0">
-                {p.altezza_struttura_m}m
+                {p.altezza_struttura_m.toLocaleString(lang)} m
               </span>
             )}
           </div>

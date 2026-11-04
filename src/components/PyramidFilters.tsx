@@ -22,7 +22,9 @@ interface RangeFieldProps {
 }
 
 /** One control with two thumbs, so the minimum can never pass the maximum. */
-const RangeField = ({ icon, label, min, max, limit, step, onChange }: RangeFieldProps) => (
+const RangeField = ({ icon, label, min, max, limit, step, onChange }: RangeFieldProps) => {
+  const { lang } = useI18n();
+  return (
   <section>
     <p className="text-[10px] uppercase text-muted-foreground font-mono tracking-wider flex items-center gap-1.5">
       {icon} {label}
@@ -38,11 +40,12 @@ const RangeField = ({ icon, label, min, max, limit, step, onChange }: RangeField
       onValueChange={([lo, hi]) => onChange(lo, hi)}
     />
     <p className="mt-2 flex justify-between text-[11px] font-mono text-muted-foreground">
-      <span>{min.toLocaleString()}</span>
-      <span>{max >= limit ? `${limit.toLocaleString()}+` : max.toLocaleString()}</span>
+      <span>{min.toLocaleString(lang)}</span>
+      <span>{max >= limit ? `${limit.toLocaleString(lang)}+` : max.toLocaleString(lang)}</span>
     </p>
   </section>
-);
+  );
+};
 
 const PyramidFilters = ({ filters, onChange, onReset, resultCount, totalCount }: PyramidFiltersProps) => {
   const { t, tc } = useI18n();

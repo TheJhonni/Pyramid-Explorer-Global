@@ -2,9 +2,21 @@
 
 Fact check run on 4 November 2026 against sources opened during the check, mostly Wikipedia read through an extraction tool, with UNESCO, museum, university and paper pages where they opened. A human has not reviewed each entry. Treat "verified" as: location, height and date each have a source, not as a guarantee.
 
-Result: 73 verified, 23 partly sourced, 7 with no reliable source, out of 103 sites.
+Result: 72 verified, 24 partly sourced, 7 with no reliable source, out of 103 sites.
 
 Conventions: `base_m` is the longest side or the diameter. `anno_inizio` and `anno_fine` use century or dynasty limits when a source gives only those. `area_mq` was often just the base squared in the original data: when unsourced it is flagged and hidden in the interface. Some sources were read through Wikipedia mirrors and are linked to the matching Wikipedia page.
+
+## Second check
+
+A separate pass compared the original 57 entries with the Wikipedia and Wikidata APIs. It led to these changes:
+- Menkaure: base 104.6 m and area 10,690 m², from the 102.2 × 104.6 m infobox; the article text also gives 108.5 m.
+- Candi Sukuh: height 8.7 m.
+- Cholula: area 94,500 m², from 300 × 315 m. Sources still conflict, so it stays partly sourced.
+- Gunung Padang: the 95 m figure is the height of the staircase, not of a structure, so height is now unknown.
+- Monte d'Accoddi: area about 1,110 m², from about 37 × 30 m.
+- Visoko sites: height and base are the Foundation's or Osmanagich's figures, so they are marked as not verified and left out of the scale comparison.
+
+Areas and altitudes with no source were reset to 0, which means unknown and hides them in the interface. Sources disagree on several more values, and the notes for each site below say which one was used.
 
 ## Removed
 

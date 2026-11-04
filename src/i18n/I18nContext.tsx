@@ -119,9 +119,9 @@ const translations: Record<Lang, TranslationKeys> = {
     categories: 'Categorie',
     controversialOnly: 'Solo contestate',
     alternativeResearch: 'Citate da Osmanagich',
-    resetFilters: 'Reset filtri',
+    resetFilters: 'Azzera i filtri',
     resultsList: 'Lista risultati',
-    resetView: 'Reset vista',
+    resetView: 'Ripristina la vista',
     intro: 'Un globo 3D interattivo con {n} piramidi e strutture piramidali. Trascina per ruotare, pizzica o scorri per lo zoom, tocca un segnaposto per i dettagli.',
     filtersButton: 'Filtri e lista',
     noWebgl: 'Globo 3D non disponibile su questo dispositivo (WebGL disattivato): mappa piana.',
@@ -157,7 +157,7 @@ const translations: Record<Lang, TranslationKeys> = {
     structuresVisible: 'estructuras visibles',
     search: 'Buscar',
     searchPlaceholder: 'Nombre, país, región...',
-    structureHeight: 'Altura estructura (m)',
+    structureHeight: 'Altura de la estructura (m)',
     area: 'Área (m²)',
     continent: 'Continente',
     categories: 'Categorías',
@@ -201,7 +201,7 @@ const translations: Record<Lang, TranslationKeys> = {
     structuresVisible: 'structures visibles',
     search: 'Rechercher',
     searchPlaceholder: 'Nom, pays, région...',
-    structureHeight: 'Hauteur structure (m)',
+    structureHeight: 'Hauteur de la structure (m)',
     area: 'Surface (m²)',
     continent: 'Continent',
     categories: 'Catégories',
@@ -242,10 +242,10 @@ const translations: Record<Lang, TranslationKeys> = {
   de: {
     projectTitle: 'Pyramid Explorer',
     globalNetwork: 'Die Pyramiden der Welt',
-    structuresVisible: 'Strukturen sichtbar',
+    structuresVisible: 'Bauwerke sichtbar',
     search: 'Suche',
     searchPlaceholder: 'Name, Land, Region...',
-    structureHeight: 'Strukturhöhe (m)',
+    structureHeight: 'Höhe des Bauwerks (m)',
     area: 'Fläche (m²)',
     continent: 'Kontinent',
     categories: 'Kategorien',
@@ -254,7 +254,7 @@ const translations: Record<Lang, TranslationKeys> = {
     resetFilters: 'Filter zurücksetzen',
     resultsList: 'Ergebnisliste',
     resetView: 'Ansicht zurücksetzen',
-    intro: 'Ein interaktiver 3D-Globus mit {n} Pyramiden und pyramidenartigen Bauten. Ziehen zum Drehen, Pinch oder Scroll zum Zoomen, Markierung antippen für Details.',
+    intro: 'Ein interaktiver 3D-Globus mit {n} Pyramiden und pyramidenartigen Bauwerken. Zum Drehen ziehen, mit zwei Fingern oder dem Mausrad zoomen, für Details eine Markierung antippen.',
     filtersButton: 'Filter & Liste',
     noWebgl: '3D-Globus auf diesem Gerät nicht verfügbar (WebGL aus): flache Karte.',
     africa: 'Afrika',
@@ -263,7 +263,7 @@ const translations: Record<Lang, TranslationKeys> = {
     northAmerica: 'Nordamerika',
     southAmerica: 'Südamerika',
     oceania: 'Ozeanien',
-    physicalData: 'Physische Daten',
+    physicalData: 'Kenndaten',
     comparativeInterpretations: 'Datierung, Funktion und Kultur',
     officialScience: 'Archäologie',
     alternativeScience: 'Alternative Thesen',
@@ -276,7 +276,7 @@ const translations: Record<Lang, TranslationKeys> = {
     alternativeSources: 'Alternative Quellen',
     type: 'Typ',
     height: 'Höhe',
-    base: 'Basis',
+    base: 'Grundseite',
     altitude: 'Höhe ü.d.M.',
     noResults: 'Keine Ergebnisse',
     photos: 'Fotos',
@@ -289,16 +289,16 @@ const translations: Record<Lang, TranslationKeys> = {
     structuresVisible: 'estruturas visíveis',
     search: 'Pesquisar',
     searchPlaceholder: 'Nome, país, região...',
-    structureHeight: 'Altura estrutura (m)',
+    structureHeight: 'Altura da estrutura (m)',
     area: 'Área (m²)',
     continent: 'Continente',
     categories: 'Categorias',
     controversialOnly: 'Só contestadas',
     alternativeResearch: 'Citadas por Osmanagich',
-    resetFilters: 'Redefinir filtros',
+    resetFilters: 'Repor os filtros',
     resultsList: 'Lista de resultados',
-    resetView: 'Redefinir vista',
-    intro: 'Um globo 3D interativo com {n} pirâmides e estruturas piramidais. Arraste para girar, belisque ou role para ampliar, toque num marcador para ver detalhes.',
+    resetView: 'Repor a vista',
+    intro: 'Um globo 3D interativo com {n} pirâmides e estruturas piramidais. Arraste para rodar, use dois dedos ou a roda do rato para fazer zoom e toque num marcador para ver os detalhes.',
     filtersButton: 'Filtros e lista',
     noWebgl: 'Globo 3D indisponível neste dispositivo (WebGL desativado): mapa plano.',
     africa: 'África',
@@ -331,7 +331,7 @@ const translations: Record<Lang, TranslationKeys> = {
 
 // Localized pyramid field names for each language
 // Map from internal continent names to localized versions
-export const continentTranslations: Record<Lang, Record<string, string>> = {
+const continentTranslations: Record<Lang, Record<string, string>> = {
   en: { 'Africa': 'Africa', 'Asia': 'Asia', 'Europa': 'Europe', 'Nord America': 'North America', 'Sud America': 'South America', 'Oceania': 'Oceania' },
   it: { 'Africa': 'Africa', 'Asia': 'Asia', 'Europa': 'Europa', 'Nord America': 'Nord America', 'Sud America': 'Sud America', 'Oceania': 'Oceania' },
   es: { 'Africa': 'África', 'Asia': 'Asia', 'Europa': 'Europa', 'Nord America': 'América del Norte', 'Sud America': 'América del Sur', 'Oceania': 'Oceanía' },
@@ -350,8 +350,13 @@ const initialLang = (): Lang => {
   } catch {
     // Storage can be blocked: fall through to the browser language.
   }
-  const browser = typeof navigator !== 'undefined' ? navigator.language?.slice(0, 2) : undefined;
-  return isLang(browser) ? browser : 'en';
+  if (typeof navigator === 'undefined') return 'en';
+  const candidates = navigator.languages?.length ? navigator.languages : [navigator.language];
+  for (const candidate of candidates) {
+    const short = candidate?.slice(0, 2).toLowerCase();
+    if (isLang(short)) return short;
+  }
+  return 'en';
 };
 
 interface I18nContextType {

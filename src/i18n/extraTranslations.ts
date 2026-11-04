@@ -48,10 +48,12 @@ export type ExtraKeys = {
   imageUnavailable: string;
   closePanel: string;
   dismiss: string;
+  notVerified: string;
 };
 
 export const extraTranslations: Record<'en' | 'it' | 'es' | 'fr' | 'de' | 'pt', ExtraKeys> = {
   en: {
+    notVerified: 'Not verified',
     share: 'Share',
     linkCopied: 'Link copied',
     close: 'Close',
@@ -102,6 +104,7 @@ export const extraTranslations: Record<'en' | 'it' | 'es' | 'fr' | 'de' | 'pt', 
     dismiss: 'Dismiss',
   },
   it: {
+    notVerified: 'Non verificato',
     share: 'Condividi',
     linkCopied: 'Link copiato',
     close: 'Chiudi',
@@ -152,6 +155,7 @@ export const extraTranslations: Record<'en' | 'it' | 'es' | 'fr' | 'de' | 'pt', 
     dismiss: 'Chiudi',
   },
   es: {
+    notVerified: 'Sin verificar',
     share: 'Compartir',
     linkCopied: 'Enlace copiado',
     close: 'Cerrar',
@@ -202,6 +206,7 @@ export const extraTranslations: Record<'en' | 'it' | 'es' | 'fr' | 'de' | 'pt', 
     dismiss: 'Descartar',
   },
   fr: {
+    notVerified: 'Non vérifié',
     share: 'Partager',
     linkCopied: 'Lien copié',
     close: 'Fermer',
@@ -252,6 +257,7 @@ export const extraTranslations: Record<'en' | 'it' | 'es' | 'fr' | 'de' | 'pt', 
     dismiss: 'Masquer',
   },
   de: {
+    notVerified: 'Nicht geprüft',
     share: 'Teilen',
     linkCopied: 'Link kopiert',
     close: 'Schließen',
@@ -302,6 +308,7 @@ export const extraTranslations: Record<'en' | 'it' | 'es' | 'fr' | 'de' | 'pt', 
     dismiss: 'Ausblenden',
   },
   pt: {
+    notVerified: 'Não verificado',
     share: 'Partilhar',
     linkCopied: 'Ligação copiada',
     close: 'Fechar',

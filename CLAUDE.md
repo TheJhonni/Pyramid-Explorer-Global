@@ -1,6 +1,6 @@
 # Pyramid Explorer
 
-Interactive 3D globe of pyramids. Repo `TheJhonni/Pyramid-Explorer-Global`, work branch `improve/portfolio-ready`, draft PR #1.
+Interactive 3D globe of pyramids. Repo `TheJhonni/Pyramid-Explorer-Global`, the only work branch is `improve/portfolio-ready`, draft PR #1. Only one session at a time works on this repo.
 
 ## Rules
 - No production deploy, merge, force push or repo visibility change without Davide's explicit OK for that action. Branch, draft PR and preview only.
@@ -11,7 +11,7 @@ Interactive 3D globe of pyramids. Repo `TheJhonni/Pyramid-Explorer-Global`, work
 - Confidentiality: see the project instructions. Do not name private funding sources or unrelated personal activities here.
 
 ## Stack and commands
-React 18, TypeScript, Vite, Tailwind, shadcn/ui, three.js via react-globe.gl, Vitest. Static site with no backend, on Vercel.
+React 18, TypeScript, Vite, Tailwind, Radix dialog and slider, three.js via react-globe.gl, Vitest. Static site with no backend, on Vercel.
 Install with `bun install --frozen-lockfile`: `npm install` currently crashes on this tree.
 `bun run dev` · `bun run test` · `npx tsc -p tsconfig.app.json --noEmit` · `bun run lint` · `bun run build` (also prerenders `/site/<id>` pages and the sitemap).
 
