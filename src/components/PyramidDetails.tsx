@@ -129,7 +129,7 @@ const PyramidDetails = ({ pyramid, onClose, inCompare, onToggleCompare }: Pyrami
                     {pyramid.base_m > 0 && (
                       <Row label={t.base} value={`${pyramid.base_m} m`} />
                     )}
-                    {pyramid.area_mq > 0 && (
+                    {pyramid.area_mq > 0 && !pyramid.campi_senza_fonte?.includes('area_mq') && (
                       <Row label={t.area} value={`${pyramid.area_mq.toLocaleString()} m²`} />
                     )}
                     {!pyramid.campi_senza_fonte?.includes('altitudine_sul_livello_del_mare_m') && pyramid.altitudine_sul_livello_del_mare_m !== 0 && (
