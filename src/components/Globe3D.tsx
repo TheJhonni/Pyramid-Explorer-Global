@@ -27,6 +27,10 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusP
   const containerRef = useRef<HTMLDivElement>(null);
   const flyTimeoutsRef = useRef<number[]>([]);
   const animationFrameRef = useRef<number | null>(null);
+  // Read through a ref so that switching language does not fly the camera again.
+  const pyramidsRef = useRef(pyramids);
+  pyramidsRef.current = pyramids;
+  const filteredSet = useMemo(() => new Set(filteredIds), [filteredIds]);
 
   const clearFlyTimeouts = useCallback(() => {
     flyTimeoutsRef.current.forEach((timeoutId) => window.clearTimeout(timeoutId));
@@ -208,7 +212,7 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusP
   useEffect(() => {
     if (!selectedId || !globeRef.current) return;
 
-    const pyramid = pyramids.find((p) => p.id === selectedId);
+    const pyramid = pyramidsRef.current.find((p) => p.id === selectedId);
     if (!pyramid) return;
 
     const controls = globeRef.current.controls();
@@ -225,7 +229,7 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusP
       1200,
       true
     );
-  }, [selectedId, flyToKey, pyramids, flyToPoint]);
+  }, [selectedId, flyToKey, flyToPoint]);
 
   // Custom pyramid geometry
   const pyramidGeom = useMemo(() => new THREE.ConeGeometry(0.8, 2, 4), []);
@@ -261,7 +265,7 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusP
 
   const objectThreeObject = useCallback((d: object) => {
     const pyramid = d as Pyramid;
-    const isFiltered = filteredIds.includes(pyramid.id);
+    const isFiltered = filteredSet.has(pyramid.id);
     const isSelected = pyramid.id === selectedId;
     const hasFilter = filteredIds.length < pyramids.length;
     
@@ -275,7 +279,7 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusP
     mesh.scale.set(scale, scale, scale);
     mesh.rotation.x = Math.PI; // point upward
     return mesh;
-  }, [filteredIds, selectedId, pyramids.length, pyramidGeom, goldMat, glowMat, selectedMat, dimMat]);
+  }, [filteredSet, filteredIds.length, selectedId, pyramids.length, pyramidGeom, goldMat, glowMat, selectedMat, dimMat]);
 
   const handleObjectClick = useCallback((obj: object) => {
     const pyramid = obj as Pyramid;

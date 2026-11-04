@@ -1,3 +1,10 @@
+export type VerificationStatus = 'verified' | 'partial' | 'unverified';
+
+export interface SourceRef {
+  title: string;
+  url: string;
+}
+
 export interface Pyramid {
   id: string;
   nome: string;
@@ -28,9 +35,20 @@ export interface Pyramid {
   note: string;
   osmanagich_focus: boolean;
   controversa: boolean;
+  /** How far the data check got. See docs/DATA_AUDIT.md. */
+  stato_verifica?: VerificationStatus;
+  /** First and last year of the sourced dating. BCE is negative. */
+  anno_inizio?: number | null;
+  anno_fine?: number | null;
+  fonti?: SourceRef[];
+  /** Field names that have no source. */
+  campi_senza_fonte?: string[];
   immagini?: string[];
   google_images_url?: string;
 }
+
+export type Period = '' | 'ancient' | 'bce' | 'first' | 'late';
+export type SortKey = 'name' | 'height' | 'oldest';
 
 export interface Filters {
   heightMin: number;
@@ -41,17 +59,26 @@ export interface Filters {
   searchText: string;
   soloControverse: boolean;
   soloOsmanagich: boolean;
+  soloVerificate: boolean;
+  period: Period;
+  sort: SortKey;
 }
+
+export const HEIGHT_LIMIT = 250;
+export const AREA_LIMIT = 250000;
 
 export const defaultFilters: Filters = {
   heightMin: 0,
-  heightMax: 500,
+  heightMax: HEIGHT_LIMIT,
   areaMin: 0,
-  areaMax: 250000,
+  areaMax: AREA_LIMIT,
   continente: '',
   searchText: '',
   soloControverse: false,
   soloOsmanagich: false,
+  soloVerificate: false,
+  period: '',
+  sort: 'name',
 };
 
 export const continenti = [

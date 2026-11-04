@@ -1,4 +1,5 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import { extraTranslations, ExtraKeys } from './extraTranslations';
 
 export type Lang = 'en' | 'it' | 'es' | 'fr' | 'de' | 'pt';
 
@@ -63,8 +64,8 @@ type TranslationKeys = {
 
 const translations: Record<Lang, TranslationKeys> = {
   en: {
-    projectTitle: 'Aetherius Project',
-    globalNetwork: 'Global Pyramid Network',
+    projectTitle: 'Pyramid Explorer',
+    globalNetwork: 'Pyramids of the world',
     structuresVisible: 'structures visible',
     search: 'Search',
     searchPlaceholder: 'Name, country, region...',
@@ -72,8 +73,8 @@ const translations: Record<Lang, TranslationKeys> = {
     area: 'Area (m²)',
     continent: 'Continent',
     categories: 'Categories',
-    controversialOnly: 'Controversial only',
-    alternativeResearch: 'Alternative research focus',
+    controversialOnly: 'Contested only',
+    alternativeResearch: 'Cited by Osmanagich',
     resetFilters: 'Reset filters',
     resultsList: 'Results list',
     resetView: 'Reset view',
@@ -87,15 +88,15 @@ const translations: Record<Lang, TranslationKeys> = {
     southAmerica: 'South America',
     oceania: 'Oceania',
     physicalData: 'Physical Data',
-    comparativeInterpretations: 'Comparative Interpretations',
-    officialScience: 'Official science',
-    alternativeScience: 'Alternative science',
+    comparativeInterpretations: 'Dating, function and culture',
+    officialScience: 'Mainstream archaeology',
+    alternativeScience: 'Alternative claims',
     dating: 'Dating',
     function_: 'Function',
     civilization: 'Civilization',
     localLegends: 'Local Legends',
     notes: 'Notes',
-    officialSources: 'Official sources',
+    officialSources: 'Sources',
     alternativeSources: 'Alternative sources',
     type: 'Type',
     height: 'Height',
@@ -107,8 +108,8 @@ const translations: Record<Lang, TranslationKeys> = {
     country: 'Country',
   },
   it: {
-    projectTitle: 'Progetto Aetherius',
-    globalNetwork: 'Rete Piramidale Globale',
+    projectTitle: 'Pyramid Explorer',
+    globalNetwork: 'Le piramidi del mondo',
     structuresVisible: 'strutture visibili',
     search: 'Ricerca',
     searchPlaceholder: 'Nome, paese, regione...',
@@ -116,8 +117,8 @@ const translations: Record<Lang, TranslationKeys> = {
     area: 'Area (m²)',
     continent: 'Continente',
     categories: 'Categorie',
-    controversialOnly: 'Solo controverse',
-    alternativeResearch: 'Focus ricerca alternativa',
+    controversialOnly: 'Solo contestate',
+    alternativeResearch: 'Citate da Osmanagich',
     resetFilters: 'Reset filtri',
     resultsList: 'Lista risultati',
     resetView: 'Reset vista',
@@ -131,15 +132,15 @@ const translations: Record<Lang, TranslationKeys> = {
     southAmerica: 'Sud America',
     oceania: 'Oceania',
     physicalData: 'Dati fisici',
-    comparativeInterpretations: 'Interpretazioni a confronto',
-    officialScience: 'Scienza ufficiale',
-    alternativeScience: 'Scienza alternativa',
+    comparativeInterpretations: 'Datazione, funzione e cultura',
+    officialScience: 'Archeologia',
+    alternativeScience: 'Tesi alternative',
     dating: 'Datazione',
     function_: 'Funzione',
     civilization: 'Civiltà',
     localLegends: 'Leggende locali',
     notes: 'Note',
-    officialSources: 'Fonti ufficiali',
+    officialSources: 'Fonti',
     alternativeSources: 'Fonti alternative',
     type: 'Tipo',
     height: 'Altezza',
@@ -151,8 +152,8 @@ const translations: Record<Lang, TranslationKeys> = {
     country: 'Paese',
   },
   es: {
-    projectTitle: 'Proyecto Aetherius',
-    globalNetwork: 'Red Piramidal Global',
+    projectTitle: 'Pyramid Explorer',
+    globalNetwork: 'Las pirámides del mundo',
     structuresVisible: 'estructuras visibles',
     search: 'Buscar',
     searchPlaceholder: 'Nombre, país, región...',
@@ -161,7 +162,7 @@ const translations: Record<Lang, TranslationKeys> = {
     continent: 'Continente',
     categories: 'Categorías',
     controversialOnly: 'Solo controvertidas',
-    alternativeResearch: 'Foco investigación alternativa',
+    alternativeResearch: 'Citadas por Osmanagich',
     resetFilters: 'Restablecer filtros',
     resultsList: 'Lista de resultados',
     resetView: 'Restablecer vista',
@@ -175,15 +176,15 @@ const translations: Record<Lang, TranslationKeys> = {
     southAmerica: 'América del Sur',
     oceania: 'Oceanía',
     physicalData: 'Datos físicos',
-    comparativeInterpretations: 'Interpretaciones comparativas',
-    officialScience: 'Ciencia oficial',
-    alternativeScience: 'Ciencia alternativa',
+    comparativeInterpretations: 'Datación, función y cultura',
+    officialScience: 'Arqueología',
+    alternativeScience: 'Tesis alternativas',
     dating: 'Datación',
     function_: 'Función',
     civilization: 'Civilización',
     localLegends: 'Leyendas locales',
     notes: 'Notas',
-    officialSources: 'Fuentes oficiales',
+    officialSources: 'Fuentes',
     alternativeSources: 'Fuentes alternativas',
     type: 'Tipo',
     height: 'Altura',
@@ -195,8 +196,8 @@ const translations: Record<Lang, TranslationKeys> = {
     country: 'País',
   },
   fr: {
-    projectTitle: 'Projet Aetherius',
-    globalNetwork: 'Réseau Pyramidal Mondial',
+    projectTitle: 'Pyramid Explorer',
+    globalNetwork: 'Les pyramides du monde',
     structuresVisible: 'structures visibles',
     search: 'Rechercher',
     searchPlaceholder: 'Nom, pays, région...',
@@ -204,8 +205,8 @@ const translations: Record<Lang, TranslationKeys> = {
     area: 'Surface (m²)',
     continent: 'Continent',
     categories: 'Catégories',
-    controversialOnly: 'Controversées uniquement',
-    alternativeResearch: 'Focus recherche alternative',
+    controversialOnly: 'Contestées uniquement',
+    alternativeResearch: 'Citées par Osmanagich',
     resetFilters: 'Réinitialiser les filtres',
     resultsList: 'Liste des résultats',
     resetView: 'Réinitialiser la vue',
@@ -219,15 +220,15 @@ const translations: Record<Lang, TranslationKeys> = {
     southAmerica: 'Amérique du Sud',
     oceania: 'Océanie',
     physicalData: 'Données physiques',
-    comparativeInterpretations: 'Interprétations comparatives',
-    officialScience: 'Science officielle',
-    alternativeScience: 'Science alternative',
+    comparativeInterpretations: 'Datation, fonction et culture',
+    officialScience: 'Archéologie',
+    alternativeScience: 'Thèses alternatives',
     dating: 'Datation',
     function_: 'Fonction',
     civilization: 'Civilisation',
     localLegends: 'Légendes locales',
     notes: 'Notes',
-    officialSources: 'Sources officielles',
+    officialSources: 'Sources',
     alternativeSources: 'Sources alternatives',
     type: 'Type',
     height: 'Hauteur',
@@ -239,8 +240,8 @@ const translations: Record<Lang, TranslationKeys> = {
     country: 'Pays',
   },
   de: {
-    projectTitle: 'Projekt Aetherius',
-    globalNetwork: 'Globales Pyramiden-Netzwerk',
+    projectTitle: 'Pyramid Explorer',
+    globalNetwork: 'Die Pyramiden der Welt',
     structuresVisible: 'Strukturen sichtbar',
     search: 'Suche',
     searchPlaceholder: 'Name, Land, Region...',
@@ -248,8 +249,8 @@ const translations: Record<Lang, TranslationKeys> = {
     area: 'Fläche (m²)',
     continent: 'Kontinent',
     categories: 'Kategorien',
-    controversialOnly: 'Nur kontroverse',
-    alternativeResearch: 'Alternative Forschung',
+    controversialOnly: 'Nur umstrittene',
+    alternativeResearch: 'Von Osmanagich zitiert',
     resetFilters: 'Filter zurücksetzen',
     resultsList: 'Ergebnisliste',
     resetView: 'Ansicht zurücksetzen',
@@ -263,15 +264,15 @@ const translations: Record<Lang, TranslationKeys> = {
     southAmerica: 'Südamerika',
     oceania: 'Ozeanien',
     physicalData: 'Physische Daten',
-    comparativeInterpretations: 'Vergleichende Interpretationen',
-    officialScience: 'Offizielle Wissenschaft',
-    alternativeScience: 'Alternative Wissenschaft',
+    comparativeInterpretations: 'Datierung, Funktion und Kultur',
+    officialScience: 'Archäologie',
+    alternativeScience: 'Alternative Thesen',
     dating: 'Datierung',
     function_: 'Funktion',
     civilization: 'Zivilisation',
     localLegends: 'Lokale Legenden',
     notes: 'Anmerkungen',
-    officialSources: 'Offizielle Quellen',
+    officialSources: 'Quellen',
     alternativeSources: 'Alternative Quellen',
     type: 'Typ',
     height: 'Höhe',
@@ -283,8 +284,8 @@ const translations: Record<Lang, TranslationKeys> = {
     country: 'Land',
   },
   pt: {
-    projectTitle: 'Projeto Aetherius',
-    globalNetwork: 'Rede Piramidal Global',
+    projectTitle: 'Pyramid Explorer',
+    globalNetwork: 'As pirâmides do mundo',
     structuresVisible: 'estruturas visíveis',
     search: 'Pesquisar',
     searchPlaceholder: 'Nome, país, região...',
@@ -292,8 +293,8 @@ const translations: Record<Lang, TranslationKeys> = {
     area: 'Área (m²)',
     continent: 'Continente',
     categories: 'Categorias',
-    controversialOnly: 'Apenas controversas',
-    alternativeResearch: 'Foco pesquisa alternativa',
+    controversialOnly: 'Só contestadas',
+    alternativeResearch: 'Citadas por Osmanagich',
     resetFilters: 'Redefinir filtros',
     resultsList: 'Lista de resultados',
     resetView: 'Redefinir vista',
@@ -307,15 +308,15 @@ const translations: Record<Lang, TranslationKeys> = {
     southAmerica: 'América do Sul',
     oceania: 'Oceania',
     physicalData: 'Dados físicos',
-    comparativeInterpretations: 'Interpretações comparativas',
-    officialScience: 'Ciência oficial',
-    alternativeScience: 'Ciência alternativa',
+    comparativeInterpretations: 'Datação, função e cultura',
+    officialScience: 'Arqueologia',
+    alternativeScience: 'Teses alternativas',
     dating: 'Datação',
     function_: 'Função',
     civilization: 'Civilização',
     localLegends: 'Lendas locais',
     notes: 'Notas',
-    officialSources: 'Fontes oficiais',
+    officialSources: 'Fontes',
     alternativeSources: 'Fontes alternativas',
     type: 'Tipo',
     height: 'Altura',
@@ -339,24 +340,51 @@ export const continentTranslations: Record<Lang, Record<string, string>> = {
   pt: { 'Africa': 'África', 'Asia': 'Ásia', 'Europa': 'Europa', 'Nord America': 'América do Norte', 'Sud America': 'América do Sul', 'Oceania': 'Oceania' },
 };
 
+const LANG_KEY = 'pyramid-explorer-lang';
+
+const initialLang = (): Lang => {
+  const isLang = (v: string | null | undefined): v is Lang => !!v && v in langNames;
+  try {
+    const saved = localStorage.getItem(LANG_KEY);
+    if (isLang(saved)) return saved;
+  } catch {
+    // Storage can be blocked: fall through to the browser language.
+  }
+  const browser = typeof navigator !== 'undefined' ? navigator.language?.slice(0, 2) : undefined;
+  return isLang(browser) ? browser : 'en';
+};
+
 interface I18nContextType {
   lang: Lang;
   setLang: (lang: Lang) => void;
-  t: TranslationKeys;
+  t: TranslationKeys & ExtraKeys;
   tc: (continent: string) => string; // translate continent
 }
 
 const I18nContext = createContext<I18nContextType>({
   lang: 'en',
   setLang: () => {},
-  t: translations.en,
+  t: { ...translations.en, ...extraTranslations.en },
   tc: (c) => c,
 });
 
 export const I18nProvider = ({ children }: { children: ReactNode }) => {
-  const [lang, setLang] = useState<Lang>('en');
+  const [lang, setLangState] = useState<Lang>(initialLang);
 
-  const t = translations[lang];
+  const setLang = (next: Lang) => {
+    setLangState(next);
+    try {
+      localStorage.setItem(LANG_KEY, next);
+    } catch {
+      // Storage can be blocked: the language still applies for this visit.
+    }
+  };
+
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
+
+  const t = { ...translations[lang], ...extraTranslations[lang] };
   const tc = (continent: string) => continentTranslations[lang][continent] || continent;
 
   return (
