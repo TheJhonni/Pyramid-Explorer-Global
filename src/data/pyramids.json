@@ -1,11 +1,11 @@
 [
   {
     "id": "bosnia_sun",
-    "nome": "Piramide del Sole",
+    "nome": "Piramide del Sole (Bosnia)",
     "nome_locale": "Bosanska Piramida Sunca",
     "coordinate": {
-      "lat": 43.9883,
-      "lon": 18.176
+      "lat": 43.9769,
+      "lon": 18.1761
     },
     "paese": "Bosnia ed Erzegovina",
     "regione": "Visoko",
@@ -44,7 +44,7 @@
   },
   {
     "id": "bosnia_moon",
-    "nome": "Piramide della Luna",
+    "nome": "Piramide della Luna (Bosnia)",
     "nome_locale": "Bosanska Piramida Mjeseca",
     "coordinate": {
       "lat": 43.9847,
@@ -303,7 +303,7 @@
       "https://en.wikipedia.org/wiki/Pyramid_of_Khafre"
     ],
     "link_approfondimento_non_ufficiale": [],
-    "note": "Seconda piramide di Giza, ancora con parte del rivestimento in calcare.",
+    "note": "Seconda piramide di Giza, ancora con parte del rivestimento in calcare. 136,4 m è l'altezza attuale; in origine era di circa 143,5 m.",
     "osmanagich_focus": false,
     "controversa": false
   },
@@ -320,8 +320,8 @@
     "continente": "Africa",
     "altitudine_sul_livello_del_mare_m": 60,
     "altezza_struttura_m": 65,
-    "base_m": 108.5,
-    "area_mq": 11772,
+    "base_m": 102.2,
+    "area_mq": 10690,
     "tipo": "Piramide a facce lisce",
     "datazione_ufficiale": "~2510 a.C.",
     "datazione_non_ufficiale": "Possibilmente più antica",
@@ -363,7 +363,7 @@
     "funzione_ufficiale": "Tomba del faraone Djoser",
     "funzione_non_ufficiale": "Prima piramide conosciuta, possibile prototipo",
     "popolazione_ufficiale_associata": "Antico Egitto - III Dinastia, architetto Imhotep",
-    "popolazione_non_ufficiale_associata": "Come sopra",
+    "popolazione_non_ufficiale_associata": "Come la versione ufficiale",
     "leggende_locali": [
       "Imhotep divinizzato come dio della medicina"
     ],
@@ -396,11 +396,11 @@
     "area_mq": 48400,
     "tipo": "Piramide a facce lisce",
     "datazione_ufficiale": "~2590 a.C.",
-    "datazione_non_ufficiale": "Come ufficiale",
+    "datazione_non_ufficiale": "Come la versione ufficiale",
     "funzione_ufficiale": "Tomba del faraone Snefru",
     "funzione_non_ufficiale": "Sperimentazione architettonica avanzata",
     "popolazione_ufficiale_associata": "Antico Egitto - IV Dinastia",
-    "popolazione_non_ufficiale_associata": "Come sopra",
+    "popolazione_non_ufficiale_associata": "Come la versione ufficiale",
     "leggende_locali": [],
     "riferimenti_ufficiali": [],
     "riferimenti_non_ufficiali": [],
@@ -429,11 +429,11 @@
     "area_mq": 35570,
     "tipo": "Piramide romboidale",
     "datazione_ufficiale": "~2600 a.C.",
-    "datazione_non_ufficiale": "Come ufficiale",
+    "datazione_non_ufficiale": "Come la versione ufficiale",
     "funzione_ufficiale": "Tomba del faraone Snefru",
     "funzione_non_ufficiale": "Tentativo di piramide perfetta",
     "popolazione_ufficiale_associata": "Antico Egitto - IV Dinastia",
-    "popolazione_non_ufficiale_associata": "Come sopra",
+    "popolazione_non_ufficiale_associata": "Come la versione ufficiale",
     "leggende_locali": [],
     "riferimenti_ufficiali": [],
     "riferimenti_non_ufficiali": [],
@@ -490,8 +490,8 @@
     "nome": "Piramide della Luna (Teotihuacan)",
     "nome_locale": "Pirámide de la Luna",
     "coordinate": {
-      "lat": 19.6953,
-      "lon": -98.8447
+      "lat": 19.6996,
+      "lon": -98.844
     },
     "paese": "Messico",
     "regione": "Teotihuacan, Stato del Messico",
@@ -532,9 +532,9 @@
     "regione": "Puebla",
     "continente": "Nord America",
     "altitudine_sul_livello_del_mare_m": 2170,
-    "altezza_struttura_m": 66,
-    "base_m": 450,
-    "area_mq": 202500,
+    "altezza_struttura_m": 25,
+    "base_m": 300,
+    "area_mq": 94500,
     "tipo": "Piramide a gradoni (più grande per volume al mondo)",
     "datazione_ufficiale": "~300 a.C. - 900 d.C.",
     "datazione_non_ufficiale": "Fondamenta possibilmente più antiche",
@@ -564,8 +564,8 @@
     "nome": "La Danta",
     "nome_locale": "La Danta",
     "coordinate": {
-      "lat": 17.7556,
-      "lon": -89.8167
+      "lat": 17.755,
+      "lon": -89.9206
     },
     "paese": "Guatemala",
     "regione": "El Mirador, Petén",
@@ -614,7 +614,7 @@
     "base_m": 150,
     "area_mq": 22500,
     "tipo": "Sito megalitico / Presunta piramide sepolta",
-    "datazione_ufficiale": "~5000 a.C. (livelli superiori), struttura più profonda controversa",
+    "datazione_ufficiale": "Ceramiche datate 45 a.C. - 22 d.C.; nessuna datazione accettata oltre 9.000 anni",
     "datazione_non_ufficiale": "> 20.000 anni (Danny Hilman Natawidjaja, supportato da Osmanagich)",
     "funzione_ufficiale": "Sito megalitico cerimoniale",
     "funzione_non_ufficiale": "La piramide più antica del mondo, costruita da una civiltà dell'era glaciale",
@@ -635,7 +635,7 @@
       "https://en.wikipedia.org/wiki/Gunung_Padang"
     ],
     "link_approfondimento_non_ufficiale": [],
-    "note": "Osmanagich ha visitato il sito e lo considera prova di una rete piramidale globale preistorica. Studio 2023 su Archaeological Prospection ha generato grande dibattito.",
+    "note": "Osmanagich ha visitato il sito e lo considera prova di una rete piramidale globale preistorica. Lo studio del 2023 su Archaeological Prospection, che lo datava a oltre 9.000 anni, è stato ritrattato dall'editore Wiley nel marzo 2024.",
     "osmanagich_focus": true,
     "controversa": true
   },
@@ -660,7 +660,7 @@
     "funzione_ufficiale": "Tomba del primo imperatore cinese",
     "funzione_non_ufficiale": "Parte della rete di piramidi cinesi, possibile funzione energetica",
     "popolazione_ufficiale_associata": "Dinastia Qin",
-    "popolazione_non_ufficiale_associata": "Come sopra",
+    "popolazione_non_ufficiale_associata": "Come la versione ufficiale",
     "leggende_locali": [
       "Fiumi di mercurio all'interno",
       "Esercito di terracotta come guardiani"
@@ -722,8 +722,8 @@
     "nome": "Mausoleo di Yangling",
     "nome_locale": "汉阳陵",
     "coordinate": {
-      "lat": 34.4417,
-      "lon": 108.9681
+      "lat": 34.4438,
+      "lon": 108.9407
     },
     "paese": "Cina",
     "regione": "Xianyang, Shaanxi",
@@ -734,11 +734,11 @@
     "area_mq": 25600,
     "tipo": "Tumulo piramidale",
     "datazione_ufficiale": "~141 a.C.",
-    "datazione_non_ufficiale": "Come ufficiale",
+    "datazione_non_ufficiale": "Come la versione ufficiale",
     "funzione_ufficiale": "Tomba dell'Imperatore Jing della dinastia Han",
     "funzione_non_ufficiale": "Parte della rete di piramidi cinesi",
     "popolazione_ufficiale_associata": "Dinastia Han",
-    "popolazione_non_ufficiale_associata": "Come sopra",
+    "popolazione_non_ufficiale_associata": "Come la versione ufficiale",
     "leggende_locali": [],
     "riferimenti_ufficiali": [
       "Museo Hanyangling"
@@ -747,7 +747,7 @@
       "Osmanagich lo menziona nelle sue conferenze"
     ],
     "link_approfondimento_ufficiale": [
-      "https://en.wikipedia.org/wiki/Yangling_Mausoleum"
+      "https://en.wikipedia.org/wiki/Yangling_Mausoleum_of_Han"
     ],
     "link_approfondimento_non_ufficiale": [],
     "note": "Uno dei tumuli piramidali cinesi meglio preservati e musealizzati.",
@@ -770,7 +770,7 @@
     "base_m": 291,
     "area_mq": 84681,
     "tipo": "Tumulo piramidale (mound)",
-    "datazione_ufficiale": "~600-1400 d.C.",
+    "datazione_ufficiale": "~900-950 d.C. (inizio costruzione)",
     "datazione_non_ufficiale": "Possibilmente più antico nelle fondamenta",
     "funzione_ufficiale": "Centro cerimoniale della civiltà Mississippiana (Cahokia)",
     "funzione_non_ufficiale": "Piramide nordamericana, parte della rete globale",
@@ -805,9 +805,9 @@
     "regione": "Tiwanaku, La Paz",
     "continente": "Sud America",
     "altitudine_sul_livello_del_mare_m": 3870,
-    "altezza_struttura_m": 18,
-    "base_m": 200,
-    "area_mq": 40000,
+    "altezza_struttura_m": 16.5,
+    "base_m": 257,
+    "area_mq": 50629,
     "tipo": "Piramide a gradoni (terrazzata)",
     "datazione_ufficiale": "~500-1000 d.C.",
     "datazione_non_ufficiale": "> 10.000 anni (teorie alternative)",
@@ -838,8 +838,8 @@
     "nome": "Huaca del Sol",
     "nome_locale": "Huaca del Sol",
     "coordinate": {
-      "lat": -8.1333,
-      "lon": -78.9833
+      "lat": -8.1322,
+      "lon": -78.9947
     },
     "paese": "Perù",
     "regione": "Trujillo, La Libertad",
@@ -889,11 +889,11 @@
     "area_mq": 225,
     "tipo": "Piramidi nubiane (a base stretta e alta)",
     "datazione_ufficiale": "~800 a.C. - 350 d.C.",
-    "datazione_non_ufficiale": "Come ufficiale",
+    "datazione_non_ufficiale": "Come la versione ufficiale",
     "funzione_ufficiale": "Tombe reali del Regno di Kush",
     "funzione_non_ufficiale": "Parte della tradizione piramidale africana",
     "popolazione_ufficiale_associata": "Regno di Kush / Meroiti",
-    "popolazione_non_ufficiale_associata": "Come sopra",
+    "popolazione_non_ufficiale_associata": "Come la versione ufficiale",
     "leggende_locali": [
       "Eredità dei faraoni neri"
     ],
@@ -925,7 +925,7 @@
     "base_m": 55.3,
     "area_mq": 3058,
     "tipo": "Piramide a gradoni Maya",
-    "datazione_ufficiale": "~600-900 d.C.",
+    "datazione_ufficiale": "VIII-XII secolo d.C.",
     "datazione_non_ufficiale": "Fondamenta possibilmente pre-Maya",
     "funzione_ufficiale": "Tempio dedicato a Kukulkán (Serpente Piumato)",
     "funzione_non_ufficiale": "Calendario astronomico tridimensionale, nodo energetico",
@@ -963,11 +963,11 @@
     "area_mq": 1600,
     "tipo": "Piramide a gradoni Maya",
     "datazione_ufficiale": "~732 d.C.",
-    "datazione_non_ufficiale": "Come ufficiale",
+    "datazione_non_ufficiale": "Come la versione ufficiale",
     "funzione_ufficiale": "Tempio funerario di Jasaw Chan K'awiil I",
     "funzione_non_ufficiale": "Tempio astronomico/energetico",
     "popolazione_ufficiale_associata": "Civiltà Maya classica",
-    "popolazione_non_ufficiale_associata": "Come sopra",
+    "popolazione_non_ufficiale_associata": "Come la versione ufficiale",
     "leggende_locali": [
       "Tempio del Grande Giaguaro"
     ],
@@ -995,7 +995,7 @@
     "regione": "Giava Centrale",
     "continente": "Asia",
     "altitudine_sul_livello_del_mare_m": 910,
-    "altezza_struttura_m": 11,
+    "altezza_struttura_m": 8.7,
     "base_m": 30,
     "area_mq": 900,
     "tipo": "Tempio piramidale a gradoni",
@@ -1036,7 +1036,7 @@
     "base_m": 150,
     "area_mq": 22500,
     "tipo": "Piramide a gradoni",
-    "datazione_ufficiale": "~3000 a.C.",
+    "datazione_ufficiale": "~2600-2000 a.C.",
     "datazione_non_ufficiale": "Possibilmente più antica",
     "funzione_ufficiale": "Centro cerimoniale della civiltà Caral",
     "funzione_non_ufficiale": "La civiltà più antica delle Americhe, con conoscenze avanzate",
@@ -1064,8 +1064,8 @@
     "nome": "Piramidi di Güímar",
     "nome_locale": "Pirámides de Güímar",
     "coordinate": {
-      "lat": 28.3145,
-      "lon": -16.3828
+      "lat": 28.3208,
+      "lon": -16.4136
     },
     "paese": "Spagna",
     "regione": "Tenerife, Isole Canarie",
@@ -1196,11 +1196,11 @@
     "area_mq": 15129,
     "tipo": "Tempio-piramide a gradoni buddhista",
     "datazione_ufficiale": "~800 d.C.",
-    "datazione_non_ufficiale": "Come ufficiale",
+    "datazione_non_ufficiale": "Come la versione ufficiale",
     "funzione_ufficiale": "Tempio buddhista Mahayana",
     "funzione_non_ufficiale": "Mandala cosmico tridimensionale",
     "popolazione_ufficiale_associata": "Dinastia Sailendra",
-    "popolazione_non_ufficiale_associata": "Come sopra",
+    "popolazione_non_ufficiale_associata": "Come la versione ufficiale",
     "leggende_locali": [
       "Montagna cosmica del buddhismo"
     ],
@@ -1233,11 +1233,11 @@
     "area_mq": 4096,
     "tipo": "Ziggurat (piramide a gradoni mesopotamica)",
     "datazione_ufficiale": "~2100 a.C.",
-    "datazione_non_ufficiale": "Come ufficiale",
+    "datazione_non_ufficiale": "Come la versione ufficiale",
     "funzione_ufficiale": "Tempio dedicato al dio lunare Nanna",
     "funzione_non_ufficiale": "Connessione cielo-terra della tradizione sumera",
     "popolazione_ufficiale_associata": "Civiltà sumera - III Dinastia di Ur",
-    "popolazione_non_ufficiale_associata": "Come sopra",
+    "popolazione_non_ufficiale_associata": "Come la versione ufficiale",
     "leggende_locali": [
       "Torre di Babele nella tradizione biblica"
     ],
@@ -1295,8 +1295,8 @@
     "nome": "Túcume (Valle delle Piramidi)",
     "nome_locale": "Túcume",
     "coordinate": {
-      "lat": -6.5089,
-      "lon": -79.8539
+      "lat": -6.5158,
+      "lon": -79.8442
     },
     "paese": "Perù",
     "regione": "Lambayeque",
@@ -1348,7 +1348,7 @@
     "funzione_ufficiale": "Tempio dedicato a Marduk",
     "funzione_non_ufficiale": "La biblica Torre di Babele, connessione cielo-terra",
     "popolazione_ufficiale_associata": "Impero Neo-Babilonese (Nabucodonosor II)",
-    "popolazione_non_ufficiale_associata": "Come sopra",
+    "popolazione_non_ufficiale_associata": "Come la versione ufficiale",
     "leggende_locali": [
       "Torre di Babele della Bibbia"
     ],
@@ -1379,7 +1379,7 @@
     "area_mq": 3600,
     "tipo": "Piramide a gradoni Maya",
     "datazione_ufficiale": "~683 d.C.",
-    "datazione_non_ufficiale": "Come ufficiale",
+    "datazione_non_ufficiale": "Come la versione ufficiale",
     "funzione_ufficiale": "Tomba di K'inich Janaab Pakal (Pakal il Grande)",
     "funzione_non_ufficiale": "Tomba con la controversa 'lastra dell'astronauta'",
     "popolazione_ufficiale_associata": "Civiltà Maya classica",
@@ -1440,8 +1440,8 @@
     "nome": "Piramide di Hellinikon",
     "nome_locale": "Πυραμίδα του Ελληνικού",
     "coordinate": {
-      "lat": 37.5483,
-      "lon": 22.6789
+      "lat": 37.5873,
+      "lon": 22.6714
     },
     "paese": "Grecia",
     "regione": "Argolide, Peloponneso",
@@ -1485,8 +1485,8 @@
     "continente": "Europa",
     "altitudine_sul_livello_del_mare_m": 60,
     "altezza_struttura_m": 10,
-    "base_m": 38,
-    "area_mq": 1444,
+    "base_m": 36,
+    "area_mq": 1044,
     "tipo": "Altare/piramide a gradoni preistorica",
     "datazione_ufficiale": "~4000-3000 a.C.",
     "datazione_non_ufficiale": "Possibilmente più antica, unica ziggurat del Mediterraneo occidentale",
@@ -1718,11 +1718,11 @@
     "area_mq": 5776,
     "tipo": "Tempio-piramide a torre (Vimana)",
     "datazione_ufficiale": "~1010 d.C.",
-    "datazione_non_ufficiale": "Come ufficiale",
+    "datazione_non_ufficiale": "Come la versione ufficiale",
     "funzione_ufficiale": "Tempio induista dedicato a Shiva",
     "funzione_non_ufficiale": "Struttura piramidale con proprietà acustiche e energetiche",
     "popolazione_ufficiale_associata": "Dinastia Chola (Raja Raja Chola I)",
-    "popolazione_non_ufficiale_associata": "Come sopra",
+    "popolazione_non_ufficiale_associata": "Come la versione ufficiale",
     "leggende_locali": [
       "La pietra sommitale (80 tonnellate) fu sollevata con metodi sconosciuti"
     ],
@@ -1757,11 +1757,11 @@
     "area_mq": 3844,
     "tipo": "Piramide a gradoni Khmer",
     "datazione_ufficiale": "~928-944 d.C.",
-    "datazione_non_ufficiale": "Come ufficiale",
+    "datazione_non_ufficiale": "Come la versione ufficiale",
     "funzione_ufficiale": "Tempio di stato dell'Impero Khmer",
     "funzione_non_ufficiale": "Piramide del Sud-Est asiatico con somiglianze mesoamericane",
     "popolazione_ufficiale_associata": "Impero Khmer (Jayavarman IV)",
-    "popolazione_non_ufficiale_associata": "Come sopra",
+    "popolazione_non_ufficiale_associata": "Come la versione ufficiale",
     "leggende_locali": [
       "Tempio del potere divino del re"
     ],
@@ -1782,8 +1782,8 @@
     "nome": "Langi di Tonga",
     "nome_locale": "Langi",
     "coordinate": {
-      "lat": -21.1467,
-      "lon": -175.1553
+      "lat": -21.1792,
+      "lon": -175.1167
     },
     "paese": "Tonga",
     "regione": "Mu'a, Tongatapu",
@@ -1819,8 +1819,8 @@
     "nome": "Piramide di Gympie",
     "nome_locale": "Gympie Pyramid",
     "coordinate": {
-      "lat": -26.19,
-      "lon": 152.665
+      "lat": -26.169,
+      "lon": 152.693
     },
     "paese": "Australia",
     "regione": "Queensland",
@@ -1903,11 +1903,11 @@
     "area_mq": 2809,
     "tipo": "Piramide Maya a base ellittica",
     "datazione_ufficiale": "~600-900 d.C.",
-    "datazione_non_ufficiale": "Come ufficiale",
+    "datazione_non_ufficiale": "Come la versione ufficiale",
     "funzione_ufficiale": "Tempio cerimoniale Maya Puuc",
     "funzione_non_ufficiale": "Piramide con geometria unica nel mondo Maya",
     "popolazione_ufficiale_associata": "Civiltà Maya Puuc",
-    "popolazione_non_ufficiale_associata": "Come sopra",
+    "popolazione_non_ufficiale_associata": "Come la versione ufficiale",
     "leggende_locali": [
       "Costruita in una notte da un nano magico"
     ],
@@ -1941,11 +1941,11 @@
     "area_mq": 144,
     "tipo": "Piramidi nubiane",
     "datazione_ufficiale": "~700 a.C. - 300 a.C.",
-    "datazione_non_ufficiale": "Come ufficiale",
+    "datazione_non_ufficiale": "Come la versione ufficiale",
     "funzione_ufficiale": "Tombe reali del Regno di Napata",
     "funzione_non_ufficiale": "Continuazione della tradizione piramidale africana",
     "popolazione_ufficiale_associata": "Regno di Napata/Kush",
-    "popolazione_non_ufficiale_associata": "Come sopra",
+    "popolazione_non_ufficiale_associata": "Come la versione ufficiale",
     "leggende_locali": [
       "Montagna sacra di Amon"
     ],
@@ -2086,11 +2086,11 @@
     "area_mq": 11236,
     "tipo": "Piramide (in gran parte distrutta)",
     "datazione_ufficiale": "~2580 a.C.",
-    "datazione_non_ufficiale": "Come ufficiale",
+    "datazione_non_ufficiale": "Come la versione ufficiale",
     "funzione_ufficiale": "Tomba del faraone Djedefre",
     "funzione_non_ufficiale": "La piramide più alta d'Egitto per altitudine del sito",
     "popolazione_ufficiale_associata": "Antico Egitto - IV Dinastia",
-    "popolazione_non_ufficiale_associata": "Come sopra",
+    "popolazione_non_ufficiale_associata": "Come la versione ufficiale",
     "leggende_locali": [],
     "riferimenti_ufficiali": [],
     "riferimenti_non_ufficiali": [],
@@ -2098,7 +2098,7 @@
       "https://en.wikipedia.org/wiki/Pyramid_of_Djedefre"
     ],
     "link_approfondimento_non_ufficiale": [],
-    "note": "Costruita dal figlio di Cheope. Situata nel punto più alto dell'area di Giza.",
+    "note": "Costruita dal figlio di Cheope. Situata nel punto più alto dell'area di Giza. L'altezza di 67 m è quella originaria stimata: oggi ne restano circa 11 m.",
     "osmanagich_focus": false,
     "controversa": false
   },
@@ -2119,11 +2119,11 @@
     "area_mq": 20736,
     "tipo": "Piramide a gradoni / collassata",
     "datazione_ufficiale": "~2600 a.C.",
-    "datazione_non_ufficiale": "Come ufficiale",
+    "datazione_non_ufficiale": "Come la versione ufficiale",
     "funzione_ufficiale": "Tomba (attribuita a Snefru o Huni)",
     "funzione_non_ufficiale": "Esperimento architettonico fallito",
     "popolazione_ufficiale_associata": "Antico Egitto - III/IV Dinastia",
-    "popolazione_non_ufficiale_associata": "Come sopra",
+    "popolazione_non_ufficiale_associata": "Come la versione ufficiale",
     "leggende_locali": [
       "La 'falsa piramide' del deserto"
     ],
