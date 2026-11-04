@@ -17,7 +17,7 @@ interface Globe3DProps {
   onSelect: (pyramid: Pyramid) => void;
   focusPoint?: { lat: number; lng: number; altitude: number } | null;
   detailsOpen?: boolean;
-  loadingLabel: string;
+  onReady: () => void;
   onUnavailable: () => void;
 }
 
@@ -76,6 +76,13 @@ function buildPlanetGeometry(buffer: ArrayBuffer) {
   return geometry;
 }
 
+const usesSoftwareRendering = (renderer: THREE.WebGLRenderer) => {
+  const gl = renderer.getContext();
+  const info = gl.getExtension('WEBGL_debug_renderer_info');
+  const name = info ? String(gl.getParameter(info.UNMASKED_RENDERER_WEBGL)) : '';
+  return /swiftshader|llvmpipe|software|basic render/i.test(name);
+};
+
 const toVector = (lat: number, lon: number, scale = 1) => {
   const v = latLonToUnit(lat, lon);
   return new THREE.Vector3(v.x, v.y, v.z).multiplyScalar(scale);
@@ -87,10 +94,11 @@ interface Engine {
   setPins: (sites: Pyramid[]) => void;
   setPanelOffset: (x: number, y: number) => void;
   pick: (clientX: number, clientY: number, radius: number) => number[];
+  invalidate: () => void;
 }
 
 const Globe3D = ({
-  pyramids, filteredIds, selectedId, flyToKey, onSelect, focusPoint, detailsOpen, loadingLabel, onUnavailable,
+  pyramids, filteredIds, selectedId, flyToKey, onSelect, focusPoint, detailsOpen, onReady, onUnavailable,
 }: Globe3DProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const engineRef = useRef<Engine | null>(null);
@@ -100,6 +108,8 @@ const Globe3D = ({
   onSelectRef.current = onSelect;
   const onUnavailableRef = useRef(onUnavailable);
   onUnavailableRef.current = onUnavailable;
+  const onReadyRef = useRef(onReady);
+  onReadyRef.current = onReady;
   const selectedRef = useRef(selectedId);
   selectedRef.current = selectedId;
   const flyKeyRef = useRef(flyToKey);
@@ -152,6 +162,7 @@ const Globe3D = ({
     controls.maxDistance = 18;
     controls.rotateSpeed = 0.5;
     controls.autoRotate = !reduced;
+    controls.addEventListener('change', () => engineRef.current?.invalidate());
     controls.autoRotateSpeed = 0.25;
 
     scene.add(new THREE.AmbientLight(0xffffff, 1.8 * Math.PI));
@@ -245,12 +256,21 @@ const Globe3D = ({
     const clouds: { mesh: THREE.Mesh; spin: number }[] = [];
     const disposables: { dispose: () => void }[] = [];
 
+    // How much the device can take. Without a GPU, or on a struggling one, the globe drops detail
+    // and finally draws only when something changes, so the page stays responsive.
+    let quality = usesSoftwareRendering(renderer) ? 2 : 0;
+    let renderUntil = 0;
+    let slowSum = 0;
+    let slowFrames = 0;
     let panelOffset = { x: 0, y: 0 };
     const projected = new THREE.Vector3();
     const toCamera = new THREE.Vector3();
     const engine: Engine = {
       pins: null,
       flyTo: () => undefined,
+      invalidate: () => {
+        renderUntil = performance.now() + 400;
+      },
       setPanelOffset: (x, y) => {
         panelOffset = { x, y };
         const { clientWidth: w, clientHeight: h } = container;
@@ -267,6 +287,7 @@ const Globe3D = ({
         const attr = new THREE.BufferAttribute(new Float32Array(sites.length).fill(1), 1);
         pinGeometry.setAttribute('state', attr);
         engine.pins = { attr, positions };
+        engine.invalidate();
       },
       pick: (clientX, clientY, radius) => {
         if (!engine.pins) return [];
@@ -318,7 +339,8 @@ const Globe3D = ({
       camera.aspect = w / h;
       engine.setPanelOffset(panelOffset.x, panelOffset.y);
       camera.updateProjectionMatrix();
-      px.value = (h * dpr) / 900;
+      px.value = (h * renderer.getPixelRatio()) / 900;
+      engine.invalidate();
     };
     resize();
     const observer = new ResizeObserver(resize);
@@ -410,17 +432,34 @@ const Globe3D = ({
           disposables.push(geometry, material);
         });
 
-        halo.visible = true;
-        pinPoints.visible = true;
-        setReady(true);
-        entryStart = reduced ? 0 : performance.now();
-        if (!reduced) root.position.y = -6.5;
+        applyQuality();
+        // Compiling shaders off the main thread where the browser allows it avoids a long freeze.
+        return renderer.compileAsync(scene, camera).then(() => {
+          if (disposed) return;
+          halo.visible = true;
+          pinPoints.visible = true;
+          setReady(true);
+          onReadyRef.current();
+          engine.invalidate();
+        });
       })
       .catch(() => {
         if (!disposed) onUnavailableRef.current();
       });
 
-    let entryStart = 0;
+    const applyQuality = () => {
+      clouds.forEach((c, i) => {
+        c.mesh.visible = quality === 0 || i === 0;
+      });
+      stars.visible = quality < 2;
+      if (quality > 0 && renderer.getPixelRatio() > 1) {
+        renderer.setPixelRatio(1);
+        resize();
+      }
+      if (quality === 2) controls.autoRotate = false;
+      engine.invalidate();
+    };
+
     let frame = 0;
     let last = performance.now();
     const tick = (now: number) => {
@@ -429,8 +468,22 @@ const Globe3D = ({
         last = now;
         return;
       }
-      const dt = Math.min(0.05, (now - last) / 1000);
+      const elapsed = now - last;
+      const dt = Math.min(0.05, elapsed / 1000);
       last = now;
+      if (halo.visible && quality < 2) {
+        slowSum += elapsed;
+        slowFrames += 1;
+        if (slowFrames === 40) {
+          const average = slowSum / slowFrames;
+          slowSum = 0;
+          slowFrames = 0;
+          if (average > 45) {
+            quality = average > 90 ? 2 : quality + 1;
+            applyQuality();
+          }
+        }
+      }
       clock.planet.value += dt / 12;
       clock.cloud.value += dt / 20;
       clock.star.value += dt;
@@ -439,11 +492,6 @@ const Globe3D = ({
       clouds.forEach((c) => {
         c.mesh.rotation.y += dt * c.spin;
       });
-      if (entryStart) {
-        const t = Math.min(1, (now - entryStart) / 1900);
-        root.position.y = -6.5 * Math.pow(1 - t, 3);
-        if (t >= 1) entryStart = 0;
-      }
       if (flight) {
         const t = Math.min(1, (now - flight.start) / flight.ms);
         const e = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
@@ -455,6 +503,8 @@ const Globe3D = ({
         if (t >= 1) flight = null;
       }
       controls.update();
+      // At the lowest quality, draw only while something is changing.
+      if (quality === 2 && !flight && now > renderUntil) return;
       halo.quaternion.copy(camera.quaternion);
       renderer.render(scene, camera);
     };
@@ -500,6 +550,7 @@ const Globe3D = ({
       pins.attr.setX(i, p.id === selectedId ? 2 : filteredSet.has(p.id) ? 1 : 0);
     });
     pins.attr.needsUpdate = true;
+    engineRef.current?.invalidate();
   }, [pyramids, filteredSet, selectedId, ready]);
 
   useEffect(() => {
@@ -561,11 +612,6 @@ const Globe3D = ({
       }}
       onPointerLeave={() => setHover(null)}
     >
-      {!ready && (
-        <div className="absolute inset-0 flex items-center justify-center text-xs font-mono text-muted-foreground" role="status">
-          {loadingLabel}
-        </div>
-      )}
       {hover && !choice && (
         <div
           className="pointer-events-none absolute z-10 max-w-[240px] rounded-md border border-border bg-black/85 px-3 py-2 text-xs"

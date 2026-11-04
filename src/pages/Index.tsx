@@ -3,12 +3,9 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import FlatMap from '@/components/FlatMap';
 import PyramidFilters from '@/components/PyramidFilters';
 import PyramidList from '@/components/PyramidList';
-import PyramidDetails from '@/components/PyramidDetails';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
-import CompareDialog from '@/components/CompareDialog';
-import TimelineDialog from '@/components/TimelineDialog';
 import TourCard from '@/components/TourCard';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import GlobePoster from '@/components/GlobePoster';
 import { TOUR_IDS, allPyramids as basePyramids } from '@/data';
 import { Pyramid, Filters, continentCenters } from '@/types/pyramid';
 import { filterPyramids, sortPyramids } from '@/utils/filters';
@@ -20,14 +17,18 @@ import { useLocalizedPyramids } from '@/i18n/useLocalizedPyramids';
 // three.js + globe.gl are the bulk of the JS: load them only after first paint.
 const Globe3D = lazy(() => import('@/components/Globe3D'));
 
-const hasWebGL = () => {
-  try {
-    const canvas = document.createElement('canvas');
-    return !!(window.WebGLRenderingContext && (canvas.getContext('webgl2') || canvas.getContext('webgl')));
-  } catch {
-    return false;
-  }
-};
+// Everything below opens on demand, so it stays out of the first load.
+const PyramidDetails = lazy(() => import('@/components/PyramidDetails'));
+const CompareDialog = lazy(() => import('@/components/CompareDialog'));
+const TimelineDialog = lazy(() => import('@/components/TimelineDialog'));
+const AboutDialog = lazy(() => import('@/components/AboutDialog'));
+
+// A cheap check only: creating a real WebGL context here would block the first paint.
+// If the globe cannot start after all, it asks for the flat map through onUnavailable.
+const supportsWebGL = () => 'WebGLRenderingContext' in window;
+
+// The globe starts on the first interaction, or shortly after the page has settled.
+const GLOBE_START_DELAY = 2500;
 
 const knownIds = new Set(basePyramids.map((p) => p.id));
 const toolbarButton =
@@ -47,7 +48,10 @@ const Index = () => {
   const [flyToKey, setFlyToKey] = useState(0);
   const [showList, setShowList] = useState(true);
   const [panelOpen, setPanelOpen] = useState(false);
-  const [webgl, setWebgl] = useState(hasWebGL);
+  const [webgl, setWebgl] = useState(supportsWebGL);
+  const [globeStarted, setGlobeStarted] = useState(false);
+  const [globeReady, setGlobeReady] = useState(false);
+  const onGlobeReady = useCallback(() => setGlobeReady(true), []);
   const showFlatMap = useCallback(() => setWebgl(false), []);
   const [showIntro, setShowIntro] = useState(!siteId);
   const [compareOpen, setCompareOpen] = useState(() => params.has('compare') && !siteId);
@@ -148,6 +152,25 @@ const Index = () => {
     }
   }, [tourIndex, tourStops]);
 
+  useEffect(() => {
+    if (!webgl) return;
+    const start = () => setGlobeStarted(true);
+    const events = ['pointerdown', 'keydown', 'wheel', 'touchstart'] as const;
+    events.forEach((name) => window.addEventListener(name, start, { once: true, passive: true }));
+    const schedule = () => window.setTimeout(start, GLOBE_START_DELAY);
+    let timer: number | undefined;
+    if (document.readyState === 'complete') timer = schedule();
+    const onLoad = () => {
+      timer = schedule();
+    };
+    window.addEventListener('load', onLoad, { once: true });
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener('load', onLoad);
+      events.forEach((name) => window.removeEventListener(name, start));
+    };
+  }, [webgl]);
+
   // Keep the tab title useful when a site is shared or bookmarked.
   useEffect(() => {
     document.title = selectedPyramid ? `${selectedPyramid.nome} · Pyramid Explorer` : 'Pyramid Explorer';
@@ -239,25 +262,24 @@ const Index = () => {
         </div>
 
         {webgl ? (
-          <Suspense
-            fallback={
-              <div className="absolute inset-0 flex items-center justify-center text-xs font-mono text-muted-foreground" role="status">
-                {t.loading}
-              </div>
-            }
-          >
-            <Globe3D
-              pyramids={allPyramids}
-              filteredIds={filteredIds}
-              selectedId={highlightId}
-              flyToKey={flyToKey}
-              onSelect={handleSelect}
-              focusPoint={focusPoint}
-              detailsOpen={!!selectedPyramid}
-              loadingLabel={t.loading}
-              onUnavailable={showFlatMap}
-            />
-          </Suspense>
+          <>
+            {globeStarted && (
+              <Suspense fallback={null}>
+                <Globe3D
+                  pyramids={allPyramids}
+                  filteredIds={filteredIds}
+                  selectedId={highlightId}
+                  flyToKey={flyToKey}
+                  onSelect={handleSelect}
+                  focusPoint={focusPoint}
+                  detailsOpen={!!selectedPyramid}
+                  onReady={onGlobeReady}
+                  onUnavailable={showFlatMap}
+                />
+              </Suspense>
+            )}
+            {!globeReady && <div className="absolute inset-0 pointer-events-none"><GlobePoster /></div>}
+          </>
         ) : (
           <FlatMap
             pyramids={allPyramids}
@@ -297,34 +319,29 @@ const Index = () => {
         </div>
       </section>
 
-      <PyramidDetails
-        pyramid={selectedPyramid}
-        onClose={handleClose}
-        inCompare={!!selectedPyramid && compareIds.includes(selectedPyramid.id)}
-        onToggleCompare={toggleCompare}
-      />
-
-      <CompareDialog
-        open={compareOpen}
-        onOpenChange={setCompareOpen}
-        pyramids={allPyramids}
-        selectedIds={compareIds}
-        onChange={setCompare}
-      />
-      <TimelineDialog open={timelineOpen} onOpenChange={setTimelineOpen} pyramids={filtered} onSelect={handleSelect} />
-      <Dialog open={aboutOpen} onOpenChange={setAboutOpen}>
-        <DialogContent className="max-w-lg">
-          <DialogHeader>
-            <DialogTitle>{t.aboutData}</DialogTitle>
-            <DialogDescription className="leading-relaxed">{t.aboutDataBody}</DialogDescription>
-          </DialogHeader>
-          <ul className="text-xs font-mono space-y-1">
-            <li>{t.statusVerified}: {allPyramids.filter((p) => p.stato_verifica === 'verified').length}</li>
-            <li>{t.statusPartial}: {allPyramids.filter((p) => p.stato_verifica === 'partial').length}</li>
-            <li>{t.statusUnverified}: {allPyramids.filter((p) => !p.stato_verifica || p.stato_verifica === 'unverified').length}</li>
-          </ul>
-        </DialogContent>
-      </Dialog>
+      <Suspense fallback={null}>
+        {selectedPyramid && (
+          <PyramidDetails
+            pyramid={selectedPyramid}
+            onClose={handleClose}
+            inCompare={compareIds.includes(selectedPyramid.id)}
+            onToggleCompare={toggleCompare}
+          />
+        )}
+        {compareOpen && (
+          <CompareDialog
+            open={compareOpen}
+            onOpenChange={setCompareOpen}
+            pyramids={allPyramids}
+            selectedIds={compareIds}
+            onChange={setCompare}
+          />
+        )}
+        {timelineOpen && (
+          <TimelineDialog open={timelineOpen} onOpenChange={setTimelineOpen} pyramids={filtered} onSelect={handleSelect} />
+        )}
+        {aboutOpen && <AboutDialog open={aboutOpen} onOpenChange={setAboutOpen} pyramids={allPyramids} />}
+      </Suspense>
     </main>
   );
 };

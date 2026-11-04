@@ -8,7 +8,13 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const dist = join(root, 'dist');
 const ORIGIN = 'https://pyramid-explorer-global.vercel.app';
 const pyramids = JSON.parse(readFileSync(join(root, 'src/data/pyramids.json'), 'utf8'));
-const template = readFileSync(join(dist, 'index.html'), 'utf8');
+// Inlining the small stylesheet removes the only render-blocking request.
+const inlineCss = (html) =>
+  html.replace(/<link rel="stylesheet"[^>]*href="(\/assets\/[^"]+\.css)"[^>]*>/, (_, href) =>
+    `<style>${readFileSync(join(dist, href), 'utf8').replace(/<\/style/g, '<\\/style')}</style>`,
+  );
+const template = inlineCss(readFileSync(join(dist, 'index.html'), 'utf8'));
+writeFileSync(join(dist, 'index.html'), template);
 
 const esc = (value) =>
   String(value).replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch]);
@@ -51,7 +57,7 @@ ${sources ? `<h2>Sources</h2><ul>${sources}</ul>` : ''}
     .replace(/<meta property="og:description" content="[^"]*"/, `<meta property="og:description" content="${esc(description)}"`)
     .replace(/<meta property="og:url" content="[^"]*"/, `<meta property="og:url" content="${url}"`)
     .replace('</head>', `<link rel="canonical" href="${url}" />\n<script type="application/ld+json">${jsonLd}</script>\n</head>`)
-    .replace('<div id="root"></div>', `<div id="root">${body}</div>`);
+    .replace(/<!--shell-->.*<!--\/shell-->/s, body);
 };
 
 for (const p of pyramids) {

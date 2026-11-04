@@ -18,10 +18,20 @@
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://pyramid-explorer-global.vercel.app/og.jpg" />
+      <style>
+      html, body { margin: 0; height: 100%; background: #0a0a14; }
+      .globe-stage { position: fixed; inset: 0; overflow: hidden; pointer-events: none; }
+      .globe-poster { position: absolute; inset: 0; margin: auto; display: block; max-width: none; width: min(100svh, 124vw); height: min(100svh, 124vw); }
+      @media (min-width: 768px) {
+        .globe-stage { left: 320px; }
+        .globe-poster { width: min(100svh, calc((100vw - 320px) * 1.24)); height: min(100svh, calc((100vw - 320px) * 1.24)); }
+      }
+    </style>
+    <link rel="preload" as="image" href="/globe-poster-800.webp" imagesrcset="/globe-poster-480.webp 480w, /globe-poster-800.webp 800w" imagesizes="(min-width: 768px) 800px, 480px" fetchpriority="high" />
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root"><!--shell--><div class="globe-stage"><img class="globe-poster" src="/globe-poster-800.webp" srcset="/globe-poster-480.webp 480w, /globe-poster-800.webp 800w" sizes="(min-width: 768px) 800px, 480px" alt="" fetchpriority="high" /></div><!--/shell--></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

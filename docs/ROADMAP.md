@@ -11,7 +11,7 @@
 
 ## Next
 1. Planet globe with real site pins, adapted from the GetLayers scene: smaller textures, one bloom pass at most, capped pixel ratio, assets on Vercel Blob. Keep it only if it runs well on a real phone.
-2. Mobile performance. A local Lighthouse run before the cleanup gave 55, 63 and 71, with the globe script blocking the main thread for seconds. Load a static globe image first and start three.js afterwards. Decide this together with step 1, then measure with PageSpeed Insights after a production deploy.
+2. Keep measuring with PageSpeed Insights after each deploy. The page now paints a static globe first and starts three.js on the first interaction or about 2.5 s after load; that moves the globe's cost later, it does not remove it.
 3. 360° view: see `PHOTO_EXPERIENCE.md`. The photo gallery with credits is done, covering 83 sites.
 4. Close the source gaps listed in `DATA_AUDIT.md`, starting with altitude and area.
 5. Rendered 3D models of a few well-documented pyramids, drawn from sourced measurements.
