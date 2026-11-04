@@ -29,4 +29,4 @@ Install with `bun install --frozen-lockfile`: `npm install` currently crashes on
 `/site/:id` opens a site. Query params hold filters and `compare=a,b`. Keep these stable: they are shareable.
 
 ## Status
-See `docs/ROADMAP.md`. Photos and the immersive view are next: `docs/PHOTO_EXPERIENCE.md`.
+See `docs/ROADMAP.md`. The 360° view is next: `docs/PHOTO_EXPERIENCE.md`.
