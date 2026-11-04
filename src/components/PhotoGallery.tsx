@@ -28,6 +28,20 @@ const PhotoGallery = ({ open, onOpenChange, title, subtitle, photos }: PhotoGall
   const [full, setFull] = useState<CommonsPhoto | null>(null);
   const motion = useRef({ rot: 0, vel: 0, target: 0, dragging: false, lastX: 0, downX: 0, moved: false, settled: true });
   const frame = useRef(0);
+  const mainRef = useRef<HTMLDivElement>(null);
+  const zoomTrigger = useRef<HTMLButtonElement | null>(null);
+  const openFull = (photo: CommonsPhoto, trigger: HTMLButtonElement | null) => {
+    zoomTrigger.current = trigger;
+    setFull(photo);
+  };
+  // The full view replaces the gallery for assistive technology too, and gives focus back on close.
+  const closeFull = () => {
+    setFull(null);
+    requestAnimationFrame(() => zoomTrigger.current?.focus());
+  };
+  useEffect(() => {
+    if (mainRef.current) mainRef.current.inert = !!full;
+  }, [full]);
   const count = photos.length;
   const clampIndex = useCallback((i: number) => Math.max(0, Math.min(count - 1, i)), [count]);
 
@@ -105,16 +119,19 @@ const PhotoGallery = ({ open, onOpenChange, title, subtitle, photos }: PhotoGall
           onEscapeKeyDown={(e) => {
             if (full) {
               e.preventDefault();
-              setFull(null);
+              closeFull();
             }
           }}
           onKeyDown={(e) => {
             if (full) return;
             if (e.key === 'ArrowRight') go(front + 1);
             if (e.key === 'ArrowLeft') go(front - 1);
+            if (e.key === 'Home') go(0);
+            if (e.key === 'End') go(count - 1);
           }}
           className="fixed inset-0 z-50 overflow-hidden bg-[#070a14] text-foreground outline-none"
         >
+          <div ref={mainRef}>
           <div
             ref={stageRef}
             className="gallery-stage absolute inset-0 grid cursor-grab touch-none select-none place-items-center active:cursor-grabbing"
@@ -143,12 +160,14 @@ const PhotoGallery = ({ open, onOpenChange, title, subtitle, photos }: PhotoGall
               const m = motion.current;
               m.dragging = false;
               m.settled = false;
+              // No coasting after a swipe when the user asks for less motion.
+              if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) m.vel = 0;
               if (m.moved) return;
               const target = document.elementFromPoint(e.clientX, e.clientY);
               const zoom = target?.closest<HTMLElement>('[data-zoom]');
               if (zoom) {
                 const photo = photos[Number(zoom.dataset.zoom)];
-                if (photo) setFull(photo);
+                if (photo) openFull(photo, zoom as HTMLButtonElement);
                 return;
               }
               const card = target?.closest<HTMLElement>('[data-slot]');
@@ -160,11 +179,11 @@ const PhotoGallery = ({ open, onOpenChange, title, subtitle, photos }: PhotoGall
           >
             <div ref={ringRef} className="gallery-ring">
               {photos.map((photo, i) => (
-                <article key={photo.title} data-slot={i} className={`gallery-card ${i === front ? 'is-front' : ''}`} style={{ '--a': `${-i * STEP}deg` } as React.CSSProperties}>
+                <article key={photo.title} data-slot={i} aria-hidden={i !== front} className={`gallery-card ${i === front ? 'is-front' : ''}`} style={{ '--a': `${-i * STEP}deg` } as React.CSSProperties}>
                   <div className="gallery-card-inner">
-                    <img src={photo.url} alt={`${title}, ${i + 1}`} draggable={false} loading={Math.abs(i - front) < 3 ? 'eager' : 'lazy'} referrerPolicy="no-referrer" />
+                    <img src={photo.url} alt={`${title}, ${t.photoAlt.replace('{n}', String(i + 1)).replace('{total}', String(count))}`} draggable={false} loading={Math.abs(i - front) < 3 ? 'eager' : 'lazy'} referrerPolicy="no-referrer" />
                     <span className="gallery-card-no">{pad2(i + 1)}</span>
-                    <button type="button" data-zoom={i} aria-label={t.viewFullPhoto} onClick={() => setFull(photo)} className="gallery-zoom">
+                    <button type="button" data-zoom={i} tabIndex={i === front ? 0 : -1} aria-label={t.viewFullPhoto} onClick={(e) => openFull(photo, e.currentTarget)} className="gallery-zoom">
                       <ZoomIn size={20} aria-hidden />
                     </button>
                   </div>
@@ -197,18 +216,19 @@ const PhotoGallery = ({ open, onOpenChange, title, subtitle, photos }: PhotoGall
                   · <a href={current.page} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 underline hover:text-primary">Commons <ExternalLink size={10} /></a>
                 </p>
               )}
-              <p className="mt-1 hidden text-[10px] uppercase tracking-[0.2em] text-muted-foreground md:block">{t.galleryHint}</p>
+              <p className="sr-only mt-1 text-[10px] uppercase tracking-[0.2em] text-muted-foreground md:not-sr-only md:block">{t.galleryHint}</p>
             </div>
             <button type="button" onClick={() => go(front + 1)} disabled={front >= count - 1} aria-label={t.nextPhoto} className="grid h-11 w-11 place-items-center rounded-full border border-border bg-card/80 hover:bg-card disabled:opacity-30">
               <ChevronRight size={20} />
             </button>
           </footer>
+          </div>
 
           {full && (
-            <div className="absolute inset-0 z-30 flex flex-col items-center justify-center gap-2 bg-black/95 p-3">
+            <div role="group" aria-label={t.viewFullPhoto} className="absolute inset-0 z-30 flex flex-col items-center justify-center gap-2 bg-black/95 p-3">
               <div className="relative max-h-[88svh] max-w-full">
-                <img src={full.url} alt={title} referrerPolicy="no-referrer" className="max-h-[88svh] max-w-full object-contain" />
-                <button type="button" autoFocus aria-label={t.closeFullPhoto} onClick={() => setFull(null)} className="gallery-zoom">
+                <img src={full.url} alt={`${title}, ${t.photoAlt.replace('{n}', String(photos.indexOf(full) + 1)).replace('{total}', String(count))}`} referrerPolicy="no-referrer" className="max-h-[88svh] max-w-full object-contain" />
+                <button type="button" autoFocus aria-label={t.closeFullPhoto} onClick={closeFull} className="gallery-zoom">
                   <ZoomOut size={20} aria-hidden />
                 </button>
               </div>
