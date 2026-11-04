@@ -38,6 +38,7 @@ const PanoramaViewer = ({ open, onOpenChange, title, subtitle, panorama }: Props
   const [status, setStatus] = useState<Status>('loading');
   const [credit, setCredit] = useState<CommonsPhoto | null>(null);
   const [touched, setTouched] = useState(false);
+  const label = `${t.panoramaOpen}: ${title}`;
 
   useEffect(() => {
     if (!open || !host) return;
@@ -71,6 +72,8 @@ const PanoramaViewer = ({ open, onOpenChange, title, subtitle, panorama }: Props
       canvas.style.display = 'block';
       canvas.style.touchAction = 'none';
       canvas.style.cursor = 'grab';
+      canvas.setAttribute('role', 'img');
+      canvas.setAttribute('aria-label', `${label}`);
 
       const geometry =
         kind === 'sphere'
@@ -193,12 +196,12 @@ const PanoramaViewer = ({ open, onOpenChange, title, subtitle, panorama }: Props
       disposed = true;
       teardown();
     };
-  }, [open, panorama, host]);
+  }, [open, panorama, host, label]);
 
   return (
     <DialogPrimitive.Root open={open} onOpenChange={onOpenChange}>
       <DialogPrimitive.Portal>
-        <DialogPrimitive.Content aria-describedby={undefined} className="fixed inset-0 z-[60] bg-[#05070d] text-foreground outline-none">
+        <DialogPrimitive.Content aria-describedby="panorama-keys" className="fixed inset-0 z-[60] bg-[#05070d] text-foreground outline-none">
           <div ref={setHost} className="absolute inset-0" />
 
           <header className="pointer-events-none absolute inset-x-0 top-0 z-10 bg-gradient-to-b from-black/70 to-transparent px-4 pb-8 pt-4 pr-16 md:px-8 md:pt-6">
@@ -210,13 +213,15 @@ const PanoramaViewer = ({ open, onOpenChange, title, subtitle, panorama }: Props
             <X size={20} />
           </DialogPrimitive.Close>
 
+          <p id="panorama-keys" className="sr-only">{t.panoramaKeys}</p>
           {status === 'loading' && <p role="status" className="absolute inset-0 grid place-items-center text-sm text-white/80">{t.panoramaLoading}</p>}
           {status === 'failed' && <p role="alert" className="absolute inset-0 grid place-items-center px-6 text-center text-sm text-white/80">{t.panoramaFailed}</p>}
 
           {status === 'ready' && !touched && (
             <p className="pointer-events-none absolute inset-x-0 bottom-20 z-10 flex justify-center">
               <span className="flex items-center gap-2 rounded-full bg-black/75 px-4 py-2 text-sm text-white">
-                <Move size={16} /> {t.panoramaHint}
+                <Move size={16} aria-hidden="true" /> {t.panoramaHint}
+                <span className="hidden md:inline">· {t.panoramaKeys}</span>
               </span>
             </p>
           )}

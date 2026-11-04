@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Images, Rotate3D, Search } from 'lucide-react';
 import panoramaIndex from '@/data/sitePanoramas.json';
 import photoIndex from '@/data/sitePhotos.json';
@@ -19,6 +19,18 @@ const SitePhotos = ({ pyramid }: { pyramid: Pyramid }) => {
   const [open, setOpen] = useState(false);
   const [panoramaOpen, setPanoramaOpen] = useState(false);
   const panorama = panoramas[pyramid.id];
+  const panoramaButton = useRef<HTMLButtonElement>(null);
+  const galleryButton = useRef<HTMLButtonElement>(null);
+  // The viewers unmount as soon as they close, so focus goes back to the button that opened them.
+  const refocus = (button: React.RefObject<HTMLButtonElement>) => requestAnimationFrame(() => button.current?.focus());
+  const setPanorama = (next: boolean) => {
+    setPanoramaOpen(next);
+    if (!next) refocus(panoramaButton);
+  };
+  const setGallery = (next: boolean) => {
+    setOpen(next);
+    if (!next) refocus(galleryButton);
+  };
 
   useEffect(() => {
     setPhotos([]);
@@ -48,19 +60,19 @@ const SitePhotos = ({ pyramid }: { pyramid: Pyramid }) => {
       </h3>
       {panorama && (
         <>
-          <button type="button" onClick={() => setPanoramaOpen(true)} className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-primary/40 bg-primary/10 px-3 text-sm font-medium text-primary hover:bg-primary/20">
-            <Rotate3D size={16} /> {t.panoramaOpen}
+          <button ref={panoramaButton} type="button" onClick={() => setPanoramaOpen(true)} className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-primary/40 bg-primary/10 px-3 text-sm font-medium text-primary hover:bg-primary/20">
+            <Rotate3D size={16} aria-hidden="true" /> {t.panoramaOpen}
           </button>
           {panoramaOpen && (
             <Suspense fallback={null}>
-              <PanoramaViewer open={panoramaOpen} onOpenChange={setPanoramaOpen} title={pyramid.nome} subtitle={`${pyramid.paese} · ${pyramid.regione}`} panorama={panorama} />
+              <PanoramaViewer open={panoramaOpen} onOpenChange={setPanorama} title={pyramid.nome} subtitle={`${pyramid.paese} · ${pyramid.regione}`} panorama={panorama} />
             </Suspense>
           )}
         </>
       )}
       {cover ? (
         <>
-          <button type="button" onClick={() => setOpen(true)} className="group relative block w-full overflow-hidden rounded-lg border border-border">
+          <button ref={galleryButton} type="button" onClick={() => setOpen(true)} className="group relative block w-full overflow-hidden rounded-lg border border-border">
             <img src={cover.url} alt={pyramid.nome} loading="lazy" referrerPolicy="no-referrer" className="aspect-video w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
             <span className="absolute bottom-2 right-2 flex min-h-9 items-center gap-1.5 rounded-full bg-black/75 px-3 text-xs font-medium text-white">
               <Images size={14} /> {t.openGallery} ({photos.length})
@@ -72,7 +84,7 @@ const SitePhotos = ({ pyramid }: { pyramid: Pyramid }) => {
           </p>
           {open && (
             <Suspense fallback={null}>
-              <PhotoGallery open={open} onOpenChange={setOpen} title={pyramid.nome} subtitle={`${pyramid.paese} · ${pyramid.regione}`} photos={photos} />
+              <PhotoGallery open={open} onOpenChange={setGallery} title={pyramid.nome} subtitle={`${pyramid.paese} · ${pyramid.regione}`} photos={photos} />
             </Suspense>
           )}
         </>

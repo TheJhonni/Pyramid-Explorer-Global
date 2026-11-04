@@ -18,16 +18,22 @@ Install with `bun install --frozen-lockfile`: `npm install` currently crashes on
 ## Data
 - `src/data/pyramids.json`: base dataset, text in English. Field names are in Italian for historical reasons.
 - `src/data/locales/{it,es,fr,de,pt}.json`: text overlays keyed by site id, loaded on demand.
-- `src/data/sitePhotos.json`: Commons file names per site, checked by eye. Author and licence are fetched live from the Commons API and must stay visible next to each photo.
+- `src/data/sitePhotos.json`: Commons file names per site, checked by eye (93 sites; the 10 without a usable file are listed in `docs/PHOTO_EXPERIENCE.md`). Author and licence are fetched live from the Commons API and must stay visible next to each photo.
 - `src/data/sitePanoramas.json`: 360° panoramas per site, from Commons, checked by eye. `sphere` is a full equirectangular image, `strip` a 360° band with limited tilt. Credits come live from Commons, as for photos.
-- `docs/DATA_AUDIT.md`: result of the fact check, with sites flagged or removed.
+- `src/data/siteModels.json`: schematic 3D models (at most five) as horizontal sections [width, depth, height] in metres, each value from the listed source. `ModelViewer` loads only when opened and says it is schematic.
+- `docs/DATA_AUDIT.md`: result of the fact check, with sites flagged or removed. After changing `campi_senza_fonte`, run `bun run audit` to refresh its coverage report; a test fails if it is stale.
+- `area_mq` is the footprint of the structure, never the area of the whole site.
+- `civilta`: a key from `src/i18n/civilizations.ts`, taken from `popolazione_ufficiale_associata`; `null` when builders are mixed, modern, natural or unknown. URL param `civ`.
 - Continent values stay as Italian keys (`Europa`, `Nord America`); `tc()` translates them.
 
 ## Planet globe
-`src/components/Globe3D.tsx` is adapted from the GetLayers Planet scene. Its assets are on Vercel Blob (store `pyramid-explorer-assets`), not in Git. For local work, copy them to `public/planet` and set `VITE_PLANET_ASSETS=/planet` in `.env.local`. Pins come from `latLonToUnit` in `src/utils/geo.ts`. It starts after first paint behind `public/globe-poster-*.webp`, and lowers quality on slow devices. If the default view changes, regenerate the poster.
+`src/components/Globe3D.tsx` is adapted from the GetLayers Planet scene. Its assets are on Vercel Blob (store `pyramid-explorer-assets`), not in Git. For local work, copy them to `public/planet` and set `VITE_PLANET_ASSETS=/planet` in `.env.local`. Pins come from `latLonToUnit` in `src/utils/geo.ts`. It starts after first paint behind `public/globe-poster-*.webp`, and lowers quality on slow devices. If the default view changes, regenerate the poster. On phones (`LOW_POWER`) the shader lifts dark tones and uses a more frontal sun; `globe-poster-480.webp` (the phone poster) has the same tone curve applied, `pow(v, 0.72) × 1.08` on the globe disc, so the swap does not jump.
 
 ## URLs
 `/site/:id` opens a site. Query params hold filters and `compare=a,b`. Keep these stable: they are shareable.
 
 ## Status
+- PR #5 (`improve/final-polish`): data checks, photos, civilization filter, schematic models, phone globe, accessibility. See `docs/ROADMAP.md`.
+- Node: Vite 7 needs Node 20.19+; if `bun` is missing, `npx -y bun@1.2.23 install --frozen-lockfile` works.
+- Coordinates were checked against Wikipedia, Wikidata and OpenStreetMap in November 2026: see "Coordinate check" in `docs/DATA_AUDIT.md`.
 See `docs/ROADMAP.md`. The 360° trial and its coverage are in `docs/PHOTO_EXPERIENCE.md`.

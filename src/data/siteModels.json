@@ -1,0 +1,107 @@
+{
+  "giza_great": {
+    "sections": [
+      [
+        230.33,
+        230.33,
+        0
+      ],
+      [
+        0,
+        0,
+        146.6
+      ]
+    ],
+    "sources": [
+      {
+        "title": "Great Pyramid of Giza (Wikipedia)",
+        "url": "https://en.wikipedia.org/wiki/Great_Pyramid_of_Giza"
+      }
+    ]
+  },
+  "giza_khafre": {
+    "sections": [
+      [
+        215.25,
+        215.25,
+        0
+      ],
+      [
+        0,
+        0,
+        143.5
+      ]
+    ],
+    "sources": [
+      {
+        "title": "Pyramid of Khafre (Wikipedia; Verner 2001)",
+        "url": "https://en.wikipedia.org/wiki/Pyramid_of_Khafre"
+      }
+    ]
+  },
+  "giza_menkaure": {
+    "sections": [
+      [
+        104.6,
+        102.2,
+        0
+      ],
+      [
+        0,
+        0,
+        65
+      ]
+    ],
+    "sources": [
+      {
+        "title": "Pyramid of Menkaure (Wikipedia)",
+        "url": "https://en.wikipedia.org/wiki/Pyramid_of_Menkaure"
+      }
+    ]
+  },
+  "dahshur_red": {
+    "sections": [
+      [
+        220,
+        220,
+        0
+      ],
+      [
+        0,
+        0,
+        105
+      ]
+    ],
+    "sources": [
+      {
+        "title": "Red Pyramid (Wikipedia; Lehner 2008)",
+        "url": "https://en.wikipedia.org/wiki/Red_Pyramid"
+      }
+    ]
+  },
+  "dahshur_bent": {
+    "sections": [
+      [
+        189.43,
+        189.43,
+        0
+      ],
+      [
+        123.58,
+        123.58,
+        47.04
+      ],
+      [
+        0,
+        0,
+        104.71
+      ]
+    ],
+    "sources": [
+      {
+        "title": "Bent Pyramid (Wikipedia; Verner 2001)",
+        "url": "https://en.wikipedia.org/wiki/Bent_Pyramid"
+      }
+    ]
+  }
+}

@@ -1,3 +1,4 @@
+import { civilizationKeys } from '@/i18n/civilizations';
 import { AREA_LIMIT, Filters, HEIGHT_LIMIT, Period, SortKey, defaultFilters } from '@/types/pyramid';
 
 const PERIODS: Period[] = ['ancient', 'bce', 'first', 'late'];
@@ -16,6 +17,7 @@ export function filtersFromParams(params: URLSearchParams): Filters {
     ...defaultFilters,
     searchText: params.get('q') ?? '',
     continente: params.get('continent') ?? '',
+    civilization: civilizationKeys.includes(params.get('civ') ?? '') ? params.get('civ')! : '',
     heightMin: clamp(params.get('hmin'), 0, HEIGHT_LIMIT),
     heightMax: clamp(params.get('hmax'), HEIGHT_LIMIT, HEIGHT_LIMIT),
     areaMin: clamp(params.get('amin'), 0, AREA_LIMIT),
@@ -37,6 +39,7 @@ export function filtersToParams(filters: Filters, base?: URLSearchParams): URLSe
   };
   set('q', filters.searchText, !filters.searchText);
   set('continent', filters.continente, !filters.continente);
+  set('civ', filters.civilization, !filters.civilization);
   set('hmin', String(filters.heightMin), filters.heightMin === 0);
   set('hmax', String(filters.heightMax), filters.heightMax >= HEIGHT_LIMIT);
   set('amin', String(filters.areaMin), filters.areaMin === 0);

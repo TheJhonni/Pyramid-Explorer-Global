@@ -1,7 +1,8 @@
 import { AREA_LIMIT, Filters, HEIGHT_LIMIT, Period, SortKey, continenti } from '@/types/pyramid';
-import { Search, RotateCcw, Mountain, Ruler, Globe2, Filter, Star, AlertTriangle, Hourglass, BadgeCheck, ArrowDownUp } from 'lucide-react';
+import { Search, RotateCcw, Mountain, Ruler, Globe2, Filter, Star, AlertTriangle, Hourglass, BadgeCheck, ArrowDownUp, Landmark } from 'lucide-react';
 import { Slider } from '@/components/ui/slider';
 import { useI18n } from '@/i18n/I18nContext';
+import { civilizationLabel } from '@/i18n/civilizations';
 
 interface PyramidFiltersProps {
   filters: Filters;
@@ -9,6 +10,7 @@ interface PyramidFiltersProps {
   onReset: () => void;
   resultCount: number;
   totalCount: number;
+  civilizations: { key: string; count: number }[];
 }
 
 interface RangeFieldProps {
@@ -47,8 +49,8 @@ const RangeField = ({ icon, label, min, max, limit, step, onChange }: RangeField
   );
 };
 
-const PyramidFilters = ({ filters, onChange, onReset, resultCount, totalCount }: PyramidFiltersProps) => {
-  const { t, tc } = useI18n();
+const PyramidFilters = ({ filters, onChange, onReset, resultCount, totalCount, civilizations }: PyramidFiltersProps) => {
+  const { t, tc, lang } = useI18n();
   const update = (partial: Partial<Filters>) => onChange({ ...filters, ...partial });
   const periods: { value: Period; label: string }[] = [
     { value: 'ancient', label: t.periodAncient },
@@ -125,6 +127,27 @@ const PyramidFilters = ({ filters, onChange, onReset, resultCount, totalCount }:
               </button>
             ))}
           </div>
+        </section>
+
+        <section>
+          <label htmlFor="civilization-filter" className="text-[10px] uppercase text-muted-foreground font-mono tracking-wider flex items-center gap-1.5">
+            <Landmark size={10} /> {t.civilization}
+          </label>
+          <select
+            id="civilization-filter"
+            value={filters.civilization}
+            onChange={(e) => update({ civilization: e.target.value })}
+            aria-describedby="civilization-help"
+            className="mt-2 w-full bg-secondary/50 border border-border rounded-md px-3 py-2 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary/50"
+          >
+            <option value="">{t.allCivilizations}</option>
+            {civilizations.map(({ key, count }) => (
+              <option key={key} value={key}>
+                {civilizationLabel(key, lang)} ({count})
+              </option>
+            ))}
+          </select>
+          <p id="civilization-help" className="mt-1.5 text-[10px] leading-snug text-muted-foreground">{t.civilizationHelp}</p>
         </section>
 
         <section>

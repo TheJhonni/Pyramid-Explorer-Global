@@ -15,6 +15,13 @@ import { useI18n } from '@/i18n/I18nContext';
 import { useLocalizedPyramids } from '@/i18n/useLocalizedPyramids';
 
 // three.js + globe.gl are the bulk of the JS: load them only after first paint.
+
+/** Civilization keys with their site counts, most common first. */
+const civilizationOptions = (() => {
+  const counts = new Map<string, number>();
+  for (const p of basePyramids) if (p.civilta) counts.set(p.civilta, (counts.get(p.civilta) ?? 0) + 1);
+  return [...counts.entries()].sort((a, b) => b[1] - a[1]).map(([key, count]) => ({ key, count }));
+})();
 const Globe3D = lazy(() => import('@/components/Globe3D'));
 
 // Everything below opens on demand, so it stays out of the first load.
@@ -210,6 +217,7 @@ const Index = () => {
           onReset={handleReset}
           resultCount={filtered.length}
           totalCount={allPyramids.length}
+          civilizations={civilizationOptions}
         />
         <div className="w-full md:w-80 md:min-w-[320px] border-r border-border bg-card/90 md:bg-card/40 backdrop-blur-sm">
           <button

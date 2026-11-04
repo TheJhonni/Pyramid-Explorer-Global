@@ -21,6 +21,8 @@ const GROUND = 225;
 const GAP = 18;
 
 const Silhouettes = ({ sites }: { sites: Pyramid[] }) => {
+  const { lang } = useI18n();
+  const m = (v: number) => `${v.toLocaleString(lang)} m`;
   const widthOf = (p: Pyramid) => p.base_m || p.altezza_struttura_m;
   const maxHeight = Math.max(...sites.map((p) => p.altezza_struttura_m));
   const totalBase = sites.reduce((sum, p) => sum + widthOf(p), 0);
@@ -29,7 +31,7 @@ const Silhouettes = ({ sites }: { sites: Pyramid[] }) => {
   let x = GAP;
 
   return (
-    <svg viewBox={`0 0 ${VIEW_WIDTH} ${VIEW_HEIGHT}`} className="w-full h-auto" role="img" aria-label={sites.map((p) => `${p.nome}: ${p.altezza_struttura_m} m`).join(', ')}>
+    <svg viewBox={`0 0 ${VIEW_WIDTH} ${VIEW_HEIGHT}`} className="w-full h-auto" role="img" aria-label={sites.map((p) => `${p.nome}: ${m(p.altezza_struttura_m)}`).join(', ')}>
       <line x1="0" x2={VIEW_WIDTH} y1={GROUND} y2={GROUND} stroke="hsl(var(--border))" />
       {sites.map((p, i) => {
         const w = widthOf(p) * scale;
@@ -41,7 +43,7 @@ const Silhouettes = ({ sites }: { sites: Pyramid[] }) => {
           <g key={p.id}>
             <polygon points={`${left},${GROUND} ${left + w / 2},${GROUND - h} ${left + w},${GROUND}`} fill={color} fillOpacity={0.25} stroke={color} strokeWidth={1.5} />
             <text x={left + w / 2} y={GROUND - h - 6} textAnchor="middle" fontSize="12" fill="hsl(var(--foreground))" fontFamily="IBM Plex Mono, monospace">
-              {p.altezza_struttura_m} m
+              {m(p.altezza_struttura_m)}
             </text>
             <text x={left + w / 2} y={GROUND + 18} textAnchor="middle" fontSize="12" fill={color}>
               {i + 1}
@@ -54,7 +56,8 @@ const Silhouettes = ({ sites }: { sites: Pyramid[] }) => {
 };
 
 const CompareDialog = ({ open, onOpenChange, pyramids, selectedIds, onChange }: CompareDialogProps) => {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
+  const m = (v: number) => `${v.toLocaleString(lang)} m`;
   const [query, setQuery] = useState('');
 
   const candidates = useMemo(
@@ -92,7 +95,7 @@ const CompareDialog = ({ open, onOpenChange, pyramids, selectedIds, onChange }: 
                     {p.nome}
                   </span>
                   <span className="flex items-center gap-3 shrink-0 font-mono text-muted-foreground">
-                    {p.altezza_struttura_m} m{p.base_m > 0 ? ` × ${p.base_m} m` : ''}
+                    {m(p.altezza_struttura_m)}{p.base_m > 0 ? ` × ${m(p.base_m)}` : ''}
                     <button type="button" onClick={() => toggle(p.id)} aria-label={`${t.close}: ${p.nome}`} className="p-1 hover:text-foreground">
                       <X size={12} />
                     </button>
@@ -121,7 +124,7 @@ const CompareDialog = ({ open, onOpenChange, pyramids, selectedIds, onChange }: 
                 <label className="flex items-center gap-2 px-3 py-2 text-xs cursor-pointer hover:bg-secondary/40">
                   <input type="checkbox" checked={checked} disabled={!checked && selectedIds.length >= MAX} onChange={() => toggle(p.id)} className="accent-primary" />
                   <span className="flex-1 truncate">{p.nome}</span>
-                  <span className="font-mono text-muted-foreground">{p.altezza_struttura_m} m</span>
+                  <span className="font-mono text-muted-foreground">{m(p.altezza_struttura_m)}</span>
                 </label>
               </li>
             );

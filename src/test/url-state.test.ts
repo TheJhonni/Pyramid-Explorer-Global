@@ -8,12 +8,13 @@ describe("URL state", () => {
   });
 
   it("round-trips filters", () => {
-    const filters = { ...defaultFilters, searchText: "giza", continente: "Africa", heightMin: 50, period: "ancient" as const, sort: "height" as const, soloVerificate: true };
+    const filters = { ...defaultFilters, searchText: "giza", continente: "Africa", civilization: "egyptian", heightMin: 50, period: "ancient" as const, sort: "height" as const, soloVerificate: true };
     expect(filtersFromParams(filtersToParams(filters))).toEqual(filters);
   });
 
   it("ignores values it does not recognise", () => {
-    const parsed = filtersFromParams(new URLSearchParams("period=nope&sort=nope&hmin=abc&hmax=99999"));
+    const parsed = filtersFromParams(new URLSearchParams("period=nope&sort=nope&hmin=abc&hmax=99999&civ=atlantis"));
+    expect(parsed.civilization).toBe("");
     expect(parsed.period).toBe("");
     expect(parsed.sort).toBe("name");
     expect(parsed.heightMin).toBe(0);

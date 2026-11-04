@@ -74,16 +74,27 @@ vec3 bumpedNormal = normalize(abs(fDet) * normalizedNormal - terrainDepth * vGra
 vec3 shadeNormal = mix(bumpedNormal, normalizedNormal, waterMask);
 #endif
 vec3 cityLights = texture2D(nightBlendTexture, vCustomUv).rgb * gl_FragColor.rgb * nightLights;
+// On phones the sun sits closer to the viewer and nights are less dark: a zoomed-in site under the
+// half-height sheet would otherwise fall on the night side. Same work per pixel, only the constants differ.
+#ifdef LOW_POWER
+vec3 viewSunDir = normalize(vec3(-0.45, 0.3, 0.85));
+const float nightFloor = 0.3;
+#else
 vec3 viewSunDir = normalize(vec3(-0.9, 0.18, 0.4));
+const float nightFloor = 0.08;
+#endif
 float ndl = dot(normalizedNormal, viewSunDir);
 float dayAmt = smoothstep(-0.05, 0.35, ndl);
 float relief = dot(shadeNormal, viewSunDir) - ndl;
 gl_FragColor.rgb *= clamp(1.0 + relief * terrainShade * dayAmt, 0.55, 1.6);
 float nightFactor  = smoothstep(0.18, -0.30, ndl);
 float lightsFactor = smoothstep(0.30, -0.35, ndl);
-gl_FragColor.rgb = mix(gl_FragColor.rgb, gl_FragColor.rgb * 0.08, nightFactor);
+gl_FragColor.rgb = mix(gl_FragColor.rgb, gl_FragColor.rgb * nightFloor, nightFactor);
 gl_FragColor.rgb += cityLights * lightsFactor;
-#ifndef LOW_POWER
+#ifdef LOW_POWER
+// Lift dark land (forests, mountains) so sites stay readable on small screens.
+gl_FragColor.rgb = pow(max(gl_FragColor.rgb, vec3(0.0)), vec3(0.72)) * 1.08;
+#else
 vec3 halfDir = normalize(viewSunDir + viewDir);
 float ripple = snoise(vec3(vCustomUv * 240.0, time * 4.0));
 float ndh = max(dot(normalizedNormal, halfDir) + ripple * 0.02, 0.0);
@@ -99,7 +110,11 @@ float cloudNoise = snoise(vec3(vCloudUv.x * 20.0 + uTime + uPhase, vCloudUv.y * 
 float cloudNdv = max(dot(normalize(vNormal), normalize(vViewPosition)), 0.0);
 float cloudEdge = pow(1.0 - cloudNdv, 3.0);
 float cloudMod = mix(cloudNoise, 1.0, cloudEdge);
+#ifdef LOW_POWER
+float cloudNdl = dot(normalize(vNormal), normalize(vec3(-0.45, 0.3, 0.85)));
+#else
 float cloudNdl = dot(normalize(vNormal), normalize(vec3(-0.9, 0.18, 0.4)));
+#endif
 float cloudDay = 1.0 - smoothstep(0.30, -0.30, cloudNdl) * 0.9;
 gl_FragColor.a *= cloudMod * uOpacity * cloudDay;
 `;
