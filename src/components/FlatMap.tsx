@@ -1,4 +1,5 @@
 import { Pyramid } from '@/types/pyramid';
+import { useI18n } from '@/i18n/I18nContext';
 
 interface FlatMapProps {
   pyramids: Pyramid[];
@@ -10,6 +11,7 @@ interface FlatMapProps {
 
 /** 2D equirectangular fallback used when WebGL is not available. */
 const FlatMap = ({ pyramids, filteredIds, selectedId, onSelect, note }: FlatMapProps) => {
+  const { t } = useI18n();
   const filtered = new Set(filteredIds);
   const hasFilter = filteredIds.length < pyramids.length;
 
@@ -18,7 +20,7 @@ const FlatMap = ({ pyramids, filteredIds, selectedId, onSelect, note }: FlatMapP
       <div className="relative w-full max-w-5xl">
         <img
           src="/textures/earth-map.webp"
-          alt="World map"
+          alt={t.worldMap}
           width={1600}
           height={800}
           className="w-full h-auto rounded-md border border-border"

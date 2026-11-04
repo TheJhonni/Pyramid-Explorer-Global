@@ -4,6 +4,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { Pyramid } from '@/types/pyramid';
 import { latLonToUnit } from '@/utils/geo';
 import { MOBILE_SHEET_SHARE } from '@/utils/layout';
+import { useI18n } from '@/i18n/I18nContext';
 import {
   BACKGROUND_FRAGMENT, BACKGROUND_VERTEX, CLOUD_FRAGMENT, HALO_FRAGMENT, HALO_VERTEX, PIN_FRAGMENT, PIN_VERTEX,
   PLANET_FRAGMENT, PLANET_UNIFORMS_GLSL, SNOISE, STAR_FRAGMENT, STAR_VERTEX,
@@ -114,6 +115,9 @@ const Globe3D = ({
   selectedRef.current = selectedId;
   const flyKeyRef = useRef(flyToKey);
 
+  const { t } = useI18n();
+  const canvasLabel = useRef(t.globeLabel);
+  canvasLabel.current = t.globeLabel;
   const [ready, setReady] = useState(false);
   const [hover, setHover] = useState<{ x: number; y: number; ids: number[] } | null>(null);
   const [choice, setChoice] = useState<{ x: number; y: number; ids: number[] } | null>(null);
@@ -142,7 +146,7 @@ const Globe3D = ({
     renderer.setPixelRatio(dpr);
     renderer.domElement.style.display = 'block';
     renderer.domElement.setAttribute('role', 'img');
-    renderer.domElement.setAttribute('aria-label', '3D globe');
+    renderer.domElement.setAttribute('aria-label', canvasLabel.current);
     container.appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
@@ -553,6 +557,10 @@ const Globe3D = ({
     pins.attr.needsUpdate = true;
     engineRef.current?.invalidate();
   }, [pyramids, filteredSet, selectedId, ready]);
+
+  useEffect(() => {
+    containerRef.current?.querySelector('canvas')?.setAttribute('aria-label', t.globeLabel);
+  }, [t.globeLabel]);
 
   useEffect(() => {
     if (!focusPoint) return;
