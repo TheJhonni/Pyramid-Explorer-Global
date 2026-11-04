@@ -13,3 +13,10 @@ Object.defineProperty(window, "matchMedia", {
     dispatchEvent: () => {},
   }),
 });
+
+// Used by the Radix slider; jsdom does not provide it.
+window.ResizeObserver = class {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+};

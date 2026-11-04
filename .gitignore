@@ -25,3 +25,6 @@ dist-ssr
 
 .vercel
 .env
+
+# Planet assets live on Vercel Blob, not in Git
+public/planet

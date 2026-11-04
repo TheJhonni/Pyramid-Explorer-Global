@@ -184,10 +184,6 @@ export const pyramidImages: Record<string, ImageData> = {
     immagini: [],
     google_images_url: "https://www.google.com/search?tbm=isch&q=Temple+of+Inscriptions+Palenque+Pakal+sarcophagus",
   },
-  mauritius_underwater: {
-    immagini: [],
-    google_images_url: "https://www.google.com/search?tbm=isch&q=Mauritius+underwater+pyramid+structure+ocean",
-  },
   hellinikon: {
     immagini: [],
     google_images_url: "https://www.google.com/search?tbm=isch&q=Pyramid+of+Hellinikon+Greece+Argolid",
@@ -196,10 +192,6 @@ export const pyramidImages: Record<string, ImageData> = {
     immagini: [],
     google_images_url: "https://www.google.com/search?tbm=isch&q=Monte+d%27Accoddi+Sardinia+ziggurat+altar",
   },
-  tenerife_guanche: {
-    immagini: [],
-    google_images_url: "https://www.google.com/search?tbm=isch&q=Pyramids+Guimar+Tenerife+complex+park",
-  },
   sharjah_mleiha: {
     immagini: [],
     google_images_url: "https://www.google.com/search?tbm=isch&q=Mleiha+archaeological+site+Sharjah+UAE",
@@ -207,10 +199,6 @@ export const pyramidImages: Record<string, ImageData> = {
   indonesia_lalakon: {
     immagini: [],
     google_images_url: "https://www.google.com/search?tbm=isch&q=Lalakon+site+Bandung+Indonesia+pyramid",
-  },
-  china_zangkunchong: {
-    immagini: [],
-    google_images_url: "https://www.google.com/search?tbm=isch&q=Chinese+pyramids+Xian+Shaanxi+aerial",
   },
   peru_cahuachi: {
     immagini: [],

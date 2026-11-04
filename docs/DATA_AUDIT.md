@@ -1,0 +1,536 @@
+# Data audit
+
+Fact check run on 4 November 2026 against sources opened during the check, mostly Wikipedia read through an extraction tool, with UNESCO, museum, university and paper pages where they opened. A human has not reviewed each entry. Treat "verified" as: location, height and date each have a source, not as a guarantee.
+
+Result: 72 verified, 24 partly sourced, 7 with no reliable source, out of 103 sites.
+
+Conventions: `base_m` is the longest side or the diameter. `anno_inizio` and `anno_fine` use century or dynasty limits when a source gives only those. `area_mq` was often just the base squared in the original data: when unsourced it is flagged and hidden in the interface. Some sources were read through Wikipedia mirrors and are linked to the matching Wikipedia page.
+
+## Second check
+
+A separate pass compared the original 57 entries with the Wikipedia and Wikidata APIs. It led to these changes:
+- Menkaure: base 104.6 m and area 10,690 m², from the 102.2 × 104.6 m infobox; the article text also gives 108.5 m.
+- Candi Sukuh: height 8.7 m.
+- Cholula: area 94,500 m², from 300 × 315 m. Sources still conflict, so it stays partly sourced.
+- Gunung Padang: the 95 m figure is the height of the staircase, not of a structure, so height is now unknown.
+- Monte d'Accoddi: area about 1,110 m², from about 37 × 30 m.
+- Visoko sites: height and base are the Foundation's or Osmanagich's figures, so they are marked as not verified and left out of the scale comparison.
+
+Areas and altitudes with no source were reset to 0, which means unknown and hides them in the interface. Sources disagree on several more values, and the notes for each site below say which one was used.
+
+## Removed
+
+- `mauritius_underwater` (Struttura sottomarina di Mauritius): Nessuna fonte aperta documenta una struttura sottomarina a Mauritius: la voce appare inventata. In alternativa, una voce nuova sulle piramidi di Plaine Magnien, sulla terraferma.
+- `tenerife_guanche` (Piramidi di Güímar (Complesso)): Duplicato di tenerife_guimar, in un altro batch: stesso complesso di Güímar.
+- `china_zangkunchong` (Piramide di Zangkunchong): Nessuna fonte per Zangkunchong o 藏军冢 a Xi'an: il nome sembra una storpiatura di Janggun-chong (將軍冢), la Tomba del Generale a Ji'an, nel Jilin, sito reale ma diverso per luogo, epoca e cultura.
+
+- `china_maoling`: duplicate of `xian_white_pyramid`, which is identified as Maoling.
+
+## Changed attribution
+
+`osmanagich_focus` now stays on only for sites with a documented link: the Visoko sites, Gunung Padang, Monks Mound (Cahokia), Akapana and Yonaguni. It was removed from the others because no source was found.
+
+## Sites and gaps
+
+### `bosnia_sun`: partial (5 corrections)
+- No source for: altitudine_sul_livello_del_mare_m, base_m, area_mq
+- Claim without source: Storie orali sulle colline sacre di Visoko
+- Note: 220 m è la cifra della Fondazione (2006), non una misura indipendente; Wikipedia riporta 213 m per la collina. La cifra di 420 m per la base non è stata trovata: la Fondazione parla di una faccia nord con lati di 365 m. Il sito piramidasunca.ba non si è potuto aprire da questa sessione.
+
+### `bosnia_moon`: partial (2 corrections)
+- No source for: coordinate, altitudine_sul_livello_del_mare_m, base_m, area_mq, nome_locale, altezza_struttura_m
+- Claim without source: Tradizioni orali della zona di Visoko
+- Note: Smithsonian indica circa 350 piedi (circa 107 m) sopra la città: i 190 m non hanno fonte. Le coordinate sono incompatibili con la distanza dichiarata dalla Fondazione tra i vertici, circa 2.170 m: il punto indicato dista meno di 1 km dalla Piramide del Sole in archivio. La cifra di 12.000 anni è attribuita da Smithsonian a Osmanagich.
+
+### `bosnia_love`: unverified (2 corrections)
+- No source for: coordinate, altitudine_sul_livello_del_mare_m, altezza_struttura_m, base_m, area_mq, nome_locale, datazione_non_ufficiale, funzione_non_ufficiale
+- Note: Il nome esiste solo nelle tesi di Osmanagich. Altezza, base e coordinate non hanno alcuna fonte. Collina indicata come Čemerac da IRNA, che segnala nomi incoerenti tra le fonti.
+
+### `bosnia_dragon`: unverified (2 corrections)
+- No source for: coordinate, altitudine_sul_livello_del_mare_m, altezza_struttura_m, base_m, area_mq, nome_locale, datazione_non_ufficiale, funzione_non_ufficiale
+- Claim without source: Piramide del network globale
+- Note: Il nome esiste solo nelle tesi di Osmanagich. Altezza, base e coordinate non hanno alcuna fonte. Collina indicata come Buci da IRNA, ma una foto su Wikipedia chiama «Drago» la collina di Krstac. Le coordinate sono a meno di 1 km dalla Piramide del Sole in archivio, contro i circa 2.170 m dichiarati dalla Fondazione.
+
+### `bosnia_earth`: unverified (3 corrections)
+- No source for: coordinate, altitudine_sul_livello_del_mare_m, altezza_struttura_m, base_m, area_mq, nome_locale, datazione_non_ufficiale, funzione_non_ufficiale
+- Claim without source: Piramide del network globale
+- Claim without source: Quinta piramide del complesso bosniaco.
+- Note: Il nome esiste solo nelle tesi di Osmanagich. Altezza, base e coordinate non hanno alcuna fonte. Le fonti parlano anche di «Tempio della Terra» o «Tempio della Madre Terra»; IRNA segnala che un'immagine della Fondazione la colloca invece su Čemerac.
+
+### `bosnia_ravne_tunnels`: partial (6 corrections)
+- No source for: altitudine_sul_livello_del_mare_m, riferimenti_ufficiali, link_approfondimento_ufficiale
+- Claim without source: Racconti di tunnel misteriosi sotto Visoko
+- Claim without source: Ravne 1-5
+- Note: Le nuove coordinate distano circa 2,6 km dal punto corretto del Sole, coerenti con i circa 2,5 km riportati. Il preprint del 2025 riguarda Ravne 3, non è peer-reviewed e riporta uso dall'età romana al tardo Medioevo. Altezza, base e area a 0 significano «non applicabile».
+
+### `giza_great`: verified (1 corrections)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq, riferimenti_ufficiali
+- Claim without source: Costruita dagli dei secondo alcune tradizioni
+- Claim without source: Civiltà pre-diluviana avanzata
+- Note: Altezza originaria 146,6 m; oggi circa 138,5 m. La tesi dei «granai di Giuseppe» nasce nel tardo IV secolo e continua nel Medioevo. Bauval e Hancock sono documentati: la data del 10.500 a.C. riguarda la Sfinge, non la piramide. La tesi energetica è di Christopher Dunn. Osmanagich confronta Visoko con Giza. La pagina di Hancock non si è potuta aprire da questa sessione.
+
+### `giza_khafre`: verified (1 corrections)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq, riferimenti_ufficiali
+- Claim without source: Possibilmente più antica
+- Claim without source: Parte di un complesso energetico/astronomico
+- Claim without source: Civiltà pre-diluviana
+- Note: 136,4 m è l'altezza attuale; quella originaria è 143,5 m. Le altre piramidi del batch usano spesso l'altezza originaria: conviene uniformare.
+
+### `giza_menkaure`: verified (0 corrections)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq, riferimenti_ufficiali
+- Claim without source: Possibilmente più antica
+- Claim without source: Civiltà pre-diluviana
+- Note: Wikipedia è incoerente sulla base: 108,5 m nel testo, 102,2 × 104,6 m nell'infobox. La base non risulta quadrata, quindi l'area è da rivedere. La data è incerta: il testo indica un completamento probabile nel XXVI secolo a.C. Altezza originaria 65 m, attuale 61 m.
+
+### `saqqara_djoser`: verified (3 corrections)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq, riferimenti_ufficiali
+- Note: Base 109 × 121 m: l'area 14.641 è 121 al quadrato ed è sbagliata, ma nessuna fonte aperta dà l'area. L'attribuzione a Imhotep è quella della maggior parte degli egittologi.
+
+### `dahshur_red`: verified (3 corrections)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq
+- Claim without source: Sperimentazione architettonica avanzata
+- Note: La durata dei lavori è discussa: 17 anni per Stadelmann, 10–11 per Krauss e Romer.
+
+### `dahshur_bent`: verified (1 corrections)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq
+- Claim without source: Tentativo di piramide perfetta
+- Note: Altezza incoerente nella fonte: 104,71 m nell'infobox, 101 m nella tabella dei record. Il valore 101,1 non è confermato al decimale. La forma piegata ricorre anche nei templi solari di Abusir e negli obelischi del Nuovo Regno.
+
+### `teotihuacan_sun`: verified (3 corrections)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq, riferimenti_ufficiali
+- Claim without source: Costruita dagli dei nel 'Quinto Sole'
+- Claim without source: Possibilmente molto più antica
+- Claim without source: Centro energetico, allineamento astronomico, nodo della rete piramidale globale
+- Claim without source: Civiltà precedente sconosciuta
+- Claim without source: Osmanagich cita Teotihuacan come parte della rete globale
+- Note: Altezza incoerente su Wikipedia: 65,5, 71,17 e 75 m; 65 m è confermato da TravelDojo, fonte debole anche per le coordinate. Base: 220 × 230 m nell'infobox, 225 m nel testo. Il sacrificio degli dei a Teotihuacan è documentato nel mito azteco; non risulta che gli dei abbiano costruito la piramide.
+
+### `teotihuacan_moon`: partial (2 corrections)
+- No source for: coordinate, altitudine_sul_livello_del_mare_m, area_mq, riferimenti_ufficiali
+- Claim without source: Possibilmente più antica
+- Claim without source: Complemento energetico alla Piramide del Sole
+- Claim without source: Civiltà precedente
+- Note: Base 147 × 130 m, non quadrata: l'area 22.500 è sbagliata. Nessuna fonte aperta dà le coordinate.
+
+### `cholula`: partial (sources conflict: 25 m and 300 × 315 m against 66 m and 450 m; needs an archaeological source) (2 corrections)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq, riferimenti_ufficiali
+- Claim without source: Fondamenta possibilmente più antiche
+- Claim without source: La piramide più grande del mondo per volume, parte della rete globale
+- Claim without source: Civiltà precedente con conoscenze avanzate
+- Claim without source: Osmanagich la menziona come piramide più grande per volume
+- Note: Fonti in forte disaccordo: Wikipedia 25 m e 300 × 315 m; Structurae 66 m e 450 × 450 m; History Today 400 × 400 m. Ho seguito Wikipedia, ma il valore va rivisto su una fonte archeologica. La leggenda di Xelhua è documentata e la dedica a Quetzalcoatl è tradizionale.
+
+### `la_danta`: verified (6 corrections)
+- No source for: altitudine_sul_livello_del_mare_m
+- Claim without source: Possibilmente più antica
+- Claim without source: Una delle strutture più massicce mai costruite, parte della rete globale
+- Claim without source: Civiltà con conoscenze superiori
+- Claim without source: Osmanagich cita La Danta come esempio di megastruttura
+- Note: La vecchia longitudine cadeva circa 9 km a est del sito. La fonte delle nuove coordinate è debole, ma coerente con «1,8 km a est del gruppo principale». Base 314 × 600 m secondo Suyuc; Guinness 500 × 300 m. L'area è quella della piattaforma. La «montagna sacra» è un'interpretazione degli archeologi, non una leggenda locale. Non ho aperto la voce Wikipedia La_Danta: su Wikiwand il titolo porta a El Mirador.
+
+### `gunung_padang`: verified (7 corrections)
+- No source for: base_m, area_mq
+- Claim without source: Sacra montagna della luce
+- Claim without source: Luogo di potere spirituale
+- Claim without source: supportato da Osmanagich
+- Claim without source: prova di una rete piramidale globale preistorica
+- Note: 95 m è il dislivello della scalinata, non l'altezza di un edificio. L'altitudine di 885 m è confermata per il sito; le terrazze risultano più alte: circa 960–989 m a seconda delle fonti. Il dato di 900 m² per l'area delle terrazze esiste, ma non corrisponde ai campi base e area attuali. Lo studio IJERT è usato solo per le coordinate.
+
+### `xian_mausoleum`: verified (3 corrections)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq
+- Claim without source: Come ufficiale, ma con possibili strati più antichi
+- Claim without source: Parte della rete di piramidi cinesi, possibile funzione energetica
+- Note: Altezza: 76 m è il valore originario secondo Wikipedia; oggi 47 m, ICOMOS 43 m nel 1987. Base: 350 m per ICOMOS, 357 × 354 m per Wikipedia. I fiumi di mercurio vengono da Sima Qian, con anomalie di mercurio nel suolo; l'esercito di terracotta è storico, non leggenda. Il link Wikipedia risponde, con titolo «Mausoleum of Qin Shi Huang».
+
+### `xian_white_pyramid`: partial (9 corrections)
+- No source for: nome_locale, altitudine_sul_livello_del_mare_m, area_mq, riferimenti_ufficiali
+- Claim without source: Possibilmente molto più antiche
+- Claim without source: Rete di piramidi con possibili funzioni energetiche
+- Claim without source: Civiltà precedente con conoscenze avanzate
+- Claim without source: Il governo cinese ha storicamente limitato l'accesso.
+- Claim without source: Zona con oltre 100 tumuli piramidali.
+- Note: La «piramide alta 300 m» dei racconti non è documentata: Wikipedia identifica la Grande Piramide Bianca con Maoling. Ancient Origins segnala però che gli avvistamenti la collocavano a sud-ovest di Xi'an, Maoling è a nord-ovest. La vecchia posizione era circa 33 km fuori. Il volo del 1945 compare solo su Ancient Origins. L'USAF nacque dopo: il pilota era dell'Army Air Corps. Osmanagich cita la Cina solo in generale.
+
+### `yangling`: partial (5 corrections)
+- No source for: altitudine_sul_livello_del_mare_m, altezza_struttura_m, base_m, area_mq, osmanagich_focus
+- Claim without source: Parte della rete di piramidi cinesi
+- Claim without source: Osmanagich lo menziona nelle sue conferenze
+- Claim without source: Uno dei tumuli piramidali cinesi meglio preservati e musealizzati.
+- Note: Coordinate spostate di circa 2,5 km. Nessuna fonte aperta dà altezza e base del tumulo. La datazione di costruzione poggia su una sola guida turistica. Il vecchio link non è stato verificabile.
+
+### `monks_mound`: verified (4 corrections)
+- Claim without source: Possibilmente più antico nelle fondamenta
+- Claim without source: Piramide nordamericana, parte della rete globale
+- Claim without source: Come sopra, ma con possibili influenze esterne
+- Claim without source: Centro del mondo per i nativi americani della zona
+- Claim without source: Osmanagich lo include nella sua mappa della rete piramidale globale.
+- Note: Base 291 m sull'asse nord-sud, rampa inclusa; 128 m è la quota della curva di livello usata come base del tumulo, non una quota verificata del sito. Documentato: Osmanagich scrive di 'Two hundred Cahokia pyramids', ma parla di Cahokia in generale.
+
+### `akapana`: partial (5 corrections)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq
+- Claim without source: > 10.000 anni (teorie alternative)
+- Claim without source: Centro energetico andino, connesso alla rete globale
+- Claim without source: Civiltà pre-diluviana avanzata
+- Claim without source: Costruita dagli dei prima del diluvio
+- Claim without source: Osmanagich la collega alla rete piramidale sudamericana.
+- Note: Gli anni si riferiscono al sito, non alla struttura. 'Centro del mondo' è documentato per Tiwanaku (taypiqala). Per gli Inca Tiwanaku fu costruita da Viracocha, ma nessuna fonte parla del diluvio o dell'Akapana. La menzione di Osmanagich è documentata.
+
+### `huaca_del_sol`: verified (4 corrections)
+- No source for: altitudine_sul_livello_del_mare_m
+- Claim without source: Fondamenta possibilmente più antiche
+- Claim without source: Piramide sudamericana della rete globale
+- Claim without source: Moche con possibili conoscenze ereditate
+- Claim without source: Costruita in tre giorni da 250.000 uomini (leggenda)
+- Claim without source: Osmanagich la menziona come piramide peruviana
+- Note: Area calcolata dalle misure di base pubblicate (340 x 160 m). Coordinate spostate di circa 1,3 km. Nessuna fonte aperta riporta la leggenda dei tre giorni. Osmanagich parla del Perù in generale, non di questa huaca.
+
+### `nubian_meroe`: verified (4 corrections)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq
+- Claim without source: Eredità dei faraoni neri
+- Claim without source: Oltre 200 piramidi, il più grande numero di piramidi in un unico luogo al mondo.
+- Note: 800 a.C. vale per le piramidi nubiane in generale (El-Kurru, 751 a.C.), non per Meroe. Base 19,29 m è Beg. N 11, la maggiore della necropoli nord. Le fonti danno conteggi diversi: Wikipedia 'Meroë' oltre 200, DAI circa 150.
+
+### `chichen_itza`: verified (3 corrections)
+- No source for: altitudine_sul_livello_del_mare_m
+- Claim without source: Fondamenta possibilmente pre-Maya
+- Claim without source: Calendario astronomico tridimensionale, nodo energetico
+- Claim without source: Maya con conoscenze ereditate da civiltà precedente
+- Note: Altezza 30 m compreso il tempio (24 m senza). L'ombra è un fenomeno osservabile, non una leggenda: è già nella nota. Il suo effetto dura settimane attorno agli equinozi.
+
+### `tikal_temple1`: verified (2 corrections)
+- No source for: base_m, area_mq
+- Claim without source: Tempio astronomico/energetico
+- Note: 47 m è l'altezza della piramide; le stesse fonti danno anche 55 m sopra la Gran Plaza. 'Tempio del Grande Giaguaro' è un nome, non una leggenda: deriva da un architrave col re su un trono di giaguaro. Quota 305 m riferita al sito, da una sola fonte minore.
+
+### `candi_sukuh`: verified (5 corrections)
+- No source for: base_m, area_mq
+- Claim without source: Possibilmente più antico
+- Claim without source: Piramide mesoamericana fuori contesto in Asia
+- Claim without source: Connessione trans-oceanica precolombiana
+- Claim without source: Somiglianza con piramidi mesoamericane notata da vari ricercatori
+- Claim without source: generando teorie su contatti antichi
+- Note: La pagina Wikipedia si chiama 'Sukuh': il vecchio link non è stato verificabile, il nuovo è stato raggiunto tramite mirror e reindirizzamento. La data 1437 deriva da un cronogramma sulla porta ovest; altezza da una sola fonte.
+
+### `caral`: verified (3 corrections)
+- Claim without source: Possibilmente più antica
+- Claim without source: Città sacra del fuoco
+- Claim without source: Osmanagich la cita come prova di costruzioni piramidali antichissime nelle Americhe
+- Claim without source: Civiltà molto avanzata per l'epoca
+- Note: Misure 150 x 110 x 28 m riportate per il 'Templo Mayor'. Il nome ufficiale del sito è Città Sacra di Caral-Supe. 'Più antica delle Americhe' non è una teoria alternativa: UNESCO la definisce il più antico centro urbano delle Americhe.
+
+### `tenerife_guimar`: verified (2 corrections)
+- No source for: altitudine_sul_livello_del_mare_m, base_m, area_mq
+- Claim without source: Osmanagich le ha visitate
+- Claim without source: Costruzioni misteriose dei Guanci
+- Note: Coordinate spostate di circa 3 km. Duplicato noto di tenerife_guanche nell'altro batch: si tiene questa voce. Heyerdahl e l'allineamento solstiziale (Belmonte et al.) sono documentati; la biografia di Osmanagich cita solo le Canarie, non Güímar. 12 m è l'altezza massima.
+
+### `yonaguni`: partial (4 corrections)
+- No source for: altezza_struttura_m, base_m, area_mq
+- Claim without source: Civiltà preistorica giapponese o proto-Jomon
+- Claim without source: Prof. Masaaki Kimura dell'Università di Ryukyu
+- Note: Kimura è documentato come geologo marino, non l'affiliazione citata; il legame con Mu è una sua ipotesi iniziale, non una leggenda locale. La citazione di Osmanagich è documentata.
+
+### `silbury_hill`: verified (6 corrections)
+- No source for: altitudine_sul_livello_del_mare_m
+- Claim without source: Possibilmente più antico
+- Claim without source: Piramide europea, possibile nodo energetico
+- Claim without source: Civiltà megalitica avanzata
+- Claim without source: Citato come piramide europea da vari ricercatori alternativi
+- Note: Area circa 2 ettari. Base circolare, 167 m è il diametro. La fonte paragona il volume alle piramidi egizie, ma non la definisce piramide.
+
+### `borobudur`: verified (3 corrections)
+- Claim without source: Montagna cosmica del buddhismo
+- Note: Guinness dà 34,5 m e 750-842 d.C. 'Mandala' è un'interpretazione accademica, discussa, non una teoria alternativa. Il termine Mahayana non compare nei riscontri ottenuti e la correzione lo toglie per questo motivo.
+
+### `ziggurat_ur`: verified (4 corrections)
+- Claim without source: Connessione cielo-terra della tradizione sumera
+- Claim without source: Torre di Babele nella tradizione biblica
+- Claim without source: Una delle ziggurat meglio conservate della Mesopotamia.
+- Note: Posto sbagliato: la Torre di Babele è associata a Etemenanki di Babilonia, non a Ur. Base 64 x 45 m. Riferimento 'British Museum' non verificato.
+
+### `cochasqui`: verified (4 corrections)
+- Claim without source: Possibilmente molto più antiche
+- Claim without source: Centro energetico sulla linea dell'equatore
+- Claim without source: Civiltà con conoscenze astronomiche avanzate
+- Claim without source: Luogo sacro degli antichi popoli dell'equatore
+- Note: Piramide maggiore 264 x 297 piedi (circa 80,5 x 90,5 m), alta 66 piedi (circa 20 m). Quota: 3.100 m per due fonti, 3.040 m per Wikipedia. Wikipedia conta almeno 15 tumuli, altre fonti 21.
+
+### `tucume`: verified (9 corrections)
+- Claim without source: Fondamenta più antiche possibili
+- Claim without source: Complesso piramidale con possibile funzione astronomica
+- Claim without source: Come sopra, con influenze precedenti
+- Claim without source: Valle sacra del purgatorio
+- Note: Misure di Huaca Larga: circa 700 x 270 x 30 m; area calcolata da queste. Altre fonti partono dall'800 d.C. Documentato: la gente del posto chiama il sito 'Purgatorio' e la leggenda di Naymlap, ma non una 'valle sacra'. Vecchio link non verificabile.
+
+### `etemenanki`: verified (3 corrections)
+- No source for: altitudine_sul_livello_del_mare_m
+- Claim without source: La biblica Torre di Babele, connessione cielo-terra
+- Note: L'altezza è contestata: lasciata a 91 m, con la riserva in nota. Fondamenta più antiche non sono una teoria alternativa ma un'ipotesi accademica.
+
+### `palenque`: verified (5 corrections)
+- Note: Base 60 x 42,5 m. Coordinate riferite al sito di Palenque. Le fonti non concordano sulla fine dei lavori: poco dopo il 683 (Wikipedia), fino al 702 (CBS). L'astronauta è un'idea del 1968, non una leggenda locale: la correzione la toglie da leggende_locali.
+
+### `hellinikon`: partial (5 corrections)
+- No source for: altezza_struttura_m, area_mq, altitudine_sul_livello_del_mare_m
+- Claim without source: Piramide costruita prima delle piramidi egizie
+- Claim without source: > 5000 anni
+- Claim without source: Una delle piramidi più antiche d'Europa
+- Claim without source: Civiltà pre-greca
+- Note: Le coordinate erano spostate di circa 4 km. Le fonti danno 3,5 m solo per i muri inclinati e non un'altezza totale; 14,70 × 12,60 m per la scheda Structurae, 7,03 × 9,07 m per altre fonti. Il link originale non è stato aperto perché bloccato dal sistema: non è dimostrato che sia rotto.
+
+### `monte_daccodi`: verified (4 corrections)
+- No source for: area_mq, altitudine_sul_livello_del_mare_m, osmanagich_focus
+- Claim without source: Citata da Osmanagich come piramide europea
+- Claim without source: Osmanagich la include nella rete piramidale globale
+- Claim without source: Possibilmente più antica
+- Claim without source: Civiltà mediterranea avanzata con legami orientali
+- Claim without source: Altare sacro degli antichi sardi
+- Note: La piattaforma misura circa 37 × 30 m, quindi non è quadrata. Il paragone con la ziqqurat è formale e le fonti non documentano un legame con la Mesopotamia. Il link Wikipedia originale non è stato aperto perché bloccato dal sistema.
+
+### `sharjah_mleiha`: partial (5 corrections)
+- No source for: altezza_struttura_m, base_m, area_mq, altitudine_sul_livello_del_mare_m, osmanagich_focus
+- Claim without source: Osmanagich ha esaminato i siti nel 2022
+- Claim without source: Osmanagich ha visitato e studiato i siti archeologici di Sharjah nel 2022.
+- Claim without source: Possibilmente molto più antichi
+- Claim without source: Sito con strutture megalitiche anomale
+- Claim without source: Civiltà sconosciuta con conoscenze avanzate
+- Note: Nessuna fonte parla di piramidi. Le torri delle tombe monumentali sono alte 2,5-3 m. Sul sito esistono anche tracce neolitiche e dell'età del Bronzo, che non giustificano però la tesi di strutture anomale. Il sito Osmanagich indicato come link non è stato aperto.
+
+### `indonesia_lalakon`: unverified (8 corrections)
+- No source for: altezza_struttura_m, base_m, area_mq, osmanagich_focus
+- Claim without source: Collegato alle ricerche di Osmanagich in Indonesia
+- Claim without source: > 10.000 anni
+- Claim without source: Piramide sepolta dall'era glaciale
+- Claim without source: Sito indonesiano studiato in connessione con Gunung Padang e la rete piramidale del Sud-Est asiatico.
+- Claim without source: Montagna sacra locale
+- Note: Coordinate originali errate di circa 18 km. La cima è a circa 988 m e il sentiero parte da circa 720 m, contro i 20 m di altezza e 750 m di quota indicati. Il dato di quota viene da un blog; lo scavo è a 986 m secondo VIVAnews. Le fonti locali citano rituali e visitatori, ma non la definizione di montagna sacra. Nel 2014 Osmanagich ha citato solo Gunung Padang.
+
+### `peru_cahuachi`: verified (3 corrections)
+- No source for: area_mq, osmanagich_focus
+- Claim without source: Osmanagich lo include nella rete sudamericana
+- Claim without source: Fondamenta possibilmente più antiche
+- Claim without source: Nazca con conoscenze ereditate
+- Claim without source: Centro sacro delle linee di Nazca
+- Note: Altezza di 28 m riferita alla Grande Piramide; i 100 m indicano il fronte, non necessariamente il lato maggiore della base. Le fonti sul periodo divergono: alcune indicano 450 a.C.-450 d.C.
+
+### `india_brihadisvara`: verified (4 corrections)
+- No source for: area_mq, altitudine_sul_livello_del_mare_m, osmanagich_focus
+- Claim without source: Osmanagich cita i templi piramidali indiani
+- Claim without source: Osmanagich lo menziona nel contesto delle piramidi asiatiche
+- Claim without source: Struttura piramidale con proprietà acustiche e energetiche
+- Note: L'altezza varia secondo la fonte: 63 m (World History), 63,4 o 59,82 m (Wikipedia), circa 66 m (Studio Matrx). La rampa resta una leggenda e il metodo di sollevamento è incerto. La pagina UNESCO non è stata aperta; lo status è confermato da Wikipedia.
+
+### `cambodia_koh_ker`: verified (3 corrections)
+- No source for: area_mq, altitudine_sul_livello_del_mare_m
+- Claim without source: Piramide del Sud-Est asiatico con somiglianze mesoamericane
+- Claim without source: Tempio del potere divino del re
+- Note: Le coordinate sono del sito di Koh Ker, non della singola piramide. Altezza 36 m per Wikipedia, 38 m per World Heritage Site. Una stele a Prasat Thom è datata 921 d.C.; la costruzione del Prang inizia nel 928.
+
+### `tonga_langi`: partial (5 corrections)
+- No source for: altezza_struttura_m, area_mq, altitudine_sul_livello_del_mare_m
+- Claim without source: Strutture piramidali oceaniche, connessione con rete globale
+- Claim without source: Come sopra, con possibili influenze esterne
+- Claim without source: Citati nel contesto delle piramidi oceaniche
+- Claim without source: Tombe sacre dei re divini di Tonga
+- Claim without source: fino a 40 tonnellate
+- Note: Scheda generica su circa 22 tombe: base e coordinate si riferiscono al Paepae-o-Tele'a (26-28 × 41,5 m). La posizione viene da una sola fonte minore. L'UNESCO segnala che date più antiche richiedono altri campioni. Il link originale non è stato aperto perché bloccato dal sistema.
+
+### `australia_gympie`: verified (3 corrections)
+- No source for: base_m, area_mq, altitudine_sul_livello_del_mare_m, osmanagich_focus
+- Claim without source: Osmanagich la include tra le evidenze di una rete piramidale globale.
+- Claim without source: Menzionata nel contesto delle piramidi oceaniche
+- Claim without source: > 2000 anni (costruzione di popoli precoloniali o navigatori egizi/fenici)
+- Claim without source: Piramide costruita da navigatori antichi (egizi, fenici o polinesiani)
+- Note: Coordinate originali errate di circa 4 km. Sono documentati Gilroy, la tesi egizia e la statua trovata nel 1966, ma non fenici e polinesiani. Gli anni 1875-1890 sono quelli del proprietario collegato ai primi coloni; la cresta ha solchi di macinazione anteriori. L'area è interessata dall'ampliamento della Bruce Highway.
+
+### `canary_tenerife_step`: partial (4 corrections)
+- No source for: coordinate, altezza_struttura_m, base_m, area_mq, altitudine_sul_livello_del_mare_m, osmanagich_focus
+- Claim without source: Struttura cerimoniale Guanche astronomicamente allineata
+- Note: Non esiste una singola piramide di Icod: le fonti parlano di almeno tre strutture a La Suerte/San Marcos e Santa Bárbara. Nessuna misura né coordinata trovata. La tesi di marcatore solstiziale riguarda la Fan Pyramid, di cui ho letto solo l'anteprima.
+
+### `mexico_uxmal`: verified (3 corrections)
+- No source for: area_mq, altitudine_sul_livello_del_mare_m
+- Note: La base misura circa 69 × 49 m ed è ellittica, quindi 2809 m² è errato. Le altezze pubblicate vanno da 27,6 a 40 m, 35 m è il valore mediano. La fonte non dice che sia l'unica Maya a base ellittica.
+
+### `sudan_jebel_barkal`: partial (3 corrections)
+- No source for: altezza_struttura_m, base_m, area_mq, altitudine_sul_livello_del_mare_m
+- Note: Datazione originale errata: le piramidi sono meroitiche e non del periodo napateo. Nessuna misura per le singole piramidi; le nubiane in genere sono alte 6-30 m. La montagna è alta 104 m e la leggenda su Amon è documentata dall'UNESCO. Patrimonio UNESCO dal 2003. Anno finale approssimato da "inizio II secolo".
+
+### `russia_kola`: unverified (4 corrections)
+- No source for: coordinate, base_m, area_mq, altitudine_sul_livello_del_mare_m, osmanagich_focus
+- Claim without source: Menzionate da Osmanagich come piramidi artiche
+- Claim without source: Osmanagich le cita come evidenza della diffusione globale delle piramidi.
+- Note: I 50 m, i 9000 anni e Iperborea sono documentati solo come tesi di fonti divulgative. Nessuna fonte consultata dice che siano formazioni naturali, per questo il dato ufficiale è stato corretto. La zona citata è il lago Seydozero, senza coordinate.
+
+### `crimea_underwater`: unverified (6 corrections)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq, osmanagich_focus
+- Claim without source: Scoperta tramite sonar nel 1999
+- Claim without source: Osmanagich la menziona
+- Claim without source: Osmanagich la cita come parte della rete di piramidi sommerse
+- Claim without source: Strutture sommerse nel Mar Nero
+- Claim without source: Piramide sommersa di una civiltà pre-diluviana
+- Claim without source: > 6000 anni
+- Note: Scheda errata: le fonti parlano di strutture sotterranee, non sommerse, e non citano il sonar. Solo un passaggio accenna a una piramide sul fondale presso Foros. Coordinate spostate di circa 20 km. Va riscritta come tesi non confermata.
+
+### `azores_underwater`: unverified (6 corrections)
+- No source for: base_m, osmanagich_focus
+- Claim without source: > 20.000 anni (resti di Atlantide)
+- Claim without source: Citata nel contesto delle piramidi sommerse
+- Note: Le coordinate originali cadevano a circa 200 km dal banco e sono quelle del banco stesso, indicato dalla Marina solo come ipotesi. Altezza 60 m stimata da Silva. Profondità di 40 m nella maggior parte delle fonti, 12 m per IBTimes; la vetta del banco è a circa 13 m. Atlantide è una convinzione di Silva, non una leggenda locale documentata.
+
+### `egypt_abu_rawash`: verified (2 corrections)
+- No source for: altitudine_sul_livello_del_mare_m
+- Claim without source: La piramide più alta d'Egitto per altitudine del sito
+- Claim without source: Situata nel punto più alto dell'area di Giza
+- Note: 67 m è l'altezza originaria stimata; i resti arrivano a circa 9-11,4 m. È documentata come la piramide più settentrionale d'Egitto, non come la più alta di quota.
+
+### `egypt_meidum`: verified (2 corrections)
+- No source for: altitudine_sul_livello_del_mare_m
+- Note: 65 m è l'altezza attuale della struttura in rovina; l'originale era di circa 92 m. Il governatorato di Beni Suef è confermato.
+
+### `egypt_userkaf`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq
+
+### `egypt_sahure`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq
+
+### `egypt_neferirkare`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq
+
+### `egypt_nyuserre`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq, nome_locale
+
+### `egypt_unas`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq
+
+### `egypt_teti`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq
+
+### `egypt_pepi_ii`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq
+
+### `egypt_hawara`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq
+
+### `egypt_black_pyramid`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq
+
+### `egypt_senusret_ii`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq
+
+### `sudan_nuri`: partial (new)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq, nome_locale
+
+### `sudan_el_kurru`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, base_m, area_mq, nome_locale
+
+### `italy_cestius`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq, nome_locale
+
+### `iran_chogha_zanbil`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq, nome_locale
+
+### `iraq_dur_kurigalzu`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq
+
+### `iraq_borsippa`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq
+
+### `china_general_tomb`: partial (new)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq, year_start, year_end
+
+### `cambodia_baksei_chamkrong`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq
+
+### `cambodia_bakong`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq
+
+### `cambodia_pre_rup`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq
+
+### `cambodia_ta_keo`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq
+
+### `mauritius_plaine_magnien`: partial (new)
+- No source for: altitudine_sul_livello_del_mare_m, base_m, area_mq, year_start, year_end, nome_locale
+
+### `france_falicon`: partial (new)
+- No source for: base_m, area_mq, nome_locale
+
+### `france_couhard`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq, nome_locale
+
+### `el_tajin_nicchie`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq
+
+### `templo_mayor`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq
+
+### `calakmul_struttura_ii`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq, year_start
+
+### `coba_nohoch_mul`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, base_m, area_mq
+
+### `monte_alban_piattaforma_sud`: partial (new)
+- No source for: area_mq, year_start, year_end
+
+### `tula_piramide_b`: partial (new)
+- No source for: altitudine_sul_livello_del_mare_m, base_m, area_mq
+
+### `xochicalco_serpente_piumato`: partial (new)
+- No source for: altitudine_sul_livello_del_mare_m, altezza_struttura_m, area_mq
+
+### `teotihuacan_serpente_piumato`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, base_m, area_mq
+
+### `tenayuca_piramide`: partial (new)
+- No source for: altitudine_sul_livello_del_mare_m, altezza_struttura_m, area_mq
+
+### `tikal_tempio_iv`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, base_m, area_mq
+
+### `caracol_caana`: verified (new)
+- No source for: base_m, area_mq, year_start
+
+### `lamanai_high_temple`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, base_m, area_mq
+
+### `xunantunich_el_castillo`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, base_m, area_mq, year_end
+
+### `copan_tempio_16`: verified (new)
+- No source for: base_m, area_mq
+
+### `huaca_pucllana`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, base_m, area_mq
+
+### `huaca_de_la_luna`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq
+
+### `huaca_rajada_sipan`: verified (new)
+- No source for: base_m, area_mq
+
+### `pachacamac_templo_pintado`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq
+
+### `huaca_cao_viejo`: verified (new)
+- No source for: area_mq
+
+### `emerald_mound`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m
+
+### `poverty_point_mound_a`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq
+
+### `ocmulgee_great_temple_mound`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, base_m, area_mq
+
+### `edzna_cinque_piani`: partial (new)
+- No source for: altitudine_sul_livello_del_mare_m, base_m, area_mq, year_start, year_end
+
+### `mahaiatea_marae`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq
+
+### `pulemelei_mound`: verified (new)
+- No source for: altitudine_sul_livello_del_mare_m, area_mq

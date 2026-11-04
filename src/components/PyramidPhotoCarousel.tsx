@@ -8,6 +8,13 @@ interface PyramidPhotoCarouselProps {
   name: string;
 }
 
+/** The Wikimedia Commons file page, where author and licence are listed. */
+const commonsPage = (url: string) => {
+  if (!url.includes('upload.wikimedia.org')) return null;
+  const file = decodeURIComponent(url.split('/').pop() ?? '').replace(/^\d+px-/, '');
+  return file ? `https://commons.wikimedia.org/wiki/File:${encodeURIComponent(file)}` : null;
+};
+
 const PyramidPhotoCarousel = ({ images, googleUrl, name }: PyramidPhotoCarouselProps) => {
   const { t } = useI18n();
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -60,19 +67,21 @@ const PyramidPhotoCarousel = ({ images, googleUrl, name }: PyramidPhotoCarouselP
             ) : (
               <div className="w-full h-full flex flex-col items-center justify-center text-muted-foreground gap-2">
                 <ImageOff size={24} />
-                <span className="text-[10px] font-mono">Image unavailable</span>
+                <span className="text-[10px] font-mono">{t.imageUnavailable}</span>
               </div>
             )}
 
             {workingImages.length > 1 && (
               <>
                 <button
+                  aria-label="←"
                   onClick={handlePrev}
                   className="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-colors"
                 >
                   <ChevronLeft size={14} />
                 </button>
                 <button
+                  aria-label="→"
                   onClick={handleNext}
                   className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-colors"
                 >
@@ -116,6 +125,17 @@ const PyramidPhotoCarousel = ({ images, googleUrl, name }: PyramidPhotoCarouselP
             </div>
           )}
         </div>
+      )}
+
+      {workingImages.length > 0 && commonsPage(images[currentIndex]) && (
+        <a
+          href={commonsPage(images[currentIndex])!}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block text-[10px] font-mono text-muted-foreground hover:text-primary"
+        >
+          {t.imageCredit}: Wikimedia Commons
+        </a>
       )}
 
       {/* Google Images search link - always visible */}

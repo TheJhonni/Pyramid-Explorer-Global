@@ -19,6 +19,8 @@ const LanguageSwitcher = () => {
     <div ref={ref} className="relative z-50">
       <button
         onClick={() => setOpen(!open)}
+        aria-expanded={open}
+        aria-label={langNames[lang]}
         className="flex items-center gap-1.5 px-3 py-1.5 bg-card/80 backdrop-blur-sm border border-border rounded-md text-xs text-muted-foreground hover:text-foreground hover:bg-card transition-all font-mono"
       >
         <Globe2 size={12} />

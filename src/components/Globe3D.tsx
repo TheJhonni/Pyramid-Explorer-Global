@@ -1,8 +1,13 @@
-import { useRef, useEffect, useMemo, useCallback } from 'react';
-import Globe from 'react-globe.gl';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { Pyramid } from '@/types/pyramid';
-import { getSunPosition } from '@/utils/sunPosition';
+import { latLonToUnit } from '@/utils/geo';
+import { MOBILE_SHEET_SHARE } from '@/utils/layout';
+import {
+  BACKGROUND_FRAGMENT, BACKGROUND_VERTEX, CLOUD_FRAGMENT, HALO_FRAGMENT, HALO_VERTEX, PIN_FRAGMENT, PIN_VERTEX,
+  PLANET_FRAGMENT, PLANET_UNIFORMS_GLSL, SNOISE, STAR_FRAGMENT, STAR_VERTEX,
+} from './planetShaders';
 
 interface Globe3DProps {
   pyramids: Pyramid[];
@@ -11,300 +16,592 @@ interface Globe3DProps {
   flyToKey: number;
   onSelect: (pyramid: Pyramid) => void;
   focusPoint?: { lat: number; lng: number; altitude: number } | null;
+  detailsOpen?: boolean;
+  loadingLabel: string;
+  onUnavailable: () => void;
 }
 
-const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusPoint }: Globe3DProps) => {
-  const globeRef = useRef<any>(undefined);
+const ASSETS = import.meta.env.VITE_PLANET_ASSETS ?? 'https://yccumtqwgl01awwe.public.blob.vercel-storage.com';
+const RADIUS = 1.95;
+const SITE_DISTANCE = 4.3;
+const PIN_LIFT = 1.012;
+const DEFAULT_VIEW = { lat: 20, lon: 15 };
+
+const isLowPower = () => window.matchMedia('(max-width: 767px), (pointer: coarse)').matches;
+const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const loadTexture = (loader: THREE.TextureLoader, name: string, srgb: boolean) =>
+  loader.loadAsync(`${ASSETS}/${name}`).then((texture) => {
+    texture.flipY = false;
+    if (srgb) texture.colorSpace = THREE.SRGBColorSpace;
+    return texture;
+  });
+
+/** Splits each triangle in four, so the outline stays round when zoomed in. */
+function buildPlanetGeometry(buffer: ArrayBuffer) {
+  const [vertexCount, indexCount] = new Uint32Array(buffer, 0, 2);
+  const srcPos = new Float32Array(buffer, 8, vertexCount * 3);
+  const srcUv = new Float32Array(buffer, 8 + vertexCount * 12, vertexCount * 2);
+  const srcIndex = new Uint16Array(buffer, 8 + vertexCount * 20, indexCount);
+
+  const pos: number[] = Array.from(srcPos);
+  const uv: number[] = Array.from(srcUv);
+  const index: number[] = [];
+  const mids = new Map<string, number>();
+  const mid = (a: number, b: number) => {
+    const key = a < b ? `${a}_${b}` : `${b}_${a}`;
+    const known = mids.get(key);
+    if (known !== undefined) return known;
+    const x = pos[a * 3] + pos[b * 3];
+    const y = pos[a * 3 + 1] + pos[b * 3 + 1];
+    const z = pos[a * 3 + 2] + pos[b * 3 + 2];
+    const length = Math.hypot(x, y, z);
+    pos.push(x / length, y / length, z / length);
+    uv.push((uv[a * 2] + uv[b * 2]) / 2, (uv[a * 2 + 1] + uv[b * 2 + 1]) / 2);
+    const id = pos.length / 3 - 1;
+    mids.set(key, id);
+    return id;
+  };
+  for (let i = 0; i < srcIndex.length; i += 3) {
+    const [a, b, c] = [srcIndex[i], srcIndex[i + 1], srcIndex[i + 2]];
+    const [ab, bc, ca] = [mid(a, b), mid(b, c), mid(c, a)];
+    index.push(a, ab, ca, ab, b, bc, ca, bc, c, ab, bc, ca);
+  }
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+  geometry.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
+  // Unit sphere: each position is also its normal.
+  geometry.setAttribute('normal', new THREE.Float32BufferAttribute(pos, 3));
+  geometry.setIndex(index);
+  return geometry;
+}
+
+const toVector = (lat: number, lon: number, scale = 1) => {
+  const v = latLonToUnit(lat, lon);
+  return new THREE.Vector3(v.x, v.y, v.z).multiplyScalar(scale);
+};
+
+interface Engine {
+  pins: { attr: THREE.BufferAttribute; positions: THREE.Vector3[] } | null;
+  flyTo: (lat: number, lon: number, distance: number) => void;
+  setPins: (sites: Pyramid[]) => void;
+  setPanelOffset: (x: number, y: number) => void;
+  pick: (clientX: number, clientY: number, radius: number) => number[];
+}
+
+const Globe3D = ({
+  pyramids, filteredIds, selectedId, flyToKey, onSelect, focusPoint, detailsOpen, loadingLabel, onUnavailable,
+}: Globe3DProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const flyTimeoutsRef = useRef<number[]>([]);
-  const animationFrameRef = useRef<number | null>(null);
+  const engineRef = useRef<Engine | null>(null);
+  const pyramidsRef = useRef(pyramids);
+  pyramidsRef.current = pyramids;
+  const onSelectRef = useRef(onSelect);
+  onSelectRef.current = onSelect;
+  const onUnavailableRef = useRef(onUnavailable);
+  onUnavailableRef.current = onUnavailable;
+  const selectedRef = useRef(selectedId);
+  selectedRef.current = selectedId;
+  const flyKeyRef = useRef(flyToKey);
 
-  const clearFlyTimeouts = useCallback(() => {
-    flyTimeoutsRef.current.forEach((timeoutId) => window.clearTimeout(timeoutId));
-    flyTimeoutsRef.current = [];
-  }, []);
+  const [ready, setReady] = useState(false);
+  const [hover, setHover] = useState<{ x: number; y: number; ids: number[] } | null>(null);
+  const [choice, setChoice] = useState<{ x: number; y: number; ids: number[] } | null>(null);
 
-  const stopCameraAnimation = useCallback(() => {
-    clearFlyTimeouts();
-    if (animationFrameRef.current !== null) {
-      window.cancelAnimationFrame(animationFrameRef.current);
-      animationFrameRef.current = null;
-    }
-  }, [clearFlyTimeouts]);
+  const filteredSet = useMemo(() => new Set(filteredIds), [filteredIds]);
 
-  const normalizeLngDelta = useCallback((from: number, to: number) => {
-    let delta = to - from;
-    while (delta > 180) delta -= 360;
-    while (delta < -180) delta += 360;
-    return delta;
-  }, []);
+  // The scene is built once. Language and filter changes only update what they touch.
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    const lowPower = isLowPower();
+    const reduced = prefersReducedMotion();
+    const defines: Record<string, string> = lowPower ? { LOW_POWER: '1' } : {};
+    let disposed = false;
 
-  const getCurrentPointOfView = useCallback(() => {
-    const globe = globeRef.current;
-    const pov = globe?.pointOfView?.() ?? {};
-
-    return {
-      lat: Number(pov.lat ?? 0),
-      lng: Number(pov.lng ?? 0),
-      altitude: Number(pov.altitude ?? 2),
-    };
-  }, []);
-
-  const animatePointOfView = useCallback((target: { lat: number; lng: number; altitude: number }, duration = 1200) => {
-    const globe = globeRef.current;
-    if (!globe) return;
-
-    stopCameraAnimation();
-
-    const startPov = getCurrentPointOfView();
-    const lngDelta = normalizeLngDelta(startPov.lng, target.lng);
-    const startTime = performance.now();
-
-    const step = (now: number) => {
-      const progress = Math.min((now - startTime) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-
-      globe.pointOfView(
-        {
-          lat: startPov.lat + (target.lat - startPov.lat) * eased,
-          lng: startPov.lng + lngDelta * eased,
-          altitude: startPov.altitude + (target.altitude - startPov.altitude) * eased,
-        },
-        0
-      );
-
-      if (progress < 1) {
-        animationFrameRef.current = window.requestAnimationFrame(step);
-      } else {
-        globe.pointOfView(target, 0);
-        animationFrameRef.current = null;
-      }
-    };
-
-    animationFrameRef.current = window.requestAnimationFrame(step);
-  }, [getCurrentPointOfView, normalizeLngDelta, stopCameraAnimation]);
-
-  const flyToPoint = useCallback((target: { lat: number; lng: number; altitude: number }, duration = 1200, closeUp = false) => {
-    const currentPov = getCurrentPointOfView();
-    const angularDistance = Math.hypot(
-      target.lat - currentPov.lat,
-      normalizeLngDelta(currentPov.lng, target.lng)
-    );
-
-    const finalTarget = closeUp && angularDistance < 12
-      ? { ...target, altitude: Math.min(target.altitude, 0.55) }
-      : target;
-
-    const shouldStageFlight = closeUp && angularDistance < 12;
-    if (!shouldStageFlight) {
-      animatePointOfView(finalTarget, duration);
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ antialias: !lowPower, powerPreference: 'high-performance' });
+    } catch {
+      onUnavailableRef.current();
       return;
     }
+    // The scene's colours were tuned for output without gamma correction.
+    renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
+    const dpr = Math.min(window.devicePixelRatio || 1, lowPower ? 1.5 : 2);
+    renderer.setPixelRatio(dpr);
+    renderer.domElement.style.display = 'block';
+    renderer.domElement.setAttribute('role', 'img');
+    renderer.domElement.setAttribute('aria-label', '3D globe');
+    container.appendChild(renderer.domElement);
 
-    animatePointOfView(
-      {
-        lat: currentPov.lat,
-        lng: currentPov.lng,
-        altitude: Math.max(currentPov.altitude, finalTarget.altitude, 1.9),
-      },
-      260
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 200);
+    const fitDistance = () => {
+      const aspect = container.clientWidth / Math.max(container.clientHeight, 1);
+      const verticalFit = (RADIUS * 2 * 1.2) / (2 * Math.tan(THREE.MathUtils.degToRad(20)));
+      return Math.max(8, verticalFit / Math.min(aspect, 1));
+    };
+    camera.position.copy(toVector(DEFAULT_VIEW.lat, DEFAULT_VIEW.lon, fitDistance()));
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.06;
+    controls.enablePan = false;
+    controls.minDistance = 2.7;
+    controls.maxDistance = 18;
+    controls.rotateSpeed = 0.5;
+    controls.autoRotate = !reduced;
+    controls.autoRotateSpeed = 0.25;
+
+    scene.add(new THREE.AmbientLight(0xffffff, 1.8 * Math.PI));
+    const sun = new THREE.DirectionalLight(0xffffff, 0.8 * Math.PI);
+    sun.position.set(0, 10, 2);
+    scene.add(sun);
+
+    const clock = { planet: { value: 0 }, cloud: { value: 0 }, star: { value: 0 }, pin: { value: 0 } };
+    const px = { value: 1 };
+
+    const background = new THREE.Mesh(
+      new THREE.PlaneGeometry(2, 2),
+      new THREE.ShaderMaterial({
+        defines,
+        uniforms: { iTime: { value: 0 } },
+        vertexShader: BACKGROUND_VERTEX,
+        fragmentShader: BACKGROUND_FRAGMENT,
+        depthTest: false,
+        depthWrite: false,
+      }),
     );
+    background.frustumCulled = false;
+    background.renderOrder = -10;
+    scene.add(background);
 
-    const timeoutId = window.setTimeout(() => {
-      animatePointOfView(finalTarget, duration);
-    }, 280);
+    // Stars
+    const starCount = lowPower ? 500 : 1400;
+    const starPos = new Float32Array(starCount * 3);
+    const starSeed = new Float32Array(starCount);
+    const starBright = new Float32Array(starCount);
+    for (let i = 0; i < starCount; i++) {
+      const u = Math.random() * 2 - 1;
+      const th = Math.random() * Math.PI * 2;
+      const r = Math.sqrt(1 - u * u);
+      starPos.set([90 * r * Math.cos(th), 90 * u, 90 * r * Math.sin(th)], i * 3);
+      starSeed[i] = Math.random() * Math.PI * 2;
+      starBright[i] = 0.35 + Math.random() * 0.65;
+    }
+    const starGeometry = new THREE.BufferGeometry();
+    starGeometry.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+    starGeometry.setAttribute('seed', new THREE.BufferAttribute(starSeed, 1));
+    starGeometry.setAttribute('bright', new THREE.BufferAttribute(starBright, 1));
+    const stars = new THREE.Points(
+      starGeometry,
+      new THREE.ShaderMaterial({
+        uniforms: { uTime: clock.star, uPx: px },
+        vertexShader: STAR_VERTEX,
+        fragmentShader: STAR_FRAGMENT,
+        transparent: true,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+      }),
+    );
+    stars.frustumCulled = false;
+    scene.add(stars);
 
-    flyTimeoutsRef.current.push(timeoutId);
-  }, [animatePointOfView, getCurrentPointOfView, normalizeLngDelta]);
+    const root = new THREE.Group();
+    scene.add(root);
 
-  // Set up lighting based on sun position
-  useEffect(() => {
-    const globe = globeRef.current;
-    if (!globe) return;
+    const halo = new THREE.Mesh(
+      new THREE.PlaneGeometry(2, 2),
+      new THREE.ShaderMaterial({
+        uniforms: { uGlow: { value: new THREE.Vector3(0.2275, 0.4235, 1) }, uIntensity: { value: 3.35 } },
+        vertexShader: HALO_VERTEX,
+        fragmentShader: HALO_FRAGMENT,
+        transparent: true,
+        side: THREE.DoubleSide,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending,
+      }),
+    );
+    halo.scale.setScalar(RADIUS * 2.3);
+    halo.visible = false;
+    root.add(halo);
 
-    const scene = globe.scene();
-    const camera = globe.camera();
+    // Pins
+    const pinGeometry = new THREE.BufferGeometry();
+    const pinMaterial = new THREE.ShaderMaterial({
+      uniforms: { uTime: clock.pin, uPx: px },
+      vertexShader: PIN_VERTEX,
+      fragmentShader: PIN_FRAGMENT,
+      transparent: true,
+      depthWrite: false,
+    });
+    const pinPoints = new THREE.Points(pinGeometry, pinMaterial);
+    pinPoints.frustumCulled = false;
+    pinPoints.renderOrder = 5;
+    pinPoints.visible = false;
+    root.add(pinPoints);
 
-    scene.children
-      .filter((c: THREE.Object3D) => c instanceof THREE.Light)
-      .forEach((l: THREE.Object3D) => scene.remove(l));
+    const clouds: { mesh: THREE.Mesh; spin: number }[] = [];
+    const disposables: { dispose: () => void }[] = [];
 
-    const ambient = new THREE.AmbientLight(0x334455, 0.6);
-    scene.add(ambient);
-
-    const sunLight = new THREE.DirectionalLight(0xffffff, 1.8);
-    scene.add(sunLight);
-
-    const updateSun = () => {
-      const sun = getSunPosition();
-      const phi = (90 - sun.lat) * (Math.PI / 180);
-      const theta = (sun.lng + 180) * (Math.PI / 180);
-      const r = 200;
-      sunLight.position.set(
-        r * Math.sin(phi) * Math.cos(theta),
-        r * Math.cos(phi),
-        r * Math.sin(phi) * Math.sin(theta)
-      );
+    let panelOffset = { x: 0, y: 0 };
+    const projected = new THREE.Vector3();
+    const toCamera = new THREE.Vector3();
+    const engine: Engine = {
+      pins: null,
+      flyTo: () => undefined,
+      setPanelOffset: (x, y) => {
+        panelOffset = { x, y };
+        const { clientWidth: w, clientHeight: h } = container;
+        if (x || y) camera.setViewOffset(w, h, x, y, w, h);
+        else camera.clearViewOffset();
+      },
+      setPins: (sites) => {
+        const positions = sites.map((s) => toVector(s.coordinate.lat, s.coordinate.lon, RADIUS * PIN_LIFT));
+        const flat = new Float32Array(sites.length * 3);
+        positions.forEach((p, i) => flat.set([p.x, p.y, p.z], i * 3));
+        pinGeometry.setAttribute('position', new THREE.BufferAttribute(flat, 3));
+        const seeds = new Float32Array(sites.length).map(() => Math.random());
+        pinGeometry.setAttribute('seed', new THREE.BufferAttribute(seeds, 1));
+        const attr = new THREE.BufferAttribute(new Float32Array(sites.length).fill(1), 1);
+        pinGeometry.setAttribute('state', attr);
+        engine.pins = { attr, positions };
+      },
+      pick: (clientX, clientY, radius) => {
+        if (!engine.pins) return [];
+        const rect = container.getBoundingClientRect();
+        const found: { i: number; d: number }[] = [];
+        engine.pins.positions.forEach((p, i) => {
+          toCamera.copy(camera.position).sub(p).normalize();
+          if (toCamera.dot(projected.copy(p).normalize()) < 0.15) return;
+          projected.copy(p).project(camera);
+          const x = rect.left + ((projected.x + 1) / 2) * rect.width;
+          const y = rect.top + ((1 - projected.y) / 2) * rect.height;
+          const d = Math.hypot(x - clientX, y - clientY);
+          if (d <= radius) found.push({ i, d });
+        });
+        return found.sort((a, b) => a.d - b.d).map((f) => f.i);
+      },
     };
 
-    updateSun();
-    const interval = setInterval(updateSun, 60000);
+    let flight: { from: THREE.Vector3; to: THREE.Vector3; fromD: number; toD: number; start: number; ms: number } | null = null;
+    engine.flyTo = (lat, lon, distance) => {
+      controls.autoRotate = false;
+      const to = toVector(lat, lon);
+      if (reduced) {
+        camera.position.copy(to).multiplyScalar(distance);
+        return;
+      }
+      flight = {
+        from: camera.position.clone().normalize(),
+        to,
+        fromD: camera.position.length(),
+        toD: distance,
+        start: performance.now(),
+        ms: 1500,
+      };
+    };
+    engineRef.current = engine;
+    controls.addEventListener('start', () => {
+      flight = null;
+      controls.autoRotate = false;
+    });
 
-    camera.position.set(0, 0, 300);
+    const resize = () => {
+      const w = container.clientWidth;
+      const h = container.clientHeight;
+      if (!w || !h) return;
+      renderer.setSize(w, h, false);
+      renderer.domElement.style.width = '100%';
+      renderer.domElement.style.height = '100%';
+      camera.aspect = w / h;
+      engine.setPanelOffset(panelOffset.x, panelOffset.y);
+      camera.updateProjectionMatrix();
+      px.value = (h * dpr) / 900;
+    };
+    resize();
+    const observer = new ResizeObserver(resize);
+    observer.observe(container);
 
-    const controls = globe.controls();
-    if (controls) {
-      controls.autoRotate = true;
-      controls.autoRotateSpeed = 0.3;
-      controls.enableDamping = true;
-      controls.dampingFactor = 0.1;
-      controls.minDistance = 120;
-      controls.maxDistance = 500;
-      controls.addEventListener?.('start', () => {
-        controls.autoRotate = false;
-        stopCameraAnimation();
+    // Assets
+    const loader = new THREE.TextureLoader();
+    const anisotropy = Math.min(renderer.capabilities.getMaxAnisotropy(), lowPower ? 2 : 8);
+    Promise.all([
+      fetch(`${ASSETS}/planet.bin`).then((r) => {
+        if (!r.ok) throw new Error(`planet.bin ${r.status}`);
+        return r.arrayBuffer();
+      }),
+      loadTexture(loader, lowPower ? 'earth-2k.webp' : 'earth-4k.webp', true),
+      loadTexture(loader, lowPower ? 'lights-1k.webp' : 'lights-2k.webp', true),
+      loader.loadAsync(`${ASSETS}/${lowPower ? 'clouds-512.webp' : 'clouds-1k.webp'}`),
+    ])
+      .then(([bin, day, lights, cloudTexture]) => {
+        if (disposed) {
+          [day, lights, cloudTexture].forEach((t) => t.dispose());
+          return;
+        }
+        day.anisotropy = anisotropy;
+        cloudTexture.wrapS = cloudTexture.wrapT = THREE.RepeatWrapping;
+        cloudTexture.repeat.set(5, 5);
+        cloudTexture.colorSpace = THREE.SRGBColorSpace;
+        disposables.push(day, lights, cloudTexture);
+
+        const planetMaterial = new THREE.MeshStandardMaterial({ map: day, metalness: 0, roughness: 1 });
+        planetMaterial.defines = { ...planetMaterial.defines, ...defines };
+        planetMaterial.onBeforeCompile = (shader) => {
+          Object.assign(shader.uniforms, {
+            time: clock.planet,
+            rimColor: { value: new THREE.Vector3(0.757, 0.98, 1) },
+            rimPower: { value: 2.4 },
+            nightBlendTexture: { value: lights },
+            nightLights: { value: 10 },
+            terrainDepth: { value: 0.33 },
+            terrainShade: { value: 1.3 },
+            oceanGlint: { value: 0.45 },
+            oceanDeep: { value: 0.12 },
+            oceanFlow: { value: 3 },
+            oceanFlowSpeed: { value: 0.8 },
+            oceanFlowScale: { value: 2.1 },
+          });
+          shader.vertexShader = shader.vertexShader
+            .replace('#include <common>', '#include <common>\nvarying vec2 vCustomUv;')
+            .replace('#include <begin_vertex>', '#include <begin_vertex>\nvCustomUv = uv;');
+          shader.fragmentShader = `${PLANET_UNIFORMS_GLSL}\n${lowPower ? '' : SNOISE}\n${shader.fragmentShader}`.replace(
+            '#include <dithering_fragment>',
+            PLANET_FRAGMENT,
+          );
+        };
+        const planetGeometry = buildPlanetGeometry(bin);
+        const planet = new THREE.Mesh(planetGeometry, planetMaterial);
+        planet.scale.setScalar(RADIUS);
+        root.add(planet);
+        disposables.push(planetGeometry, planetMaterial);
+
+        const layers = lowPower
+          ? [{ height: 1.03, opacity: 0.6, spin: 0.08, phase: 0 }]
+          : [
+              { height: 1.005, opacity: 0.6, spin: 0.06, phase: 0 },
+              { height: 1.03, opacity: 0.5, spin: 0.14, phase: 13 },
+              { height: 1.075, opacity: 0.5, spin: 0.1, phase: 27 },
+            ];
+        layers.forEach((layer, i) => {
+          const geometry = new THREE.SphereGeometry(RADIUS * layer.height, lowPower ? 40 : 64, lowPower ? 40 : 64);
+          const material = new THREE.MeshStandardMaterial({ map: cloudTexture, transparent: true, depthWrite: false });
+          material.onBeforeCompile = (shader) => {
+            Object.assign(shader.uniforms, {
+              uTime: clock.cloud,
+              uOpacity: { value: layer.opacity },
+              uPhase: { value: layer.phase },
+            });
+            shader.vertexShader = shader.vertexShader
+              .replace('#include <common>', '#include <common>\nvarying vec2 vCloudUv;')
+              .replace('#include <begin_vertex>', '#include <begin_vertex>\nvCloudUv = uv;');
+            shader.fragmentShader = `uniform float uTime; uniform float uOpacity; uniform float uPhase; varying vec2 vCloudUv;\n${SNOISE}\n${shader.fragmentShader}`.replace(
+              '#include <dithering_fragment>',
+              CLOUD_FRAGMENT,
+            );
+          };
+          const mesh = new THREE.Mesh(geometry, material);
+          mesh.rotation.y = i * 2.2;
+          mesh.renderOrder = 2;
+          root.add(mesh);
+          clouds.push({ mesh, spin: layer.spin });
+          disposables.push(geometry, material);
+        });
+
+        halo.visible = true;
+        pinPoints.visible = true;
+        setReady(true);
+        entryStart = reduced ? 0 : performance.now();
+        if (!reduced) root.position.y = -6.5;
+      })
+      .catch(() => {
+        if (!disposed) onUnavailableRef.current();
       });
-    }
 
-    scene.background = new THREE.Color(0x0a0a14);
+    let entryStart = 0;
+    let frame = 0;
+    let last = performance.now();
+    const tick = (now: number) => {
+      frame = requestAnimationFrame(tick);
+      if (document.hidden) {
+        last = now;
+        return;
+      }
+      const dt = Math.min(0.05, (now - last) / 1000);
+      last = now;
+      clock.planet.value += dt / 12;
+      clock.cloud.value += dt / 20;
+      clock.star.value += dt;
+      clock.pin.value += dt;
+      (background.material as THREE.ShaderMaterial).uniforms.iTime.value = now / 1000;
+      clouds.forEach((c) => {
+        c.mesh.rotation.y += dt * c.spin;
+      });
+      if (entryStart) {
+        const t = Math.min(1, (now - entryStart) / 1900);
+        root.position.y = -6.5 * Math.pow(1 - t, 3);
+        if (t >= 1) entryStart = 0;
+      }
+      if (flight) {
+        const t = Math.min(1, (now - flight.start) / flight.ms);
+        const e = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        // Rises a little mid-flight on long hops, so it reads as a journey around the globe.
+        const hop = Math.sin(Math.PI * t) * flight.from.angleTo(flight.to) * 0.5;
+        const q = new THREE.Quaternion().setFromUnitVectors(flight.from, flight.to);
+        const direction = flight.from.clone().applyQuaternion(new THREE.Quaternion().slerp(q, e));
+        camera.position.copy(direction).multiplyScalar(THREE.MathUtils.lerp(flight.fromD, flight.toD, e) + hop);
+        if (t >= 1) flight = null;
+      }
+      controls.update();
+      halo.quaternion.copy(camera.quaternion);
+      renderer.render(scene, camera);
+    };
+    frame = requestAnimationFrame(tick);
+
+    const onLost = (event: Event) => {
+      event.preventDefault();
+      onUnavailableRef.current();
+    };
+    renderer.domElement.addEventListener('webglcontextlost', onLost);
 
     return () => {
-      clearInterval(interval);
-      stopCameraAnimation();
+      disposed = true;
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      controls.dispose();
+      renderer.domElement.removeEventListener('webglcontextlost', onLost);
+      disposables.forEach((d) => d.dispose());
+      [background, halo].forEach((m) => {
+        m.geometry.dispose();
+        (m.material as THREE.Material).dispose();
+      });
+      starGeometry.dispose();
+      (stars.material as THREE.Material).dispose();
+      pinGeometry.dispose();
+      pinMaterial.dispose();
+      renderer.dispose();
+      renderer.domElement.remove();
+      engineRef.current = null;
     };
-  }, [stopCameraAnimation]);
-
-  // Focus on continent
-  useEffect(() => {
-    if (!focusPoint || !globeRef.current) return;
-
-    const controls = globeRef.current.controls();
-    if (controls) {
-      controls.autoRotate = false;
-    }
-
-    flyToPoint(focusPoint, 1000, false);
-  }, [focusPoint, flyToPoint]);
-
-  // Fly to selected pyramid (from list or globe click)
-  useEffect(() => {
-    if (!selectedId || !globeRef.current) return;
-
-    const pyramid = pyramids.find((p) => p.id === selectedId);
-    if (!pyramid) return;
-
-    const controls = globeRef.current.controls();
-    if (controls) {
-      controls.autoRotate = false;
-    }
-
-    flyToPoint(
-      {
-        lat: Number(pyramid.coordinate.lat),
-        lng: Number(pyramid.coordinate.lon),
-        altitude: 1.5,
-      },
-      1200,
-      true
-    );
-  }, [selectedId, flyToKey, pyramids, flyToPoint]);
-
-  // Custom pyramid geometry
-  const pyramidGeom = useMemo(() => new THREE.ConeGeometry(0.8, 2, 4), []);
-  
-  const goldMat = useMemo(() => new THREE.MeshPhongMaterial({
-    color: 0xd4af37,
-    emissive: 0x443300,
-    shininess: 100,
-    specular: 0xffffff,
-  }), []);
-
-  const glowMat = useMemo(() => new THREE.MeshPhongMaterial({
-    color: 0x22c55e,
-    emissive: 0x0a5a2a,
-    shininess: 150,
-    specular: 0x00ff88,
-  }), []);
-
-  const selectedMat = useMemo(() => new THREE.MeshPhongMaterial({
-    color: 0x00ffaa,
-    emissive: 0x00aa55,
-    shininess: 200,
-    specular: 0x00ffcc,
-  }), []);
-
-  const dimMat = useMemo(() => new THREE.MeshPhongMaterial({
-    color: 0x665533,
-    emissive: 0x221100,
-    shininess: 30,
-    opacity: 0.4,
-    transparent: true,
-  }), []);
-
-  const objectThreeObject = useCallback((d: object) => {
-    const pyramid = d as Pyramid;
-    const isFiltered = filteredIds.includes(pyramid.id);
-    const isSelected = pyramid.id === selectedId;
-    const hasFilter = filteredIds.length < pyramids.length;
-    
-    let mat = goldMat;
-    if (isSelected) mat = selectedMat;
-    else if (isFiltered) mat = glowMat;
-    else if (hasFilter) mat = dimMat;
-
-    const mesh = new THREE.Mesh(pyramidGeom, mat);
-    const scale = isSelected ? 2.5 : isFiltered ? 1.8 : 1;
-    mesh.scale.set(scale, scale, scale);
-    mesh.rotation.x = Math.PI; // point upward
-    return mesh;
-  }, [filteredIds, selectedId, pyramids.length, pyramidGeom, goldMat, glowMat, selectedMat, dimMat]);
-
-  const handleObjectClick = useCallback((obj: object) => {
-    const pyramid = obj as Pyramid;
-    onSelect(pyramid);
-  }, [onSelect]);
-
-  const handleResize = useCallback(() => {
-    if (containerRef.current && globeRef.current) {
-      // Globe handles its own resize
-    }
   }, []);
 
+  // Pins follow the dataset order, which does not change with language or filters.
+  const pinIds = useMemo(() => pyramids.map((p) => p.id).join(','), [pyramids]);
   useEffect(() => {
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [handleResize]);
+    engineRef.current?.setPins(pyramidsRef.current);
+  }, [pinIds]);
 
-  const width = containerRef.current?.clientWidth || window.innerWidth - 320;
-  const height = containerRef.current?.clientHeight || window.innerHeight;
+  useEffect(() => {
+    const pins = engineRef.current?.pins;
+    if (!pins) return;
+    pyramids.forEach((p, i) => {
+      pins.attr.setX(i, p.id === selectedId ? 2 : filteredSet.has(p.id) ? 1 : 0);
+    });
+    pins.attr.needsUpdate = true;
+  }, [pyramids, filteredSet, selectedId, ready]);
+
+  useEffect(() => {
+    if (!focusPoint) return;
+    engineRef.current?.flyTo(focusPoint.lat, focusPoint.lng, RADIUS * (1 + focusPoint.altitude));
+  }, [focusPoint]);
+
+  // Fly to a site when it is selected, and again when the same one is picked from the list.
+  useEffect(() => {
+    if (!selectedId) return;
+    const site = pyramidsRef.current.find((p) => p.id === selectedId);
+    if (site) engineRef.current?.flyTo(site.coordinate.lat, site.coordinate.lon, SITE_DISTANCE);
+    flyKeyRef.current = flyToKey;
+  }, [selectedId, flyToKey]);
+
+  // Keep the site visible beside the panel on wide screens, and above the sheet on phones.
+  useEffect(() => {
+    const engine = engineRef.current;
+    if (!engine) return;
+    if (!detailsOpen) {
+      engine.setPanelOffset(0, 0);
+    } else if (window.matchMedia('(min-width: 768px)').matches) {
+      engine.setPanelOffset(240, 0);
+    } else {
+      engine.setPanelOffset(0, (window.innerHeight * MOBILE_SHEET_SHARE) / 2);
+    }
+  }, [detailsOpen]);
+
+  const down = useRef<{ x: number; y: number; touch: boolean } | null>(null);
+
+  const siteAt = (i: number) => pyramidsRef.current[i];
 
   return (
-    <div ref={containerRef} className="globe-container absolute inset-0">
-      <Globe
-        ref={globeRef}
-        globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
-        bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
-        backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
-        showAtmosphere={true}
-        atmosphereColor="#2a5a4a"
-        atmosphereAltitude={0.2}
-        objectsData={pyramids}
-        objectLat={(d: object) => (d as Pyramid).coordinate.lat}
-        objectLng={(d: object) => (d as Pyramid).coordinate.lon}
-        objectAltitude={0.02}
-        objectThreeObject={objectThreeObject}
-        onObjectClick={handleObjectClick}
-        objectLabel={(d: object) => {
-          const p = d as Pyramid;
-          return `<div style="background:rgba(0,0,0,0.85);border:1px solid rgba(34,197,94,0.4);padding:8px 12px;border-radius:6px;font-family:Inter,sans-serif;font-size:13px;color:#e0e0e0;max-width:200px;">
-            <div style="color:#d4af37;font-weight:600;margin-bottom:2px;">${p.nome}</div>
-            <div style="font-size:11px;color:#888;font-family:'IBM Plex Mono',monospace;">${p.paese} · ${p.coordinate.lat.toFixed(2)}°, ${p.coordinate.lon.toFixed(2)}°</div>
-            ${p.osmanagich_focus ? '<div style="margin-top:4px;font-size:10px;color:#22c55e;">★ Focus Osmanagich</div>' : ''}
-          </div>`;
-        }}
-        width={width}
-        height={height}
-      />
+    <div
+      ref={containerRef}
+      className="globe-container absolute inset-0 touch-none"
+      onPointerDown={(e) => {
+        down.current = { x: e.clientX, y: e.clientY, touch: e.pointerType !== 'mouse' };
+        setChoice(null);
+      }}
+      onPointerUp={(e) => {
+        const start = down.current;
+        down.current = null;
+        if (!start || Math.hypot(e.clientX - start.x, e.clientY - start.y) > 6) return;
+        const hits = engineRef.current?.pick(e.clientX, e.clientY, start.touch ? 24 : 14) ?? [];
+        if (hits.length === 1) onSelectRef.current(siteAt(hits[0]));
+        else if (hits.length > 1) {
+          const rect = containerRef.current!.getBoundingClientRect();
+          setChoice({ x: e.clientX - rect.left, y: e.clientY - rect.top, ids: hits.slice(0, 15) });
+        }
+        setHover(null);
+      }}
+      onPointerMove={(e) => {
+        if (e.pointerType !== 'mouse' || e.buttons) return;
+        const hits = engineRef.current?.pick(e.clientX, e.clientY, 14) ?? [];
+        const rect = containerRef.current!.getBoundingClientRect();
+        setHover(hits.length ? { x: e.clientX - rect.left, y: e.clientY - rect.top, ids: hits.slice(0, 4) } : null);
+        (e.currentTarget as HTMLDivElement).style.cursor = hits.length ? 'pointer' : 'grab';
+      }}
+      onPointerLeave={() => setHover(null)}
+    >
+      {!ready && (
+        <div className="absolute inset-0 flex items-center justify-center text-xs font-mono text-muted-foreground" role="status">
+          {loadingLabel}
+        </div>
+      )}
+      {hover && !choice && (
+        <div
+          className="pointer-events-none absolute z-10 max-w-[240px] rounded-md border border-border bg-black/85 px-3 py-2 text-xs"
+          style={{ left: hover.x + 14, top: hover.y + 14 }}
+        >
+          {hover.ids.map((i) => (
+            <p key={i} className="truncate">
+              <span className="text-pyramid-gold font-medium">{siteAt(i).nome}</span>
+              <span className="text-muted-foreground"> · {siteAt(i).paese}</span>
+            </p>
+          ))}
+        </div>
+      )}
+      {choice && (
+        <ul
+          className="absolute z-20 max-h-56 w-60 max-w-[80%] overflow-y-auto rounded-md border border-border bg-card/95 shadow-xl backdrop-blur-sm"
+          style={{ left: Math.min(choice.x, (containerRef.current?.clientWidth ?? 300) - 250), top: Math.min(choice.y, (containerRef.current?.clientHeight ?? 300) - 230) }}
+          onPointerDown={(e) => e.stopPropagation()}
+          onPointerUp={(e) => e.stopPropagation()}
+        >
+          {choice.ids.map((i) => (
+            <li key={i}>
+              <button
+                type="button"
+                onClick={() => {
+                  setChoice(null);
+                  onSelectRef.current(siteAt(i));
+                }}
+                className="w-full truncate px-3 py-2.5 text-left text-xs hover:bg-secondary/60"
+              >
+                {siteAt(i).nome}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
