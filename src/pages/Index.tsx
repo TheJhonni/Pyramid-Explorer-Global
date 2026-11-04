@@ -49,7 +49,7 @@ const Index = () => {
   const [panelOpen, setPanelOpen] = useState(false);
   const [webgl] = useState(hasWebGL);
   const [showIntro, setShowIntro] = useState(!siteId);
-  const [compareOpen, setCompareOpen] = useState(() => params.has('compare'));
+  const [compareOpen, setCompareOpen] = useState(() => params.has('compare') && !siteId);
   const [timelineOpen, setTimelineOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
   const [tourIndex, setTourIndex] = useState<number | null>(null);
@@ -274,7 +274,7 @@ const Index = () => {
           />
         )}
 
-        <div className={`absolute bottom-4 left-3 right-3 md:left-6 md:right-auto md:bottom-6 z-10 flex flex-wrap gap-2 ${tourIndex !== null ? 'md:hidden' : ''}`}>
+        <div className={`absolute bottom-4 left-3 right-3 md:left-6 md:right-auto md:bottom-6 z-10 flex flex-wrap gap-2 ${tourIndex !== null ? 'md:hidden' : ''} ${selectedPyramid ? 'md:right-[496px]' : ''}`}>
           <button type="button" onClick={handleReset} className={toolbarButton}>
             ⟳ {t.resetView}
           </button>

@@ -232,7 +232,12 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusP
   }, [selectedId, flyToKey, flyToPoint]);
 
   // Custom pyramid geometry
-  const pyramidGeom = useMemo(() => new THREE.ConeGeometry(0.8, 2, 4), []);
+  // globe.gl turns each object's +Z axis away from the surface, so the tip must point along +Z
+  // and the base must sit at the origin. rotateY squares the base up with the view.
+  const pyramidGeom = useMemo(
+    () => new THREE.ConeGeometry(0.8, 2, 4).rotateY(Math.PI / 4).rotateX(Math.PI / 2).translate(0, 0, 1),
+    [],
+  );
   
   const goldMat = useMemo(() => new THREE.MeshPhongMaterial({
     color: 0xd4af37,
@@ -277,7 +282,6 @@ const Globe3D = ({ pyramids, filteredIds, selectedId, flyToKey, onSelect, focusP
     const mesh = new THREE.Mesh(pyramidGeom, mat);
     const scale = isSelected ? 2.5 : isFiltered ? 1.8 : 1;
     mesh.scale.set(scale, scale, scale);
-    mesh.rotation.x = Math.PI; // point upward
     return mesh;
   }, [filteredSet, filteredIds.length, selectedId, pyramids.length, pyramidGeom, goldMat, glowMat, selectedMat, dimMat]);
 

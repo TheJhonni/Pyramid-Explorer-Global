@@ -20,7 +20,7 @@ const PyramidList = ({ pyramids, selectedId, onSelect }: PyramidListProps) => {
   }
 
   return (
-    <div className="max-h-[300px] overflow-y-auto">
+    <div className="max-h-[32svh] overflow-y-auto">
       {pyramids.map((p) => (
         <button
           key={p.id}
