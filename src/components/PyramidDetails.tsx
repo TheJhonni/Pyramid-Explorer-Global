@@ -1,9 +1,14 @@
 import { Pyramid } from '@/types/pyramid';
-import { X, MapPin, Mountain, Ruler, Star, ExternalLink, BookOpen, Lightbulb, BadgeCheck, CircleAlert, CircleHelp, Share2, Scale, Check, ChevronDown, ChevronUp } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { X, MapPin, Mountain, Ruler, Star, ExternalLink, BookOpen, Lightbulb, BadgeCheck, CircleAlert, CircleHelp, Share2, Scale, Check, ChevronDown, ChevronUp, Box } from 'lucide-react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { MOBILE_SHEET_SHARE } from '@/utils/layout';
 import { useI18n } from '@/i18n/I18nContext';
 import SitePhotos from './SitePhotos';
+import modelIndex from '@/data/siteModels.json';
+import type { SiteModel } from '@/utils/model';
+
+const ModelViewer = lazy(() => import('./ModelViewer'));
+const models = modelIndex as unknown as Record<string, SiteModel>;
 
 interface PyramidDetailsProps {
   pyramid: Pyramid;
@@ -25,6 +30,15 @@ const FIELD_LABELS: Record<string, 'height' | 'base' | 'area' | 'altitude' | 'da
 
 const PyramidDetails = ({ pyramid, onClose, inCompare, onToggleCompare }: PyramidDetailsProps) => {
   const { t, lang } = useI18n();
+  const model = models[pyramid.id];
+  const [modelOpen, setModelOpen] = useState(false);
+  const modelButton = useRef<HTMLButtonElement>(null);
+  // The viewer unmounts as soon as it closes, so focus goes back to its button by hand.
+  const closeModel = (next: boolean) => {
+    setModelOpen(next);
+    if (!next) requestAnimationFrame(() => modelButton.current?.focus());
+  };
+  useEffect(() => setModelOpen(false), [pyramid.id]);
   const num = (n: number) => n.toLocaleString(lang);
   const shown = (field: string, value: string) =>
     pyramid.campi_senza_fonte?.includes(field) ? `${value} · ${t.notVerified}` : value;
@@ -84,11 +98,12 @@ const PyramidDetails = ({ pyramid, onClose, inCompare, onToggleCompare }: Pyrami
   useEffect(() => {
         setCopied(false);
     const onKey = (e: KeyboardEvent) => {
-      // A dialog on top (gallery, comparison) handles Escape first.
+      // A dialog on top (gallery, panorama, model, comparison) handles Escape itself. This runs in the
+      // capture phase, before the dialog closes, so the check still sees it.
       if (e.key === 'Escape' && !document.querySelector('[role="dialog"]')) onClose();
     };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
+    window.addEventListener('keydown', onKey, true);
+    return () => window.removeEventListener('keydown', onKey, true);
   }, [pyramid, onClose]);
 
   const share = async () => {
@@ -200,6 +215,23 @@ const PyramidDetails = ({ pyramid, onClose, inCompare, onToggleCompare }: Pyrami
                   </tbody>
                 </table>
               </div>
+              {model && (
+                <>
+                  <button
+                    ref={modelButton}
+                    type="button"
+                    onClick={() => setModelOpen(true)}
+                    className="mt-2 flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-primary/40 bg-primary/10 px-3 text-sm font-medium text-primary hover:bg-primary/20"
+                  >
+                    <Box size={16} aria-hidden="true" /> {t.modelOpen}
+                  </button>
+                  {modelOpen && (
+                    <Suspense fallback={null}>
+                      <ModelViewer open={modelOpen} onOpenChange={closeModel} title={pyramid.nome} model={model} />
+                    </Suspense>
+                  )}
+                </>
+              )}
             </section>
 
             {/* Comparison table */}

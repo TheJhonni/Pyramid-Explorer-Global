@@ -20,6 +20,7 @@ Install with `bun install --frozen-lockfile`: `npm install` currently crashes on
 - `src/data/locales/{it,es,fr,de,pt}.json`: text overlays keyed by site id, loaded on demand.
 - `src/data/sitePhotos.json`: Commons file names per site, checked by eye (93 sites; the 10 without a usable file are listed in `docs/PHOTO_EXPERIENCE.md`). Author and licence are fetched live from the Commons API and must stay visible next to each photo.
 - `src/data/sitePanoramas.json`: 360° panoramas per site, from Commons, checked by eye. `sphere` is a full equirectangular image, `strip` a 360° band with limited tilt. Credits come live from Commons, as for photos.
+- `src/data/siteModels.json`: schematic 3D models (at most five) as horizontal sections [width, depth, height] in metres, each value from the listed source. `ModelViewer` loads only when opened and says it is schematic.
 - `docs/DATA_AUDIT.md`: result of the fact check, with sites flagged or removed. After changing `campi_senza_fonte`, run `bun run audit` to refresh its coverage report; a test fails if it is stale.
 - `area_mq` is the footprint of the structure, never the area of the whole site.
 - `civilta`: a key from `src/i18n/civilizations.ts`, taken from `popolazione_ufficiale_associata`; `null` when builders are mixed, modern, natural or unknown. URL param `civ`.
