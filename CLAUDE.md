@@ -27,7 +27,7 @@ Install with `bun install --frozen-lockfile`: `npm install` currently crashes on
 - Continent values stay as Italian keys (`Europa`, `Nord America`); `tc()` translates them.
 
 ## Planet globe
-`src/components/Globe3D.tsx` is adapted from the GetLayers Planet scene. Its assets are on Vercel Blob (store `pyramid-explorer-assets`), not in Git. For local work, copy them to `public/planet` and set `VITE_PLANET_ASSETS=/planet` in `.env.local`. Pins come from `latLonToUnit` in `src/utils/geo.ts`. It starts after first paint behind `public/globe-poster-*.webp`, and lowers quality on slow devices. If the default view changes, regenerate the poster.
+`src/components/Globe3D.tsx` is adapted from the GetLayers Planet scene. Its assets are on Vercel Blob (store `pyramid-explorer-assets`), not in Git. For local work, copy them to `public/planet` and set `VITE_PLANET_ASSETS=/planet` in `.env.local`. Pins come from `latLonToUnit` in `src/utils/geo.ts`. It starts after first paint behind `public/globe-poster-*.webp`, and lowers quality on slow devices. If the default view changes, regenerate the poster. On phones (`LOW_POWER`) the shader lifts dark tones and uses a more frontal sun; `globe-poster-480.webp` (the phone poster) has the same tone curve applied, `pow(v, 0.72) × 1.08` on the globe disc, so the swap does not jump.
 
 ## URLs
 `/site/:id` opens a site. Query params hold filters and `compare=a,b`. Keep these stable: they are shareable.

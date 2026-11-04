@@ -410,6 +410,7 @@ const Globe3D = ({
         layers.forEach((layer, i) => {
           const geometry = new THREE.SphereGeometry(RADIUS * layer.height, lowPower ? 40 : 64, lowPower ? 40 : 64);
           const material = new THREE.MeshStandardMaterial({ map: cloudTexture, transparent: true, depthWrite: false });
+          material.defines = { ...material.defines, ...defines };
           material.onBeforeCompile = (shader) => {
             Object.assign(shader.uniforms, {
               uTime: clock.cloud,
