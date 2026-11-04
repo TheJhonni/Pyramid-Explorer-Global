@@ -20,7 +20,8 @@ Install with `bun install --frozen-lockfile`: `npm install` currently crashes on
 - `src/data/locales/{it,es,fr,de,pt}.json`: text overlays keyed by site id, loaded on demand.
 - `src/data/sitePhotos.json`: Commons file names per site, checked by eye. Author and licence are fetched live from the Commons API and must stay visible next to each photo.
 - `src/data/sitePanoramas.json`: 360° panoramas per site, from Commons, checked by eye. `sphere` is a full equirectangular image, `strip` a 360° band with limited tilt. Credits come live from Commons, as for photos.
-- `docs/DATA_AUDIT.md`: result of the fact check, with sites flagged or removed.
+- `docs/DATA_AUDIT.md`: result of the fact check, with sites flagged or removed. After changing `campi_senza_fonte`, run `bun run audit` to refresh its coverage report; a test fails if it is stale.
+- `area_mq` is the footprint of the structure, never the area of the whole site.
 - Continent values stay as Italian keys (`Europa`, `Nord America`); `tc()` translates them.
 
 ## Planet globe

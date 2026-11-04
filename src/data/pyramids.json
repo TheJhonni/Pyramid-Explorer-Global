@@ -455,7 +455,7 @@
   "altitudine_sul_livello_del_mare_m": 0,
   "altezza_struttura_m": 146.6,
   "base_m": 230.4,
-  "area_mq": 0,
+  "area_mq": 53052,
   "tipo": "Smooth-sided pyramid",
   "datazione_ufficiale": "c. 2600–2560 BCE",
   "datazione_non_ufficiale": "Over 10,000 years (various alternative theories)",
@@ -515,7 +515,6 @@
   ],
   "campi_senza_fonte": [
    "altitudine_sul_livello_del_mare_m",
-   "area_mq",
    "riferimenti_ufficiali"
   ]
  },
@@ -533,7 +532,7 @@
   "altitudine_sul_livello_del_mare_m": 0,
   "altezza_struttura_m": 136.4,
   "base_m": 215.3,
-  "area_mq": 0,
+  "area_mq": 46333,
   "tipo": "Smooth-sided pyramid",
   "datazione_ufficiale": "c. 2550 BCE",
   "datazione_non_ufficiale": "Possibly older",
@@ -564,7 +563,6 @@
   ],
   "campi_senza_fonte": [
    "altitudine_sul_livello_del_mare_m",
-   "area_mq",
    "riferimenti_ufficiali"
   ]
  },
@@ -630,7 +628,7 @@
   "altitudine_sul_livello_del_mare_m": 0,
   "altezza_struttura_m": 62.5,
   "base_m": 121,
-  "area_mq": 0,
+  "area_mq": 13189,
   "tipo": "Step pyramid",
   "datazione_ufficiale": "c. 2667–2648 BCE",
   "datazione_non_ufficiale": "",
@@ -663,7 +661,6 @@
   ],
   "campi_senza_fonte": [
    "altitudine_sul_livello_del_mare_m",
-   "area_mq",
    "riferimenti_ufficiali"
   ]
  },
@@ -681,7 +678,7 @@
   "altitudine_sul_livello_del_mare_m": 0,
   "altezza_struttura_m": 105,
   "base_m": 220,
-  "area_mq": 0,
+  "area_mq": 48400,
   "tipo": "Smooth-sided pyramid",
   "datazione_ufficiale": "2575–2563 BCE (construction may have begun as early as c. 2590 BCE)",
   "datazione_non_ufficiale": "",
@@ -709,8 +706,7 @@
    }
   ],
   "campi_senza_fonte": [
-   "altitudine_sul_livello_del_mare_m",
-   "area_mq"
+   "altitudine_sul_livello_del_mare_m"
   ]
  },
  {
@@ -727,7 +723,7 @@
   "altitudine_sul_livello_del_mare_m": 0,
   "altezza_struttura_m": 101.1,
   "base_m": 189.43,
-  "area_mq": 0,
+  "area_mq": 35884,
   "tipo": "Bent pyramid",
   "datazione_ufficiale": "c. 2600 BCE",
   "datazione_non_ufficiale": "",
@@ -755,8 +751,7 @@
    }
   ],
   "campi_senza_fonte": [
-   "altitudine_sul_livello_del_mare_m",
-   "area_mq"
+   "altitudine_sul_livello_del_mare_m"
   ]
  },
  {
@@ -1390,7 +1385,7 @@
   "paese": "Bolivia",
   "regione": "Tiwanaku, La Paz",
   "continente": "Sud America",
-  "altitudine_sul_livello_del_mare_m": 0,
+  "altitudine_sul_livello_del_mare_m": 3840,
   "altezza_struttura_m": 16.5,
   "base_m": 257,
   "area_mq": 0,
@@ -1441,10 +1436,13 @@
    {
     "title": "World History and Bosnian Pyramids (Osmanagich)",
     "url": "https://www.ancient-origins.net/node/220"
+   },
+   {
+    "title": "Tiahuanaco (Italian Wikipedia)",
+    "url": "https://it.wikipedia.org/wiki/Tiahuanaco"
    }
   ],
   "campi_senza_fonte": [
-   "altitudine_sul_livello_del_mare_m",
    "area_mq"
   ]
  },
@@ -1459,7 +1457,7 @@
   "paese": "Peru",
   "regione": "Trujillo, La Libertad",
   "continente": "Sud America",
-  "altitudine_sul_livello_del_mare_m": 0,
+  "altitudine_sul_livello_del_mare_m": 41,
   "altezza_struttura_m": 41,
   "base_m": 340,
   "area_mq": 54400,
@@ -1499,9 +1497,7 @@
     "url": "https://www.ebsco.com/research-starters/architecture/moche-build-huaca-del-sol-and-huaca-de-la-luna"
    }
   ],
-  "campi_senza_fonte": [
-   "altitudine_sul_livello_del_mare_m"
-  ]
+  "campi_senza_fonte": []
  },
  {
   "id": "nubian_meroe",
@@ -2391,7 +2387,7 @@
   "paese": "Italy",
   "regione": "Sardinia",
   "continente": "Europa",
-  "altitudine_sul_livello_del_mare_m": 0,
+  "altitudine_sul_livello_del_mare_m": 65,
   "altezza_struttura_m": 10,
   "base_m": 37,
   "area_mq": 1110,
@@ -2441,10 +2437,13 @@
    {
     "title": "The prehistoric altar of Monte d'Accoddi (HeritageDaily)",
     "url": "https://www.heritagedaily.com/2020/10/the-prehistoric-altar-of-monte-daccoddi/135706"
+   },
+   {
+    "title": "Monte d'Accoddi (Italian Wikipedia)",
+    "url": "https://it.wikipedia.org/wiki/Monte_d%27Accoddi"
    }
   ],
   "campi_senza_fonte": [
-   "altitudine_sul_livello_del_mare_m",
    "osmanagich_focus"
   ]
  },
@@ -2654,7 +2653,7 @@
   "paese": "India",
   "regione": "Thanjavur, Tamil Nadu",
   "continente": "Asia",
-  "altitudine_sul_livello_del_mare_m": 0,
+  "altitudine_sul_livello_del_mare_m": 65.83,
   "altezza_struttura_m": 66,
   "base_m": 30.18,
   "area_mq": 0,
@@ -2700,7 +2699,6 @@
   ],
   "campi_senza_fonte": [
    "area_mq",
-   "altitudine_sul_livello_del_mare_m",
    "osmanagich_focus"
   ]
  },
@@ -3362,7 +3360,7 @@
   "altitudine_sul_livello_del_mare_m": 0,
   "altezza_struttura_m": 49,
   "base_m": 73.5,
-  "area_mq": 0,
+  "area_mq": 5402,
   "tipo": "Egyptian royal pyramid",
   "datazione_ufficiale": "5th Dynasty (c. 2494–2345 BCE)",
   "datazione_non_ufficiale": "",
@@ -3390,8 +3388,7 @@
    }
   ],
   "campi_senza_fonte": [
-   "altitudine_sul_livello_del_mare_m",
-   "area_mq"
+   "altitudine_sul_livello_del_mare_m"
   ]
  },
  {
@@ -3505,7 +3502,7 @@
   "altitudine_sul_livello_del_mare_m": 0,
   "altezza_struttura_m": 51.68,
   "base_m": 78.9,
-  "area_mq": 0,
+  "area_mq": 6225,
   "tipo": "Egyptian royal pyramid",
   "datazione_ufficiale": "Mid-25th century BCE (reign c. 2445–2421 BCE, one of the proposed dates)",
   "datazione_non_ufficiale": "",
@@ -3534,7 +3531,6 @@
   ],
   "campi_senza_fonte": [
    "altitudine_sul_livello_del_mare_m",
-   "area_mq",
    "nome_locale"
   ]
  },
@@ -3552,7 +3548,7 @@
   "altitudine_sul_livello_del_mare_m": 0,
   "altezza_struttura_m": 43,
   "base_m": 57.75,
-  "area_mq": 0,
+  "area_mq": 3335,
   "tipo": "Egyptian royal pyramid",
   "datazione_ufficiale": "24th century BCE",
   "datazione_non_ufficiale": "",
@@ -3580,8 +3576,7 @@
    }
   ],
   "campi_senza_fonte": [
-   "altitudine_sul_livello_del_mare_m",
-   "area_mq"
+   "altitudine_sul_livello_del_mare_m"
   ]
  },
  {
@@ -3598,7 +3593,7 @@
   "altitudine_sul_livello_del_mare_m": 0,
   "altezza_struttura_m": 52.5,
   "base_m": 78.75,
-  "area_mq": 0,
+  "area_mq": 6202,
   "tipo": "Egyptian royal pyramid",
   "datazione_ufficiale": "c. 2340 BCE",
   "datazione_non_ufficiale": "",
@@ -3626,8 +3621,7 @@
    }
   ],
   "campi_senza_fonte": [
-   "altitudine_sul_livello_del_mare_m",
-   "area_mq"
+   "altitudine_sul_livello_del_mare_m"
   ]
  },
  {
@@ -3644,7 +3638,7 @@
   "altitudine_sul_livello_del_mare_m": 0,
   "altezza_struttura_m": 52.4,
   "base_m": 78.75,
-  "area_mq": 0,
+  "area_mq": 6202,
   "tipo": "Egyptian royal pyramid",
   "datazione_ufficiale": "c. 2250 BCE",
   "datazione_non_ufficiale": "",
@@ -3677,8 +3671,7 @@
    }
   ],
   "campi_senza_fonte": [
-   "altitudine_sul_livello_del_mare_m",
-   "area_mq"
+   "altitudine_sul_livello_del_mare_m"
   ]
  },
  {
@@ -3756,7 +3749,7 @@
   "altitudine_sul_livello_del_mare_m": 0,
   "altezza_struttura_m": 75,
   "base_m": 105,
-  "area_mq": 0,
+  "area_mq": 11025,
   "tipo": "Egyptian royal pyramid, now in ruins",
   "datazione_ufficiale": "c. 1850 BCE",
   "datazione_non_ufficiale": "",
@@ -3789,8 +3782,7 @@
    }
   ],
   "campi_senza_fonte": [
-   "altitudine_sul_livello_del_mare_m",
-   "area_mq"
+   "altitudine_sul_livello_del_mare_m"
   ]
  },
  {
@@ -4214,7 +4206,7 @@
   "paese": "Cambodia",
   "regione": "Angkor, Siem Reap Province",
   "continente": "Asia",
-  "altitudine_sul_livello_del_mare_m": 0,
+  "altitudine_sul_livello_del_mare_m": 13,
   "altezza_struttura_m": 13,
   "base_m": 27,
   "area_mq": 0,
@@ -4255,7 +4247,6 @@
    }
   ],
   "campi_senza_fonte": [
-   "altitudine_sul_livello_del_mare_m",
    "area_mq"
   ]
  },
@@ -5036,7 +5027,7 @@
   "altitudine_sul_livello_del_mare_m": 0,
   "altezza_struttura_m": 0,
   "base_m": 62,
-  "area_mq": 0,
+  "area_mq": 3120,
   "tipo": "Double pyramid with a serpent wall",
   "datazione_ufficiale": "First phase around 1250, last between 1450 and 1500 according to INAH; Wikipedia gives 1299 and 1507",
   "datazione_non_ufficiale": "",
@@ -5066,12 +5057,15 @@
    {
     "title": "Tenayuca, INAH",
     "url": "https://lugares.inah.gob.mx/en/node/4465"
+   },
+   {
+    "title": "Tenayuca (German Wikipedia)",
+    "url": "https://de.wikipedia.org/wiki/Tenayuca"
    }
   ],
   "campi_senza_fonte": [
    "altitudine_sul_livello_del_mare_m",
-   "altezza_struttura_m",
-   "area_mq"
+   "altezza_struttura_m"
   ]
  },
  {
@@ -5251,7 +5245,7 @@
   "paese": "Belize",
   "regione": "Cayo District",
   "continente": "Nord America",
-  "altitudine_sul_livello_del_mare_m": 0,
+  "altitudine_sul_livello_del_mare_m": 152,
   "altezza_struttura_m": 40,
   "base_m": 0,
   "area_mq": 0,
@@ -5284,10 +5278,13 @@
    {
     "title": "Xunantunich, History Hit",
     "url": "https://historyhit.com/?p=5147761"
+   },
+   {
+    "title": "Xunantunich (Portuguese Wikipedia)",
+    "url": "https://pt.wikipedia.org/wiki/Xunantunich"
    }
   ],
   "campi_senza_fonte": [
-   "altitudine_sul_livello_del_mare_m",
    "base_m",
    "area_mq",
    "year_end"
@@ -5534,7 +5531,7 @@
   "paese": "Peru",
   "regione": "Lima",
   "continente": "Sud America",
-  "altitudine_sul_livello_del_mare_m": 0,
+  "altitudine_sul_livello_del_mare_m": 80,
   "altezza_struttura_m": 7,
   "base_m": 120,
   "area_mq": 0,
@@ -5579,10 +5576,13 @@
    {
     "title": "Pachacamac, World History Encyclopedia",
     "url": "https://www.worldhistory.org/Pachacamac/.md"
+   },
+   {
+    "title": "Pachacamac (Italian Wikipedia)",
+    "url": "https://it.wikipedia.org/wiki/Pachacamac_(citt%C3%A0)"
    }
   ],
   "campi_senza_fonte": [
-   "altitudine_sul_livello_del_mare_m",
    "area_mq"
   ]
  },
