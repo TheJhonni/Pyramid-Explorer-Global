@@ -1,6 +1,6 @@
 # Foto e vista immersiva: proposta
 
-Stato: proposta, non implementata. Obiettivo: dalla scheda di una piramide, entrare in una vista che dia l'impressione di essere sul posto.
+Stato: galleria in produzione; vista 360° in prova su 4 schede (3 immagini), vedi sotto. Obiettivo: dalla scheda di una piramide, entrare in una vista che dia l'impressione di essere sul posto.
 
 ## Esperienza proposta
 1. Volo della camera dal globo fino al sito.
@@ -32,6 +32,17 @@ Le foto attuali sono collegate direttamente da Wikimedia senza autore né licenz
 2. Galleria a tutto schermo con crediti.
 3. Prova su 5 siti (Giza, Teotihuacan, Chichén Itzá, Borobudur, Meroe) della vista 360°, su desktop e telefono.
 4. Decisione su Street View e, se serve, chiave API (azione tua).
+
+## Prova 360° (novembre 2026)
+Visore: sfera o cilindro in three.js, caricato solo all'apertura, invece di Pannellum. Controllati a occhio:
+
+| File Commons | Tipo | Licenza | Schede |
+|---|---|---|---|
+| Teotihuacan Mexico 20251126 panorama 360.jpg | Sfera completa | CC0 | Pyramid of the Moon |
+| Giza pyramid complex - 360.jpg | Fascia a 360° | CC BY-SA 3.0 | Khufu, Khafre |
+| 360° Panorama Tula seen from Pyramid B.jpg | Fascia a 360° | CC BY-SA 3.0 | Pyramid B |
+
+Copertura misurata su Commons: ricerca per template Pano360, per testo e per coordinate entro 1,5 km su circa 40 siti principali. Per Chichén Itzá, Borobudur e Meroe non ho trovato panorami. Scartati: Teotihuacan-360degree-Panorama.jpg (solo 1920×249) e le immagini Mapillary caricate su Commons, non controllate. La ricerca non è esaustiva: un file senza template, parole chiave o coordinate può sfuggire.
 
 ## Decisioni da prendere
 - Se usare Google Street View: migliora la copertura, ma aggiunge una chiave e una dipendenza. Prima misurerei le fonti aperte.

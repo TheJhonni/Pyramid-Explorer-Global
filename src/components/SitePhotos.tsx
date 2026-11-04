@@ -1,11 +1,15 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
-import { Images, Search } from 'lucide-react';
+import { Images, Rotate3D, Search } from 'lucide-react';
+import panoramaIndex from '@/data/sitePanoramas.json';
 import photoIndex from '@/data/sitePhotos.json';
 import { useI18n } from '@/i18n/I18nContext';
 import { Pyramid } from '@/types/pyramid';
 import { CommonsPhoto, fetchCommonsPhotos } from '@/utils/commonsPhotos';
+import { SitePanorama } from '@/utils/panorama';
 
 const PhotoGallery = lazy(() => import('./PhotoGallery'));
+const PanoramaViewer = lazy(() => import('./PanoramaViewer'));
+const panoramas = panoramaIndex as Record<string, SitePanorama>;
 const index = photoIndex as Record<string, string[]>;
 
 const SitePhotos = ({ pyramid }: { pyramid: Pyramid }) => {
@@ -13,10 +17,13 @@ const SitePhotos = ({ pyramid }: { pyramid: Pyramid }) => {
   const titles = index[pyramid.id];
   const [photos, setPhotos] = useState<CommonsPhoto[]>([]);
   const [open, setOpen] = useState(false);
+  const [panoramaOpen, setPanoramaOpen] = useState(false);
+  const panorama = panoramas[pyramid.id];
 
   useEffect(() => {
     setPhotos([]);
     setOpen(false);
+    setPanoramaOpen(false);
     if (!titles) return;
     let active = true;
     fetchCommonsPhotos(titles)
@@ -39,6 +46,18 @@ const SitePhotos = ({ pyramid }: { pyramid: Pyramid }) => {
       <h3 className="text-[10px] uppercase text-muted-foreground font-mono tracking-wider flex items-center gap-1.5">
         <Images size={10} /> {t.photos}
       </h3>
+      {panorama && (
+        <>
+          <button type="button" onClick={() => setPanoramaOpen(true)} className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg border border-primary/40 bg-primary/10 px-3 text-sm font-medium text-primary hover:bg-primary/20">
+            <Rotate3D size={16} /> {t.panoramaOpen}
+          </button>
+          {panoramaOpen && (
+            <Suspense fallback={null}>
+              <PanoramaViewer open={panoramaOpen} onOpenChange={setPanoramaOpen} title={pyramid.nome} subtitle={`${pyramid.paese} · ${pyramid.regione}`} panorama={panorama} />
+            </Suspense>
+          )}
+        </>
+      )}
       {cover ? (
         <>
           <button type="button" onClick={() => setOpen(true)} className="group relative block w-full overflow-hidden rounded-lg border border-border">

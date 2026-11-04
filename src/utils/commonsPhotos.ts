@@ -55,11 +55,11 @@ export function parseCommonsResponse(data: CommonsResponse, titles: string[]): C
 const cache = new Map<string, Promise<CommonsPhoto[]>>();
 
 /** Author and licence come live from Commons, so credits stay correct if a file page changes. */
-export function fetchCommonsPhotos(titles: string[]): Promise<CommonsPhoto[]> {
-  const key = titles.join('|');
+export function fetchCommonsPhotos(titles: string[], requestedWidth?: number): Promise<CommonsPhoto[]> {
+  const key = `${requestedWidth ?? ''}|${titles.join('|')}`;
   const known = cache.get(key);
   if (known) return known;
-  const width = window.innerWidth < 768 ? 960 : 1280;
+  const width = requestedWidth ?? (window.innerWidth < 768 ? 960 : 1280);
   const params = new URLSearchParams({
     action: 'query',
     origin: '*',

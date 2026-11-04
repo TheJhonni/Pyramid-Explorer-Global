@@ -1,0 +1,6 @@
+{
+  "teotihuacan_moon": { "file": "Teotihuacan Mexico 20251126 panorama 360.jpg", "kind": "sphere", "start": 0.5 },
+  "giza_great": { "file": "Giza pyramid complex - 360.jpg", "kind": "strip", "start": 0.928 },
+  "giza_khafre": { "file": "Giza pyramid complex - 360.jpg", "kind": "strip", "start": 0.474 },
+  "tula_piramide_b": { "file": "360° Panorama Tula seen from Pyramid B.jpg", "kind": "strip", "start": 0.25 }
+}
