@@ -122,17 +122,6 @@
   background: radial-gradient(120% 90% at 50% 10%, #111a33 0%, #070a14 70%);
   perspective-origin: 50% 46%;
 }
-.gallery-ghost {
-  position: absolute;
-  left: 50%;
-  top: 46%;
-  transform: translate(-50%, -50%);
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 40vh;
-  line-height: 0.8;
-  color: rgba(255, 255, 255, 0.035);
-  pointer-events: none;
-}
 .gallery-ring {
   position: relative;
   width: 0;

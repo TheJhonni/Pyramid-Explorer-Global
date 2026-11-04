@@ -158,7 +158,6 @@ const PhotoGallery = ({ open, onOpenChange, title, subtitle, photos }: PhotoGall
               motion.current.dragging = false;
             }}
           >
-            <div className="gallery-ghost" aria-hidden>{pad2(front + 1)}</div>
             <div ref={ringRef} className="gallery-ring">
               {photos.map((photo, i) => (
                 <article key={photo.title} data-slot={i} className={`gallery-card ${i === front ? 'is-front' : ''}`} style={{ '--a': `${-i * STEP}deg` } as React.CSSProperties}>
