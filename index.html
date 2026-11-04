@@ -21,7 +21,7 @@
       <style>
       html, body { margin: 0; height: 100%; background: #0a0a14; }
       .globe-stage { position: fixed; inset: 0; overflow: hidden; pointer-events: none; }
-      .globe-poster { position: absolute; inset: 0; margin: auto; display: block; max-width: none; width: min(100svh, 124vw); height: min(100svh, 124vw); }
+      .globe-poster { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: block; max-width: none; width: min(100svh, 124vw); height: min(100svh, 124vw); }
       @media (min-width: 768px) {
         .globe-stage { left: 320px; }
         .globe-poster { width: min(100svh, calc((100vw - 320px) * 1.24)); height: min(100svh, calc((100vw - 320px) * 1.24)); }
