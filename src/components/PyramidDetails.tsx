@@ -10,7 +10,8 @@ interface PyramidDetailsProps {
 }
 
 const PyramidDetails = ({ pyramid, onClose }: PyramidDetailsProps) => {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
+  const num = (n: number) => n.toLocaleString(lang);
 
   return (
     <AnimatePresence>
@@ -33,6 +34,7 @@ const PyramidDetails = ({ pyramid, onClose }: PyramidDetailsProps) => {
               </div>
               <button
                 onClick={onClose}
+                aria-label={t.close}
                 className="p-1.5 rounded-md hover:bg-secondary/60 text-muted-foreground hover:text-foreground transition-colors"
               >
                 <X size={18} />
@@ -55,15 +57,15 @@ const PyramidDetails = ({ pyramid, onClose }: PyramidDetailsProps) => {
                   <tbody>
                     <Row label={t.type} value={pyramid.tipo} />
                     {pyramid.altezza_struttura_m > 0 && (
-                      <Row label={t.height} value={`${pyramid.altezza_struttura_m} m`} />
+                      <Row label={t.height} value={`${num(pyramid.altezza_struttura_m)} m`} />
                     )}
                     {pyramid.base_m > 0 && (
-                      <Row label={t.base} value={`${pyramid.base_m} m`} />
+                      <Row label={t.base} value={`${num(pyramid.base_m)} m`} />
                     )}
                     {pyramid.area_mq > 0 && (
-                      <Row label={t.area} value={`${pyramid.area_mq.toLocaleString()} m²`} />
+                      <Row label={t.area} value={`${num(pyramid.area_mq)} m²`} />
                     )}
-                    <Row label={t.altitude} value={`${pyramid.altitudine_sul_livello_del_mare_m} m`} />
+                    <Row label={t.altitude} value={`${num(pyramid.altitudine_sul_livello_del_mare_m)} m`} />
                   </tbody>
                 </table>
               </div>

@@ -11,7 +11,7 @@ interface PyramidFiltersProps {
 }
 
 const PyramidFilters = ({ filters, onChange, onReset, resultCount, totalCount }: PyramidFiltersProps) => {
-  const { t, tc } = useI18n();
+  const { t, tc, lang } = useI18n();
   const update = (partial: Partial<Filters>) => onChange({ ...filters, ...partial });
 
   return (
@@ -69,12 +69,12 @@ const PyramidFilters = ({ filters, onChange, onReset, resultCount, totalCount }:
             <div className="flex items-center gap-2">
               <input type="range" min={0} max={250000} step={1000} value={filters.areaMin}
                 onChange={(e) => update({ areaMin: +e.target.value })} className="flex-1 accent-primary h-1" />
-              <span className="text-xs font-mono text-muted-foreground w-16 text-right">{filters.areaMin.toLocaleString()}</span>
+              <span className="text-xs font-mono text-muted-foreground w-16 text-right">{filters.areaMin.toLocaleString(lang)}</span>
             </div>
             <div className="flex items-center gap-2">
               <input type="range" min={0} max={250000} step={1000} value={filters.areaMax}
                 onChange={(e) => update({ areaMax: +e.target.value })} className="flex-1 accent-primary h-1" />
-              <span className="text-xs font-mono text-muted-foreground w-16 text-right">{filters.areaMax.toLocaleString()}</span>
+              <span className="text-xs font-mono text-muted-foreground w-16 text-right">{filters.areaMax.toLocaleString(lang)}</span>
             </div>
           </div>
         </section>

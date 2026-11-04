@@ -10,6 +10,7 @@ import { Pyramid, Filters, defaultFilters, continentCenters } from '@/types/pyra
 import { filterPyramids } from '@/utils/filters';
 import { ChevronDown, ChevronUp, SlidersHorizontal, X } from 'lucide-react';
 import { useI18n } from '@/i18n/I18nContext';
+import { useLocalizedPyramids } from '@/i18n/pyramidLocale';
 
 // three.js + globe.gl are the bulk of the JS: load them only after first paint.
 const Globe3D = lazy(() => import('@/components/Globe3D'));
@@ -29,16 +30,19 @@ const allPyramids = (pyramidsData as Pyramid[]).map(p => ({
 }));
 
 const Index = () => {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
+  const pyramids = useLocalizedPyramids(allPyramids, lang);
   const [filters, setFilters] = useState<Filters>(defaultFilters);
-  const [selectedPyramid, setSelectedPyramid] = useState<Pyramid | null>(null);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  // Derived from the id so the details panel follows a language switch.
+  const selectedPyramid = useMemo(() => pyramids.find((p) => p.id === selectedId) ?? null, [pyramids, selectedId]);
   const [flyToKey, setFlyToKey] = useState(0);
   const [showList, setShowList] = useState(true);
   const [panelOpen, setPanelOpen] = useState(false);
   const [webgl] = useState(hasWebGL);
   const [showIntro, setShowIntro] = useState(true);
 
-  const filtered = useMemo(() => filterPyramids(allPyramids, filters), [filters]);
+  const filtered = useMemo(() => filterPyramids(pyramids, filters), [pyramids, filters]);
   const filteredIds = useMemo(() => filtered.map((p) => p.id), [filtered]);
 
   const focusPoint = useMemo(() => {
@@ -49,7 +53,7 @@ const Index = () => {
   }, [filters.continente]);
 
   const handleSelect = useCallback((pyramid: Pyramid) => {
-    setSelectedPyramid(pyramid);
+    setSelectedId(pyramid.id);
     setFlyToKey(k => k + 1);
     setPanelOpen(false);
     setShowIntro(false);
@@ -57,17 +61,17 @@ const Index = () => {
 
   const handleReset = useCallback(() => {
     setFilters(defaultFilters);
-    setSelectedPyramid(null);
+    setSelectedId(null);
   }, []);
 
   return (
     <main className="h-svh w-full bg-void overflow-hidden flex flex-row">
-      <h1 className="sr-only">Pyramid Explorer Global</h1>
+      <h1 className="sr-only">Pyramid Explorer</h1>
       {/* Left sidebar: drawer on mobile, fixed column from md up */}
       {panelOpen && (
         <button
           type="button"
-          aria-label="Close panel"
+          aria-label={t.close}
           className="fixed inset-0 z-30 bg-black/50 md:hidden"
           onClick={() => setPanelOpen(false)}
         />
@@ -82,7 +86,7 @@ const Index = () => {
           type="button"
           onClick={() => setPanelOpen(false)}
           className="md:hidden absolute top-3 right-3 z-50 p-1 text-muted-foreground"
-          aria-label="Close panel"
+          aria-label={t.close}
         >
           <X size={18} />
         </button>
@@ -104,7 +108,7 @@ const Index = () => {
           {showList && (
             <PyramidList
               pyramids={filtered}
-              selectedId={selectedPyramid?.id ?? null}
+              selectedId={selectedId}
               onSelect={handleSelect}
             />
           )}
@@ -130,7 +134,7 @@ const Index = () => {
               type="button"
               onClick={() => setShowIntro(false)}
               className="absolute right-2 top-2 p-1 text-muted-foreground hover:text-foreground"
-              aria-label="Dismiss"
+              aria-label={t.close}
             >
               <X size={14} />
             </button>
@@ -146,14 +150,14 @@ const Index = () => {
           <Suspense
             fallback={
               <div className="absolute inset-0 flex items-center justify-center text-xs font-mono text-muted-foreground" role="status">
-                Loading globe…
+                {t.loadingGlobe}
               </div>
             }
           >
             <Globe3D
-              pyramids={allPyramids}
+              pyramids={pyramids}
               filteredIds={filteredIds}
-              selectedId={selectedPyramid?.id ?? null}
+              selectedId={selectedId}
               flyToKey={flyToKey}
               onSelect={handleSelect}
               focusPoint={focusPoint}
@@ -161,9 +165,9 @@ const Index = () => {
           </Suspense>
         ) : (
           <FlatMap
-            pyramids={allPyramids}
+            pyramids={pyramids}
             filteredIds={filteredIds}
-            selectedId={selectedPyramid?.id ?? null}
+            selectedId={selectedId}
             onSelect={handleSelect}
             note={t.noWebgl}
           />
@@ -179,7 +183,7 @@ const Index = () => {
 
       <PyramidDetails
         pyramid={selectedPyramid}
-        onClose={() => setSelectedPyramid(null)}
+        onClose={() => setSelectedId(null)}
       />
     </main>
   );

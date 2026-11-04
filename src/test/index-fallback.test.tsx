@@ -6,7 +6,7 @@ import Index from "@/pages/Index";
 // jsdom has no WebGL, so the page must fall back to the flat map instead of the 3D globe.
 describe("Index without WebGL", () => {
   it("shows the flat map, the intro and lets a marker open the details", async () => {
-    render(<I18nProvider><Index /></I18nProvider>);
+    render(<I18nProvider initialLang="en"><Index /></I18nProvider>);
     const map = screen.getByTestId("flat-map");
     expect(screen.getByText(/interactive 3D globe of \d+ pyramids/i)).toBeInTheDocument();
     const markers = within(map).getAllByRole("button");
@@ -16,10 +16,21 @@ describe("Index without WebGL", () => {
   });
 
   it("has a panel toggle for small screens", () => {
-    render(<I18nProvider><Index /></I18nProvider>);
+    render(<I18nProvider initialLang="en"><Index /></I18nProvider>);
     const toggle = screen.getByRole("button", { name: /filters & list/i });
     expect(toggle).toHaveAttribute("aria-expanded", "false");
     fireEvent.click(toggle);
     expect(toggle).toHaveAttribute("aria-expanded", "true");
+  });
+});
+
+describe("Index language switch", () => {
+  it("shows pyramid names in the chosen language", async () => {
+    render(<I18nProvider initialLang="en"><Index /></I18nProvider>);
+    expect(screen.getAllByText("Great Pyramid of Giza (Khufu)").length).toBeGreaterThan(0);
+    fireEvent.click(screen.getByRole("button", { name: /^EN$/ }));
+    fireEvent.click(screen.getByRole("button", { name: /Deutsch/ }));
+    expect((await screen.findAllByText("Große Pyramide von Gizeh (Cheops)")).length).toBeGreaterThan(0);
+    expect(document.documentElement.lang).toBe("de");
   });
 });

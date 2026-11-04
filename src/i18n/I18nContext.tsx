@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 
 export type Lang = 'en' | 'it' | 'es' | 'fr' | 'de' | 'pt';
 
@@ -31,6 +31,8 @@ type TranslationKeys = {
   intro: string;
   filtersButton: string;
   noWebgl: string;
+  loadingGlobe: string;
+  close: string;
   // Continents
   africa: string;
   asia: string;
@@ -63,8 +65,8 @@ type TranslationKeys = {
 
 const translations: Record<Lang, TranslationKeys> = {
   en: {
-    projectTitle: 'Aetherius Project',
-    globalNetwork: 'Global Pyramid Network',
+    projectTitle: 'Pyramid Explorer',
+    globalNetwork: 'Pyramids of the world',
     structuresVisible: 'structures visible',
     search: 'Search',
     searchPlaceholder: 'Name, country, region...',
@@ -73,13 +75,15 @@ const translations: Record<Lang, TranslationKeys> = {
     continent: 'Continent',
     categories: 'Categories',
     controversialOnly: 'Controversial only',
-    alternativeResearch: 'Alternative research focus',
+    alternativeResearch: 'Alternative research only',
     resetFilters: 'Reset filters',
     resultsList: 'Results list',
     resetView: 'Reset view',
     intro: 'An interactive 3D globe of {n} pyramids and pyramid-like structures. Drag to rotate, pinch or scroll to zoom, tap a marker for details.',
     filtersButton: 'Filters & list',
     noWebgl: '3D globe unavailable on this device (WebGL off): showing a flat map.',
+    loadingGlobe: 'Loading globe…',
+    close: 'Close',
     africa: 'Africa',
     asia: 'Asia',
     europe: 'Europe',
@@ -107,8 +111,8 @@ const translations: Record<Lang, TranslationKeys> = {
     country: 'Country',
   },
   it: {
-    projectTitle: 'Progetto Aetherius',
-    globalNetwork: 'Rete Piramidale Globale',
+    projectTitle: 'Pyramid Explorer',
+    globalNetwork: 'Piramidi del mondo',
     structuresVisible: 'strutture visibili',
     search: 'Ricerca',
     searchPlaceholder: 'Nome, paese, regione...',
@@ -117,13 +121,15 @@ const translations: Record<Lang, TranslationKeys> = {
     continent: 'Continente',
     categories: 'Categorie',
     controversialOnly: 'Solo controverse',
-    alternativeResearch: 'Focus ricerca alternativa',
-    resetFilters: 'Reset filtri',
+    alternativeResearch: 'Solo ricerca alternativa',
+    resetFilters: 'Azzera i filtri',
     resultsList: 'Lista risultati',
-    resetView: 'Reset vista',
+    resetView: 'Ripristina la vista',
     intro: 'Un globo 3D interattivo con {n} piramidi e strutture piramidali. Trascina per ruotare, pizzica o scorri per lo zoom, tocca un segnaposto per i dettagli.',
     filtersButton: 'Filtri e lista',
     noWebgl: 'Globo 3D non disponibile su questo dispositivo (WebGL disattivato): mappa piana.',
+    loadingGlobe: 'Caricamento del globo…',
+    close: 'Chiudi',
     africa: 'Africa',
     asia: 'Asia',
     europe: 'Europa',
@@ -151,23 +157,25 @@ const translations: Record<Lang, TranslationKeys> = {
     country: 'Paese',
   },
   es: {
-    projectTitle: 'Proyecto Aetherius',
-    globalNetwork: 'Red Piramidal Global',
+    projectTitle: 'Pyramid Explorer',
+    globalNetwork: 'Pirámides del mundo',
     structuresVisible: 'estructuras visibles',
     search: 'Buscar',
     searchPlaceholder: 'Nombre, país, región...',
-    structureHeight: 'Altura estructura (m)',
+    structureHeight: 'Altura de la estructura (m)',
     area: 'Área (m²)',
     continent: 'Continente',
     categories: 'Categorías',
     controversialOnly: 'Solo controvertidas',
-    alternativeResearch: 'Foco investigación alternativa',
+    alternativeResearch: 'Solo investigación alternativa',
     resetFilters: 'Restablecer filtros',
     resultsList: 'Lista de resultados',
     resetView: 'Restablecer vista',
     intro: 'Un globo 3D interactivo con {n} pirámides y estructuras piramidales. Arrastra para girar, pellizca o desplaza para hacer zoom, toca un marcador para ver detalles.',
     filtersButton: 'Filtros y lista',
     noWebgl: 'Globo 3D no disponible en este dispositivo (WebGL desactivado): mapa plano.',
+    loadingGlobe: 'Cargando el globo…',
+    close: 'Cerrar',
     africa: 'África',
     asia: 'Asia',
     europe: 'Europa',
@@ -175,7 +183,7 @@ const translations: Record<Lang, TranslationKeys> = {
     southAmerica: 'América del Sur',
     oceania: 'Oceanía',
     physicalData: 'Datos físicos',
-    comparativeInterpretations: 'Interpretaciones comparativas',
+    comparativeInterpretations: 'Interpretaciones comparadas',
     officialScience: 'Ciencia oficial',
     alternativeScience: 'Ciencia alternativa',
     dating: 'Datación',
@@ -195,23 +203,25 @@ const translations: Record<Lang, TranslationKeys> = {
     country: 'País',
   },
   fr: {
-    projectTitle: 'Projet Aetherius',
-    globalNetwork: 'Réseau Pyramidal Mondial',
+    projectTitle: 'Pyramid Explorer',
+    globalNetwork: 'Les pyramides du monde',
     structuresVisible: 'structures visibles',
     search: 'Rechercher',
     searchPlaceholder: 'Nom, pays, région...',
-    structureHeight: 'Hauteur structure (m)',
+    structureHeight: 'Hauteur de la structure (m)',
     area: 'Surface (m²)',
     continent: 'Continent',
     categories: 'Catégories',
     controversialOnly: 'Controversées uniquement',
-    alternativeResearch: 'Focus recherche alternative',
+    alternativeResearch: 'Recherche alternative uniquement',
     resetFilters: 'Réinitialiser les filtres',
     resultsList: 'Liste des résultats',
     resetView: 'Réinitialiser la vue',
     intro: 'Un globe 3D interactif de {n} pyramides et structures pyramidales. Faites glisser pour pivoter, pincez ou faites défiler pour zoomer, touchez un repère pour les détails.',
     filtersButton: 'Filtres et liste',
     noWebgl: 'Globe 3D indisponible sur cet appareil (WebGL désactivé) : carte plane.',
+    loadingGlobe: 'Chargement du globe…',
+    close: 'Fermer',
     africa: 'Afrique',
     asia: 'Asie',
     europe: 'Europe',
@@ -219,7 +229,7 @@ const translations: Record<Lang, TranslationKeys> = {
     southAmerica: 'Amérique du Sud',
     oceania: 'Océanie',
     physicalData: 'Données physiques',
-    comparativeInterpretations: 'Interprétations comparatives',
+    comparativeInterpretations: 'Interprétations comparées',
     officialScience: 'Science officielle',
     alternativeScience: 'Science alternative',
     dating: 'Datation',
@@ -239,31 +249,33 @@ const translations: Record<Lang, TranslationKeys> = {
     country: 'Pays',
   },
   de: {
-    projectTitle: 'Projekt Aetherius',
-    globalNetwork: 'Globales Pyramiden-Netzwerk',
-    structuresVisible: 'Strukturen sichtbar',
+    projectTitle: 'Pyramid Explorer',
+    globalNetwork: 'Pyramiden der Welt',
+    structuresVisible: 'Bauwerke sichtbar',
     search: 'Suche',
     searchPlaceholder: 'Name, Land, Region...',
-    structureHeight: 'Strukturhöhe (m)',
+    structureHeight: 'Höhe des Bauwerks (m)',
     area: 'Fläche (m²)',
     continent: 'Kontinent',
     categories: 'Kategorien',
-    controversialOnly: 'Nur kontroverse',
-    alternativeResearch: 'Alternative Forschung',
+    controversialOnly: 'Nur umstrittene',
+    alternativeResearch: 'Nur alternative Forschung',
     resetFilters: 'Filter zurücksetzen',
     resultsList: 'Ergebnisliste',
     resetView: 'Ansicht zurücksetzen',
-    intro: 'Ein interaktiver 3D-Globus mit {n} Pyramiden und pyramidenartigen Bauten. Ziehen zum Drehen, Pinch oder Scroll zum Zoomen, Markierung antippen für Details.',
+    intro: 'Ein interaktiver 3D-Globus mit {n} Pyramiden und pyramidenartigen Bauwerken. Zum Drehen ziehen, mit zwei Fingern oder dem Mausrad zoomen, für Details eine Markierung antippen.',
     filtersButton: 'Filter & Liste',
     noWebgl: '3D-Globus auf diesem Gerät nicht verfügbar (WebGL aus): flache Karte.',
+    loadingGlobe: 'Globus wird geladen…',
+    close: 'Schließen',
     africa: 'Afrika',
     asia: 'Asien',
     europe: 'Europa',
     northAmerica: 'Nordamerika',
     southAmerica: 'Südamerika',
     oceania: 'Ozeanien',
-    physicalData: 'Physische Daten',
-    comparativeInterpretations: 'Vergleichende Interpretationen',
+    physicalData: 'Kenndaten',
+    comparativeInterpretations: 'Deutungen im Vergleich',
     officialScience: 'Offizielle Wissenschaft',
     alternativeScience: 'Alternative Wissenschaft',
     dating: 'Datierung',
@@ -275,7 +287,7 @@ const translations: Record<Lang, TranslationKeys> = {
     alternativeSources: 'Alternative Quellen',
     type: 'Typ',
     height: 'Höhe',
-    base: 'Basis',
+    base: 'Grundseite',
     altitude: 'Höhe ü.d.M.',
     noResults: 'Keine Ergebnisse',
     photos: 'Fotos',
@@ -283,23 +295,25 @@ const translations: Record<Lang, TranslationKeys> = {
     country: 'Land',
   },
   pt: {
-    projectTitle: 'Projeto Aetherius',
-    globalNetwork: 'Rede Piramidal Global',
+    projectTitle: 'Pyramid Explorer',
+    globalNetwork: 'Pirâmides do mundo',
     structuresVisible: 'estruturas visíveis',
     search: 'Pesquisar',
     searchPlaceholder: 'Nome, país, região...',
-    structureHeight: 'Altura estrutura (m)',
+    structureHeight: 'Altura da estrutura (m)',
     area: 'Área (m²)',
     continent: 'Continente',
     categories: 'Categorias',
     controversialOnly: 'Apenas controversas',
-    alternativeResearch: 'Foco pesquisa alternativa',
-    resetFilters: 'Redefinir filtros',
+    alternativeResearch: 'Só investigação alternativa',
+    resetFilters: 'Repor os filtros',
     resultsList: 'Lista de resultados',
-    resetView: 'Redefinir vista',
-    intro: 'Um globo 3D interativo com {n} pirâmides e estruturas piramidais. Arraste para girar, belisque ou role para ampliar, toque num marcador para ver detalhes.',
+    resetView: 'Repor a vista',
+    intro: 'Um globo 3D interativo com {n} pirâmides e estruturas piramidais. Arraste para rodar, use dois dedos ou a roda do rato para fazer zoom e toque num marcador para ver os detalhes.',
     filtersButton: 'Filtros e lista',
     noWebgl: 'Globo 3D indisponível neste dispositivo (WebGL desativado): mapa plano.',
+    loadingGlobe: 'A carregar o globo…',
+    close: 'Fechar',
     africa: 'África',
     asia: 'Ásia',
     europe: 'Europa',
@@ -307,7 +321,7 @@ const translations: Record<Lang, TranslationKeys> = {
     southAmerica: 'América do Sul',
     oceania: 'Oceania',
     physicalData: 'Dados físicos',
-    comparativeInterpretations: 'Interpretações comparativas',
+    comparativeInterpretations: 'Interpretações comparadas',
     officialScience: 'Ciência oficial',
     alternativeScience: 'Ciência alternativa',
     dating: 'Datação',
@@ -353,8 +367,25 @@ const I18nContext = createContext<I18nContextType>({
   tc: (c) => c,
 });
 
-export const I18nProvider = ({ children }: { children: ReactNode }) => {
-  const [lang, setLang] = useState<Lang>('en');
+const isLang = (value: string): value is Lang => value in langNames;
+
+/** First browser language we support, English otherwise. */
+export const detectLang = (): Lang => {
+  if (typeof navigator === 'undefined') return 'en';
+  const candidates = navigator.languages?.length ? navigator.languages : [navigator.language];
+  for (const c of candidates) {
+    const short = (c || '').slice(0, 2).toLowerCase();
+    if (isLang(short)) return short;
+  }
+  return 'en';
+};
+
+export const I18nProvider = ({ children, initialLang }: { children: ReactNode; initialLang?: Lang }) => {
+  const [lang, setLang] = useState<Lang>(() => initialLang ?? detectLang());
+
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
 
   const t = translations[lang];
   const tc = (continent: string) => continentTranslations[lang][continent] || continent;
