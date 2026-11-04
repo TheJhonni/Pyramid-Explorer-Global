@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Pyramid } from '@/types/pyramid';
-import { X, MapPin, Mountain, Ruler, Star, ExternalLink, BookOpen, Lightbulb, BadgeCheck, CircleAlert, CircleHelp, Share2, Scale, Check, ChevronDown } from 'lucide-react';
+import { X, MapPin, Mountain, Ruler, Star, ExternalLink, BookOpen, Lightbulb, BadgeCheck, CircleAlert, CircleHelp, Share2, Scale, Check, ChevronDown, ChevronUp } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { MOBILE_SHEET_SHARE } from '@/utils/layout';
 import { useI18n } from '@/i18n/I18nContext';
@@ -32,7 +32,6 @@ const PyramidDetails = ({ pyramid, onClose, inCompare, onToggleCompare }: Pyrami
   const [copied, setCopied] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [isMobile, setIsMobile] = useState(() => window.matchMedia('(max-width: 767px)').matches);
-  const handleStart = useRef<number | null>(null);
   const sheetRef = useRef<HTMLDivElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
   const expandedRef = useRef(expanded);
@@ -65,6 +64,8 @@ const PyramidDetails = ({ pyramid, onClose, inCompare, onToggleCompare }: Pyrami
       const down = moved > 0;
       // Inside the text, only act at the top of the text; otherwise it scrolls normally.
       if (startedOnBody && (!atTop || (expandedRef.current && !down))) return;
+      // Small movements stay untouched, so a tap on a button still counts as a tap.
+      if (Math.abs(moved) < 8) return;
       if (e.cancelable) e.preventDefault();
       if (done || Math.abs(moved) < 24) return;
       done = true;
@@ -126,33 +127,18 @@ const PyramidDetails = ({ pyramid, onClose, inCompare, onToggleCompare }: Pyrami
           style={isMobile ? { height: expanded ? '92svh' : `${MOBILE_SHEET_SHARE * 100}svh` } : undefined}
           className="fixed inset-x-0 bottom-0 z-30 flex flex-col rounded-t-2xl border-t border-border bg-card/95 shadow-2xl backdrop-blur-xl transition-[height] duration-200 md:inset-x-auto md:bottom-auto md:right-0 md:top-0 md:h-full md:w-[480px] md:max-w-[92vw] md:rounded-none md:border-l md:border-t-0"
         >
-          {/* Sheet handle on phones: tap or swipe to resize */}
-          <button
-            type="button"
-            aria-expanded={expanded}
-            aria-label={expanded ? t.collapseDetails : t.expandDetails}
-            onPointerDown={(e) => {
-              handleStart.current = e.clientY;
-            }}
-            onPointerUp={(e) => {
-              const start = handleStart.current;
-              handleStart.current = null;
-              if (start === null) return;
-              const moved = e.clientY - start;
-              if (moved < -24) setExpanded(true);
-              else if (moved > 24) setExpanded(false);
-              else setExpanded((v) => !v);
-            }}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                setExpanded((v) => !v);
-              }
-            }}
-            className="flex w-full shrink-0 touch-none justify-center py-2.5 md:hidden"
-          >
-            <span className="h-1 w-10 rounded-full bg-muted-foreground/50" aria-hidden />
-          </button>
+          {/* Sheet control on phones: an obvious button, and swiping the sheet also works */}
+          <div className="flex shrink-0 justify-center px-4 py-2 md:hidden">
+            <button
+              type="button"
+              aria-expanded={expanded}
+              onClick={() => setExpanded((v) => !v)}
+              className="flex min-h-11 items-center gap-2 rounded-full border border-primary/40 bg-primary/15 px-5 text-sm font-medium text-primary active:bg-primary/25"
+            >
+              {expanded ? <ChevronDown size={20} aria-hidden /> : <ChevronUp size={20} aria-hidden />}
+              {expanded ? t.collapseDetails : t.expandDetails}
+            </button>
+          </div>
           {/* Header - no badges */}
           <header className="px-4 pb-3 md:p-6 border-b border-border">
             <div className="flex items-start justify-between">
